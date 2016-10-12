@@ -1,0 +1,145 @@
+
+<div class="wrapper">
+     <!--<div class="sidebar" data-background-color="white" data-active-color="danger"> -->
+
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+    	<!-- <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text">
+                    Creative Tim
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="dashboard.html">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html">
+                        <i class="ti-user"></i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="table.html">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Table List</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div> -->
+
+    <div class="main-panel expand">
+        
+        <!-- TODO Add Footer Partial -->
+        <%= render partial: "navbar" %>
+
+
+        <div class="content">
+            <div class="container-fluid">
+
+            	<div class="row">
+
+            	<div class="card col-md-6">
+                            <div class="header">
+                                <h4 class="title">Companies (<%= @user.companies.length %>)</h4>
+                            </div>
+                            <div class="content">
+                                <ul class="list-unstyled team-members">
+                                    
+                                    <% @user.joint_user_companies.each do | user_company| %>
+                                      <li>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div class="avatar">
+                                                    <%= image_tag('dummy.jpg', class:"img-circle img-no-padding img-responsive", alt:"Thumb") %>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <%= user_company.company.name %>
+                                                <br>
+                                                <% if user_company.status == 0 %>
+                                                    <span class="text-muted">
+                                                        <small> Owner </small>
+                                                    </span>
+                                                <% elsif user_company.status == 1 %>
+                                                    <span class="text-muted">
+                                                        <small> Super Admin </small>
+                                                    </span>
+                                                <% elsif user_company.status == 2 %>
+                                                <span class="text-muted">
+                                                        <small> Admin </small>
+                                                    </span>
+                                                <% elsif user_company.status == 3 %>
+                                                    <span class="text-muted">
+                                                        <small> User </small>
+                                                    </span>
+                                                <% end %>
+
+
+                                                    
+
+                                            </div>
+
+                                            <div class="col-xs-3 text-right">
+                                                <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
+                                            </div>
+                                        </div>
+                                    </li>
+                                  <% end %>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                        	<div class="card">
+			                  	<div class="row sharing-area text-center">
+			                         <br> 
+                                     <%= link_to new_company_path do %>
+                                        <button  type="button" class="btn btn-raised btn-twitter">Create company</button>
+                                    <% end %>
+				                    <br><br>
+				                          
+				                </div> 
+                			</div>
+
+                			<div class="card">
+			                  	<div class="row sharing-area text-center">
+			                         <br>          
+				                    <button  type="button" class="btn btn-raised btn-twitter"> Take an interview</button>
+				                    <br><br>
+				                          
+				                </div> 
+                			</div>
+
+                        </div>
+                     </div>
+
+
+
+
+
+   
+
+
+               
+                
+            </div>
+        </div>
+
+
+        <!-- TODO Add Footer Partial -->
+        <%= render partial: "footer" %>
+
+    </div>
+</div>
+
+
