@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012141328) do
+ActiveRecord::Schema.define(version: 20161013132754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,27 @@ ActiveRecord::Schema.define(version: 20161012141328) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "subdomain"
+  end
+
+  add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
+
+  create_table "interviews", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "salary_range"
+    t.datetime "deadline"
+    t.string   "tags"
+    t.json     "questions"
+    t.text     "instruction"
+    t.text     "mail_list"
+    t.string   "interview_token"
+    t.text     "shortlist_message"
+    t.text     "invite_message"
+    t.text     "reject_message"
+    t.integer  "company_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "joint_user_companies", force: :cascade do |t|
@@ -36,6 +57,28 @@ ActiveRecord::Schema.define(version: 20161012141328) do
     t.integer  "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "message"
+    t.integer  "read"
+    t.integer  "type_notification"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "status"
+    t.string   "videos"
+    t.string   "ziggeo"
+    t.string   "ziggeo_flag"
+    t.string   "question_text"
+    t.string   "time_allowed"
+    t.integer  "user_id"
+    t.integer  "interview_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

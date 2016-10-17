@@ -57,6 +57,9 @@
                                     
                                     <% @user.joint_user_companies.each do | user_company| %>
                                       <li>
+
+                                        
+                                        <%= link_to company_dashboard_path(user_company.company) do%>  
                                         <div class="row">
                                             <div class="col-xs-3">
                                                 <div class="avatar">
@@ -65,22 +68,25 @@
                                             </div>
                                             <div class="col-xs-6">
                                                 <%= user_company.company.name %>
+                                                <!-- get number of collaborators -->
+                                                <% num_collabs = user_company.company.users.length - 1 %>
+
                                                 <br>
                                                 <% if user_company.status == 0 %>
                                                     <span class="text-muted">
-                                                        <small> Owner </small>
+                                                        <small> Owner </small>:<%= num_collabs %> collaborator(s)
                                                     </span>
                                                 <% elsif user_company.status == 1 %>
                                                     <span class="text-muted">
-                                                        <small> Super Admin </small>
+                                                        <small> Super Admin </small>:<%= num_collabs %> collaborator(s)
                                                     </span>
                                                 <% elsif user_company.status == 2 %>
                                                 <span class="text-muted">
-                                                        <small> Admin </small>
+                                                        <small> Admin </small>:<%= num_collabs %> collaborator(s)
                                                     </span>
                                                 <% elsif user_company.status == 3 %>
                                                     <span class="text-muted">
-                                                        <small> User </small>
+                                                        <small> User </small>:<%= num_collabs %> collaborator(s)
                                                     </span>
                                                 <% end %>
 
@@ -93,6 +99,8 @@
                                                 <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
                                             </div>
                                         </div>
+
+                                        <% end %>
                                     </li>
                                   <% end %>
                                 </ul>

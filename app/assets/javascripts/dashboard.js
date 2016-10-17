@@ -2,6 +2,13 @@
 
 $(document).ready(function(){
 
+	// this will send CSRF token in all ajax request
+	$.ajaxSetup({
+  		headers: {
+   		 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  		}
+  	});
+
     // Instance the tour
 		var tour = new Tour({
 		  steps: [
@@ -80,50 +87,7 @@ $(document).ready(function(){
 	});
 
 
-	$('.click-notification').click(function(){
-
-		// $.ajax({
-		//       url: patchLink,
-		//       type: 'PATCH',
-		//       success: function(data){
-		//       	if (data == "success"){
-		//       		var current_status_parent = $('#current_status_stored').val();
-		//       		var current_status = thisObject.attr('current_status');
-		//       		if (current_status == current_status_parent){
-		//       			if (current_status == "reject"){
-  //   							showMessage('top','right', "Candidate already declined", 4);
-  //   						} else if (current_status == "pend"){
-  //   							showMessage('top','right', "Candidate already pended", 1);
-  //   						} else {
-  //   							showMessage('top','right', "Candidate already shortlisted", 2);
-  //   						}
-		//       		} else{
-		// 		      	var  parentCard = thisObject.parents('div.card-start');
-		// 		      	parentCard.hide("slide", { direction: "left"}, 300, function() {
-  //   						thisObject.parents('div.card-start')[0].remove();
-  //   						if (current_status == "reject"){
-  //   							showMessage('top','right', "you have Declined this candidate", 4);
-  //   						} else if (current_status == "pend"){
-  //   							showMessage('top','right', "you have pended this candidate", 1);
-  //   						} else {
-  //   							showMessage('top','right', "you have shortlisted this candidate", 2);
-  //   						}
-		// 				});
-		//       		}
-		      		
-		//       	} else {
-		//       		showMessage('top','right', "An error occurred, please try again", 4);
-		//       	}
-		//       },
-		//       error : function(jqXHR, textStatus, errorThrown) {
-		//       	   showMessage('top','right', "An error occurred, please try again", 4);
-		//        }
-		//    });
-
-		 
-
-
-	});
+	
 
 
 
@@ -399,8 +363,8 @@ $(document).ready(function(){
 			$(this).parents('li')[0].remove();
 
 			$.ajax({
-		      url: '/api/v1/update_notification',
-		      type: 'GET',
+		      url: '/update_notification',
+		      type: 'PUT',
 		      data :{ read: 1, notification_id: notification_id},
 		      success: function(data){
 		      	console.log(data);

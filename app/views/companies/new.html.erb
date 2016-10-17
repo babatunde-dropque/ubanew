@@ -42,7 +42,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label >Subdomain</label>
-                                                <input type="text" class="form-control border-input"  placeholder="subdomain.dropque.com" name="slug">
+                                                <input type="text" class="form-control border-input"  placeholder="subdomain.dropque.com" name="subdomain">
                                             </div>
                                         </div>
                                     </div>
@@ -229,26 +229,31 @@
         console.log("working");
         $("#collaborator-content").append(
         "<div class='row'>"+
-            "<div class='col-md-8'>" +
+            "<div class='col-md-6'>" +
             "<div class='form-group'>"+
             "<input type='text' class='form-control border-input'  placeholder='email'>"+
             "</div>"+
             "</div>"+
-            "<div class='col-md-4'>"+
-                "<div class='form-group'>"+
-                "<div class='cd-filter-block'>"+
-                    "<select>"+
-                        "<option value='1'> super admin </option>"+
-                        "<option value='2'> admin</option>"+
-                        "<option value='3'> user  </option>"+
-                    "</select>"+
-                "</div>"+
-              "</div>"+
+            "<div class='col-md-6'>"+
+                "<select class='btn box-shape-1' >"+
+                    "<option value='1'> super admin </option>"+
+                    "<option value='2'> admin</option>"+
+                    "<option value='3'> user  </option>"+
+                "</select>"+
+                "<btn class='btn box-shape width-perfect remove-new-collaborator' >"+
+                "<i class='ti-close'>"+
+                "</btn>"+
             "</div>"+
+    
         "</div>"
             );
-        
+    
+    });
 
+
+    //  remove added collaborators
+     $("#collaborator-content").on("click", ".remove-new-collaborator", function(){
+        $(this).parents('div.row')[0].remove();
     });
 
 

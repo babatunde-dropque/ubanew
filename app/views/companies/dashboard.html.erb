@@ -1,0 +1,66 @@
+<body>
+<input id="current_status_stored" type="hidden" value="all" />
+<input id="number_of_signin" type="hidden" value="<%= @sigin_in_count %>" />
+
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+    	
+<!-- TODO Add Sidebar Panel -->
+    <%= render partial: "sidebar" %>
+    <div class="main-panel">
+<!-- TODO Add Navbar Panel -->
+    <%= render partial: "users/navbar" %>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="cd-filter-block">
+                            <div class="cd-filter-content">
+                                <div class="cd-select cd-filters">
+                                    
+                                </div> <!-- cd-select -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <form>
+                            <div class="cd-filter-block">
+                                <div class="cd-filter-content cd-search">
+                                    <input type="text" placeholder="Search..." required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                
+
+                            <div class="header">
+                               <h4 class="title">Videos</h4>
+                            </div>
+
+                             <% if @company.interviews.length == 0 %>
+                                <div>
+                                    <%= render partial: "when_empty"%>
+
+                                </div>
+                            <% else %>
+                                <div class="filterismo">
+                                <%= render partial: "all"%>
+                                </div>
+                            <% end %>
+                </div>
+            </div>
+        </div>
+<!-- TODO Add Footer Partial -->
+        <%= render partial: "users/footer" %>
+    </div>
+    </div>
+</div>
+
+<!-- modal for comment -->
+<div id="modal-list"></div>
+
+</body>

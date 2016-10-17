@@ -1,0 +1,2 @@
+class VideopagerController < ApplicationController
+end

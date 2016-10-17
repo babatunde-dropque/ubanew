@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard'
 
+
   # this is assigning device controllers for user(s)
   devise_for :users, controllers: {invitations: 'devise/invitations', registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
 
@@ -72,12 +73,15 @@ Rails.application.routes.draw do
   # Nested Company Resources 
   resources :companies do
     get "dashboard", to: "companies#dashboard", as: :dashboard
+    post "add_collaborators", to: "companies#add_collaborators"
+    delete "remove_collaborator", to: "companies#remove_collaborator"
+    put "transfer_ownership", to: "companies#transfer_ownership"
     # get "shortlist", to: "companies#shortlist"
     # get "pend",      to: "companies#pend"
     # get "reject",    to: "companies#reject"
     # get "edit", to: "companies#edit", as: 'edit'
     # post "update", to: "companies#update", as: 'update'
-    # resources :jobs do
+    resources :interviews do
     #   get "preview", to: "users#preview"
     #   put "invite_sender", to: "jobs#send_invite_mail"
     #   put "shortlist_sender", to: "jobs#send_shortlist_mail"
@@ -89,7 +93,7 @@ Rails.application.routes.draw do
     #     end
     #     patch    "submissions/status_update"  => "submissions#status_update", as: :status_update        
     #   end
-    # end
+    end
   end
 
 
@@ -109,6 +113,7 @@ Rails.application.routes.draw do
     get    "login"   => "users/sessions#new",         as: :new_user_session
     post   "login"   => "users/sessions#create",      as: :user_session
     delete "signout" => "users/sessions#destroy",     as: :destroy_user_session
+    put    "update_notification"  => "users#update_notification"
     
     get    "signup"  => "users/registrations#new",    as: :new_user_registration
     post   "signup"  => "users/registrations#create", as: :user_registration

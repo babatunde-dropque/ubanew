@@ -3692,6 +3692,33 @@ btn.btn.add-collaborator{
   padding-right: 15px;
 }
 
+select.btn.box-shape {
+  border-radius: 0;
+  background: white;
+  color: black;
+  width: 100%;
+}
+
+select.btn.box-shape-1 {
+  border-radius: 0;
+  background: white;
+  color: black;
+  width: 76%;
+}
+
+.width-perfect{
+  width: 20%;
+  padding: 6px;
+}
+
+.text-right.right-margin{
+  margin-right: 15px;
+}
+
+.box-shape {
+   border-radius: 0;
+}
+
                             
 
               

@@ -1,0 +1,50 @@
+<div class="sidebar-wrapper">
+            <div class="logo align">
+                <%= link_to root_path do %>
+                    <%= image_tag('dqlg.png') %>
+                <% end %>
+            </div>
+        
+            <ul class="nav">
+                <li id="step1">
+                    <%= link_to new_company_interview_path(params[:company_id] || params[:id]) do %>
+                   <button  type="button" class="button">Create interview</button>
+                   <% end %>
+                </li>
+                <li id="step2" class="<%= (params[:c] == "1") ? "active": "" %>"> 
+                    <%= link_to company_dashboard_path(params[:company_id] || params[:id], c: 1) do %>
+                        <i class="ti-control-play"></i>
+                        <p>QueBox</p>
+                    <% end %>
+                </li>
+                <li id="step3" class="<%= (params[:c] == "2") ? "active": "" %>">
+                    <%= link_to company_interviews_path(params[:company_id] || params[:id], c: 2) do %>
+                        <i class="ti-user"></i>
+                        <p>Interviews</p>
+                    <% end %>
+                </li>
+                <li id="step4" class="<%= (params[:c] == "3") ? "active": "" %>">
+                    <a>
+                        <i class="ti-check-box"></i>
+                        <p>Shortlisted</p>
+                    </a>
+                   
+                </li>
+                <li id="step5" class="<%= (params[:c] == "4") ? "active": "" %>">
+                    <a>
+                        <i class="ti-pencil-alt"></i>
+                        <p>Pending</p>
+                    </a>
+                  
+                </li>
+                <li id="step6" class="<%= (params[:c] == "5") ? "active": "" %> ">
+                    <a>
+                        <i class="ti-trash"></i>
+                        <p>Declined</p>
+                    </a>
+                   
+                </li>                  
+            </ul>
+        
+    	</div>
+    </div>
