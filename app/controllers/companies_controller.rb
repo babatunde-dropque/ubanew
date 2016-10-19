@@ -2,15 +2,12 @@ class CompaniesController < ApplicationController
 	layout 'user_dashboard'
 	before_action :authenticate_user!
     before_filter :set_up_user
+    before_filter :set_up_company, :except => [:new, :create]
 
+   
 
-    def set_up_user
-        @user = current_user
-        @notification = Notification.where(user_id: @user.id, read: 0)
-    end
+	def show
 
-	def dashboard
-        @company = Company.friendly.find(params[:company_id])
         @user_status = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
         @sigin_in_count = current_user.sign_in_count.to_s
         # @interviews = @company.interviews.includes(:users).where(submissions: {status: nil}).paginate(:page => params[:page], :per_page => 5) 
@@ -21,8 +18,13 @@ class CompaniesController < ApplicationController
 		
 	end
 
+
+    def all_interview
+        @all_interview = @company.interviews
+
+    end
+
     def add_collaborators
-        @company = Company.friendly.find(params[:company_id] || params[:id])
         # after this, loop through everyother user and send notification and email to them
             collaborator_list = JSON.parse(params[:collaborators_list])
             collaborator_list.each do | collborator | 
@@ -55,7 +57,6 @@ class CompaniesController < ApplicationController
     # do to, kindly change this to find by user and company so that no one can just passed a
     # delete call to ajax to delete any user's collaboration
     def remove_collaborator
-        @company = Company.friendly.find(params[:company_id] || params[:id])
         user_company = JointUserCompany.find(params[:user_company_id])
         if !user_company.destroy
            render plain: "failure"
@@ -68,7 +69,6 @@ class CompaniesController < ApplicationController
 
     # transfer ownership
     def transfer_ownership
-         @company = Company.friendly.find(params[:company_id] || params[:id])
          current_owner = JointUserCompany.find(params[:current_owner])
          new_owner = JointUserCompany.find(params[:new_owner])
         if current_owner.update_attributes(status: 1) && new_owner.update_attributes(status: 0)
@@ -83,15 +83,13 @@ class CompaniesController < ApplicationController
 
 
     def edit
-        @company = Company.friendly.find(params[:company_id] || params[:id]) 
         @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id) 
         @collborators = @company.joint_user_companies
         @user_status = @user_company.status
     end
 
 
-    def update 
-        @company = Company.friendly.find(params[:company_id] || params[:id])   
+    def update  
         @company.update_attributes(create_company_params)
         redirect_to edit_company_path
         
@@ -143,6 +141,24 @@ class CompaniesController < ApplicationController
   def create_company_params
     params.permit(:name, :description, :tags, :image, :city, :address, :country, :subdomain)
   end
+
+
+   # set current user and check if use has permissions to access the view
+    def set_up_user
+        # user's details
+        @user = current_user
+        @notification = Notification.where(user_id: @user.id, read: 0)
+    end
+
+    # set_up company details and check if the user has permission to access the company
+    # so user's can't access it from the url
+    def set_up_company
+        @company = Company.friendly.find(params[:company_id] || params[:id])
+        result = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
+        if result.nil?
+           redirect_to user_dashboard_path
+        end
+    end
 
 
 end

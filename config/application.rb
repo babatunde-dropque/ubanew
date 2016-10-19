@@ -9,8 +9,11 @@ Bundler.require(*Rails.groups)
 module Newdrop
   class Application < Rails::Application
 
-      # this will handle custom errors showing
+  # this will handle custom errors showing
   config.exceptions_app = self.routes
+
+  # Set up queueing backend works and processes
+  config.active_job.queue_adapter = :delayed_job
 
 
 

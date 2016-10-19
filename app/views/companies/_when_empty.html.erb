@@ -13,7 +13,7 @@
                                         <br> <br> <br> <br>                         
                                         <h5>No Interview has been created yet</h5>
 
-                                     <%= link_to new_company_interview_path do %>
+                                     <%= link_to new_company_interview_path(params[:company_id] || params[:id]) do %>
                                         <button  type="button" class="btn btn-raised btn-twitter">Create interview</button>
                                     <% end %>
 

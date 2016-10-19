@@ -3719,6 +3719,25 @@ select.btn.box-shape-1 {
    border-radius: 0;
 }
 
+
+
+div.file > span  {
+   display:none;
+}
+
+
+.margin{
+  margin: 4px;
+}
+
+.width-100{
+  width: 100%;
+}
+
+.margin-top-form {
+  margin-top: 17px; 
+}
+
                             
 
               

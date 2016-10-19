@@ -72,7 +72,6 @@ Rails.application.routes.draw do
 
   # Nested Company Resources 
   resources :companies do
-    get "dashboard", to: "companies#dashboard", as: :dashboard
     post "add_collaborators", to: "companies#add_collaborators"
     delete "remove_collaborator", to: "companies#remove_collaborator"
     put "transfer_ownership", to: "companies#transfer_ownership"
@@ -81,6 +80,7 @@ Rails.application.routes.draw do
     # get "reject",    to: "companies#reject"
     # get "edit", to: "companies#edit", as: 'edit'
     # post "update", to: "companies#update", as: 'update'
+    get "all_interview", to: "companies#all_interview"
     resources :interviews do
     #   get "preview", to: "users#preview"
     #   put "invite_sender", to: "jobs#send_invite_mail"

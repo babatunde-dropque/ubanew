@@ -55,7 +55,6 @@ $(document).ready(function(){
 
 	// this will get the number of signin to know when to show tour
 	var signInCount = $("#number_of_signin").val();
-	console.log(signInCount);
 	if ( signInCount == "1"){
 		// Initialize the tour and start tour
 		tour.init();
@@ -220,6 +219,7 @@ $(document).ready(function(){
 
 
 	
+	// this is the script responsible for tags
 	var emailTag = $('#emails');
 	emailTag.tagit({
 		placeholderText: "mail@example.com",
@@ -263,21 +263,49 @@ $(document).ready(function(){
 
 	// check if the there is questions and parse the json 
 	var questionString = $("#questions-json").val() ;
-	if (questionString) {
+	if (questionString && questionString != null ) {
 		var resultArray = JSON.parse(questionString);
 
-		for (var i = 0; i < resultArray.length; i++) {
-    		 var q = resultArray[i]["question_text"];
-    		 var t = resultArray[i]["time_allowed"] ;
-    		$("#question-tag").append(addNewQuestionWithDetails(q,t));    		
+		if (resultArray != null) {
+			for (var i = 0; i < resultArray.length; i++) {
+				if (resultArray[i]["question_type"] == 1){
+		    		 var q = resultArray[i]["question_video"];
+		    		 var t = resultArray[i]["time_allowed"] ;
+		    		$("#question-tag").append(addNewQuestionWithDetails(q,t, 1));   
+	    		} else if (resultArray[i]["question_type"] == 2){
+	    			 var q = resultArray[i]["question_text"];
+		    		 var t = resultArray[i]["max_char"] ;
+		    		$("#question-tag").append(addNewTextQuestionWithDetails(q,t, 2));   
+
+	    		} else if (resultArray[i]["question_type"] == 3){
+	    			 var q = resultArray[i]["file_text"];
+		    		 var t = resultArray[i]["file_size"] ;
+		    		$("#question-tag").append(addNewFileUpload(q,t, 3));   
+
+	    		}
+			}
 		}
 
 	}
 
 
+
+
+
     $("#add-new").click(function(){
-    	  var newQuestion = addNewQuestion();
-         $("#question-tag").append(newQuestion);
+    	  var checkType = $("#question-type").val(); 
+ 
+    	if(checkType == 1){
+    	  var newQuestion = addNewQuestionWithDetails("",null, checkType);
+        } else if(checkType == 2){
+          var newQuestion = addNewTextQuestionWithDetails("","", checkType);
+        } else if(checkType == 3){
+          var newQuestion = addNewFileUpload("","", checkType);
+        }
+
+        $("#question-tag").append(newQuestion);
+
+       
     });
 
 
@@ -303,7 +331,7 @@ $(document).ready(function(){
 }
 
 
-     $("#job-submit").click(function(event){
+     $("#interview-submit").click(function(event){
     	// this part will add the questions to the question field before submission
     	// check if title is empty
     	var titleInterview = $("#title-interview").val()
@@ -326,35 +354,53 @@ $(document).ready(function(){
        jsonObj = [];
 
      	 $("#question-tag").find(".row").each(function(index) {
+     	 	 var type = $(this).attr("type");
      	 	 var questionObject = $(this).find("input");
-		     var question = questionObject.get(0).value ;
-		     var timeAllowed = questionObject.get(1).value
+		     var firstField = questionObject.get(0).value ;
+		     var secondField = questionObject.get(1).value
 		     
-		     if (!question || !timeAllowed){
+		     if (!firstField || !secondField){
 		     	// check if question or timeAllowed is empty
-		     	showMessage('top','right', "question or time cannot be empty", 4);
+		     	showMessage('top','right', "question field cannot be empty", 4);
 		     	event.preventDefault();
 
 		     } else{
-		     	
-		     	if (!validateTime(timeAllowed)){
-			        showMessage('top','right', "Time format not correct, use mm:ss ", 4);
-			        event.preventDefault();
-	       		 } else {
-	       		 	questionItem = {}
-		         	questionItem["question_text"] = question;
-		         	questionItem["time_allowed"] = convertTimeToMillisecond(timeAllowed);
-		         	jsonObj.push(questionItem);
 
-	       		 }
+		     	if (type == 1){
+		     		// check time format
+			     	if (!validateTime(secondField)){
+				        showMessage('top','right', "Time format not correct, use mm:ss ", 4);
+				        event.preventDefault();
+		       		 } else {
+		       		 	questionItem = {}
+		       		 	questionItem["question_type"] = type ;
+			         	questionItem["question_video"] = firstField;
+			         	questionItem["time_allowed"] = convertTimeToMillisecond(secondField);
+			         	jsonObj.push(questionItem);
 
+		       		 }
+	       		} else if (type == 2){
+	       				questionItem = {}
+		       		 	questionItem["question_type"] = type ;
+			         	questionItem["question_text"] = firstField;
+			         	questionItem["max_char"] = secondField;
+			         	jsonObj.push(questionItem);
+
+	       		} else if (type == 3 ){
+	       				questionItem = {}
+		       		 	questionItem["question_type"] = type ;
+			         	questionItem["file_text"] = firstField;
+			         	questionItem["file_size"] = secondField;
+			         	jsonObj.push(questionItem);
+
+	       		}
 		     }
 		     
 		});
 
      	 	$("#questions-json").val(JSON.stringify(jsonObj));
-     	  
-    });
+
+        });
 
 
 		// this is the close notification button for notification
@@ -391,34 +437,17 @@ $(document).ready(function(){
 // end of document ready function
 
 
-
-function addNewQuestion(){
+function addNewQuestionWithDetails(q,t, type){
+	var fomattedTime = "";
+	if (t != null){
+		fomattedTime = milisecondsToMinsFormat2(t);
+	}
+	
 	var result = 
-			"<div class='row'>" +
+			"<div class='row' type ='"+type+"'>" +
 		      "<div class='col-md-8'>"+
 		         "<div class='form-group'>"+
-		              "<input type='text' class='form-control border-input' placeholder='New Question' >"+
-		          "</div>"+
-		      "</div>"+
-		      "<div class='col-md-3'>"+
-		          "<div class='form-group'>"+
-		              "<input type='text' class='form-control border-input' placeholder='Time allowed mm:ss'>"+
-		          "</div>"+
-		      "</div>"+
-		      "<div class='col-md-1 close'>"+
-		        "<btn class='btn remove'><i class='ti-close'></i></btn>"+
-		      "</div>"+ 
-		  "</div>";
-	return result;
-}
-
-function addNewQuestionWithDetails(q,t){
-	var fomattedTime = milisecondsToMinsFormat2(t);
-	var result = 
-			"<div class='row'>" +
-		      "<div class='col-md-8'>"+
-		         "<div class='form-group'>"+
-		              "<input type='text' class='form-control border-input' placeholder='New Question' value='"+q+"' >"+
+		              "<input type='text' class='form-control border-input' placeholder='Video Question' value='"+q+"' >"+
 		          "</div>"+
 		      "</div>"+
 		      "<div class='col-md-3'>"+
@@ -433,20 +462,82 @@ function addNewQuestionWithDetails(q,t){
 	return result;
 }
 
+function addNewTextQuestionWithDetails(q, c, type){
+	var result = 
+		"<div class='row'  type ='"+type+"'>" +
+	          "<div class='col-md-8'>" +
+	             "<div class='form-group'>" +
+	                  "<input type='text' class='form-control border-input' placeholder='Text Question' value='"+q+"' >" +
+	              "</div>" +
+	          "</div>" +
+	          "<div class='col-md-3'>" +
+	              "<div class='form-group'>" +
+	                  "<input type='text' class='form-control border-input' placeholder='Max chars allowed' value='"+c+"'>" +
+	              "</div>"+
+	          "</div>"+
+	          "<div class='col-md-1 close'>"+
+	            "<btn class='btn remove'><i class='ti-close'></i></btn>"+
+	          "</div>"+
+	  	"</div>";
+	  return result;
+}
+
+function addNewFileUpload(q, s, type){
+	var result = 
+	"<div class='row' type ='"+type+"'>" +
+          "<div class='col-md-8'>" +
+             "<div class='form-group'>"+
+                  "<input type='text' class='form-control border-input' placeholder='File Description' value='"+q+"'>"+ 
+              "</div>" +
+          "</div>" +
+          "<div class='col-md-3'>"+
+              "<div class='form-group'>"+
+                  "<input type='text' class='form-control border-input' placeholder='Max File Size' value='"+s+"'>"+
+              "</div>"+
+          "</div>"+
+          "<div class='col-md-1 close'>"+
+            "<btn class='btn remove'><i class='ti-close'></i></btn>"+
+          "</div>"+
+      "</div>";
+      return result;
+}
+
+
+
 
 function formatQuestion(){
 	var resultQuestion = $('#question-returned').val();
-	// $("#question-holder").append('<p class="category">Invite List</p>');
+	
 	 if (resultQuestion) {
 		var resultArrayQuestion = JSON.parse(resultQuestion);
 
 		for (var i = 0; i < resultArrayQuestion.length; i++) {
-    		 var q = resultArrayQuestion[i]["question_text"];
-    		 var t = resultArrayQuestion[i]["time_allowed"] ;
+			 var type = resultArrayQuestion[i]["question_type"];
+
+			 if (type == 1){
+
+			 	 var f = resultArrayQuestion[i]["question_video"];
+    		 	 var s = milisecondsToMins(resultArrayQuestion[i]["time_allowed"]) ;
+    		 	 var typeShow = "Video Question"
+
+			 } else if (type == 2){
+			 	 var f = resultArrayQuestion[i]["question_text"];
+    		 	 var s = resultArrayQuestion[i]["max_char"] +' characters';
+    		 	 var typeShow = "Text Question"
+
+
+			 } else if (type == 3){
+			 	var f = resultArrayQuestion[i]["file_text"];
+    		 	var s = resultArrayQuestion[i]["file_size"] +'Mb';
+    		 	var typeShow = "File Upload"
+			 }
+
+    		
     	    $("#question-holder").append(
     	    	'<tr>'+
-                    '<td>'+q+'</td>'+
-                    '<td>'+milisecondsToMins(t)+'</td>'+
+    	    		'<td>'+typeShow+'</td>'+
+                    '<td>'+f+'</td>'+
+                    '<td>'+s+'</td>'+
                 '</tr>');
 		}
 

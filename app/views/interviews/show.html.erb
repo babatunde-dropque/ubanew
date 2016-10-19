@@ -1,1 +1,132 @@
-show pages here for single 
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="success">
+
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+<!-- TODO Add Sidebar Panel -->
+   	 <%= render partial: "companies/sidebar" %>
+    <div class="main-panel">
+<!-- TODO Add Navbar Panel -->
+    <%= render partial: "users/navbar" %>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+
+                        <!--  <form class="frm" style="float: right">
+                            <input type="text" class="form border-input" placeholder="Search..." required>
+                            <input type="button" class="btn" value="Search">
+                </form> -->
+          <div class="col-lg-12 col-md-12">
+              <div class="card">
+                      <div>
+                          <div class="header">
+                            <h4 class="title float-left"> <%= @interview.title %> </h4>
+                            <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.id), class: "btn float-right box-shape" %>   
+                          </div>
+                          <div class="content"><br><br></div>                                
+                      </div>
+
+                    <div class="header ">
+
+
+                    </div>
+
+                    <div class="content">
+
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-xs-12 col-lg-12 col-md-12">
+                                  
+	                                 <div class="typo-line">
+	                                    <h5><p class="category">Role description</p><%= @interview.description %></h5>
+	                                 </div>
+	                                 
+	                                  <div class="typo-line">
+	                                    <h5><p class="category">Deadline</p> <%= @interview.deadline %></h5>
+	                                 </div>
+                                   <div class="typo-line">
+                                      <h5><p class="category">Token</p><%= @interview.interview_token %></h5>
+                                   </div>
+
+                                   <div class="typo-line">
+                                      <h5><p class="category">Invitation Link</p> https://www.dropque.com/invitation/<%= @interview.interview_token %></h5>
+                                   </div>                                            
+                              </div>
+                          </div>
+                      </div>
+                  </div>                            
+	            </div>
+           </div>
+
+				</div>
+
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="header">
+                      <h4 class="title">Question(s)</h4>
+                    </div>
+                    <div class="content">
+                      <div class="typo-line">
+                        <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
+                          <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <tbody id="question-holder">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                          
+
+                      </div>
+                  </div>
+                                                                      
+                </div>
+          </div>
+        </div>
+
+
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="header">
+                               <h4 class="title">Candidates Email</h4>
+                            </div>
+                              <div class="content">
+                                
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <input type="text" id="email-list" class="form-control border-input" value="<%= @interview.mail_list %>" />
+                                   </div>
+                                   <label id="indicator-mail"> </label>
+                                </div>
+
+
+
+                                  <div class="text-center">
+                                 
+                                    
+                                  </div>
+                            </div>
+                          
+                                                                  
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+			</div>
+		</div>
+	</div>
+  
+</div>
+

@@ -63,8 +63,17 @@ gem 'pg'
 
 # for creating environmental viarible
 gem 'figaro'
+# creating fog file to help with aws configuration 
+gem 'fog'
+# for resizing images, rails version of image magic
+gem 'mini_magick', '~> 4.3'
 
 gem 'commontator', '~> 4.11.1'
 
 # friendly id, will be used to search instead of id
 gem 'friendly_id'
+
+# to upload files from local 
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+#  will run backgound processes, 
+gem 'delayed_job_active_record'
