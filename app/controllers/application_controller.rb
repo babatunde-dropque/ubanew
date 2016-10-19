@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
       notification.save!
 
       # get receivers object
-      receiver = User.find(user_id)
-      UserMailer.receive_notification(receiver, message).deliver_later
+      # receiver = User.find(user_id)
+      # UserMailer.receive_notification(receiver, message).deliver_later
 
   end
 
