@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Applicatn Interview </title>
+  	 <%= stylesheet_link_tag 'application' %>
+	 <%= stylesheet_link_tag params[:controller] %>
+	 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	 <%= javascript_include_tag 'application', 'notify.min' %> 
+  	 <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+
+<%= javascript_include_tag params[:controller] %> 
+</body>
+</html>

@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
   
+  get 'applicants/index'
+
   get 'landings/index'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard'
+
+  # either /applicants or /applicants/interview_token
+  get 'applicants/' => 'applicants#index'
+  get 'applicants/:interview_token/' => 'applicants#index'
+
+  post 'applicants/' => 'applicants#index'
+
+  %w( validate_interview ).each do |action|
+    get  action => 'applicants#'+action
+  end
+  
 
 
   # this is assigning device controllers for user(s)
@@ -95,6 +108,8 @@ Rails.application.routes.draw do
     #   end
     end
   end
+
+
 
 
   # You can have the root of your site routed with "root"

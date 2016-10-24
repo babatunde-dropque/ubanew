@@ -1,0 +1,64 @@
+<h2> Welcome to <%= @company.name %></h2>
+
+
+<h1>Applicants</h1>
+
+<form  id="form-details" method="post" action="/applicants"> 
+
+	<input type="text"  id="interview-token-box" placeholder="Enter Interview Token" value="<%= params[:interview_token] %>" name="interview_token" />
+	<input hidden type="email" id="interview-email-box" placeholder="Enter Email" name="email" />
+
+	<input type="hidden" value="details" name ="page" />
+
+	  <!-- add csrf token -->
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                        	
+
+	<button  id = "take-interview" class="btn"> Take Interview <i class="fa fa-spinner fa-spin"></i></button>
+</form>
+
+
+<script>
+
+	$("#take-interview").click(function(event){
+
+		event.preventDefault();
+
+		var interviewToken = $("#interview-token-box").val();
+		$.ajax({
+          url: '/validate_interview', 
+          type: 'GET',
+          data: {interview_token: interviewToken },
+          success: function(data){
+              if (data == "success"){
+
+               $("#interview-token-box").hide();
+               $("#interview-email-box").show();
+
+                
+                if ($("#interview-email-box").val() && true){
+                	// this other true is to validate if its an email of not
+                	$("#form-details").submit();
+                } 
+
+                
+
+              } else {
+              	alert("wrong")
+             }
+          },
+          error : function(jqXHR, textStatus, errorThrown) {
+               
+           }
+       });
+    // once this validate, then it sends the token to rails.
+    // rails will need to check again because of 
+  	
+  	});
+
+
+
+</script>
+
+
+
+

@@ -7,6 +7,12 @@ Rails.application.config.assets.precompile += %w( material.js )
 Rails.application.config.assets.precompile += %w( dashboard.css )
 Rails.application.config.assets.precompile += %w( dashboard.js )
 
+
+# because this is a specific page css and javascript, it need to be added here for compilation
+Rails.application.config.assets.precompile += %w( applicants.css )
+Rails.application.config.assets.precompile += %w( applicants.js )
+Rails.application.config.assets.precompile += %w( notify.min.js )
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 
