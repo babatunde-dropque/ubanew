@@ -43,6 +43,10 @@ class InterviewsController < ApplicationController
 
 	def create
 		interview = Interview.new(interview_params)
+    puts "result before status"
+    puts interview_params[:status]
+    puts "result after status"
+
 	    interview.company = @company
 	    respond_to do |format|
 	      if interview.save
@@ -94,7 +98,8 @@ class InterviewsController < ApplicationController
                                   :questions,
                                   :shortlist_message,
                                   :reject_message,
-                                  :invite_message
+                                  :invite_message,
+                                  :status,
                                   )
     end
 end
