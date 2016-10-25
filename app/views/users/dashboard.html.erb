@@ -47,11 +47,15 @@
             <div class="container-fluid">
 
             	<div class="row">
-
-            	<div class="card col-md-6">
-                            <div class="header">
+                        <div class="header col-md-4 col-md-offset-2">
                                 <h4 class="title">Companies (<%= @user.companies.length %>)</h4>
-                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-2">
+                            <%= link_to new_company_path do %>
+                                <button  type="button" class="btn btn-raised btn-twitter">Create company</button>
+                            <% end %>
+                        </div>
+            	<div class="card col-md-8 col-md-offset-2">
                             <div class="content">
                                 <ul class="list-unstyled team-members">
                                     
@@ -106,42 +110,9 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                        	<div class="card">
-			                  	<div class="row sharing-area text-center">
-			                         <br> 
-                                     <%= link_to new_company_path do %>
-                                        <button  type="button" class="btn btn-raised btn-twitter">Create company</button>
-                                    <% end %>
-				                    <br><br>
-				                          
-				                </div> 
-                			</div>
-
-                			<div class="card">
-			                  	<div class="row sharing-area text-center">
-			                         <br>          
-				                    <button  type="button" class="btn btn-raised btn-twitter"> Take an interview</button>
-				                    <br><br>
-				                          
-				                </div> 
-                			</div>
-
-                        </div>
-                     </div>
-
-
-
-
-
-   
-
-
-               
-                
-            </div>
-        </div>
+                    </div>
+    </div>
+</div>
 
 
         <!-- TODO Add Footer Partial -->

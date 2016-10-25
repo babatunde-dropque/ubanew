@@ -12,9 +12,11 @@ class ApplicantsController < ApplicationController
 
   		else
 
-  	 end
+  	end
 
-  		# create new user
+    
+
+     # create new user
 
   		render "details"
   	end
