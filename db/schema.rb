@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161025171646) do
+=======
+ActiveRecord::Schema.define(version: 20161024130242) do
+>>>>>>> 11815754c1a0f600cbf9f014afb528d51df25fcd
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +72,10 @@ ActiveRecord::Schema.define(version: 20161025171646) do
     t.datetime "updated_at",        null: false
     t.string   "slug"
     t.string   "completed_message"
+<<<<<<< HEAD
     t.string   "status"
+=======
+>>>>>>> 11815754c1a0f600cbf9f014afb528d51df25fcd
   end
 
   add_index "interviews", ["slug"], name: "index_interviews_on_slug", unique: true, using: :btree
