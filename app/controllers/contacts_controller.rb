@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_filter :set_up_user
   before_action :set_company
   def index
   	@contacts = Contact.all
@@ -35,6 +36,11 @@ end
 def contact_params
 	params.require(:contact).permit(:name, :attachment)
 	end
+
+   def set_up_user
+        @user = current_user
+        @notification = Notification.where(user_id: @user.id, read: 0)
+  end
 
 
 
