@@ -59,7 +59,7 @@
     <br><%= check_box_tag 'features[]', 'news' %> News
     <br><%= check_box_tag 'features[]', 'polls' %> Polls
     <%= f.check_box :tags, {}, true, false %> <br />
-     
+
 
     <div class="row">
       <div class="form-group col-md-12">
@@ -69,6 +69,10 @@
       </div>
     </div>
 
+
+
+
+   
 
       <input type="hidden" value="<%= @interview.questions.to_json %>" name="interview[questions]" id="questions-json" />
 
