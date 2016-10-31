@@ -97,9 +97,12 @@ Rails.application.routes.draw do
     # get "edit", to: "companies#edit", as: 'edit'
     # post "update", to: "companies#update", as: 'update'
     get "all_interview", to: "companies#all_interview"
+    resources :contacts, only: [:index, :new, :show, :create, :destroy]
     resources :interviews do
-    #   get "preview", to: "users#preview"
+      put "bulk_invite_sender", to: "interviews#send_bulk_invite_mail"
+    #  get "preview", to: "users#preview"
     #   put "invite_sender", to: "jobs#send_invite_mail"
+       
     #   put "shortlist_sender", to: "jobs#send_shortlist_mail"
     #   put "reject_sender", to: "jobs#send_reject_mail"
     #   resources :submissions do
@@ -116,8 +119,8 @@ Rails.application.routes.draw do
 
 
   # You can have the root of your site routed with "root"
-  root 'landings#index'
-
+    root 'landings#index'
+    # root 'contacts#index'
 
 
 # If you have the need for more deep customization, 

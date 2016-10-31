@@ -45,7 +45,6 @@
 
 
 
-
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :candidate_emails %>
@@ -54,16 +53,36 @@
       </div>
     </div>
 
+     <div class="row" >
+          <div class='col-md-6'>
+            <h5 class ="left-edge col-md-11 "> Group Invitation </h5> 
+          </div>
+
+          <div class='col-md-4'>
+         <select id="question-type" class='btn box-shape float-left margin-top-form'  name="interview[contacts]" >
+               <%@company = Company.friendly.find(params[:company_id] || params[:id])%>
+               <%@con = Contact.where(company_id: @company.id) %>
+               <option value="">Select Contact</option>
+               <%@con.each do|conn|%>
+               <option value='<%=conn.id%>'> <%= conn.name%> </option>
+               <% end %>
+             </select>
+          </div>
+
+       <%= link_to 'Invite Group', company_interview_bulk_invite_sender_path(interview_id: @interview.id), method: :put, class: "btn" %>
+
+        </div>
 
       <input type="hidden" value="<%= @interview.questions.to_json %>" name="interview[questions]" id="questions-json" />
 
 
-      <div class="row" > 
+      <div class="row" >
           <div class='col-md-6'>
-            <h5 class ="left-edge col-md-11 "> Questions </h5> 
+            <h5 class ="left-edge col-md-11 "> Questions </h5>
           </div>
           <div class='col-md-4'>
-             <select id="question-type" class='btn box-shape float-left margin-top-form' name="interview[contact]" > 
+
+             <select id="question-type" class='btn box-shape float-left margin-top-form' >
                 <option value='1'> Video Question </option>
                 <option value='2'> Text Question </option>
                 <option value='3'> File/Image Upload </option>
@@ -73,17 +92,17 @@
               <btn class="btn box-shape width-100 margin-top-form"  id="add-new"> Add new </btn>
           </div>
         </div>
-         
+
       <hr>
-     
+
      <div id ="question-tag">
         <!-- this is where all the question will be added -->
 
-        
 
-        
-      
-          
+
+
+
+
      </div>
      <hr>
 
@@ -95,7 +114,7 @@
           <div class="float-right">
             <div class="onoffswitch file">
               <%= f.check_box :status, :id => 'myonoffswitch', class: "onoffswitch-checkbox"  %>
-    
+
                <!--  <input type="checkbox" name="interview[status]" class="onoffswitch-checkbox" id="myonoffswitch" checked=""> -->
 
                 <label class="onoffswitch-label" for="myonoffswitch">
@@ -104,10 +123,10 @@
                 </label>
             </div>
           </div>
-            
+
         </div>
      </div>
-    
+
      <hr>
       <div class="text-center">
         <%= f.submit :id => 'interview-submit', :value => d, class: "btn btn-info btn-fill btn-wd" %>

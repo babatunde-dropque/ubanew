@@ -4,6 +4,7 @@ class Company < ActiveRecord::Base
 	 has_many :joint_user_companies 
    has_many :users, :through => :joint_user_companies
    has_many :interviews
+   has_many :contacts, dependent: :destroy 
 	 has_many :submissions, :through => :interviews, dependent: :destroy
 
     mount_uploader :image, ImageUploader

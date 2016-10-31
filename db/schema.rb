@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20161029020609) do
 
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
 
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "company_id"
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
