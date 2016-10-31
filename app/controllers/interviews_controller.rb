@@ -100,6 +100,7 @@ class InterviewsController < ApplicationController
                                   :reject_message,
                                   :invite_message,
                                   :status,
+                                  :completed_message,
                                   )
     end
 end

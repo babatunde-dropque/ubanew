@@ -1,0 +1,71 @@
+ <!-- TODO Add header Partial -->
+        <%= render partial: "header" %>
+
+    <div class="container">
+      <form  id="form-register" method="post" action="/applicants">    
+         
+
+            <div class="row dq-page-container ">
+              <div class="dq-inner-video-2">
+                 <h2 class="dq-interview-question"> Provide required information </h2>
+                 
+                 <br>
+                <span class="fa fa-3x fa-home fa-fw"></span>
+                <br><br><br>
+
+                 <input  id="email-box" class="form-control dq-inner-video-1 " placeholder="Enter email address" name="email">
+
+                 <input type="hidden" value="details" name="page" >
+                 <input type="hidden" id= "create" name="create" value="no" >
+                 <input type="hidden" name="interview_id" value="<%=  @interview.id %>" >
+                 <input hidden  id="name-box" class="form-control dq-inner-video-1" placeholder="FirstName LastName" name="name" />
+                </div>
+            </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
+                <!-- add csrf token -->
+                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                          
+              <button id="continue" class="btn btn-md dq-color-customized"> Continue </button>
+            </div>
+          </div>
+
+       </form>
+    </div>
+
+
+
+<script >
+
+  $("#name-box").hide();
+
+  var trigger = false;
+
+  $("#continue").click(function(event){
+    event.preventDefault();
+    var email = $("#email-box").val();
+    $.ajax({
+          url: '/validate_email', 
+          type: 'GET',
+          data: { email: email },
+          success: function(data){
+              if (data == "success" || trigger ){
+                console.log(data);
+                // if email exits then continue else register
+                  $("#form-register").submit();
+         
+              } else {
+                  trigger = true
+                  $("#email-box").show(); // make editable false
+                  $("#name-box").show();
+                  $("#create").val("yes");
+
+             }
+          },
+          error : function(jqXHR, textStatus, errorThrown) {
+               
+           }
+       });
+    });
+
+</script>

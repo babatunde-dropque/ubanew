@@ -1,1 +1,18 @@
-Done and completed
+ <!-- TODO Add header Partial -->
+     <%= render partial: "header" %>
+
+    <div class="container">
+      <h2 class="dq-interview-question"> <%= @interview.completed_message %> </h2>
+
+      <div class="row dq-page-container">
+        <span class="fa fa-5x fa-thumbs-o-up dq-page-icon"></span>
+        <div class="dq-interview-complete-message">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
+          <a href="/" type="button" class="btn btn-md dq-color-customized"> Home </a>
+        </div>
+      </div>
+    </div>
