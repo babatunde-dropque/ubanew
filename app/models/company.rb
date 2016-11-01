@@ -8,6 +8,7 @@ class Company < ActiveRecord::Base
 	 has_many :submissions, :through => :interviews, dependent: :destroy
 
     mount_uploader :image, ImageUploader
+    mount_uploader :logo, LogoUploader
 
      # find out what dependent destroy means before usin it
      # has_many :users, :through=> :joint_user_companies, dependent: :destroy 

@@ -1,0 +1,205 @@
+ <!-- TODO Add header Partial -->
+    <%= render partial: "header" %>
+
+    <div class="container">
+      <!-- <h2 class="dq-interview-question">  <%= @question_video %>  </h2> -->
+
+      <div class="row dq-page-container">
+        <!-- <span class="fa fa-2x fa-video-camera dq-page-icon"></span>
+        <span class="dq-page-icon dq-question-property" id= "duration"> </span> -->
+        <div id="video-container" class="dq-inner-video"> </div>
+        
+        <!-- <div class="row">
+          <div class=" col-md-8"> <div id="video-container" class="dq-inner-video">  </div></div>
+          <div class=" col-md-3">  t </div></div>
+        </div>   -->      
+     </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="progress dq-interview-progress-bar">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <%= ((@position + 1) * 100)/ @number_of_question %>%">
+              <span class="sr-only"><%= ((@position + 1) * 100)/ @number_of_question %>% Complete</span>
+            </div>
+          </div>
+          <div class="dq-interview-progress-info">
+             <h6>Question <%= @position + 1 %> of <%= @number_of_question %></h6>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
+          <form  method="post" action="/applicants/question">         
+            <input type="hidden" value="<%= @interview.id %>" name ="id" />
+            <input type="hidden" value="<%= @position + 1 %>" name="pos" />
+            <input type="hidden" value="<%= @user.id %>" name="user_id" />
+            <input type="hidden" value="<%= @submission.id %>" name="submission_id" />
+            <input type="hidden" value="no" name="submission" />
+              <!-- add csrf token -->
+              <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                          
+
+            <% if (@position + 1 ) == @number_of_question %>
+              <button hidden id="submit" class="btn btn-md dq-color-customized"> Finish Interview </button>
+            <% else %>
+              <button hidden id="submit" class="btn btn-md dq-color-customized"> Next Question </button>
+            <% end %>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- ziggeo APi for video recording -->
+    <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-stable/ziggeo.css" />
+    <script src="//assets-cdn.ziggeo.com/v1-stable/ziggeo.js"></script>
+    <script>ZiggeoApi.token = "8e270db9f0949e961323040b7f8e2cf1";</script>
+    <script>ZiggeoApi.Config.cdn = true; </script>
+    <script>ZiggeoApi.Config.webrtc = true;</script>
+
+    <script>
+
+    $.notify.addStyle('happyblue', {
+      html: "<div><span data-notify-text/></div>",
+      classes: {
+        base: {
+          "opacity": "0.90",
+          "width": "200px",
+          "background": "#CCCCCC",
+          "padding": "5px",
+          "margin": "5px",
+          "border-radius": "10px"
+        },
+        menu: {
+          "opacity": "0.90",
+          "width": "200px",
+          "background": "#CCCCCC",
+          "padding": "5px",
+          "margin": "5px",
+          "border-radius": "10px",
+          "color":"black"
+
+        }
+      }
+    });
+
+
+//  time conversion function
+function milisecondsToMins(milliseconds){ 
+  var minutes = milliseconds / (1000 * 60)
+  var absoluteMinutes = Math.floor(minutes);
+  var m = absoluteMinutes > 9 ? absoluteMinutes : '0' +  absoluteMinutes;
+
+  //Get remainder from minutes and convert to seconds
+  var seconds = (minutes - absoluteMinutes) * 60;
+  var absoluteSeconds = Math.floor(seconds);
+  var s = absoluteSeconds > 9 ? absoluteSeconds : '0' + absoluteSeconds;
+
+  return + m + ' min : ' + s+' sec';
+}
+
+
+ function addZiggeo(){
+  //  the responsive key in ziggeo can maximax to the size of the parent tag
+  // tags key in ziggeo (array): Tags that a newly created video should be associated with
+  // limit (int): Maximum duration of video
+  var embedding = ZiggeoApi.Embed.embed("#video-container",  
+    { 
+      // responsive : true, 
+      // disable_first_screen: true,
+      // disable_snapshots: true,
+      popup : true,
+      immediate_playback: true,
+      limit: <%= @time_allowed.to_i / 1000 %>,
+      data :
+      { 
+        interview_id : <%= @interview.id %>,
+        user_id : <%= @user.id %>,
+      } 
+    });
+ }
+
+
+
+ function setTimeForQuestion(milliseconds){
+   var stringTime = milisecondsToMins(milliseconds);
+   $('#duration').text("Time Allowed :" +stringTime);
+
+ } 
+
+
+ function setUpParameters( ziggeo_token ){
+   <%  if @submission.answers.nil? %>
+     var resultArrayAnswer =  [];
+     
+    <% else %>
+     var placehod = "<%= @submission.answers.to_json %>" ;
+     var resultArrayAnswer = JSON.parse(placehod.replace(/&quot;/g,'"'));
+
+    <% end %>
+
+    var answerItem = {}
+    answerItem["question_type"] = '<%= @question_type %>' ;
+    answerItem["question_video"] = '<%= @question_video %>' ;
+    answerItem["video_type"] = 'ziggeo';
+    answerItem["link"] = ziggeo_token ;
+
+    resultArrayAnswer.push(answerItem);
+    return JSON.stringify(resultArrayAnswer);
+}
+
+ 
+ addZiggeo();
+ var submitted = false;
+ // setTimeForQuestion(<%= @time_allowed %>);
+
+  
+  ZiggeoApi.Events.on("submitted", function (data) {
+    var answer = setUpParameters(data.video.token);
+
+  if (!submitted){
+    // create a new submission table
+    $.ajax({
+          url:'/applicants/submit_video',
+          type: 'POST',
+          data: { 
+            interview_token : '<%= @interview.interview_token %>',
+            user_id : '<%= @user.id %>',
+            answers : answer,
+            position : <%= @position  + 1 %>         
+         },
+          success: function(data){
+              if (data == "success"){
+                   $("#submit").show();
+                   console.log("working fine");
+                   submitted = true;
+              } else {
+                  console.log("working fine but error occur");
+              }
+          },
+          error : function(jqXHR, textStatus, errorThrown) {
+              
+           }
+       });
+
+  } else {
+    $("#video-container").notify("Video Updated successfully", {
+        style: 'happyblue',
+        className: 'menu',
+        position: "top center"
+      });
+    // just display submitted without creating a new submission table
+    // $("#submitted-updated").text("video updated successfully");
+  }
+ 
+});
+
+
+
+
+
+
+
+    </script>
+
+
+

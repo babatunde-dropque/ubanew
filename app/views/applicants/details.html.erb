@@ -1,5 +1,82 @@
+ <!-- TODO Add header Partial -->
+        <%= render partial: "header" %>
 
-interview details here
+    <div class="container">
+      <h2 class="dq-interview-question">Interview for <%= @interview.title %> </h2>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="row dq-intro-section">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-1 dq-intro-icon">
+              <span class="fa fa-3x fa-calendar"></span>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-11">
+              <h5>Number of Quesionts</h5>
+              <p><%= @interview.questions.length %></p>
+            </div>
+          </div>
+
+          <% if !@interview.deadline.nil? %>
+
+            <div class="row dq-intro-section">
+              <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 dq-intro-icon">
+                <span class="fa fa-3x fa-calendar-o"></span>
+              </div>
+                <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
+                  <h5>Deadline</h5>
+                  <p> <%= @interview.deadline %></p>
+                </div>
+            </div>
+
+          <% end %>
 
 
-<button> Continue </button>
+          <div class="row dq-intro-section">
+            <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 dq-intro-icon">
+              <span class="fa fa-3x fa-calendar-o"></span>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
+              <h5>Interview details</h5>
+              <p> <%= @interview.description %></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="well well-sm">
+            <h5>Instructions</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+            </p>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+            </p>
+
+            <p>
+             <%= @interview.instruction %> 
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
+          
+          <form  method="post" action="/applicants/question">         
+            <input type="hidden" value="<%= @interview.id %>" name ="id" />
+            <input type="hidden" value="<%= @position %>" name="pos" />
+            <input type="hidden" value="<%= @user.id %>" name="user_id" />
+            <input type="hidden" value="<%= @submission.id %>" name="submission_id" />
+            <input type="hidden" value="no" name="submission" />
+              <!-- add csrf token -->
+              <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                          
+
+            <button  class="btn btn-md dq-color-customized"> Start interview </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+

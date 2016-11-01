@@ -1,0 +1,122 @@
+ <!-- TODO Add header Partial -->
+        <%= render partial: "header" %>
+
+ 
+    <div class="container">
+      <h2 class="dq-interview-question"> <%= @file_text %></h2>
+
+      <div class="dropzone-previews">  </div>
+
+       <div class="row dq-page-container">
+        <span class="fa fa-3x fa-file-text-o dq-page-icon"></span>
+        
+        <div >
+        <form  method="post" action="/applicants/upload_file" enctype="multipart/form-data" class="dropzone dq-dropzone" id="file_question"> 
+            <input type="hidden" value="<%= @interview.id %>" name ="id" />
+            <input type="hidden" value="<%= @position + 1 %>" name="pos" />
+            <input type="hidden" value="<%= @user.id %>" name="user_id" />
+            <input type="hidden" value="<%= @submission.id %>" name="submission_id" />
+            <input type="hidden" value="file" name="submission" />
+            <input type="hidden" name="file_text" value="<%= @file_text %>" />
+              <!-- add csrf token -->
+              <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+
+        </form>
+         <div class="word-counter">Max file size: <%= @file_size %>mb  (Allowed files: pdf, png, ppt ) </div> 
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="progress dq-interview-progress-bar">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <%= ((@position + 1) * 100)/ @number_of_question %>%">
+              <span class="sr-only"><%= ((@position + 1) * 100)/ @number_of_question %>% Complete</span>
+            </div>
+          </div>
+          <div class="dq-interview-progress-info">
+            <h6>Question <%= @position + 1 %> of <%= @number_of_question %></h6>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
+        	
+                 
+
+            <form  method="post" action="/applicants/question">         
+                <input type="hidden" value="<%= @interview.id %>" name ="id" />
+                <input type="hidden" value="<%= @position + 1 %>" name="pos" />
+                <input type="hidden" value="<%= @user.id %>" name="user_id" />
+                <input type="hidden" value="<%= @submission.id %>" name="submission_id" />
+                <input type="hidden" value="no" name="submission" />
+                  <!-- add csrf token -->
+                  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                          
+
+                <% if (@position + 1 ) == @number_of_question %>
+                  <button hidden id="submit" class="btn btn-md dq-color-customized"> Finish Interview </button>
+                <% else %>
+                  <button hidden id="submit" class="btn btn-md dq-color-customized"> Next Question </button>
+                <% end %>
+            </form>  
+
+            <button id="add"  class="btn btn-md dq-color-customized"> Upload File </button>   
+
+        </div>
+      </div>
+    </div>
+  
+
+
+<%= javascript_include_tag 'dropzone' %> 
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<script>
+
+
+(function(){
+  Dropzone.options.fileQuestion = {
+
+    // previewsContainer: '.dropzone-previews',
+    // clickable: true,
+    autoProcessQueue: false,
+    maxFiles: 1,
+    maxFilesize: <%= @file_size %> ,
+    acceptedFiles: ".pdf, .png",
+    // acceptedFiles: 'image/*, application/pdf,.psd'
+    // addRemoveLinks: 'dictRemoveFile',
+    // accept: function(file, done){
+    //   if(file){
+    //     // $("#add").show();
+    //   }
+    // },
+
+    init: function() {
+      this.on("addedfile", function() {
+        if (this.files[1]!=null){
+          this.removeFile(this.files[0]);
+        }
+      });
+
+     var myDropzone = this;
+      $("#add").click(function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          myDropzone.processQueue();
+      }); 
+
+      myDropzone.on("complete", function(file) {
+        $("#add").hide();
+        $("#submit").show();
+      });
+
+      myDropzone.on("removedfile", function(file){
+        $("#submit").hide();
+        $("#add").show();
+      })
+    }
+    
+  }
+}).call(this);
+
+
+</script>
+
+

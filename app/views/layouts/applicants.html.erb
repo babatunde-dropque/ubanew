@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Applicatn Interview </title>
-  	 <%= stylesheet_link_tag 'application' %>
-	 <%= stylesheet_link_tag params[:controller] %>
-	 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-	 <%= javascript_include_tag 'application', 'notify.min' %> 
-  	 <%= csrf_meta_tags %>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Application Interview </title>
+
+  	 <%= stylesheet_link_tag 'application', 'material-boostrap' %>
+	   <%= stylesheet_link_tag params[:controller] %>
+	  <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <%= csrf_meta_tags %>
+
+    <%= javascript_include_tag 'application', 'material-boostrap', 'notify.min' %> 
+	
+	<!-- Material Design Bootstrap -->
+	<!-- <link href="styles/vendor/mdb.css" rel="stylesheet">
+	<link href="styles/main.css" rel="stylesheet"> -->
 </head>
-<body>
+<body >
+
+
+  <!-- <body class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url(<%= @company.image %>);" > -->
+
+
+  <!-- style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)
+  background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url('');
+
+  background-image: url(http://i54.tinypic.com/4zuxif.jpg) -->
 
 <!-- <div class="container" style="padding-top:20px;">
 
 </div> -->
 <%= yield %>
 
+
 <%= javascript_include_tag params[:controller] %> 
 </body>
 </html>
+
+

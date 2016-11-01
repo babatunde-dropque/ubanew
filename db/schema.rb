@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026155239) do
+ActiveRecord::Schema.define(version: 20161029020609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20161026155239) do
     t.datetime "updated_at",  null: false
     t.string   "subdomain"
     t.string   "contact"
+    t.string   "logo"
   end
 
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
@@ -57,6 +58,15 @@ ActiveRecord::Schema.define(version: 20161026155239) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "file_uploads", force: :cascade do |t|
+    t.string   "file_link"
+    t.integer  "file_type"
+    t.integer  "user_id"
+    t.integer  "interview_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "interviews", force: :cascade do |t|
     t.string   "title"
@@ -100,15 +110,12 @@ ActiveRecord::Schema.define(version: 20161026155239) do
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "status"
-    t.string   "videos"
-    t.string   "ziggeo"
-    t.string   "ziggeo_flag"
-    t.string   "question_text"
-    t.string   "time_allowed"
     t.integer  "user_id"
     t.integer  "interview_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "current_no"
+    t.json     "answers"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,50 +1,101 @@
-<h2> Welcome to <%= @company.name %></h2>
+<div class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url(<%= asset_path('interviewers.jpg') %>);" >
+  
+<div class="dq-wrapper">
+      <div class="dq-container-editable" id="editableContent">
+        <nav class="navbar navbar-default dq-navbar-transparent" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+           <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">
+               <%  if @company.logo.file.nil? %>
+                 <%= image_tag('dqbeta.png', height:"40") %>
+               <% else %>
+                  <img src="<%= @company.logo %>" alt="" height="40"/>
+               <% end %>
+
+              </a>
+           </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+           <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav navbar-right">
+               <!-- <li><a href="#" contenteditable="false">Admin login</a></li> -->
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </nav>
+
+        <div class="dq-main-container">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="container">
+                  <h1 class="dq-hero-heading">Hero text here</h1>
+                  <h4 class="dq-hero-subheading">Sub hero text here</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dq-bottom-overlay">
+            <div class="container">
+              <h5 class="dq-pre-cta">Pre cta text here</h5>
+
+              <!-- <input  type="text" name="name" value="" placeholder="" > -->
+             <!--  <a href="/intro_page.html" type="button" class="btn btn-large dq-btn-start-interview dq-color-customized">Start your interview</a> -->
+
+          <form  id="form-details" method="post" action="/applicants"> 
+            
+            <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here" value="<%= params[:interview_token] %>" name="interview_token" contenteditable="false" />
+            
+            <input type="hidden" value="register" name ="page" />
+
+              <!-- add csrf token -->
+              <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                          
+
+            <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> Start your interview </button>
+          </form>
 
 
-<h1>Applicants</h1>
+              <h6 class="dq-company-contact">Company contact info here</a></h6>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<form  id="form-details" method="post" action="/applicants"> 
+      <div class="dq-container-noneditable">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="dq-branding">Powered by <a class="dq-branding" href="#">Dropque.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-	<input type="text"  id="interview-token-box" placeholder="Enter Interview Token" value="<%= params[:interview_token] %>" name="interview_token" />
-	<input hidden type="email" id="interview-email-box" placeholder="Enter Email" name="email" />
-
-	<input type="hidden" value="details" name ="page" />
-
-	  <!-- add csrf token -->
-    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                        	
-
-	<button  id = "take-interview" class="btn"> Take Interview <i class="fa fa-spinner fa-spin"></i></button>
-</form>
-
+</div>
 
 <script>
 
-	$("#take-interview").click(function(event){
+  $("#take-interview").click(function(event){
+    event.preventDefault();
 
-		event.preventDefault();
-
-		var interviewToken = $("#interview-token-box").val();
-		$.ajax({
+    var interviewToken = $("#interview-token-box").val();
+    $.ajax({
           url: '/validate_interview', 
           type: 'GET',
           data: {interview_token: interviewToken },
           success: function(data){
               if (data == "success"){
-
-               $("#interview-token-box").hide();
-               $("#interview-email-box").show();
-
-                
-                if ($("#interview-email-box").val() && true){
-                	// this other true is to validate if its an email of not
-                	$("#form-details").submit();
-                } 
-
-                
-
-              } else {
-              	alert("wrong")
-             }
+                  $("#form-details").submit();
+               }  else {
+                  $("#interview-token-box").val("Invalid interview token");
+               }
           },
           error : function(jqXHR, textStatus, errorThrown) {
                
@@ -52,13 +103,7 @@
        });
     // once this validate, then it sends the token to rails.
     // rails will need to check again because of 
-  	
-  	});
-
-
+    
+    });
 
 </script>
-
-
-
-

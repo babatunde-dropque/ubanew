@@ -13,6 +13,14 @@ Rails.application.config.assets.precompile += %w( applicants.css )
 Rails.application.config.assets.precompile += %w( applicants.js )
 Rails.application.config.assets.precompile += %w( notify.min.js )
 
+Rails.application.config.assets.precompile += %w( dropzone.js )
+
+
+
+# material design for boostrap for applicants view
+Rails.application.config.assets.precompile += %w( material-boostrap.css )
+Rails.application.config.assets.precompile += %w( material-boostrap.js )
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 
