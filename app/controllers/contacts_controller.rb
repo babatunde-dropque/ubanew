@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  layout 'dashboard'
   before_filter :set_up_user
   before_action :set_company
   def index
