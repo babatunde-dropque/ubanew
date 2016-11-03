@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :bulks do 
+    collection {post :import}
+  end
+
   get 'applicants/index'
 
   get 'landings/index'

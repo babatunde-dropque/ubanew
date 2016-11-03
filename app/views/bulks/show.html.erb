@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bulk.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @bulk.email %>
+</p>
+
+<p>
+  <strong>Telephone:</strong>
+  <%= @bulk.telephone %>
+</p>
+
+<%= link_to 'Edit', edit_bulk_path(@bulk) %> |
+<%= link_to 'Back', bulks_path %>

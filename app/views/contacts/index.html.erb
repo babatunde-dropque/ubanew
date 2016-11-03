@@ -21,7 +21,7 @@
 <tr>
 <td> <%=contact.name%></td>
 <td> <%= link_to "View Contact", contact.attachment_url %>   </td>
-<td> <%= button_to  "Delete", company_contact_path(id:contact.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you sure you want to delete  #{contact.name}?" } %>    </td>
+<td> <%= button_to  "Delete", company_contact_path(id: contact.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you sure you want to delete  #{contact.name}?" } %>    </td>
 </tr>
 <% end %>
 </tbody>

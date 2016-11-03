@@ -1,7 +1,9 @@
 class ContactsController < ApplicationController
-  layout 'dashboard'
+
+  # layout 'dashboard'
   before_filter :set_up_user
   before_action :set_company
+
   def index
   	@contacts = Contact.all
   end
@@ -21,10 +23,16 @@ class ContactsController < ApplicationController
   	if @contact.save
   		redirect_to company_contacts_path, notice: "The contact #{@contact.name} has been uploaded."
 
- else 
+ else
 	render "new"
  end
 end
+
+   def destroy
+    @contact = Contact.find(params[:id])
+    @contact.destroy
+    redirect_to company_contacts_path, notice: "The Contact #{@contact.name} has been deleted."
+  end
 
 private
 def set_contact
@@ -43,11 +51,4 @@ def contact_params
         @notification = Notification.where(user_id: @user.id, read: 0)
   end
 
-
-
-  def destroy
-  	@contact = Contact.find(params[:id])
-  	@contact.destroy
-  	redirect_to contacts_path, notice: "The Contact #{@contact} has been deleted."
-  end
 end
