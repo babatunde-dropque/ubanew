@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  
-  resources :bulks do 
+
+  resources :bulks do
     collection {post :import}
+    collection {post :fetch}
   end
 
   get 'applicants/index'

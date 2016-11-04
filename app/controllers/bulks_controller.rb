@@ -3,6 +3,9 @@ class BulksController < ApplicationController
 
 
 
+
+
+
   def index
     @bulks = Bulk.all
   end
@@ -34,8 +37,7 @@ class BulksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bulks/1
-  # PATCH/PUT /bulks/1.json
+
   def update
     respond_to do |format|
       if @bulk.update(bulk_params)
@@ -48,8 +50,7 @@ class BulksController < ApplicationController
     end
   end
 
-  # DELETE /bulks/1
-  # DELETE /bulks/1.json
+
   def destroy
     @bulk = Bulk.find(params[:id])
     @bulk.destroy
@@ -63,13 +64,20 @@ class BulksController < ApplicationController
    redirect_to bulks_path, notice: "Contacts Successfully Uploaded"
   end
 
+  def fetch
+   Bulk.fetch(params[:file])
+   redirect_to bulks_path, notice: "Contacts Successfully Uploaded"
+  end
+
+
+
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_bulk
       @bulk = Bulk.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+
     def bulk_params
       params.require(:bulk).permit(:name, :email, :telephone)
     end

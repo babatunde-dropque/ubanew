@@ -4,7 +4,11 @@
 </div>
 <% end %>
 
+
 <h2>My Contact</h2>
+<br/>
+<%= link_to 'New', new_bulk_path, class: "btn btn-primary" %>
+<br/>
 <div class="media">
 <div class="media-body">
 
@@ -25,8 +29,7 @@
             <td><%= bulk.name %></td>
             <td><%= bulk.email %></td>
             <td><%= bulk.telephone %></td>
-            <td><%= link_to 'Show', bulk %></td>
-            <td><%= link_to 'Edit', edit_bulk_path(bulk) %></td>
+            <td><%= link_to 'Modify', edit_bulk_path(bulk) %></td>
             <td><%= link_to 'Delete', bulk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
@@ -37,9 +40,10 @@
 
 <br>
 
+<br/>
 <h3> Import Contact</h3>
 <%=form_tag import_bulks_path, multipart: true do %>
 <%= file_field_tag :file %>
 <%= submit_tag "Upload Contact"%>
 <%end%>
-<%= link_to 'New Bulk', new_bulk_path, class: "btn btn-primary" %>
+

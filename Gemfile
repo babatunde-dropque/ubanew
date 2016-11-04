@@ -1,10 +1,20 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.3.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
+#needed for persing csv and xls
+gem 'roo', '~> 2.5.0'
+gem 'roo-xls', '~> 1.0'
+
+#needed to work with roo
+gem "iconv", "~> 1.0.3"
+
+
+#needed to protect attr_accessible
+gem 'protected_attributes'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
