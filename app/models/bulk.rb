@@ -2,11 +2,11 @@ require 'roo'
 class Bulk < ActiveRecord::Base
     attr_accessible :name, :email, :telephone
 
-       
+
     def self.fetch(file)
        ex = Excel.new(file.path, nil, :ignore)
-       ex.default_sheet = ex.sheets[1] #Mention the sheet number
-       3.upto(1000) do |line| #start and end of row
+       ex.default_sheet = ex.sheets[1]
+       3.upto(1000) do |line|
        name = ex.cell(line,’A’)
        email = ex.cell(line,’B’)
        telephone = ex.cell(line,’C’)

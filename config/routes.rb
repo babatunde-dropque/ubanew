@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'groups/index'
+
+  get 'groups/create'
+
+  get 'groups/new'
+
+  get 'groups/destroy'
+
   resources :bulks do
     collection {post :import}
     collection {post :fetch}
