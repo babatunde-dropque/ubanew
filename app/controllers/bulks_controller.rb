@@ -94,6 +94,7 @@ class BulksController < ApplicationController
 
     def set_group
       @group = Group.find_by(id: params[:group_id])
+      $grou = @group.id
     end
 
     def set_company

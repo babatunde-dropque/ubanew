@@ -22,7 +22,7 @@ class Bulk < ActiveRecord::Base
         row = Hash[[header, spreadsheet.row(i)].transpose]
         bulk = find_by_id(row["id"]) || new
         bulk.attributes = row.to_hash.slice(*accessible_attributes)
-        bulk.group_id = ""
+        bulk.group_id = $grou
         bulk.save!
       end
     end
