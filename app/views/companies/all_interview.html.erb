@@ -28,7 +28,7 @@
                                     <% @all_interview.each do |interview| %>
                                         <li>
                                             <div class="row">
-                                            <%= link_to company_interview_path(id: interview.id) do %>
+                                            <%= link_to company_interview_path(id: interview.slug) do %>
                                                 <div class="col-xs-6">
                                                     <%= interview.title %>
                                                 </div>

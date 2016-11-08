@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  post '/rate' => 'rater#create', :as => 'rate'
+  # rails engine for comment
+  mount Commontator::Engine => '/commontator'
   
   get 'applicants/index'
 
@@ -91,14 +95,17 @@ Rails.application.routes.draw do
     post "add_collaborators", to: "companies#add_collaborators"
     delete "remove_collaborator", to: "companies#remove_collaborator"
     put "transfer_ownership", to: "companies#transfer_ownership"
-    # get "shortlist", to: "companies#shortlist"
+    get "edit_preview", to: "companies#edit_preview"
+    post "edit_preview", to: "companies#edit_preview"
     # get "pend",      to: "companies#pend"
     # get "reject",    to: "companies#reject"
     # get "edit", to: "companies#edit", as: 'edit'
     # post "update", to: "companies#update", as: 'update'
     get "all_interview", to: "companies#all_interview"
     resources :interviews do
-    #   get "preview", to: "users#preview"
+      get "single", to: "interviews#single_interview_submissions"
+      get "returnTextFileApi", to: "interviews#returnTextFileApi"
+      get "filtered_single_interview", to: "interviews#filtered_single_interview"
     #   put "invite_sender", to: "jobs#send_invite_mail"
     #   put "shortlist_sender", to: "jobs#send_shortlist_mail"
     #   put "reject_sender", to: "jobs#send_reject_mail"

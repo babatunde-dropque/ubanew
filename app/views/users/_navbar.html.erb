@@ -13,6 +13,14 @@
 
                 </div>
                 <div class="collapse navbar-collapse">
+
+
+                  <% if !@interview.nil? %>
+                    <a class="navbar-brand" href="#"><%= @interview.title %></a>
+                  <% end %>
+               
+
+
                     <ul class="nav navbar-nav navbar-right">
 
                           <li class="dropdown">
@@ -74,9 +82,9 @@
                                    <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Edit <% end %> 
                                 </li>
                                 <li>
-                                   <a href="#">Interview page </a>
+                                   <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ] ) do %> Edit Interview Template <% end %> 
                                 </li>
-                                                      
+                                  
                               </ul>
                         </li>
                         <% end %>
@@ -88,7 +96,7 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Profile</a></li>
+                                <li><%= link_to "Profile", root_path %></li>
                                 <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
                                 
                               </ul>

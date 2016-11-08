@@ -77,3 +77,6 @@ gem 'friendly_id'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 #  will run backgound processes, 
 gem 'delayed_job_active_record'
+
+# gem for rating 
+gem 'ratyrate'

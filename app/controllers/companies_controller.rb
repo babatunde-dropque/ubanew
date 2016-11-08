@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
 
         @user_status = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
         @sigin_in_count = current_user.sign_in_count.to_s
+        @all_interview = @company.interviews
         # @interviews = @company.interviews.includes(:users).where(submissions: {status: nil}).paginate(:page => params[:page], :per_page => 5) 
 	end
 
@@ -17,6 +18,15 @@ class CompaniesController < ApplicationController
 		
 		
 	end
+
+
+    def edit_preview
+        if params[:properties].present?
+            @company.update_attributes(properties: params[:properties])
+        end 
+         @editable = "true"
+        render  :layout => 'applicants', :template => 'applicants/index'
+    end
 
 
     def all_interview
@@ -131,9 +141,7 @@ class CompaniesController < ApplicationController
         end 
 	end
 
-	def show
-
-	end
+	
 
 
   private

@@ -6,37 +6,70 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Application Interview </title>
 
+     <%= favicon_link_tag 'dqfav.png' %>
   	 <%= stylesheet_link_tag 'application', 'material-boostrap' %>
-	   <%= stylesheet_link_tag params[:controller] %>
+	   <%= stylesheet_link_tag 'applicants' %>
+
 	  <!-- Material Design Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <%= csrf_meta_tags %>
-
     <%= javascript_include_tag 'application', 'material-boostrap', 'notify.min' %> 
 	
-	<!-- Material Design Bootstrap -->
-	<!-- <link href="styles/vendor/mdb.css" rel="stylesheet">
-	<link href="styles/main.css" rel="stylesheet"> -->
 </head>
 <body >
 
 
-  <!-- <body class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url(<%= @company.image %>);" > -->
-
-
-  <!-- style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)
-  background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url('');
-
-  background-image: url(http://i54.tinypic.com/4zuxif.jpg) -->
-
 <%= yield %>
 
+<%= javascript_include_tag 'applicants' %> 
+<script >
 
 
-<%= javascript_include_tag params[:controller] %> 
+  (function() {
+    'use strict';
+
+    <% if !@company.properties.nil?  %>
+    var companyCustomization = {
+      name: '<%= @company.name %>',
+      primaryColor: '<%= @company.properties["primaryColor"] %>',
+      // backgroundImageUrl: '<%= @company.image.url %>',
+      heroText: "<%= @company.properties["heroText"] %>",
+      subHeroText: "<%= @company.properties["subHeroText"] %>",
+      preCtaText: "<%= @company.properties["preCtaText"] %>",
+      ctaButton: "<%= @company.properties["ctaButton"] %>",
+      contactInfo: "<%= @company.properties["contactInfo"] %>"
+    };
+    <% else %>
+      
+    var companyCustomization = {
+        name: '<%= @company.name %>',
+        primaryColor: '#5e337b',
+        heroText: $('.dq-hero-heading').text(),
+        subHeroText: $('.dq-hero-subheading').text(),
+        preCtaText: $('.dq-pre-cta').text(),
+        ctaButton: $('.dq-btn-start-interview').text(),
+        contactInfo: $('.dq-company-contact').text()
+    };
+
+    <% end %>
+
+      setProperites(companyCustomization, <%= @editable %>);
+
+  }).call(this);
+
+
+  // auto style and replace in contact
+  var contact = $(".dq-company-contact").text();
+  var email_regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
+  var result = contact.replace(email_regex,'<a href="mailto:$1">$1</a>');
+  $(".dq-company-contact").html(result);
+
+</script>
+
+
 </body>
 </html>
 

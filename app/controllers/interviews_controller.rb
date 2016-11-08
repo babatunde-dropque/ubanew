@@ -15,8 +15,39 @@ class InterviewsController < ApplicationController
 
 	end
 
+  def single_interview_submissions 
+     @submissions = @interview.submissions.where(current_no: 500)
+     render :layout => 'single_interview_submissions'
+     
+  end
+
+  # controller function for to manages interview filtered
+  def filtered_single_interview
+    @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i)
+    render :action => 'single_interview_submissions', :layout => 'single_interview_submissions'
+  end
+
+  # api for return text or file link
+  def returnTextFileApi
+    question_type = params[:question_type]
+    question_number = params[:question_number].to_i
+    submission_id = params[:submission_id]
+    submission = Submission.find(submission_id)
+    if !submission.nil? && submission.answers[question_number]["question_type"] == question_type
+      if question_type == "2"
+         render :json => {:answer => submission.answers[question_number]["answer_text"],:question => submission.answers[question_number]["question_text"] }
+      elsif question_type = "3"
+         render :json =>{:answer => submission.answers[question_number]["file_link"], :question => submission.answers[question_number]["file_text"], :file_size => submission.answers[question_number]["file_size"] } 
+      end 
+    else 
+      render plain: "error"     
+    end
+  end
+
+
 	def new
 		@interview = Interview.new
+    @new_interview = true
 
 	end
 

@@ -3660,6 +3660,10 @@ div.card.notification{
     display: none;
 }
 
+#file-upload-logo{
+   display: none;
+}
+
 label.btn.custom-upload{
   border: 1px solid #ccc;
   display: inline-block;
@@ -3741,7 +3745,16 @@ div.file > span  {
   margin-top: 17px; 
 }
 
+.card .numbers-1 {
+  font-size: 2em;
+}
 
+.dq-center-video{
+  text-align: center;
+  display: block;
+  width: 93%;
+  margin: 0 auto; 
+}
 
 /* begining of switch check box*/
 .onoffswitch {
@@ -3789,6 +3802,8 @@ div.file > span  {
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+
+
 
 /*end of switch  check box*/
                             
