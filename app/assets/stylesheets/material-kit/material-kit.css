@@ -2494,7 +2494,7 @@ h6, .h6 {
 .card .header {
   margin: 15px;
   border-radius: 3px;
-  padding: 15px 0;
+  padding: 1px 0;
   background-color: #FFFFFF;
 }
 .card .header-primary {
@@ -2742,7 +2742,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 .section {
-  padding: 45px 0;
+  padding: 40px 0;
 }
 
 .section-navbars {
@@ -3380,5 +3380,7 @@ h2.title {
     margin-right: 10px;
   }
 }
-
+hr {
+  border-top: 1px solid #D2D2D2;
+}
 

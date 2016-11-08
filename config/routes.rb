@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'applicants/index'
 
   get 'landings/index'
+  get 'contact' => 'landings#contact'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard'
 

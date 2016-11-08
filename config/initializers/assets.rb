@@ -13,6 +13,11 @@ Rails.application.config.assets.precompile += %w( applicants.css )
 Rails.application.config.assets.precompile += %w( applicants.js )
 Rails.application.config.assets.precompile += %w( notify.min.js )
 
+
+Rails.application.config.assets.precompile += %w( main.js )
+Rails.application.config.assets.precompile += %w( classie.js )
+Rails.application.config.assets.precompile += %w( modernizr.custom.js )
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

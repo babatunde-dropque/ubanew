@@ -345,9 +345,9 @@
 #navbar .navbar{
     border-radius: 0;
 }
-.section-tabs{
+/*.section-tabs{
     background: #EEEEEE;
-}
+}*/
 .section-pagination{
     padding-bottom: 0;
 }
@@ -370,4 +370,146 @@
 .components-page .title,
 .tutorial-page .title{
     color: #FFFFFF;
+}
+/* Header */
+.codrops-header {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    z-index: 1000;
+    font-size: 1.5em;
+}
+
+.codrops-header h1 {
+    position: absolute;
+    font-weight: 700;
+    font-size: 2.5em;
+    line-height: 1.2;
+    color: #fff;
+    z-index: 1000;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    top: 40%;
+    -webkit-transform: translate3d(0,-50%,0);
+    transform: translate3d(0,-50%,0);
+}
+
+.codrops-header h1 span {
+    display: block;
+    font-size: 35%;
+}
+
+.codrops-header h1 a {
+    color: #eff62b;
+}
+
+.codrops-header h1 a:hover,
+.codrops-header h1 a:focus {
+    color: #fff;
+}
+
+.codrops-header h1 span::before,
+.codrops-header h1 span::after {
+    content: ' ― ';
+    font-weight: 200;
+}
+
+.codrops-header h1 i {
+    display: block;
+    font-size: 40%;
+    max-width: 45%;
+    margin: 0 auto;
+    line-height: 2;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* To Navigation Style */
+.codrops-top {
+    width: 100%;
+    font-weight: 500;
+    font-size: 0.69em;
+    line-height: 2.2;
+    padding: 1em 0;
+    position: absolute;
+    z-index: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.codrops-top a {
+    color: #fff;
+    display: inline-block;
+    padding: 1em 2em;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.codrops-top span.right {
+    float: right;
+}
+
+.codrops-top span.right a {
+    display: block;
+    float: left;
+}
+
+.codrops-icon:before {
+    margin: 0 4px;
+    text-transform: none;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-family: 'codropsicons';
+    line-height: 1;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.codrops-icon-drop:before {
+    content: "\e001";
+}
+
+.codrops-icon-prev:before {
+    content: "\e004";
+}
+
+.wrapp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -86px;
+    margin-left: -118px;
+    text-align: center;
+}
+
+header a {
+    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    display: block;
+    margin: 75px auto;
+    max-width: 330px;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 30px 30px;
+}
+
+a.button2 {
+    color: #F5F5F5;
+    box-shadow: #f5f5f5 0 0px 0px 2px inset;
+}
+
+a.button2:hover {
+    color: #5e337b;
+    box-shadow: #f5f5f5 0 80px 0px 2px inset;
+    text-decoration: none;
 }

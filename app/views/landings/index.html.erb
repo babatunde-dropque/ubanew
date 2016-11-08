@@ -1,129 +1,55 @@
-<body class="index-page">
-
-	<!-- Load Facebook SDK for JavaScript -->
-	<script>
-	 window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '955382917904238',
-      xfbml      : true,
-      version    : 'v2.7'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-
-
-	</script>
-
-
-<!-- Navbar -->
-<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
-	<div class="container">
-        <div class="navbar-header">
-	    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
-	        	<span class="sr-only">Toggle navigation</span>
-	        	<span class="icon-bar"></span>
-	        	<span class="icon-bar"></span>
-	        	<span class="icon-bar"></span>
-	    	</button>
-	        	<div class="logo-container">
-	                <div class="logo">
-	                    <%= image_tag('dqbeta.png')%>
-	                </div>                    
-				</div>
-	      	</a>
-	    </div>
-
-	    <div class="collapse navbar-collapse" id="navigation-index">
-	    	<ul class="nav navbar-nav navbar-right">
-				<li>
-					<a href="https://play.google.com/store/apps/details?id=com.dropque.app" class="btn" target="_blank">
-						<i class="material-icons">cloud_download</i> Download the app
-					</a>
-				</li>
-				<li>
-					<%= link_to new_user_session_path, {:class => 'btn'} do %>
-						<i class="material-icons">account_box</i> Log in
-					<% end %>
-				</li> 
-               <!--  <li class="dropdown">
-            		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">account_box</i>Sign in
-						<b class="caret"></b>
-					</a>
-                	<ul class="dropdown-menu dropdown-menu-right">
-                	   <li>
-					        <%= link_to new_user_session_path do %>
-						        Applicant Sign in
-					        <% end %>					
-				        </li>
-				         <li class="divider"></li>
-                       <li>
-						    <%= link_to new_user_session_path do %>
-								 Recruiter Sign in
-							<% end %>					
-						</li>
-                    </ul>
-            	</li> -->
-
-<!-- 				<li>
-					<a class="btn btn-primary btn-raised btn-raised" style="background-color: white; color: #5e337b"><strong>Recruiter Sign up</strong></a>
-				</li> -->
-				<li>
-					<%= link_to new_user_registration_path, {:style => 'background-color: white; color: #5e337b;', :class => 'btn btn-primary btn-raised'} do %>
-						<strong>Sign up</strong>
-					<% end %>
-				</li> 
-	    	</ul>
-	    </div>
-	</div>
-</nav>
-<!-- End Navbar -->
 
 <div class="wrapper">
-	<div class="header header-filter" style="background-image: url('assets/dq13.jpg');">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="brand">
-						<h2><strong>Video interviewing made easy!</strong></h2>
-						<h4>Dropque is the simplest way to engage with prospects from your talent pool,<br> letting you know them before you meet them.</h4>
-					</div>
+	    <div id="wrap" class="wrap">
+			<div class="mockup header-filter">
+				<img class="mockup__img" src="assets/mockup4.jpg" />
+				<div class="mobile">
+					<ul id="slideshow-1" class="slideshow">
+						<li class="slideshow__item"><img src="assets/01.png"/></li>
+						<li class="slideshow__item"><img src="assets/2.png"/></li>
+						<li class="slideshow__item"><img src="assets/3.png"/></li>
+						<li class="slideshow__item"><img src="assets/4.png"/></li>
+					</ul>
 				</div>
-
+				<div class="screen">
+					<ul id="slideshow-2" class="slideshow">
+						<li class="slideshow__item current"><img src="assets/cp2.png"/></li>
+						<li class="slideshow__item current"><img src="assets/cp3.png"/></li>
+					</ul>
+				</div>
+				<header class="codrops-header">
+					<h1>Interview candidates anywhere, anytime <i>Dropque is the fastest way to find the right talent at a lower cost with secure video interviews</i></h1>
+					<div class="wrapp">
+                        <a href="#" class="button2"><strong>REQUEST A DEMO</strong></a>
+	                </div>
+				</header>
 			</div>
-
 		</div>
-	</div>
-
+     
 	<div class="main">
 	    <div class="section section-basic">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-2">
-                    	<h2 class="title">More information, better decisions</h2>
-                    	<h4>Get to know your candidates beyond plain text.</h4>
-	                    <h4>Dropque is the easiest way to run video interviews. It's Designed to make candidates easily upload videos, enabling recruiters interview many candidates with few clicks </h4>
+                    <div class="col-md-6">
+                    	<h2 class="title">Adopt a more efficient way to find the right talent</h2>
+                    	<h4>No more expensive time-consuming and wordy interviews. <br/> Dropque simplifies recruitment for managers and gives candidates a better and flexible experience.</h4>
+                    	<a class="btn btn-primary btn-raised" href="#">
+	                       <strong>REQUEST A DEMO</strong>
+                        </a>
                     </div>
-
-                    <div class="col-md-4 col-md-offset-1">
-                    	<%= image_tag('Dropque1.png', class: "img-responsive")%>
+                    <div class="col-md-6">
+                    	<%= image_tag('dropquemockup.png', class: "img-responsive")%>
                     </div>
                 </div>
             </div>
         </div>
+        <hr width="90%" size="8" align="center">
         <div class="section section-tabs">
 	        <div class="container text-center">
 	            <div class="row">
 	                <div class="col-md-8 col-md-offset-2 text-center">
-	                    <h2 class="title">How it works?</h2>
-	                    <h4>Set questions based on role, competency & cultural fit. Get to see personality, hear candidates articulate and see their body language in 3 steps.</h4>
+	                    <h2 class="title">Getting started is easy</h2>
+	                    <h4>In less than 1 minute, you'll be ready to create and send out your first interview.</h4>
 	                </div>
 	            </div>
 	        </div>
@@ -137,15 +63,17 @@
 							   <i class="material-icons">question_answer</i>
 						    </div>
 				     	</div>
-                        <h4>Setup role specific questions with response deadline,  send link to candidates to complete video interview</h4>
+				     	<h4><strong>Create and share interview</strong></h4>
+                        <h4>Create your interview template consisting of video, text or file based questions using our intuitive interface. Set interview deadlines and share to potential candidates. Our contact import ability makes sharing to a larger group fun.</h4>
                     </div>
 					<div class="col-sm-4 text-center">
 						<div class="info">
 							<div class="icon icon-success">
-							   <i class="material-icons">search</i>
+							   <i class="material-icons">play_circle_filled</i>
 						    </div>
 						</div>
-                        <h4>Receive videos and review in collaboration with  stakeholders conveniently, without scheduling hassles.</h4>
+						<h4><strong>Get video responses</strong></h4>
+                        <h4>Candidates record their responses via our app using a smartphone or webcam and upload instantly. Our video recording and uploading is designed to support slow internet speeds.</h4>
                     </div>
 					<div class="col-sm-4 text-center">
 					   <div class="info">
@@ -153,43 +81,92 @@
 							   <i class="material-icons">contact_mail</i>
 						    </div>
 						</div>
-                        <h4>Contact shortlisted candidates. Keep candidates informed on the status of their application with just a few clicks.</h4>
+						<h4><strong>Review, shortlist, inform</strong></h4>
+                        <h4>Reviewing candidates, shortlisting and keeping candidates informed on the status of their application could not be simpler. This is built right into Dropque with team collaboration to make the process easier and faster.</h4>
                     </div>
 	            </div>
 			</div>
 		</div> 
-		<div class="section section-basic">
+		 <hr width="90%" size="8" align="center">
+		<div class="section section-tabs">
             <div class="container">
                 <div class="row">
+	                <div class="col-md-8 col-md-offset-2 text-center">
+	                    <h2 class="title">Why you need Dropque</h2>
+	                </div>
+	            </div>
+                <div class="row">
                     <div class="col-md-6">
-                    	<h2>One way Video Interviews</h2>
-	                    <h4>Endear Candidates to your brand by making their first contact with you convenient. How? Enabling them to answer your interview questions on their own time. Its perfect for passive and remote candidates because of its flexibility. Where does it fit in your process? One way Video interviews seamlessly takes the place of early stage phone interviews and most preliminary face to face interviews.</h4>
-	                    <h2>Collaboration Suite</h2>
-	                    <h4>Teams are everything, especially in recruiting. Get team members, clients and hiring managers involved by empowering them to provide critical feedback on candidate responses. No need for scheduling or administration hassles. Bring the power of the Panel interview with you, everywhere you go.</h4>
+                    	<h2>Get access to more top talent</h2>
+	                    <h4>Increase your chances of finding best fit candidates within a large pool of talent.</h4>
                     </div>
 
+                    <div class="col-md-6" align="center">
+                    	<%= image_tag('dropquee.png', class: "img-responsive")%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-push-6">
+                        <br/>
+                    	<h2>Reduce time-to-hire</h2>
+	                    <h4>Dropque cuts your recruitment time by 50%. The time it takes to schedule and conduct face-to-face meetings is the number one reason for delays in most hiring process. Companies with a faster recruitment process have an advantage in the competitive job market and we're happy to make this easier and fun for you.</h4>
+                    </div>
+                    <div class="col-md-6 col-md-pull-6" align="center">
+                        <br/>
+                        <br/>
+                    	<%= image_tag('time-savings.png', class: "img-responsive")%>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
-                    	<%= image_tag('dropquemockup.png', class: "img-responsive")%>
+                        <br/>
+                        <br/>
+                        <br/>
+                    	<h2>Give candidates a better experience</h2>
+	                    <h4>Candidate experience is becoming increasingly important and preferences are changing frequently. Video interviews allow candidates the environment and flexibility they need to be their best without compromising important cues such as articulation, personality and body language.</h4>
+                    </div>
+                    <div class="col-md-6" align="center">
+                        <br/>
+                        <br/>
+                    	<%= image_tag('happyw.png', class: "img-responsive")%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-push-6">
+                        <br/>
+                        <br/>
+                        <br/>
+                    	<h2>Secure and reliable</h2>
+	                    <h4>We understand how important recruitment is to the success of your company and how important your data is. That's why we invested months in making dropque secure and reliable. We guarantee a 99.99% availability.</h4>
+                    </div>
+                    <div class="col-md-6 col-md-pull-6" align="center">
+                        <br/>
+                        <br/>
+                    	<%= image_tag('safety.png', class: "img-responsive")%>
                     </div>
                 </div>
             </div>
-        </div>       
-		<div class="section section-basic">
+        </div> 
+         <hr width="90%" size="8" align="center">      
+		<div class="section section-tabs">
 	    	<div class="container">
-	            <div class="section section-signup">
-                    <div class="container">
 				        <div class="row">  
 			                <div class="col-md-4 col-md-offset-1">
 			                    <h2>More than just recruitment interviews</h2>
-			                    <h4>Dropque is a talent outreach, acquisition and screening tool. No matter what kind of talent you need, Dropque's got your back. <br/> <strong>Sign up for a try!</strong></h4>
+			                    <h4>We're building a whole suite of tools to make finding and recruiting talent for your organisation a breeze.
+			                    <ul>
+			                       <li>Talent outreach</li>
+			                       <li>Screening</li>
+			                       <li>Recommendation engine (coming soon)</li>
+			                    </ul>
+			                    <strong>Sign up to get started!</strong></h4>
+			                    <br/>
 			                </div>
 						      
 					        <div class="col-md-4 col-md-offset-1">
 						       
 					        </div>
 				        </div>
-			        </div>
-		        </div>
 	    	</div>
 	    </div>
 
@@ -209,17 +186,8 @@
 	                        <i class="fa fa-google-plus"></i>
 	                        Share
 	                    </a> -->
-
-
-
-
-
 	                    <div class="span4">
-
-
                           </div>
-
-
 	            </div>
 	        </div>
 	    </div>
@@ -228,16 +196,21 @@
 	    <div class="container">
 	        <nav class="pull-left">
 	            <ul>
-					<li>
+					<!-- <li>
 						<a href="#">
 						   About Us
 						</a>
-					</li>
+					</li> -->
 					<li>
+						<a href="/contact">
+							Contact Us
+						</a>
+					</li>
+					<!--<li>
 						<a href="#">
 							Terms
 						</a>
-					</li>
+					</li>-->
 	            </ul>
 	        </nav>
 	        <div class="copyright pull-right">
@@ -246,42 +219,4 @@
 	    </div>
 	</footer>
 </div>
-
-
-<script type="text/javascript">
-
-	document.getElementById('fbshareBtn').onclick = function() {
-	  FB.ui({
-	    method: 'share',
-	    display: 'popup',
-	    href: 'http://dropque.com',
-	  }, function(response){});
-	}
-
-		$(document).ready(function(){
-			// the body of this function is in assets/material-kit.js
-			materialKit.initSliders();
-			$(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
-
-            window_width = $(window).width();
-
-            if (window_width >= 768){
-                big_image = $('.wrapper > .header');
-
-				$(window).on('scroll', materialKitDemo.checkScrollForParallax);
-			}
-
-		});
-	</script>
-		<!-- for twitter sharing -->
-	<script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-    if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js"
-    ;fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    </script>
-
-</body>
-
-
 	
-
