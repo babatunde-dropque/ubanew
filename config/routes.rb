@@ -1,17 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'groups/index'
 
-  get 'groups/create'
 
-  get 'groups/new'
-
-  get 'groups/destroy'
-
-  resources :bulks do
-    collection {post :import}
-    collection {post :fetch}
-  end
+  # resources :bulks do
+  #   collection {post :import}
+  #   collection {post :fetch}
+  # end
 
   get 'applicants/index'
 
@@ -31,7 +25,7 @@ Rails.application.routes.draw do
   %w( validate_interview validate_email ).each do |action|
     get  action => 'applicants#'+action
   end
-  
+
 
 
   # this is assigning device controllers for user(s)
@@ -99,23 +93,36 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  # Nested Company Resources 
+  # Nested Company Resources
   resources :companies do
     post "add_collaborators", to: "companies#add_collaborators"
     delete "remove_collaborator", to: "companies#remove_collaborator"
     put "transfer_ownership", to: "companies#transfer_ownership"
+    resources :groups do
+      resources :bulks do
+       post 'import', on: :collection
+     # collection{post :import
+     #            post :fetch}
+      end
+    end
     # get "shortlist", to: "companies#shortlist"
     # get "pend",      to: "companies#pend"
     # get "reject",    to: "companies#reject"
     # get "edit", to: "companies#edit", as: 'edit'
     # post "update", to: "companies#update", as: 'update'
     get "all_interview", to: "companies#all_interview"
-    resources :contacts, only: [:index, :new, :show, :create, :destroy]
+  #   resources :contacts, only: [:index, :new, :show, :create, :destroy]
+  #   resources :groups, only: [:index, :new, :show, :create, :destroy] do
+  #     resources :bulks, only: [:destroy] do
+  #     collection {post :import}
+  #     collection {post :fetch}
+
+  # end
+  # end
     resources :interviews do
-      put "bulk_invite_sender", to: "interviews#send_bulk_invite_mail"
+    # put "bulk_invite_sender", to: "interviews#send_bulk_invite_mail"
     #  get "preview", to: "users#preview"
     #   put "invite_sender", to: "jobs#send_invite_mail"
-       
     #   put "shortlist_sender", to: "jobs#send_shortlist_mail"
     #   put "reject_sender", to: "jobs#send_reject_mail"
     #   resources :submissions do

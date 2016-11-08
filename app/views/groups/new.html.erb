@@ -1,2 +1,27 @@
-<h1>Groups#new</h1>
-<p>Find me in app/views/groups/new.html.erb</p>
+
+
+<% if !@group.errors.empty? %>
+<div class: alert "alert-error">
+<ul>
+
+<% @group.errors.full_messages.each do |msg|%>
+
+<li>
+<%= msg %>
+</li>
+<% end%>
+</ul>
+</div>
+<%end%>
+
+<div class: "well">
+<%= form_for ([@company, @group]), html:{multipart:true} do |f| %>
+<%= f.label :name %>
+<%=f.text_field :name%>
+<br/>
+<%=f.label :auto_response%>
+<%=f.text_field :auto_response%>
+<br/>
+<%=f.submit "Save", class: "btn btn-primary"%>
+<% end %>
+</div>

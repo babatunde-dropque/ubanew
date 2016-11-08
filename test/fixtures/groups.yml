@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  autoresponse: MyString
+  auto-response: MyString
 
 two:
   name: MyString
-  autoresponse: MyString
+  auto-response: MyString

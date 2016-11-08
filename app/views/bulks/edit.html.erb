@@ -1,6 +1,8 @@
 <h1>Editing Bulk</h1>
+<%= form_for(@bulk, url: {action: 'update'}) do |f| %>
 
-<%= render 'form' %>
+<%= render 'form', f: f %>
+<%end%>
 
-<%= link_to 'Show', @bulk %> |
-<%= link_to 'Back', bulks_path %>
+<%= link_to 'Show', company_group_bulks_path %> |
+<%= link_to 'Back', company_group_bulks_path %>
