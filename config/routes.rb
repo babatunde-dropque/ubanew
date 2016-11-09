@@ -11,10 +11,8 @@ Rails.application.routes.draw do
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard'
 
-  # either /applicants or /applicants/interview_token
-  get 'applicants/' => 'applicants#index'
-  get 'applicants/:interview_token/' => 'applicants#index'
 
+  # post request for applicant data
   post 'applicants/' => 'applicants#index'
   post 'applicants/question' => 'applicants#question'
   post 'applicants/submit_video' => 'applicants#submit_video'
@@ -122,7 +120,17 @@ Rails.application.routes.draw do
 
 
 
+  # checking if the subdomain is available, if yes to to route
+  # if not route back to rool url
+  get '/' => 'applicants#index', :constraints => CustomDomainConstraint 
+  constraints(CustomDomainConstraint) do
+     get '/' => 'applicants#index'
+     get 'applicants/' => 'applicants#index'
+     get 'applicants/:interview_token/' => 'applicants#index'
 
+  end
+  
+ 
   # You can have the root of your site routed with "root"
   root 'landings#index'
 
