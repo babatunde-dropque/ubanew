@@ -1,7 +1,9 @@
-<div class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url(<%= (@company.image.file.nil?) ? asset_path('interviewers.jpg') : @company.image.url %>);" >
+<div class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url(<%= (@company.image.file.nil?) ? asset_path('interviewers.jpg') : @company.image.url %>);  background-repeat: no-repeat; background-size: cover;" >
 
-  
-  
+
+ 
+
+    
 <div class="dq-wrapper">
       <div class="dq-container-editable"  >
         <nav class="navbar navbar-default dq-navbar-transparent" role="navigation">
