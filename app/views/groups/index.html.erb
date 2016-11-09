@@ -12,7 +12,7 @@
 <thead>
 <tr>
 <th>Name</th>
-<th>Link</th>
+<th>View</th>
 <th>Modify</th>
 <th></th>
 </tr>
@@ -21,7 +21,7 @@
 <% @groups.each do |group|%>
 <tr>
 <td> <%=group.name%></td>
-<td> <%= link_to "View group", company_group_path(id:group.id) %>   </td>
+<td> <%= link_to "View group", company_group_bulks_path(company_id:@company.id, group_id:group.id) %>  </td>
 <td> <%= link_to "Update", company_group_bulks_path(company_id:@company.id, group_id:group.id) %> </td>
 <td> <%= button_to  "Delete", company_group_path(id: group.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you sure you want to delete  #{group.name}?" } %>    </td>
 </tr>
