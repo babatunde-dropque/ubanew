@@ -81,7 +81,7 @@ class InterviewsController < ApplicationController
 	    interview.company = @company
 	    respond_to do |format|
 	      if interview.save
-	        format.html { redirect_to company_interview_path(id: interview.id), notice: 'Interview was successfully created.' }
+	        format.html { redirect_to company_interview_path(id: interview.slug), notice: 'Interview was successfully created.' }
 	        format.json { render :show, status: :created, location: interview }
 	      else
 	        format.html { render :new }
