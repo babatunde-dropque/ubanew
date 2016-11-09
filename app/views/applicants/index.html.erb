@@ -27,7 +27,7 @@
                   <ul class="nav navbar-nav navbar-right">
                     <li>
 
-                      <input  onchange="update()" type="hidden" id="color_value" value="<%= @company.properties["primaryColor"] %> ">    
+                      <input  onchange="update()" type="hidden" id="color_value" value="<%= (@company.properties.nil?) ? "#5e337b": @company.properties["primaryColor"] %>">     
 
                        <button  id="color-button"  contenteditable="false" class="btn  jscolor {valueElement: 'color_value'}" > Pick a colour </button> 
               
