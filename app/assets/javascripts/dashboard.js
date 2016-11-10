@@ -208,6 +208,7 @@ $(document).ready(function(){
 	});
 
 
+	
 
 	var emailTagList = $('#email-list');
 	emailTagList.tagit({
