@@ -19,7 +19,10 @@
                                 <button  type="button" class="btn btn-raised btn-twitter">New Organization</button>
                             <% end %>
                         </div>
-            	<div class="card col-md-8 col-md-offset-2">
+                        <!-- test for zero state -->
+                        <% if @user.companies.length > 0 %>
+
+                          <div class="card col-md-8 col-md-offset-2">
                             <div class="content">
                                 <ul class="list-unstyled team-members">
                                     
@@ -101,6 +104,16 @@
                                 </ul>
                             </div>
                         </div>
+
+
+                        <% else %>
+                          <div class="card col-md-8 col-md-offset-2">
+                            <div class="content">
+                              <%= render partial: "when_empty" %>
+                            </div>
+                          </div>
+                        <% end %>
+            	
                     </div>
     </div>
 </div>
