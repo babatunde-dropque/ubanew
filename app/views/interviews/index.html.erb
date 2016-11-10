@@ -1,10 +1,5 @@
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="success">
-
-<!--
-    Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-    Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
--->
     
 <!-- TODO Add Sidebar Panel -->
  <%= render partial: "companies/sidebar" %>
@@ -14,10 +9,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                   <!--  <form class="frm" style="float: right">
-                                <input type="text" class="form border-input" placeholder="Search..." required>
-                                <input type="button" class="btn" value="Search">
-                    </form> -->
+                   
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="header">
@@ -28,14 +20,14 @@
                                     <% @interview_all.each do |interview| %>
                                         <li>
                                             <div class="row">
-                                            <%= link_to company_interview_path(id:interview.id) do %>
+                                            <%= link_to company_interview_path(id:interview.slug) do %>
                                                 <div class="col-xs-6">
                                                     <%= interview.title %>
                                                 </div>
                                             <% end %>
-                                                <%= link_to 'Show', company_interview_path(id: interview.id) %> | 
-                                                <%= link_to 'Edit', edit_company_interview_path(id: interview.id) %> | 
-                                                <%= link_to 'Delete', company_interview_path(id: interview.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                                <%= link_to 'Show', company_interview_path(id: interview.slug) %> | 
+                                                <%= link_to 'Edit', edit_company_interview_path(id: interview.slug) %> | 
+                                                <%= link_to 'Delete', company_interview_path(id: interview.slug), method: :delete, data: { confirm: 'Are you sure?' } %>
                                                 
                                             </div>
                                         </li>

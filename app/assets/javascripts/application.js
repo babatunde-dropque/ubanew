@@ -20,6 +20,9 @@
 //= require bootstrap-sprockets
 //= require commontator/application
 //= require bootstrap-tour.min
+//= require jquery.raty
+//= require ratyrate
+
 
 
 

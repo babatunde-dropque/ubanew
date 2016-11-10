@@ -13,6 +13,14 @@
 
                 </div>
                 <div class="collapse navbar-collapse">
+
+
+                  <% if !@interview.nil? %>
+                    <a class="navbar-brand" href="#"><%= @interview.title %></a>
+                  <% end %>
+               
+
+
                     <ul class="nav navbar-nav navbar-right">
 
                              <li class="dropdown">
@@ -74,11 +82,19 @@
                                    <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Edit <% end %>
                                 </li>
                                 <li>
-                                   <a href="#">Interview page </a>
+                                   <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ]) , target: "_blank" do %> Edit Interview page <% end %> 
                                 </li>
+
+                                <li><a href="http://<%= @company.subdomain %>.<%= request.host_with_port %>" target= "_blank"> Interview Page </a>
+                                   
+                                </li>
+
+
                                 <li>
                                    <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %>
                                 </li>
+
+
 
                               </ul>
                         </li>
@@ -91,7 +107,7 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Profile</a></li>
+                                <li><%= link_to "Profile", root_path %></li>
                                 <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
 
                               </ul>

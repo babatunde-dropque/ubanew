@@ -3,23 +3,19 @@
 
     <div class="container-fluid">
         <div class="row">
-        
             <div class="col-lg-12 col-md-12">
                 <div class="card">
+                    <div class="row sharing-area text-center">
+                        <br> <br> <br> <br>                         
+                        <h5>Creating interview is one click away</h5>
 
-                   
-                                
-                                    <div class="row sharing-area text-center">
-                                        <br> <br> <br> <br>                         
-                                        <h5>No Videos received yet</h5>
-
-                                     <%= link_to new_company_interview_path(params[:company_id] || params[:id]) do %>
-                                        <button  type="button" class="btn btn-raised btn-twitter">Create an interview</button>
-                                    <% end %>
+                     <%= link_to new_company_interview_path(params[:company_id] || params[:id]) do %>
+                        <button  type="button" class="btn btn-raised btn-twitter">Create an interview</button>
+                    <% end %>
 
 
-                                        <br> <br> <br> <br><br> <br>   
-                                    </div>
+                        <br> <br> <br> <br><br> <br>   
+                    </div>
                 </div>
             </div>
         </div>

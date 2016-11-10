@@ -8,6 +8,11 @@ class LandingsController < ApplicationController
 		@minimum_password_length = 6
   end
 
+  def contact
+    
+    
+     
+  end
 
   def errors
   	 render status_code.to_s, :status => status_code

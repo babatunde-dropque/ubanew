@@ -62,33 +62,6 @@ $(document).ready(function(){
 	} 
 
 
-		
-
-
-
-
-
-
-	// var videtag = videojs("7-video", {}, function(){
- //  // Player (this) is initialized and ready.
- //  			// alert("done loading");
-
-
-
-	// });
-
-
-	
-
-	$('.pager').on("click", "li", function(){
-
-    	
-	});
-
-
-	
-
-
 
 	
 
@@ -235,14 +208,7 @@ $(document).ready(function(){
 	});
 
 
-	$('#tags').tagit({
-		tagLimit: 4,
-		placeholderText: "Add tags to Role",
-		onTagLimitExceeded : function(event, ui){
-			$("#indicator-tags").html("Tags cannot be more than four");
-		}
-
-	})
+	
 
 	var emailTagList = $('#email-list');
 	emailTagList.tagit({
@@ -350,7 +316,6 @@ $(document).ready(function(){
     		event.preventDefault();
     	} 
     	
-
        jsonObj = [];
 
      	 $("#question-tag").find(".row").each(function(index) {
@@ -472,7 +437,7 @@ function addNewTextQuestionWithDetails(q, c, type){
 	          "</div>" +
 	          "<div class='col-md-3'>" +
 	              "<div class='form-group'>" +
-	                  "<input type='text' class='form-control border-input' placeholder='Max chars allowed' value='"+c+"'>" +
+	                  "<input type='text' class='form-control border-input' placeholder='Max words allowed' value='"+c+"'>" +
 	              "</div>"+
 	          "</div>"+
 	          "<div class='col-md-1 close'>"+
@@ -522,7 +487,7 @@ function formatQuestion(){
 
 			 } else if (type == 2){
 			 	 var f = resultArrayQuestion[i]["question_text"];
-    		 	 var s = resultArrayQuestion[i]["max_char"] +' characters';
+    		 	 var s = resultArrayQuestion[i]["max_char"] +' words';
     		 	 var typeShow = "Text Question"
 
 

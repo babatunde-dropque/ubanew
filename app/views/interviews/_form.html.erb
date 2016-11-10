@@ -29,31 +29,23 @@
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :deadline %>
-        <%= f.date_field :deadline, class: "form-control border-input" %>
+        <%= f.text_field :deadline, class: "form-control border-input" , id: "date" ,placeholder:"deadline dd/mm/yyy" %>
       </div>
-    </div>
 
-
-    <div class="row">
-      <div class="form-group col-md-12">
-          <%= f.label :tags %>
-            <%= f.text_field :tags,:id => 'tags', class: "form-control border-input", html: {spellcheck: "false"} %>
-             <label id ="indicator-tags"> </label>
-        </div> 
+      
     </div>
 
 
 
-
-    <div class="row">
+    <!-- <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :candidate_emails %>
           <%= f.text_field :mail_list, :id => 'emails', class: "form-control border-input", html: {spellcheck: "false"} %>
         <label id ="indicator"> </label>
       </div>
-    </div>
+    </div> -->
 
-     <div class="row" >
+     <!-- <div class="row" >
           <div class='col-md-6'>
             <h5 class ="left-edge col-md-11 "> Group Invitation </h5> 
           </div>
@@ -71,14 +63,14 @@
 
        
 
-        </div>
+        </div> -->
 
       <input type="hidden" value="<%= @interview.questions.to_json %>" name="interview[questions]" id="questions-json" />
 
 
       <div class="row" >
           <div class='col-md-6'>
-            <h5 class ="left-edge col-md-11 "> Questions </h5>
+            <h5 class ="left-edge col-md-11 ">Add Questions </h5>
           </div>
           <div class='col-md-4'>
 
@@ -104,18 +96,18 @@
 
 
      </div>
-     <hr>
+     
 
+
+     
      <div class="row">
         <div class=" form-group col-md-10" >
-          <label>Private interviews are only accessible by invited candidate</label><br>
+          <label>Private interviews? </label><br>
         </div>
         <div class="col-md-2 ">
           <div class="float-right">
             <div class="onoffswitch file">
               <%= f.check_box :status, :id => 'myonoffswitch', class: "onoffswitch-checkbox"  %>
-
-               <!--  <input type="checkbox" name="interview[status]" class="onoffswitch-checkbox" id="myonoffswitch" checked=""> -->
 
                 <label class="onoffswitch-label" for="myonoffswitch">
                     <span class="onoffswitch-inner"></span>
@@ -126,9 +118,18 @@
 
         </div>
      </div>
-
-     <hr>
+     <br>
       <div class="text-center">
         <%= f.submit :id => 'interview-submit', :value => d, class: "btn btn-info btn-fill btn-wd" %>
       </div>
 </div>
+
+
+
+
+<script>
+  $('#date').datepicker({
+    format: 'mm/dd/yyyy'
+  });
+
+</script>

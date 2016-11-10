@@ -19,7 +19,7 @@ class Company < ActiveRecord::Base
 
     def should_generate_new_friendly_id?
     	 slug.nil? || name_changed? || new_record?
- 	end
+ 	  end
 
     # Try building a slug based on the following fields in
   	# increasing order of specificity.

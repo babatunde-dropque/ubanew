@@ -1,27 +1,51 @@
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="success">
+    
+<!-- TODO Add Sidebar Panel -->
+ <%= render partial: "companies/sidebar" %>
+<div class="main-panel">
+<!-- TODO Add Navbar Panel -->
+    <%= render partial: "users/navbar" %>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                   
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
 
+                        	<% if !@group.errors.empty? %>
+								<div class: alert "alert-error">
+								<ul>
 
-<% if !@group.errors.empty? %>
-<div class: alert "alert-error">
-<ul>
+									<% @group.errors.full_messages.each do |msg|%>
 
-<% @group.errors.full_messages.each do |msg|%>
+								<li>
+									<%= msg %>
+								</li>
+								<% end%>
+								</ul>
+								</div>
+								<%end%>
 
-<li>
-<%= msg %>
-</li>
-<% end%>
-</ul>
+								<div class: "well">
+								<%= form_for ([@company, @group]), html:{multipart:true} do |f| %>
+								<%= f.label :name %>
+								<%=f.text_field :name%>
+								<br/>
+								<%=f.label :auto_response%>
+								<%=f.text_field :auto_response%>
+								<br/>
+								<%=f.submit "Save", class: "btn btn-primary"%>
+								<% end %>
+								</div>
+								                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-<%end%>
 
-<div class: "well">
-<%= form_for ([@company, @group]), html:{multipart:true} do |f| %>
-<%= f.label :name %>
-<%=f.text_field :name%>
-<br/>
-<%=f.label :auto_response%>
-<%=f.text_field :auto_response%>
-<br/>
-<%=f.submit "Save", class: "btn btn-primary"%>
-<% end %>
-</div>

@@ -1,13 +1,7 @@
-<input id="current_status_stored" type="hidden" value="all" />
-<input id="number_of_signin" type="hidden" value="<%= @sigin_in_count %>" />
 
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
-    <!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
-    	
+  
 <!-- TODO Add Sidebar Panel -->
     <%= render partial: "sidebar" %>
     <div class="main-panel">
@@ -19,17 +13,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-5">
                         <div class="card card-user">
-                          <% if @company.image.file.nil? %>
-                            <div class="image">
-                                 <%= image_tag('logo1.png')%>
-                            </div>
-                           <% else %>
-                              <div class="image">
-                                <img src="<%= @company.image.url %>" class="img-responsive" />
-                              </div>
-                           <% end %>
-
-                            <hr>
+                          
                             <div class="text-center">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
@@ -40,7 +24,12 @@
                                     </div>
                                     
                                     <div class="col-md-3">
-                                        <h5>0$<br><small>Spent</small></h5>
+                                        <% if @company.plan.nil? %>
+                                            <h5>Basic<br>
+                                        <% else %>
+                                            <h5> premium <br>
+                                        <% end %>
+                                       <small>plan</small></h5>
                                     </div>
                                 </div>
                             </div>
@@ -69,16 +58,14 @@
                                                     </span>
                                                 <% elsif collaborator.status == 1 %>
                                                     <span class="text-muted">
-                                                        <small> (Super Admin) </small>
+                                                        <small> (Admin) </small>
                                                     </span>
                                                 <% elsif collaborator.status == 2 %>
                                                 <span class="text-muted">
-                                                        <small> (Admin) </small>
-                                                    </span>
-                                                <% elsif collaborator.status == 3 %>
-                                                    <span class="text-muted">
                                                         <small> (User) </small>
                                                     </span>
+                                                <% else %>
+                                                    
                                                 <% end %>
                                                     
                                                 </div>
@@ -101,11 +88,8 @@
                                                         <btn class="btn btn-sm remove-collaborator" user="<%= collaborator.user.name %>" email="<%= collaborator.user.email %>" user-id="<%= collaborator.id %>"><i class="ti-close"></i>
                                                         </btn>
                                                    </div>
-                                                <% elsif collaborator.status == 3 &&  @user_status < 2 %>
-                                                   <div class="text-right right-margin">
-                                                        <btn class="btn btn-sm remove-collaborator" user="<%= collaborator.user.name %>" email="<%= collaborator.user.email %>" user-id="<%= collaborator.id %>"><i class="ti-close"></i>
-                                                        </btn>
-                                                   </div>
+                                                <% else %>
+                                                   
                                                 <% end %>
 
                                             </div>
@@ -116,7 +100,6 @@
                                         </ul>
 
                                          <div class="text-center">
-                                                <!-- <h5 class="title"> Add Collaborator </h5> -->
                                                 <hr/>
                                                     <btn id="add-collaborator" class='btn btn-wd'> Add New </btn>
                                                 <hr/>
@@ -154,7 +137,7 @@
                     <div class="col-lg-8 col-md-7">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Company's Profile</h4>
+                                <h4 class="title">Profile</h4>
                             </div>
                             <div class="content">
 
@@ -171,7 +154,7 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label > Subdomain</label>
-                                                <input type="text" class="form-control border-input" value= ""  disabled="" placeholder="subdomain" name="subdomain">
+                                                <input type="text" class="form-control border-input" value="<%= @company.subdomain %>"  disabled="" placeholder="subdomain" name="subdomain">
                                             </div>
                                         </div>
                                     </div>
@@ -202,15 +185,7 @@
                                         </div>
                                         
                                     </div>
-                                    <div class="row">
-                                        
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label> Tags </label>
-                                                <input type="text" class="form-control border-input" placeholder="Tags" name="tags" >
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -221,14 +196,26 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label> Tags </label>
+                                                <input type="text" class="form-control border-input" placeholder="Tags" name="tags" id="tags" >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="file-upload" class="btn custom-upload">
-                                                    <input id="file-upload" type="file" name="image">
-                                                    click to update Image
-
+                                                    <input id="file-upload" type="file" name="logo">
+                                                   Organization Logo
                                                 </label>
+                                                <div class="text-center"><label>Transparent 330 X 80 pixels </label></div>
                                                       
                                             </div>
                                         </div>
@@ -248,27 +235,12 @@
                                 </form>
                             </div>
                         </div>
-
-                        <!-- <div class="card">
-                            <div class="row sharing-area text-center">
-                                 <br>          
-                                <button  type="button" class="btn btn-raised"> Take an interview</button>
-                                <br><br>
-                                      
-                            </div> 
-                        </div> -->
-
-
                     </div>
-
-
                 </div>
             </div>
         </div>
 
 
-<!-- TODO Add Footer Partial -->
-        <%= render partial: "users/footer" %>
     </div>
     </div>
 </div>
@@ -343,9 +315,8 @@
             <input type="email" class="form-control border-input" placeholder="Email" value="">
         </div>
         <select class='btn box-shape-1' > 
-            <option value='1'> super admin </option>
-            <option value='2'> admin </option>
-            <option value='3'> user </option>
+            <option value='1'> admin </option>
+            <option value='2'> user </option>
         </select>
        <btn class="btn box-shape  width-perfect remove-new-collaborator"><i class="ti-close"></i></btn>
     </div>
@@ -453,6 +424,16 @@
              // hide submit button for collaborators
              $("#submit-colloborators").hide();
         }
+    });
+
+
+     $('#tags').tagit({
+        tagLimit: 4,
+        placeholderText: "Add tags",
+        onTagLimitExceeded : function(event, ui){
+            // $("#indicator-tags").html("Tags cannot be more than four");
+        }
+
     });
 
     

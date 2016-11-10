@@ -1,123 +1,59 @@
-<body>
-<input id="current_status_stored" type="hidden" value="all" />
-<input id="number_of_signin" type="hidden" value="<%= @sigin_in_count %>" />
 
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
-    <!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
-    	
+
 <!-- TODO Add Sidebar Panel -->
     <%= render partial: "sidebar" %>
     <div class="main-panel">
 <!-- TODO Add Navbar Panel -->
     <%= render partial: "users/navbar" %>
-        <div class="content">
+        <div class="content card-start ">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="cd-filter-block">
-                            <div class="cd-filter-content">
-                                <div class="cd-select cd-filters">
-                                    
-                                </div> <!-- cd-select -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <form>
-                            <div class="cd-filter-block">
-                                <div class="cd-filter-content cd-search">
-                                    <input type="text" placeholder="Search..." required>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                        <div class="header">
-                           <h4 class="title">Videos</h4>
-                        </div>
 
-                        <div>
-                            <div class="bd-example bd-example-padded-bottom">
-                              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#gridSystemModal">
-                                Launch demo modal
-                              </button>
-                            </div>
+               <!-- when empty -->
+            <% if @all_interview.length == 0  %>
+             <%= render partial: "when_empty" %>
+            <% end %>
 
-                        </div>  
+                <div class="row" >
+                  <% @all_interview.each do |interview| %>
+                  <% submissions_total = interview.submissions %>
+                  <% submissions = interview.submissions.where(current_no: 500) %>
+                
+                      <div class=" col-md-4">
+                          <div class="img-responsive card box-shape">
+                            <%= link_to company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) do %>
+                              <div class="content">
+                                      <p> <%= interview.title %> </p>
+                                      <div class="text-center numbers-1">
+                                          <%= submissions.length %>
+                                        <br>
+                                      </div>
+                                  <div class="chart-legend">
+                                       <br> <i class="fa fa-circle text-danger"></i> Unfinished: <%= submissions_total.length - submissions.length %>
+                                       <br><i class="fa fa-circle text-warning"></i> Total : <%= submissions_total.length %>
+                                       <br><i class="fa fa-circle text-warning"></i> No of question : <%= interview.questions.length %>
+                                    </div>
+                                  <div class="footer">
+                                      <hr>
+                                      <div class="stats">
+                                          <!-- <i class="ti-reload"> -->
+                                          </i> Interview token: <%= interview.interview_token %>
+                                      </div>
+                                  </div>
+                              </div>
+                                
+                            <% end %>
+                          </div>
+                      </div>
+  
+                  <% end %>
                 </div>
+
             </div>
         </div>
-<!-- TODO Add Footer Partial -->
-        <%= render partial: "users/footer" %>
+
     </div>
     </div>
 </div>
-
-
-
-<!-- modal for each video -->
-<div id="modal-list">
-
-    <!--  modal grid start  -->
-    <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid">
-          <ul class="pgwSlideshow">
-              <li>
-    
-                <%= image_tag('dummy.jpg', alt:"San Francisco, USA") %>
-              </li>
-              <li> <%= image_tag('dummy.jpg', alt:"Rio de Janeiro, Brazil") %></li>
-               <li> <%= image_tag('dummy.jpg', alt:"Rio de Janeiro, Brazil") %></li>
-                <li> <%= image_tag('dummy.jpg') %></li>
-                <li> <%= image_tag('dummy.jpg') %></li>
-              <li>
-                  <a href="http://en.wikipedia.org/wiki/Monaco" target="_blank">
-                      
-                      <%= image_tag('dummy.jpg', alt:"Monaco") %>
-                  </a>
-              </li>
-          </ul>
-
-          <!-- <div class="row">
-            <div class="col-md-8">
-             <iframe width="640" height="360" src="https://www.youtube.com/embed/EQ6QaZcPphM" frameborder="0" allowfullscreen></iframe> 
-              <div class="row">
-                <div class="col-md-12"> half </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-
-             half </div>
-          </div> -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- modal grid finish -->
-
-
-
-</div>
-
-
-<script>
-
-   $('.pgwSlideshow').pgwSlideshow();
-
-</script>
-</body>
-
-
 

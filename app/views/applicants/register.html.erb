@@ -7,9 +7,8 @@
 
             <div class="row dq-page-container ">
               <div class="dq-inner-video-2">
-                 <h2 class="dq-interview-question"> Provide required information </h2>
-                 
-                 <br>
+                             
+                 <br><br><br>
                 <span class="fa fa-3x fa-home fa-fw"></span>
                 <br><br><br>
 
@@ -37,35 +36,89 @@
 
 <script >
 
+$.notify.addStyle('happyblue', {
+  html: "<div><span data-notify-text/></div>",
+  classes: {
+    base: {
+      "opacity": "0.90",
+      "width": "200px",
+      "background": "#CCCCCC",
+      "padding": "5px",
+      "margin": "5px",
+      "border-radius": "10px"
+    },
+    menu: {
+      "opacity": "0.90",
+      "width": "200px",
+      "background": "#CCCCCC",
+      "padding": "5px",
+      "margin": "5px",
+      "border-radius": "10px",
+      "color":"black"
+
+    }
+  }
+});
+
+
+
   $("#name-box").hide();
 
   var trigger = false;
 
   $("#continue").click(function(event){
-    event.preventDefault();
-    var email = $("#email-box").val();
-    $.ajax({
+
+     event.preventDefault();
+     var email = $("#email-box").val();
+
+    if (trigger && $("#name-box").val() == ""){
+
+      $("#name-box").notify("Name field cannot be empty", {
+              style: 'happyblue',
+              className: 'menu',
+              position: "top center"
+            });
+
+    }else if (validateEmail(email)){
+
+      $.ajax({
           url: '/validate_email', 
           type: 'GET',
           data: { email: email },
           success: function(data){
               if (data == "success" || trigger ){
-                console.log(data);
-                // if email exits then continue else register
                   $("#form-register").submit();
-         
               } else {
                   trigger = true
-                  $("#email-box").show(); // make editable false
+                  $("#email-box").prop("readonly", true);
                   $("#name-box").show();
                   $("#create").val("yes");
-
              }
           },
           error : function(jqXHR, textStatus, errorThrown) {
                
            }
-       });
+       }); 
+
+
+    } else {
+        $("#email-box").notify("Invalid email address or name", {
+              style: 'happyblue',
+              className: 'base',
+              position: "top center"
+            });
+       }
+
+
+       
+
+
     });
+
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
 
 </script>

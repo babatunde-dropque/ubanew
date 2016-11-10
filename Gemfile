@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 
+<<<<<<< HEAD
 ruby '2.2.3'
 
 
+=======
+>>>>>>> 463445e2c7f5897984722e38084fe414fa9b78dc
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 #needed for persing csv and xls
@@ -89,3 +92,7 @@ gem 'friendly_id'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 #  will run backgound processes, 
 gem 'delayed_job_active_record'
+
+
+# gem for rating 
+gem 'ratyrate'

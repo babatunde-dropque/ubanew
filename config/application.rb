@@ -18,6 +18,9 @@ module Newdrop
   # Set up queueing backend works and processes
   config.active_job.queue_adapter = :delayed_job
 
+  # load lib folder on boot
+  config.autoload_paths << Rails.root.join('lib')
+
 
 
 

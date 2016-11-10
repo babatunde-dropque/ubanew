@@ -11,8 +11,6 @@
         <div class="content">
             <div class="container-fluid">
 
-
-
                 <div class="row">
                       <div class="col-md-7">
                         <div class="card">
@@ -24,21 +22,15 @@
                                 <!-- form start here  -->
                                 <form method="post" enctype="multipart/form-data" action="/companies">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Company Name</label>
                                                 <input type="text" class="form-control border-input"  placeholder="Company" name="name">
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label >Tags</label>
-                                                <input type="text" class="form-control border-input"  placeholder="Tags" name="tags">
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label >Subdomain</label>
                                                 <input type="text" class="form-control border-input"  placeholder="subdomain.dropque.com" name="subdomain">
@@ -67,7 +59,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" class="form-control border-input" placeholder="Country"  >
+                                                <input type="text" class="form-control border-input" placeholder="Country" name="country"  >
                                             </div>
                                         </div>
                                         
@@ -82,14 +74,29 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label >Tags</label>
+                                                <input type="text" id="tags" class="form-control border-input"  placeholder="Tags" name="tags">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="file-upload" class="btn custom-upload">
                                                     <input id="file-upload" type="file" name="logo">
-                                                    Add Company's Logo
+                                                    Add Logo </label>
+                                                    <div class="text-center">
+                                                        <label> Transparent 330 X 80 pixels </label>
+                                                    </div>
+                                                    
 
-                                                </label>
                                                       
                                             </div>
                                         </div>
@@ -104,11 +111,6 @@
                                     <input type="text" id="collaborate-json" name="collaborators_list"  hidden>
 
                                     
-                                    
-                                    <!-- <div class="text-center">
-                                        <button type="submit" class="btn btn-info btn-fill btn-wd"> Create Company </button>
-                                    </div>
-                                    <div class="clearfix"></div> -->
                                
                             </div>
                         </div>
@@ -123,45 +125,12 @@
                             </div>
                             <div class="content">
 
-                                <!-- <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Super Admin</label><br>
-                                            <label>Admin</label><br>
-                                            <label>User</label><br>
-                                        </div>
-                                        
-                                    </div>
-
-                                 </div> -->
                                     <div id="collaborator-content" >
-                                    <!-- <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input type="text" class="form-control border-input"  placeholder="Email" name="name">
-                                            </div>
-                                        </div>
-    
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                            <label >Admin Status</label>
-                                            <div class="cd-filter-block"> 
-                                                <select>
-                                                    <option value="1"> super admin </option>
-                                                    <option value="2"> admin</option>
-                                                    <option value="3"> user  </option>
-                                                </select>
-                                            </div>
-
-                                          </div>
-                                        </div>
-
-                                    </div> -->
+                                    
                                     </div>
                                     
                                     <div class="text-center">
-                                        <button  id="create-company" type="submit" class="btn btn-info btn-fill btn-wd"> Create Company </button>
+                                        <button  id="create-company" type="submit" class="btn btn-info btn-fill btn-wd"> Create Organization </button>
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>
@@ -180,10 +149,6 @@
                 
             </div>
         </div>
-
-
-        <!-- TODO Add Footer Partial -->
-        <%= render partial: "users/footer" %>
 
     </div>
 </div>
@@ -235,9 +200,8 @@
             "</div>"+
             "<div class='col-md-6'>"+
                 "<select class='btn box-shape-1' >"+
-                    "<option value='1'> super admin </option>"+
-                    "<option value='2'> admin</option>"+
-                    "<option value='3'> user  </option>"+
+                    "<option value='1'> admin </option>"+
+                    "<option value='2'> user</option>"+
                 "</select>"+
                 "<btn class='btn box-shape width-perfect remove-new-collaborator' >"+
                 "<i class='ti-close'>"+
@@ -253,6 +217,18 @@
     //  remove added collaborators
      $("#collaborator-content").on("click", ".remove-new-collaborator", function(){
         $(this).parents('div.row')[0].remove();
+    });
+
+
+     // this is the script responsible for tags
+  
+    $('#tags').tagit({
+        tagLimit: 4,
+        placeholderText: "Add tags",
+        onTagLimitExceeded : function(event, ui){
+            // $("#indicator-tags").html("Tags cannot be more than four");
+        }
+
     });
 
 

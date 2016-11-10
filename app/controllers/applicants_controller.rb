@@ -6,6 +6,8 @@ class ApplicantsController < ApplicationController
 
   
   def index
+
+    @editable = "false" # disable editable view
   	# check details parameter and validate interview token once again
   	if params[:page] == "register"
       @interview = Interview.find_by(interview_token: params[:interview_token], company_id: @company.id )
@@ -17,15 +19,11 @@ class ApplicantsController < ApplicationController
       # check if user exit or not
       if (params[:create] == "yes")
 
-        @user = User.new(name: params[:name], email: params[:email], password: 'dropque')
-        @user.save
+        @user = User.new(name: params[:name], email: params[:email], password: 'dropqueapp', password_confirmation: 'dropqueapp')
+        @user.save()
         
       elsif (params[:create] == "no")
         @user = User.find_by(email: params[:email])
-        puts "user ID here"
-        puts @user.id
-        puts @user.name
-        puts "user ID here"
       end
 
       # create submission for user
@@ -55,6 +53,8 @@ class ApplicantsController < ApplicationController
 
      # create new user
 
+  
+
 
   def question
      @position =  test_for_end(@interview.questions.length, params[:pos].to_i)
@@ -64,24 +64,12 @@ class ApplicantsController < ApplicationController
      render_question_view(@position)
  end 
 
- def upload_file
-    position = test_for_end(@interview.questions.length, params[:pos].to_i )
-    upload = FileUpload.new(file_link: params[:file], file_type: 1, user_id: @user.id, interview_id: @interview.id)
-      if upload.save 
-        @submission.answers << { question_type: "3", file_text: params[:file_text], file_link: upload.file_link.url, file_id: upload.id }
-        @submission.current_no = position
-        @submission.save 
-        render plain: "success"
-      else
-        render plain: "error"
-      end
-
- end
-
 
  def render_question_view(position)
+  @editable = "false" # disable editable view
   @position = position
-     if @position < @interview.questions.length 
+  @number_of_question = @interview.questions.length 
+     if @position < @number_of_question 
         @question_type = @interview.questions[@position]["question_type"]
         if  @question_type == "1"
             @question_video = @interview.questions[@position]["question_video"]
@@ -101,6 +89,20 @@ class ApplicantsController < ApplicationController
      else
        render "complete"
      end 
+ end
+
+
+ def upload_file
+    position = test_for_end(@interview.questions.length, params[:pos].to_i )
+    upload = FileUpload.new(file_link: params[:file], file_type: 1, user_id: @user.id, interview_id: @interview.id)
+      if upload.save 
+        @submission.answers << { question_type: "3", file_text: params[:file_text], file_link: upload.file_link.url, file_id: upload.id, file_size: params[:file].size }
+        @submission.current_no = position
+        @submission.save 
+        render plain: "success"
+      else
+        render plain: "error"
+      end
  end
 
 
@@ -131,7 +133,7 @@ class ApplicantsController < ApplicationController
     interview = Interview.find_by(interview_token: params[:interview_token])
     position = test_for_end(interview.questions.length, params[:position].to_i )
     submission = Submission.find_by(interview_id: interview.id , user_id: params[:user_id])
-    if submission.update_attributes(current_no: position, answers: params[:answers])
+    if submission.update_attributes(current_no: position, answers: params[:answers], first_video: params[:position].to_i)
       render plain: "success"
     else 
       render plain: "error"

@@ -1,0 +1,136 @@
+
+.wrap {
+	position: relative;
+	bottom: 0;  
+	margin: 3em 0;
+
+}
+
+/* Frame */
+.frame {
+	height: 90px;
+	/*line-height: 250px;*/
+	overflow: hidden;
+}
+.frame ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 20px;
+}
+.frame ul li {
+	float: left;
+	width: 200px;
+	height: 80%;
+	margin: 0 1px 0 0;
+	padding: 0;
+	background: #66615b;
+	color: #ddd;
+	text-align: center;
+	cursor: pointer;
+}
+.frame ul li.active {
+	color: #fff;
+	background: #5e337b;
+}
+
+/* for inner element*/
+.dq-icon{
+  text-align: center;
+  /*width: 50%;*/
+  margin: 6% auto; 
+}
+
+
+
+/*.frame { width: 100%; height: 160px; padding: 0; }*//*
+.frame .slidee { margin: 0; padding: 0; height: 100%; list-style: none; }
+.frame .slidee li { float: left; margin: 0 5px 0 0; padding: 0; width: 120px; height: 100%; }*/
+
+ /*Scrollbar */
+.scrollbar {
+	margin: 0 0 1em 0;
+	height: 2px;
+	background: #ccc;
+	line-height: 0;
+}
+.scrollbar .handle {
+	width: 100px;
+	height: 100%;
+	background: #292a33;
+	cursor: pointer;
+}
+.scrollbar .handle .mousearea {
+	position: absolute;
+	top: -9px;
+	left: 0;
+	width: 100%;
+	height: 20px;
+}
+
+/* make major view content centralized */
+.centralize{
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 10px auto; 
+}
+
+/* make video content centralized */
+.centralize-video{
+  text-align: center;
+  margin: 0 auto; 
+  width: 493px;
+  height: 370px;
+}
+
+
+
+ /*make modal ful screen*/
+.modal-dialog {
+  width: 90%;
+  height: 90%;
+  padding: 0;
+
+}
+
+.modal-content {
+  height: 99%;
+  /*height: auto;*/
+  min-height: 100%;
+}
+
+.download-button{
+	text-align: center;
+  	display: block;
+  	width: 60%;
+  	margin-top: 40% auto ;
+  	margin-left: 20%;
+  	margin-right: 20%;
+ 
+}
+
+.star img{
+	height: 20px;
+	width: 20px;
+}
+
+.star img.raty-cancel{
+	display: none;
+	
+}
+
+.full-fix{
+	height: 400px;
+	overflow-y: auto;
+}
+
+.major-view{
+	overflow-y: auto;
+}
+
+div.card.main{
+	cursor: pointer;
+}
+

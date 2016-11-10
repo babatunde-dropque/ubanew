@@ -1,0 +1,262 @@
+
+
+<input id="current_status_stored" type="hidden" value="all" />
+<input id="number_of_signin" type="hidden" value="<%= @sigin_in_count %>" />
+
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+<!-- Add Sidebar Panel -->
+    <%= render partial: "companies/sidebar" %>
+    <div class="main-panel">
+<!-- Add Navbar Panel -->
+    <%= render partial: "users/navbar" %>
+
+        <div class="content card-start ">
+          <div class="container-fluid">
+
+            <!-- when empty -->
+            <% if @submissions.length == 0  %>
+             <%= render partial: "when_empty" %>
+            <% end %>
+            
+
+           <div class="row">
+
+            <% @submissions.each do |submission| %>
+                  <div class="col-md-3">
+                        <div class="content">
+                          
+                            <div class="card main text-center box-shape" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
+                              <span class="stats"> <%= submission.user.name %></span><br>
+                                <div class="dq-center-video">
+                                  <% if !submission.first_video.nil? %>
+                                    <% first_video = submission.first_video - 1 %>
+                                  <img src="http://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
+                                  <% else %> 
+                                    <%= image_tag('dummy.png')%>
+                                  <% end %>
+                                 
+                                </div>
+                                <div >
+                                  <span class="text-info">
+                                    <small> <%= submission.user.email %> </small>
+                                  </span>
+                                  
+                                  <!-- <span class="btn btn-sm  btn-fill box-shape" >
+                                    <i class="ti-minus"></i>
+                                  </span> -->
+                                 
+                                </div>
+                               </div>
+                        </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+
+
+
+  <!-- Modal -->
+<% @submissions.each do |submission| %>      
+  <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <%= submission.user.name %> (<%= submission.user.email %>) | <%= @interview.title %> @ <%= @company.name %>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+             
+        </div>
+        <div class="modal-body">
+
+          <div class="row major-view-parent" >
+            <div class="col-md-7" > 
+
+              <div class="text-center major-view centralize " >
+                 <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
+
+                 <div id="content-video-<%= submission.id %>-sly" class="centralize-video">
+                  
+                </div>
+              </div>
+              <!-- <button>Download</button> -->
+
+               <div class="wrap" >
+                   <div class="scrollbar">
+                    <div class="handle">
+                      <div class="mousearea"></div>
+                    </div>
+                  </div>
+
+                  <div class="frame" id="video-<%= submission.id %>-sly" submission-id="<%= submission.id %>"  triggered="true">
+                    <ul class="clearfix">
+                      <% submission.answers.each do |answer| %>
+                        <% if answer["question_type"] == "1" %>
+                          <li question-type="1" token="<%= answer["link"] %>" question="<%= answer["question_video"] %>"> <div class="fa fa-2x fa-video-camera dq-icon" ></div> </li>
+                        <% elsif answer["question_type"] == "2" %>
+                         <li question-type="2"> <div class="fa fa-2x fa-files-o dq-icon"></div> </li>
+                        <% elsif answer["question_type"] == "3" %>
+                         <li question-type="3"> <div class="fa fa-2x fa-file-text-o dq-icon"></div> </li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                  </div>
+              </div>
+              
+            </div>
+            <div class="col-md-1" ><div class="verticalLine"></div> </div>
+            <div class="col-md-4">
+              <div class="centralize"> 
+                <button class="btn btn-sm btn-danger btn-icon box-shape" title='reject' ><i class="ti-close"></i></button>
+                <button class="btn btn-sm btn-icon  box-shape" title='pending'><i class="ti-minus"></i></button>
+                <button class="btn btn-sm btn-success btn-icon  box-shape" title='shortlist'><i class="ti-check"></i></button>
+                <br><br>
+              </div> 
+                
+              <div class="centralize ">
+                <%= rating_for submission, 'response', disable_after_rate: false, cancel_hint: 'Cancel interview rating', imdb_avg: false , target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Interview rating: {score}"%>
+                
+                <div style="color: #5e337b; " id="hint<%= submission.id %>"></div>
+              </div>
+              
+             <div class="centralize full-fix ">
+              <%= commontator_thread(submission) %> 
+             </div> 
+
+           </div>
+          </div>
+
+        </div>
+
+        
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
+  
+
+<script>
+
+
+
+ $('.modal').on('shown.bs.modal', function (e) {
+
+  var cardView = $(e.relatedTarget); // cardView that triggered the modal
+  var idToTrigger = cardView.data('target');
+
+      (function () {
+        var $frame = $(idToTrigger+"-sly");
+        var $wrap  = $frame.parent();
+        var $slidee = $frame.children('ul').eq(0);
+
+        // Call Sly on frame
+        $frame.sly({
+          horizontal: 1,
+          itemNav: 'basic',
+          smart: 1,
+          activateMiddle: 1,
+          activateOn: 'click',
+          mouseDragging: 1,
+          touchDragging: 1,
+          releaseSwing: 1,
+          startAt: 0,
+          scrollBar: $wrap.find('.scrollbar'),
+          scrollBy: 1,
+          speed: 300,
+          elasticBounds: 1,
+          easing: 'easeOutExpo',
+          dragHandle: 1,
+          dynamicHandle: 1,
+          clickBar: 1
+        });
+
+      // this will trigger at first before anything is being clicked
+        if ($frame.attr("triggered") == "true"){
+           var submissionId = $frame.attr("submission-id");
+           var contentId = "#content-"+$frame.attr('id');
+           var questionId = "#question-"+$frame.attr('id');
+           var liObject = $frame.find('li')[0]; 
+           var questionType = liObject.getAttribute("question-type");
+           if (questionType == "1"){
+              replaceVideo(liObject.getAttribute("token"),liObject.getAttribute("question"), questionId ,contentId);
+           } else{
+              replaceTextFile(submissionId, 0, questionType, questionId, contentId);
+           }
+
+           $frame.attr("triggered", false);
+        }
+
+     }());
+
+
+
+    $('.frame').sly('on', 'active', function(eventName, itemIndex){
+           var thisFrame = $(this)[0].frame ;
+           var submissionId = thisFrame.getAttribute("submission-id");
+           var contentId = "#content-"+thisFrame.id;
+           var questionId = "#question-"+thisFrame.id;
+           var questionType = thisFrame.children[0].children[itemIndex].getAttribute("question-type");
+           if (questionType == "1"){
+              replaceVideo(thisFrame.children[0].children[itemIndex].getAttribute("token"),thisFrame.children[0].children[itemIndex].getAttribute("question"), questionId ,contentId);
+  
+           } else{
+              replaceTextFile(submissionId, itemIndex, questionType, questionId, contentId);
+           }
+           
+     });
+
+});
+
+
+  function replaceVideo(token, question, htmlQuestionId, htmlContentId ){
+    ZiggeoApi.Embed.embed(
+          htmlContentId, {
+              width:493,
+              height:370,
+              // responsive : true, 
+              video: token
+      });
+    $(htmlQuestionId).text(question);
+  }
+
+  function replaceTextFile(submissionId, questionNumber, questionType, htmlQuestionId, htmlContentId ){
+    $.ajax({
+          url: '<%= company_interview_returnTextFileApi_path(company_id:@company.slug, interview_id:@interview.slug)%>', 
+          type: 'GET',
+          data: { submission_id: submissionId, question_type: questionType, question_number: questionNumber},
+          success: function(data){
+              if (data == "error" ){
+                
+              } else if(questionType == 2) {
+                 $(htmlContentId).html(data.answer);
+                 $(htmlQuestionId).html(data.question)
+             } else if (questionType == 3){
+                $(htmlContentId).html("<div>"+
+                    "File Name: "+data.answer.split('/').pop()+"<br>"+
+                    "File Type: "+data.answer.split('/').pop().split('.').pop()+" <br>"+
+                    "File size: "+(data.file_size / 1000)+" kb <br><br><br>"+
+                    "<a class='btn box-shape download-button' href='"+data.answer+"' target='_blank'>Download file </a>"+ 
+                 " </div> ");
+                $(htmlQuestionId).text(data.question);
+             }
+          },
+          error : function(jqXHR, textStatus, errorThrown) {
+               
+           }
+       });
+  }  
+</script>
+
+
+

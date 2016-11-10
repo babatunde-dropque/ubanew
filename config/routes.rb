@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
 
 
-
+  post '/rate' => 'rater#create', :as => 'rate'
+  # rails engine for comment
+  mount Commontator::Engine => '/commontator'
+  
   # resources :bulks do
   #   collection {post :import}
   #   collection {post :fetch}
   # end
 
-  get 'applicants/index'
 
+  get 'applicants/index'
   get 'landings/index'
+  get 'contact' => 'landings#contact'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard'
 
-  # either /applicants or /applicants/interview_token
-  get 'applicants/' => 'applicants#index'
-  get 'applicants/:interview_token/' => 'applicants#index'
 
+  # post request for applicant data
   post 'applicants/' => 'applicants#index'
   post 'applicants/question' => 'applicants#question'
   post 'applicants/submit_video' => 'applicants#submit_video'
@@ -98,6 +100,10 @@ Rails.application.routes.draw do
     post "add_collaborators", to: "companies#add_collaborators"
     delete "remove_collaborator", to: "companies#remove_collaborator"
     put "transfer_ownership", to: "companies#transfer_ownership"
+    get "edit_preview", to: "companies#edit_preview"
+    post "edit_preview", to: "companies#edit_preview"
+    get "all_interview", to: "companies#all_interview"
+
     resources :groups do
       resources :bulks do
        post 'import', on: :collection
@@ -105,42 +111,32 @@ Rails.application.routes.draw do
      #            post :fetch}
       end
     end
-    # get "shortlist", to: "companies#shortlist"
-    # get "pend",      to: "companies#pend"
-    # get "reject",    to: "companies#reject"
-    # get "edit", to: "companies#edit", as: 'edit'
-    # post "update", to: "companies#update", as: 'update'
-    get "all_interview", to: "companies#all_interview"
-  #   resources :contacts, only: [:index, :new, :show, :create, :destroy]
-  #   resources :groups, only: [:index, :new, :show, :create, :destroy] do
-  #     resources :bulks, only: [:destroy] do
-  #     collection {post :import}
-  #     collection {post :fetch}
-
-  # end
-  # end
+    
     resources :interviews do
-    # put "bulk_invite_sender", to: "interviews#send_bulk_invite_mail"
-    #  get "preview", to: "users#preview"
-    #   put "invite_sender", to: "jobs#send_invite_mail"
-    #   put "shortlist_sender", to: "jobs#send_shortlist_mail"
-    #   put "reject_sender", to: "jobs#send_reject_mail"
-    #   resources :submissions do
-    #     member do
-    #       get "like", to: "submissions#upvote"
-    #       get "dislike", to: "submissions#downvote"
-    #     end
-    #     patch    "submissions/status_update"  => "submissions#status_update", as: :status_update        
-    #   end
+      get "single", to: "interviews#single_interview_submissions"
+      get "returnTextFileApi", to: "interviews#returnTextFileApi"
+      get "filtered_single_interview", to: "interviews#filtered_single_interview"
     end
+
   end
 
 
 
+  # checking if the subdomain is available, if yes to to route
+  # if not route back to rool url
+  get '/' => 'applicants#index', :constraints => CustomDomainConstraint 
 
+  constraints(CustomDomainConstraint) do
+     get '/' => 'applicants#index'
+     get 'applicants/' => 'applicants#index'
+     get 'applicants/:interview_token/' => 'applicants#index'
+
+  end
+  
+ 
   # You can have the root of your site routed with "root"
     root 'landings#index'
-    # root 'contacts#index'
+ 
 
 
 # If you have the need for more deep customization, 

@@ -2,7 +2,7 @@
     <%= render partial: "header" %>
 
     <div class="container">
-      <!-- <h2 class="dq-interview-question">  <%= @question_video %>  </h2> -->
+      <h2 class="dq-interview-question">  <%= @question_video %>  </h2>
 
       <div class="row dq-page-container">
         <!-- <span class="fa fa-2x fa-video-camera dq-page-icon"></span>
@@ -58,6 +58,8 @@
 
     <script>
 
+
+
     $.notify.addStyle('happyblue', {
       html: "<div><span data-notify-text/></div>",
       classes: {
@@ -83,6 +85,7 @@
     });
 
 
+    
 //  time conversion function
 function milisecondsToMins(milliseconds){ 
   var minutes = milliseconds / (1000 * 60)
@@ -182,6 +185,7 @@ function milisecondsToMins(milliseconds){
        });
 
   } else {
+    
     $("#video-container").notify("Video Updated successfully", {
         style: 'happyblue',
         className: 'menu',
@@ -192,11 +196,6 @@ function milisecondsToMins(milliseconds){
   }
  
 });
-
-
-
-
-
 
 
     </script>

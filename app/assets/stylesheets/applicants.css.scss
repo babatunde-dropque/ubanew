@@ -1428,8 +1428,6 @@
 
 .dq-inner-video-2{
   text-align: center;
-  border: 1px dashed #999999;
-  background-color: #e7e7e7;
   display: block;
   width: 70%;
   margin: 0 auto; 
@@ -1502,5 +1500,13 @@ p {
 .word-counter{
 
   margin-top: 5px;
+}
+
+
+
+
+/* hide the file upload button*/
+  #file-upload {
+    display: none;
 }
 /*# sourceMappingURL=/styles/main.css.map */

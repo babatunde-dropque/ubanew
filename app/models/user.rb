@@ -9,4 +9,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
 	  devise :invitable, :database_authenticatable, :registerable,
 	         :recoverable, :rememberable, :trackable, :validatable
+
+ # allow user to be able to comment
+   acts_as_commontator
+
+ # this will allow user to be able to rate
+   ratyrate_rater
 end
