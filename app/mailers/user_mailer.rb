@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
    default from: 'notifications@dropque.com'
    # layout 'awesome' # use awesome.(html|text).erb as the layout
- 
+
   def welcome_email(user)
     @user = user
     @url  = 'http://example.com/login'
@@ -13,6 +13,6 @@ class UserMailer < ApplicationMailer
   	@user = user
   	@message = message
   	mail(to: @user.email, subject: 'New notification')
-  end 
+  end
 
 end

@@ -23,14 +23,14 @@
 
                     <ul class="nav navbar-nav navbar-right">
 
-                          <li class="dropdown">
+                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p  id="notification-number" class="notification small-text-notification"> <%= @notification.length %> </p> 
+                                    <p  id="notification-number" class="notification small-text-notification"> <%= @notification.length %> </p>
                                      <i class="ti-bell"></i>
                                     <p>Notifications</p>
 
                                     <b class="caret"></b>
-                                                                              
+
                                    <!--  <b class="caret"></b> -->
                               </a>
                               <ul class="dropdown-menu">
@@ -39,7 +39,7 @@
                                        <a class="notificationa">
                                         <div class="card notification" >
                                             <div class="content">
-                                          
+
                                                  <btn class='btn float-right close-notification' notification-id= "<%= noti.id %>">
                                                   <i class='ti-close'></i>
                                                 </btn>
@@ -57,16 +57,16 @@
                                                     <% elsif noti.type_notification == 5 %>
                                                          <span itemprop="author"> Ownership Transfer </span>
                                                     <% end %>
-                                                      
+
                                                    </div>
                                                    <div class="clearfix"><%= noti.message %></div>
 
                                             </div>
                                         </div>
                                         </a>
-                                  </li>    
+                                  </li>
                                   <% end %>
-                                
+
                               </ul>
                         </li>
 
@@ -79,12 +79,23 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                   <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Edit <% end %> 
+                                   <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Edit <% end %>
                                 </li>
                                 <li>
-                                   <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ] ) do %> Edit Interview Template <% end %> 
+                                   <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ]) , target: "_blank" do %> Edit Interview page <% end %> 
                                 </li>
-                                  
+
+                                <li><a href="http://<%= @company.subdomain %>.<%= request.host_with_port %>" target= "_blank"> Interview Page </a>
+                                   
+                                </li>
+
+
+                                <li>
+                                   <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %>
+                                </li>
+
+
+
                               </ul>
                         </li>
                         <% end %>
@@ -98,7 +109,7 @@
                             <ul class="dropdown-menu">
                                 <li><%= link_to "Profile", root_path %></li>
                                 <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-                                
+
                               </ul>
                         </li>
                     </ul>

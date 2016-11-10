@@ -5,10 +5,10 @@ class InterviewsController < ApplicationController
   before_filter :set_up_company
   before_filter :set_up_interview, :except => [:new, :create, :index]
 
-   
+
 
 	def show
-	
+
 	end
 
 	def edit
@@ -74,10 +74,8 @@ class InterviewsController < ApplicationController
 
 	def create
 		interview = Interview.new(interview_params)
-    puts "result before status"
+    send_bulk_invite_mail(params[:contacts])
     puts interview_params[:status]
-    puts "result after status"
-
 	    interview.company = @company
 	    respond_to do |format|
 	      if interview.save
@@ -96,9 +94,21 @@ class InterviewsController < ApplicationController
 	def set_up_user
         @user = current_user
         @notification = Notification.where(user_id: @user.id, read: 0)
-    end
+  end
 
-   
+  def send_bulk_invite_mail
+     @int = Interview.find(params[:interview_id])
+     # @listo = File.open(@int.contact, "r")
+     @list = @listo.split(",")
+     @list.map do |item|
+    InterviewMailer.interview_invite(@int, item).deliver
+    end
+    respond_to do |format|
+      format.html {redirect_to company_interview_path_path(id: @int.id), notice: 'Your interview invite has been sent to the Group'}
+    end
+  end
+
+
 	# set_up company details and check if the user has permission to access the company
     # so user's can't access it from the url
     def set_up_company
@@ -120,12 +130,12 @@ class InterviewsController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
     def interview_params
-      params.require(:interview).permit(:title, 
-                                  :description, 
-                                  :deadline, 
-                                  :tags, 
-                                  :instruction, 
-                                  :mail_list, 
+      params.require(:interview).permit(:title,
+                                  :description,
+                                  :deadline,
+                                  :tags,
+                                  :instruction,
+                                  :mail_list,
                                   :questions,
                                   :shortlist_message,
                                   :reject_message,

@@ -13,17 +13,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-5">
                         <div class="card card-user">
-                          <% if @company.image.file.nil? %>
-                            <div class="image">
-                                 <%= image_tag('logo1.png')%>
-                            </div>
-                           <% else %>
-                              <div class="image">
-                                <img src="<%= @company.image.url %>" />
-                              </div>
-                           <% end %>
-
-                            <hr>
+                          
                             <div class="text-center">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
@@ -68,16 +58,14 @@
                                                     </span>
                                                 <% elsif collaborator.status == 1 %>
                                                     <span class="text-muted">
-                                                        <small> (Super Admin) </small>
+                                                        <small> (Admin) </small>
                                                     </span>
                                                 <% elsif collaborator.status == 2 %>
                                                 <span class="text-muted">
-                                                        <small> (Admin) </small>
-                                                    </span>
-                                                <% elsif collaborator.status == 3 %>
-                                                    <span class="text-muted">
                                                         <small> (User) </small>
                                                     </span>
+                                                <% else %>
+                                                    
                                                 <% end %>
                                                     
                                                 </div>
@@ -100,11 +88,8 @@
                                                         <btn class="btn btn-sm remove-collaborator" user="<%= collaborator.user.name %>" email="<%= collaborator.user.email %>" user-id="<%= collaborator.id %>"><i class="ti-close"></i>
                                                         </btn>
                                                    </div>
-                                                <% elsif collaborator.status == 3 &&  @user_status < 2 %>
-                                                   <div class="text-right right-margin">
-                                                        <btn class="btn btn-sm remove-collaborator" user="<%= collaborator.user.name %>" email="<%= collaborator.user.email %>" user-id="<%= collaborator.id %>"><i class="ti-close"></i>
-                                                        </btn>
-                                                   </div>
+                                                <% else %>
+                                                   
                                                 <% end %>
 
                                             </div>
@@ -200,15 +185,7 @@
                                         </div>
                                         
                                     </div>
-                                    <div class="row">
-                                        
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label> Tags </label>
-                                                <input type="text" class="form-control border-input" placeholder="Tags" name="tags" >
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -219,30 +196,30 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label> Tags </label>
+                                                <input type="text" class="form-control border-input" placeholder="Tags" name="tags" id="tags" >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="file-upload" class="btn custom-upload">
-                                                    <input id="file-upload" type="file" name="image">
-                                                    Interview Background Image
+                                                    <input id="file-upload" type="file" name="logo">
+                                                   Organization Logo
                                                 </label>
-                                                <div class="text-center"><label>1024 X 682 pixels </label></div>
+                                                <div class="text-center"><label>Transparent 330 X 80 pixels </label></div>
                                                       
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="file-upload" class="btn custom-upload">
-                                                    <input id="file-upload-logo" type="file" name="logo">
-                                                    logo
-                                                </label>
-                                                <div class="text-center"><label>Transparent 231 X 80 pixels </label></div>
-                                                      
-                                            </div>
-                                        </div>
-                                    </div> -->
 
                                     <!--  this will allow rails to use put method since it can 
                                     be used from a form submission  -->
@@ -258,20 +235,7 @@
                                 </form>
                             </div>
                         </div>
-
-                        <!-- <div class="card">
-                            <div class="row sharing-area text-center">
-                                 <br>          
-                                <button  type="button" class="btn btn-raised"> Take an interview</button>
-                                <br><br>
-                                      
-                            </div> 
-                        </div> -->
-
-
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -351,9 +315,8 @@
             <input type="email" class="form-control border-input" placeholder="Email" value="">
         </div>
         <select class='btn box-shape-1' > 
-            <option value='1'> super admin </option>
-            <option value='2'> admin </option>
-            <option value='3'> user </option>
+            <option value='1'> admin </option>
+            <option value='2'> user </option>
         </select>
        <btn class="btn box-shape  width-perfect remove-new-collaborator"><i class="ti-close"></i></btn>
     </div>
@@ -461,6 +424,16 @@
              // hide submit button for collaborators
              $("#submit-colloborators").hide();
         }
+    });
+
+
+     $('#tags').tagit({
+        tagLimit: 4,
+        placeholderText: "Add tags",
+        onTagLimitExceeded : function(event, ui){
+            // $("#indicator-tags").html("Tags cannot be more than four");
+        }
+
     });
 
     

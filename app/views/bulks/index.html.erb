@@ -1,0 +1,49 @@
+<% if !flash[:notice].blank? %>
+<div class="alert alert-info">
+<%= flash[:notice] %>
+</div>
+<% end %>
+<center><strong><h3><%= @group.name %></h3></strong></center>
+<%= link_to 'Add', new_company_group_bulk_path, class: "btn btn-primary" %>
+<br/>
+<div class="media">
+<div class="media-body">
+
+<table  class="table table-bordered table-striped">
+<!-- <table class="table table-hover"> -->
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Telephone</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @bulks.each do |bulk| %>
+          <tr>
+            <td><%= bulk.name %></td>
+            <td><%= bulk.email %></td>
+            <td><%= bulk.telephone %></td>
+            <td><%= link_to 'Modify', edit_company_group_bulk_path(id: bulk.id) %></td>
+            <td><%= link_to 'Delete', company_group_bulk_path(id: bulk.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+</table>
+
+</div>
+</div>
+
+<br>
+
+<br/>
+<h4> Bulk Upload</h4>
+<%=form_tag import_company_group_bulks_path, multipart: true do %>
+<%= file_field_tag :file %>
+<%= submit_tag "Upload Contact", class: "btn btn-info btn-fill btn-wd"%>
+<%end%>
+
+
+

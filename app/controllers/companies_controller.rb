@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
 
     def edit_preview
         if params[:properties].present?
-            @company.update_attributes(properties: params[:properties])
+            @company.update_attributes(company_properties)
         end 
          @editable = "true"
         render  :layout => 'applicants', :template => 'applicants/index'
@@ -148,6 +148,11 @@ class CompaniesController < ApplicationController
 
   def create_company_params
     params.permit(:name, :description, :tags, :image, :city, :address, :country, :subdomain, :logo)
+  end
+
+
+  def company_properties
+    params.permit(:properties, :image)
   end
 
 

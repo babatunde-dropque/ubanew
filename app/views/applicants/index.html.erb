@@ -36,11 +36,26 @@
                        <button  id="color-button"  contenteditable="false" class="btn  jscolor {valueElement: 'color_value'}" > Pick a colour </button> 
               
                    </li>
+
+                 <!--   <li>
+                       <button contenteditable="false" class="btn dq-color-customized" > Background  image
+                       </button> 
+
+
+                          
+              
+                   </li> -->
                      <li>
-                        <form method="post" >
+                        <form method="post" enctype="multipart/form-data" >
                           <input id="properties-values" type = "hidden" name="properties" >
                           <input  name="user_id" type="hidden" value="<%= @user.id %>" />
                           <input  name="company_id" type="hidden" value="<%= @company.id %>" />
+
+                          <label for="file-upload" class="btn  dq-color-customized ">
+                              <input id="file-upload" type="file" name="image">
+                              Image (1024 X 682 )
+                          </label>
+
                           <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
                            <button type="submit" id="save-button" contenteditable="false" class="btn dq-color-customized" > Save </button> 
                         </form>

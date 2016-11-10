@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20161108131930) do
     t.datetime "updated_at"
   end
 
+  create_table "bulks", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "telephone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "commontator_comments", force: :cascade do |t|
     t.string   "creator_type"
     t.integer  "creator_id"
@@ -128,6 +136,14 @@ ActiveRecord::Schema.define(version: 20161108131930) do
     t.integer  "interview_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "auto_response"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "company_id"
   end
 
   create_table "interviews", force: :cascade do |t|

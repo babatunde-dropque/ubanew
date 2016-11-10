@@ -1,0 +1,41 @@
+<div class="row" >
+          <div class='col-md-6'>
+          <h5><%= f.label :Group_invitation %></h5>
+          </div>
+          <div class='col-md-4'>
+              <select id="question-type" class='btn box-shape float-left margin-top-form' > 
+                 <% @contacts = Contact.find_by(company_id: @company.id) %>
+                 <% @contacts.each do |contact|%>
+                <option value=''> <%contact.name%> </option>
+                <% end %>
+              </select>
+          </div>
+      </div>
+
+
+
+      <% @contacts.each do |contact|%>
+<tr>
+<td> <%=contact.name%></td>
+<td> <%= link_to "View Contact", contact.attachment_url %>   </td>
+<td> <%= button_to  "Delete", company_contacts_path, method: :delete, class:"btn btn-danger", data: { confirm: "Are you sure you want to delete  #{contact.name}?" } %>    </td>
+</tr>
+<% end %>
+
+
+
+
+
+<div class="row" >
+          <div class='col-md-6'>
+          <h5><%= f.label :Group_invitation %></h5>
+          </div>
+          <div class='col-md-4'>
+              <select id="question-type" class='btn box-shape float-left margin-top-form' > 
+                 <% nums = Array[1, 2, 3, 4,5] %>
+                 <% @nums.each do |contact|%>
+                <option value=''> <%=contact%> </option>
+                <% end %>
+              </select>
+          </div>
+      </div>

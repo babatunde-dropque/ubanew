@@ -208,14 +208,6 @@ $(document).ready(function(){
 	});
 
 
-	$('#tags').tagit({
-		tagLimit: 4,
-		placeholderText: "Add tags to Role",
-		onTagLimitExceeded : function(event, ui){
-			$("#indicator-tags").html("Tags cannot be more than four");
-		}
-
-	})
 
 	var emailTagList = $('#email-list');
 	emailTagList.tagit({
@@ -323,7 +315,6 @@ $(document).ready(function(){
     		event.preventDefault();
     	} 
     	
-
        jsonObj = [];
 
      	 $("#question-tag").find(".row").each(function(index) {

@@ -1,9 +1,9 @@
 
 <div class="wrapper">
-    
+
 
     <div class="main-panel expand">
-        
+
         <!-- TODO Add Footer Partial -->
         <%= render partial: "users/navbar" %>
 
@@ -22,21 +22,15 @@
                                 <!-- form start here  -->
                                 <form method="post" enctype="multipart/form-data" action="/companies">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Company Name</label>
                                                 <input type="text" class="form-control border-input"  placeholder="Company" name="name">
                                             </div>
                                         </div>
-    
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label >Tags</label>
-                                                <input type="text" class="form-control border-input"  placeholder="Tags" name="tags">
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-4">
+
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label >Subdomain</label>
                                                 <input type="text" class="form-control border-input"  placeholder="subdomain.dropque.com" name="subdomain">
@@ -65,7 +59,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" class="form-control border-input" placeholder="Country"  >
+                                                <input type="text" class="form-control border-input" placeholder="Country" name="country"  >
                                             </div>
                                         </div>
                                         
@@ -80,6 +74,18 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label >Tags</label>
+                                                <input type="text" id="tags" class="form-control border-input"  placeholder="Tags" name="tags">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -194,9 +200,8 @@
             "</div>"+
             "<div class='col-md-6'>"+
                 "<select class='btn box-shape-1' >"+
-                    "<option value='1'> super admin </option>"+
-                    "<option value='2'> admin</option>"+
-                    "<option value='3'> user  </option>"+
+                    "<option value='1'> admin </option>"+
+                    "<option value='2'> user</option>"+
                 "</select>"+
                 "<btn class='btn box-shape width-perfect remove-new-collaborator' >"+
                 "<i class='ti-close'>"+
@@ -212,6 +217,18 @@
     //  remove added collaborators
      $("#collaborator-content").on("click", ".remove-new-collaborator", function(){
         $(this).parents('div.row')[0].remove();
+    });
+
+
+     // this is the script responsible for tags
+  
+    $('#tags').tagit({
+        tagLimit: 4,
+        placeholderText: "Add tags",
+        onTagLimitExceeded : function(event, ui){
+            // $("#indicator-tags").html("Tags cannot be more than four");
+        }
+
     });
 
 

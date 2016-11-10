@@ -1,8 +1,17 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
+#needed for persing csv and xls
+gem 'roo', '~> 2.5.0'
+gem 'roo-xls', '~> 1.0'
+
+#needed to work with roo
+gem "iconv", "~> 1.0.3"
+
+
+#needed to protect attr_accessible
+gem 'protected_attributes'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -77,6 +86,7 @@ gem 'friendly_id'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 #  will run backgound processes, 
 gem 'delayed_job_active_record'
+
 
 # gem for rating 
 gem 'ratyrate'

@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+
   post '/rate' => 'rater#create', :as => 'rate'
   # rails engine for comment
   mount Commontator::Engine => '/commontator'
   
-  get 'applicants/index'
+  # resources :bulks do
+  #   collection {post :import}
+  #   collection {post :fetch}
+  # end
 
+
+  get 'applicants/index'
   get 'landings/index'
   get 'contact' => 'landings#contact'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
@@ -21,7 +27,7 @@ Rails.application.routes.draw do
   %w( validate_interview validate_email ).each do |action|
     get  action => 'applicants#'+action
   end
-  
+
 
 
   # this is assigning device controllers for user(s)
@@ -89,33 +95,29 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  # Nested Company Resources 
+  # Nested Company Resources
   resources :companies do
     post "add_collaborators", to: "companies#add_collaborators"
     delete "remove_collaborator", to: "companies#remove_collaborator"
     put "transfer_ownership", to: "companies#transfer_ownership"
     get "edit_preview", to: "companies#edit_preview"
     post "edit_preview", to: "companies#edit_preview"
-    # get "pend",      to: "companies#pend"
-    # get "reject",    to: "companies#reject"
-    # get "edit", to: "companies#edit", as: 'edit'
-    # post "update", to: "companies#update", as: 'update'
     get "all_interview", to: "companies#all_interview"
+
+    resources :groups do
+      resources :bulks do
+       post 'import', on: :collection
+     # collection{post :import
+     #            post :fetch}
+      end
+    end
+    
     resources :interviews do
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
-    #   put "invite_sender", to: "jobs#send_invite_mail"
-    #   put "shortlist_sender", to: "jobs#send_shortlist_mail"
-    #   put "reject_sender", to: "jobs#send_reject_mail"
-    #   resources :submissions do
-    #     member do
-    #       get "like", to: "submissions#upvote"
-    #       get "dislike", to: "submissions#downvote"
-    #     end
-    #     patch    "submissions/status_update"  => "submissions#status_update", as: :status_update        
-    #   end
     end
+
   end
 
 
@@ -123,6 +125,7 @@ Rails.application.routes.draw do
   # checking if the subdomain is available, if yes to to route
   # if not route back to rool url
   get '/' => 'applicants#index', :constraints => CustomDomainConstraint 
+
   constraints(CustomDomainConstraint) do
      get '/' => 'applicants#index'
      get 'applicants/' => 'applicants#index'
@@ -132,8 +135,8 @@ Rails.application.routes.draw do
   
  
   # You can have the root of your site routed with "root"
-  root 'landings#index'
-
+    root 'landings#index'
+ 
 
 
 # If you have the need for more deep customization, 

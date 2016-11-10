@@ -1,0 +1,32 @@
+<%= form_for(@bulk, url: company_group_bulks_path) do |f| %>
+  <% if @bulk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bulk.errors.count, "error") %> prohibited this bulk from being saved:</h2>
+
+      <ul>
+      <% @bulk.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :telephone %><br>
+    <%= f.text_field :telephone %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<!-- form_for([@company, @group, @bulk]) -->
