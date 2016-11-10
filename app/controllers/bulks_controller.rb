@@ -1,30 +1,28 @@
 class BulksController < ApplicationController
-  before_action :set_bulk, only: [:show, :edit, :update, :destroy]
-  # devise_group :person, contains: [:company]
-  # before_action :authenticate_person!, except: [:create, :new]
-  # before_filter :set_up_user
+  layout 'user_dashboard'
+  before_action :authenticate_user!
+  before_filter :set_up_user
   before_action :set_company
   before_action :set_group
+  before_action :set_bulk, only: [:show, :edit, :update, :destroy]
+  
 
   def index
-    # if company_signed_in?
-      @company = Company.friendly.find(params[:company_id])
-      @group = Group.find(params[:group_id])
-      @bulks = Bulk.where(group_id: @group.id)
+      @bulks = @group.bulks
       # @count = @bulk.length
-   # end
  end
 
 
   def show
-  end
 
+  end
 
   def new
     @bulk = Bulk.new
   end
 
   def edit
+
   end
 
 
@@ -76,30 +74,39 @@ class BulksController < ApplicationController
    redirect_to bulks_path, notice: "Contacts Successfully Uploaded"
   end
 
-
-
   private
+  def set_up_user
+      @user = current_user
+      @notification = Notification.where(user_id: @user.id, read: 0)
+  end
 
 
-
-    def set_bulk
-      @bulk = Bulk.find(params[:id])
+  # check if the group has permission to access the bulk file
+  def set_bulk
+    @bulk = Bulk.find(params[:id])
+    if !(@bulk.group_id == @group.id)
+      redirect_to company_group_bulks_path
     end
+  end
 
-   # def set_current_group
-   #  #  set @current_account from session data here
-   #  @current_group = Group.find_by(id: params[:group_id])
-   #  Group.current = @current_group
-   # end
-
-    def set_group
-      @group = Group.find_by(id: params[:group_id])
-      $grou = @group.id
+  #  check if the company has permission to access the group
+  def set_group
+    @group = Group.friendly.find(params[:group_id] || params[:id])
+    $grou = @group.id
+    # check if company has permission to view the group
+    if !(@group.company_id == @company.id)
+      redirect_to company_path(@company.slug)
     end
+  end
 
-    def set_company
-     @company = Company.find_by(id: params[:company_id])
-    end
+  # check if the user has permission to access the company
+  def set_company
+      @company = Company.friendly.find(params[:company_id] || params[:id])
+      result = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
+      if result.nil?
+         redirect_to user_dashboard_path
+      end
+  end
 
 
     def bulk_params

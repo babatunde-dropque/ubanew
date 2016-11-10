@@ -92,8 +92,8 @@ class InterviewsController < ApplicationController
 	private
 
 	def set_up_user
-        @user = current_user
-        @notification = Notification.where(user_id: @user.id, read: 0)
+      @user = current_user
+      @notification = Notification.where(user_id: @user.id, read: 0)
   end
 
   def send_bulk_invite_mail

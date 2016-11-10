@@ -1,3 +1,5 @@
+
+
 <%= form_for(@bulk, url: company_group_bulks_path) do |f| %>
   <% if @bulk.errors.any? %>
     <div id="error_explanation">
@@ -27,6 +29,3 @@
     <%= f.submit %>
   </div>
 <% end %>
-
-
-<!-- form_for([@company, @group, @bulk]) -->
