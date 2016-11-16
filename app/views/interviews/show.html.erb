@@ -9,15 +9,18 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-
+<h4> Send Invitation</h4>
+<%=form_tag send_invite_mail_company_interviews_path(interview_id: @interview.id),method: :get, multipart: true do %>
+<%= submit_tag "Send", class: "btn btn-info btn-fill btn-wd"%>
+<%end%>
 
           <div class="col-lg-12 col-md-12">
               <div class="card">
                       <div>
                           <div class="header">
-                            <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>   
+                            <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>
                           </div>
-                          <div class="content"><br><br></div>                                
+                          <div class="content"><br><br></div>
                       </div>
 
 

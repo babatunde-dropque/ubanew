@@ -3,7 +3,7 @@ class InterviewsController < ApplicationController
 	before_action :authenticate_user!
 	before_filter :set_up_user
   before_filter :set_up_company
-  before_filter :set_up_interview, :except => [:new, :create, :index]
+  before_action :set_up_interview, :except => [:new, :create, :index]
 
 
 
@@ -15,10 +15,9 @@ class InterviewsController < ApplicationController
 
 	end
 
-  def single_interview_submissions 
+  def single_interview_submissions
      @submissions = @interview.submissions.where(current_no: 500)
      render :layout => 'single_interview_submissions'
-     
   end
 
   # controller function for to manages interview filtered
@@ -88,24 +87,24 @@ class InterviewsController < ApplicationController
 	    end
 	end
 
+  def send_invite_mail
+      InterviewMailer.interview_invite(@interview, "mustaphaalade@gmail.com").deliver
+    #  @int = Interview.find(params[:interview_id])
+    #  @list = @int.mail_list.split(",")
+    #  @list.map do |item|
+    # InterviewMailer.interview_invite(@int, item).deliver
+    # end
+    respond_to do |format|
+      format.html { redirect_to company_interview_path(id: @interview.slug), notice: 'Interview was successfully sent.' }
+    end
+  end
+
 
 	private
 
 	def set_up_user
       @user = current_user
       @notification = Notification.where(user_id: @user.id, read: 0)
-  end
-
-  def send_bulk_invite_mail
-     @int = Interview.find(params[:interview_id])
-     # @listo = File.open(@int.contact, "r")
-     @list = @listo.split(",")
-     @list.map do |item|
-    InterviewMailer.interview_invite(@int, item).deliver
-    end
-    respond_to do |format|
-      format.html {redirect_to company_interview_path_path(id: @int.id), notice: 'Your interview invite has been sent to the Group'}
-    end
   end
 
 
@@ -120,7 +119,7 @@ class InterviewsController < ApplicationController
     end
 
     def set_up_interview
-    	@interview = Interview.friendly.find(params[:interview_id] || params[:id])
+    	@interview = Interview.last
     	# check if company has permission to view the interview
     	if !(@interview.company_id == @company.id)
     		redirect_to company_path
