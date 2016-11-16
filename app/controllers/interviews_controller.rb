@@ -87,6 +87,12 @@ class InterviewsController < ApplicationController
 	    end
 	end
 
+  def destroy
+    @interview = Interview.friendly.find(params[:id])
+    @interview.destroy
+    redirect_to company_interviews_path, notice: "The  Interview #{@interview.title} has been deleted."
+  end
+
   def send_invite_mail
       InterviewMailer.interview_invite(@interview, "mustaphaalade@gmail.com").deliver
     #  @int = Interview.find(params[:interview_id])
