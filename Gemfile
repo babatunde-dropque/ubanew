@@ -10,6 +10,8 @@ gem 'roo-xls', '~> 1.0'
 
 #needed to work with roo
 gem "iconv", "~> 1.0.3"
+#needed for html email
+gem 'roadie'
 
 
 #needed to protect attr_accessible
