@@ -11,7 +11,7 @@
                 <div class="row">
    <center>
       <h4> Send Invitation</h4>
-      <%=form_tag send_invite_mail_company_interviews_path(interview_id: @interview.id),method: :get, multipart: true do %>
+      <%=form_tag send_invite_mail_company_interview_path(id: @interview.id),method: :get, multipart: true do %>
       <%= submit_tag "Send", class: "btn btn-info btn-fill btn-wd"%>
       <%end%>
 </center>

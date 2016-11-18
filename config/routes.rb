@@ -111,9 +111,11 @@ Rails.application.routes.draw do
      #            post :fetch}
       end
     end
-    
+
     resources :interviews do
-      get 'send_invite_mail', on: :collection
+        get 'send_invite_mail', on: :member
+      # get 'send_invite_mail',  on:  to: "interviews#send_invite_mail"
+      # get "send_invite_email", to: "interviews#send_invite_mail"
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
