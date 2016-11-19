@@ -42,10 +42,6 @@
                                   <span class="text-info">
                                     <small> <%= submission.user.email %> </small>
                                   </span>
-                                  
-                                  <!-- <span class="btn btn-sm  btn-fill box-shape" >
-                                    <i class="ti-minus"></i>
-                                  </span> -->
                                  
                                 </div>
                                </div>
@@ -64,7 +60,7 @@
 
   <!-- Modal -->
 <% @submissions.each do |submission| %>      
-  <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" resized = "false" >
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -73,24 +69,46 @@
 
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
-             
+          </button>   
         </div>
         <div class="modal-body">
 
-          <div class="row major-view-parent" >
-            <div class="col-md-7" > 
+          <div >
+            <table height= "100%", width="100%">
 
-              <div class="text-center major-view centralize " >
-                 <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
+              <tr>
+                <td style="width: 60%; heigth:80%" class="padding-5"> 
+                  <div class="text-center major-view centralize">
+                     <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
+                     <div id="content-video-<%= submission.id %>-sly" class="centralize-video" > 
+                    </div>
+                  </div>            
+                </td>
 
-                 <div id="content-video-<%= submission.id %>-sly" class="centralize-video">
+                <td  rowspan="2" style=" width: 40%;" class="padding-5" > 
+                  <div class="rate">
+                    <div class="centralize "> 
+                      <button class="btn btn-sm btn-danger btn-icon box-shape" title='reject' ><i class="ti-close"></i></button>
+                      <button class="btn btn-sm btn-icon  box-shape" title='pending'><i class="ti-minus"></i></button>
+                      <button class="btn btn-sm btn-success btn-icon  box-shape" title='shortlist'><i class="ti-check"></i></button>
+                      <br><br>
+                    </div> 
+                      
+                    <div class="centralize ">
+                      <%= rating_for submission, 'response', disable_after_rate: false, cancel_hint: 'Cancel interview rating', imdb_avg: false , target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Interview rating: {score}"%>
+                      <div style="color: #5e337b; " id="hint<%= submission.id %>"></div>
+                    </div>
+                  </div>
                   
-                </div>
-              </div>
-              <!-- <button>Download</button> -->
+                 <div class="centralize full-fix ">
+                  <%= commontator_thread(submission) %> 
+                 </div>
+              </td>
+            </tr>
 
-               <div class="wrap" >
+           <tr >
+              <td>
+                <div class="wrap" >
                    <div class="scrollbar">
                     <div class="handle">
                       <div class="mousearea"></div>
@@ -110,33 +128,15 @@
                       <% end %>
                     </ul>
                   </div>
-              </div>
-              
-            </div>
-            <div class="col-md-1" ><div class="verticalLine"></div> </div>
-            <div class="col-md-4">
-              <div class="centralize"> 
-                <button class="btn btn-sm btn-danger btn-icon box-shape" title='reject' ><i class="ti-close"></i></button>
-                <button class="btn btn-sm btn-icon  box-shape" title='pending'><i class="ti-minus"></i></button>
-                <button class="btn btn-sm btn-success btn-icon  box-shape" title='shortlist'><i class="ti-check"></i></button>
-                <br><br>
-              </div> 
-                
-              <div class="centralize ">
-                <%= rating_for submission, 'response', disable_after_rate: false, cancel_hint: 'Cancel interview rating', imdb_avg: false , target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Interview rating: {score}"%>
-                
-                <div style="color: #5e337b; " id="hint<%= submission.id %>"></div>
-              </div>
-              
-             <div class="centralize full-fix ">
-              <%= commontator_thread(submission) %> 
-             </div> 
+              </div>   
+              </td>
+           </tr>
 
-           </div>
+           </table>
           </div>
 
-        </div>
 
+        </div>
         
 
       </div>
@@ -148,12 +148,50 @@
 
 <script>
 
-
+  var height ;
+  var width ;
 
  $('.modal').on('shown.bs.modal', function (e) {
 
-  var cardView = $(e.relatedTarget); // cardView that triggered the modal
-  var idToTrigger = cardView.data('target');
+
+   // $(idToTrigger).css('overflow-x', 'auto'); 
+   // $(idToTrigger).css('min-width', $(idToTrigger).width());
+
+    var cardView = $(e.relatedTarget); // cardView that triggered the modal
+    var idToTrigger = cardView.data('target');
+
+
+    var resizeAttr =  $(idToTrigger).attr("resized");
+    
+
+    if (resizeAttr == "false"){
+      var modalBody = $(idToTrigger).find('div.modal-body');
+      var modalMajorView = $(idToTrigger).find('div.major-view');
+      var modalWrap = $(idToTrigger).find('div.wrap');
+      var rateView = $(idToTrigger).find('div.rate');
+      var commentView = $(idToTrigger).find('div.full-fix');
+      var percent = 0.1 ;
+        while ( modalWrap.height()  > ( modalBody.height() * percent)){
+            percent = percent + 0.1 ;
+       }
+
+       $(idToTrigger).css('min-width', $(idToTrigger).width());
+       $(idToTrigger).css('max-width', $(idToTrigger).width());
+       $(idToTrigger).css('min-height', $(idToTrigger).height());
+       $(idToTrigger).css('max-height', $(idToTrigger).height());
+
+
+       modalWrap.css('height', modalBody.height() * percent );
+       modalMajorView.css('height', modalBody.height() - modalWrap.height());
+       modalMajorView.css('max-height', modalBody.height() - modalWrap.height());
+
+       height = modalMajorView.height() * 0.85 ;
+       width = height * 1.3333 ; 
+       
+       commentView.css('max-height', modalBody.height() - rateView.height());
+       $(idToTrigger).attr("resized", "true");
+    }
+
 
       (function () {
         var $frame = $(idToTrigger+"-sly");
@@ -196,7 +234,6 @@
 
            $frame.attr("triggered", false);
         }
-
      }());
 
 
@@ -222,10 +259,9 @@
   function replaceVideo(token, question, htmlQuestionId, htmlContentId ){
     ZiggeoApi.Embed.embed(
           htmlContentId, {
-              width:493,
-              height:370,
-              // responsive : true, 
-              video: token
+            width: width,
+            height : height,
+            video: token
       });
     $(htmlQuestionId).text(question);
   }

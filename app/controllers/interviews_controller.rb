@@ -74,7 +74,7 @@ class InterviewsController < ApplicationController
 
 	def create
 		interview = Interview.new(interview_params)
-    send_bulk_invite_mail(params[:contacts])
+    # send_bulk_invite_mail(params[:contacts])
     puts interview_params[:status]
 	    interview.company = @company
 	    respond_to do |format|
@@ -87,6 +87,9 @@ class InterviewsController < ApplicationController
 	      end
 	    end
 	end
+
+
+  
 
 
 	private

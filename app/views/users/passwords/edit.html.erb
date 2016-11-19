@@ -23,3 +23,132 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+
+
+
+
+<div class="wrapper">
+     
+    <div class="main-panel expand">
+        
+        <!-- TODO Add Footer Partial -->
+        <%= render partial: "navbar" %>
+
+
+        <div class="content">
+            <div class="container-fluid">
+
+              <div class="row">
+                        <div class="header col-md-4 col-md-offset-2">
+                                <h4 class="title">Organizations (<%= @user.companies.length %>)</h4>
+                        </div>
+                        <% if @user.companies.length > 0 %>
+                          <div class="col-md-4 col-md-offset-2">
+                              <%= link_to new_company_path do %>
+                                  <button  type="button" class="btn btn-raised btn-twitter">New Organization</button>
+                              <% end %>
+                          </div>
+                        <% end %>
+                        <!-- test for zero state -->
+                        <% if @user.companies.length > 0 %>
+
+                          <div class="card col-md-8 col-md-offset-2">
+                            <div class="content">
+                                <ul class="list-unstyled team-members">
+                                    
+                                    <% @user.joint_user_companies.each do | user_company| %>
+                                      <li>
+
+                                        
+                                        <%= link_to company_path(user_company.company) do%>  
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div class="avatar">
+                                                    <% if user_company.company.logo.file.nil? %>  
+                                                           <%= image_tag('logo1.png', class:" img-responsive", alt:"Thumb") %>
+                                                       <% else %>
+                                                          
+                                                            <img src="<%= user_company.company.logo.url %>" class="img-responsive" alt="Thumb" />
+                                                       <% end %>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <%= user_company.company.name %>
+                                                <!-- get number of collaborators -->
+                                                <% num_collabs = user_company.company.users.length  %>
+
+                                                <br>
+                                                <% if user_company.status == 0 %>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                             <span class="text-muted">
+                                                               Status: Owner  
+                                                             </span> 
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                          <span class="text-muted">
+                                                            No of collaborator: <%= num_collabs %>
+                                                          </span> 
+                                                        </div>
+                                                    </div>
+                                                <% elsif user_company.status == 1 %>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                             <span class="text-muted">
+                                                               Status:  Admin  
+                                                             </span> 
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                          <span class="text-muted">
+                                                            No of collaborator: <%= num_collabs %>
+                                                          </span> 
+                                                        </div>
+                                                    </div>
+                                                <% elsif user_company.status == 2 %>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                             <span class="text-muted">
+                                                               Status: User 
+                                                             </span> 
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                          <span class="text-muted">
+                                                            No of collaborator: <%= num_collabs %>
+                                                          </span> 
+                                                        </div>
+                                                    </div>
+                                                <% elsif %>
+                                                    
+                                                <% end %>
+
+                                            </div>
+
+                                            <div class="col-xs-3 text-right">
+                                               <!--  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn> -->
+                                            </div>
+                                        </div>
+
+                                        <% end %>
+                                    </li>
+                                  <% end %>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <% else %>
+                          <div class="card col-md-8 col-md-offset-2">
+                            <div class="content">
+                              <%= render partial: "when_empty" %>
+                            </div>
+                          </div>
+                        <% end %>
+              
+                    </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
