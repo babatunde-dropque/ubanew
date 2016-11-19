@@ -32,7 +32,7 @@
                                 <div class="dq-center-video">
                                   <% if !submission.first_video.nil? %>
                                     <% first_video = submission.first_video - 1 %>
-                                  <img src="http://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
+                                  <img src="https://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
                                   <% else %> 
                                     <%= image_tag('dummy.png')%>
                                   <% end %>
