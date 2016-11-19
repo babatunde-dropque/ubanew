@@ -17,6 +17,8 @@ Rails.application.config.assets.precompile += %w( notify.min.js )
 Rails.application.config.assets.precompile += %w( dropzone.js )
 Rails.application.config.assets.precompile += %w( sly.js )
 Rails.application.config.assets.precompile += %w( sly.css )
+Rails.application.config.assets.precompile += %w( jscolor.js )
+
 
 
 
