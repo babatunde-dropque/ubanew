@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+
+ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 #needed for persing csv and xls
@@ -8,6 +10,8 @@ gem 'roo-xls', '~> 1.0'
 
 #needed to work with roo
 gem "iconv", "~> 1.0.3"
+#needed for html email
+gem 'roadie'
 
 
 #needed to protect attr_accessible

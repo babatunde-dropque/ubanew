@@ -3,7 +3,7 @@ class InterviewsController < ApplicationController
 	before_action :authenticate_user!
 	before_filter :set_up_user
   before_filter :set_up_company
-  before_filter :set_up_interview, :except => [:new, :create, :index]
+  before_filter :set_up_interview, :except => [:send_invite_mail, :new, :create, :index]
 
 
 
@@ -15,10 +15,9 @@ class InterviewsController < ApplicationController
 
 	end
 
-  def single_interview_submissions 
+  def single_interview_submissions
      @submissions = @interview.submissions.where(current_no: 500)
      render :layout => 'single_interview_submissions'
-     
   end
 
   # controller function for to manages interview filtered
@@ -38,9 +37,9 @@ class InterviewsController < ApplicationController
          render :json => {:answer => submission.answers[question_number]["answer_text"],:question => submission.answers[question_number]["question_text"] }
       elsif question_type = "3"
          render :json =>{:answer => submission.answers[question_number]["file_link"], :question => submission.answers[question_number]["file_text"], :file_size => submission.answers[question_number]["file_size"] } 
-      end 
-    else 
-      render plain: "error"     
+      end
+    else
+      render plain: "error"
     end
   end
 
@@ -88,6 +87,27 @@ class InterviewsController < ApplicationController
 	    end
 	end
 
+  def destroy
+    @interview = Interview.friendly.find(params[:id])
+    @interview.destroy
+    redirect_to company_interviews_path, notice: "The  Interview #{@interview.title} has been deleted."
+  end
+
+   def send_invite_mail
+     @int = Interview.last
+     @list = @int.mail_list.split(",")
+     @list.map do |item|
+     InterviewMailer.interview_invite(@int, item).deliver
+     end
+    #  @int = Interview.find(params[:interview_id])
+
+    respond_to do |format|
+      format.html { redirect_to company_interviews_path, notice: "Interview was successfully sent." }
+    end
+  end
+
+
+
 
   
 
@@ -99,18 +119,9 @@ class InterviewsController < ApplicationController
       @notification = Notification.where(user_id: @user.id, read: 0)
   end
 
-  def send_bulk_invite_mail
-     @int = Interview.find(params[:interview_id])
-     # @listo = File.open(@int.contact, "r")
-     @list = @listo.split(",")
-     @list.map do |item|
-    InterviewMailer.interview_invite(@int, item).deliver
-    end
-    respond_to do |format|
-      format.html {redirect_to company_interview_path_path(id: @int.id), notice: 'Your interview invite has been sent to the Group'}
-    end
+  def set_up_interview
+    @interview = Interview.last
   end
-
 
 	# set_up company details and check if the user has permission to access the company
     # so user's can't access it from the url
@@ -122,14 +133,7 @@ class InterviewsController < ApplicationController
         end
     end
 
-    def set_up_interview
-    	@interview = Interview.friendly.find(params[:interview_id] || params[:id])
-    	# check if company has permission to view the interview
-    	if !(@interview.company_id == @company.id)
-    		redirect_to company_path
-    	end
-
-    end
+    
 
 	# Never trust parameters from the scary internet, only allow the white list through.
     def interview_params
