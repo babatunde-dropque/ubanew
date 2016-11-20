@@ -29,10 +29,8 @@ Rails.application.routes.draw do
     get  action => 'applicants#'+action
   end
 
-
-
   # this is assigning device controllers for user(s)
-  devise_for :users, controllers: {invitations: 'devise/invitations', registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
+  devise_for :users, controllers: {invitations: 'users/invitations', registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
 
 
   # error handling routes, this will , pass the code to controller error and action show
