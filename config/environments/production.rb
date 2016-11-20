@@ -20,7 +20,7 @@ Rails.application.configure do
   # NGINX, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
-  config.action_mailer.default_url_options = { host: 'dropque-new.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'www.dropque.com' }
   # config.action_mailer.default_url_options = { host: 'www.dropque.com' }
 
   # Disable serving static files from the `/public` folder by default since
