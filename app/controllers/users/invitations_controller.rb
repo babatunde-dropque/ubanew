@@ -1,6 +1,15 @@
 #  added by muyide ibukun, to change the behaviour of invitable controller
 class Users::InvitationsController < Devise::InvitationsController
   layout 'signin'
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
+  end
+
   private
 
   # this is called when creating invitation
