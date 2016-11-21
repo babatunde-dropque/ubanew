@@ -112,7 +112,7 @@ Rails.application.routes.draw do
     end
     
     resources :interviews do
-      get 'send_invite_mail', on: :collection
+      post 'send_invite_mail', on: :collection
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
