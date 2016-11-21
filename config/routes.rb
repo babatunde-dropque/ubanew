@@ -113,7 +113,7 @@ Rails.application.routes.draw do
     end
 
     resources :interviews do
-        get 'send_invite_mail', on: :member
+      get 'send_invite_mail', on: :member
       # get 'send_invite_mail',  on:  to: "interviews#send_invite_mail"
       # get "send_invite_email", to: "interviews#send_invite_mail"
       get "single", to: "interviews#single_interview_submissions"
