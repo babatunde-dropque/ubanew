@@ -14,13 +14,13 @@
                 <div class="row">
                       <div class="col-md-7">
                         <div class="card box-shape">
-                            <div class="header">
+                            <div class="header" id="header">
                                 <h4 class="title">New Company</h4>
                             </div>
                             <div class="content">
-
-                                <!-- form start here  -->
+                             
                                 <form method="post" enctype="multipart/form-data" action="/companies">
+                                  <div id="new-company-path">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -30,10 +30,18 @@
                                         </div>
 
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label >Subdomain</label>
-                                                <input type="text" class="form-control border-input"  placeholder="subdomain.dropque.com" name="subdomain">
+                                                <input type="text" class="form-control border-input"  placeholder="subdomain" name="subdomain"> 
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>  &nbsp;  </label>
+                                                 <input type="text" class="form-control border-input"  value=".dropque.com" disabled="" > 
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -109,44 +117,51 @@
                                     <input type="text" name="user_id" value="<%= @user.id %>" hidden >
                                     <!-- hiddent stringify emails for collaboartions -->
                                     <input type="text" id="collaborate-json" name="collaborators_list"  hidden>
+                                    </div>
+                                     <div id="collaborator-path">
+                                        <div class="header">
+                                            <h4 class="title float-left">Add Collaborators</h4>
+                                            <btn id="add-collaborator" class='btn add-collaborator'><i class='ti-plus'></i></btn>
+                                            <br><br>
+                                        </div>
+                                        <div class="content">
 
-                                    
+                                                <div id="collaborator-content" >
+                                                
+                                                </div>
+
+                                                <br><br><br><br>
+
+                                                
+
+                                                
+                                                <div class="text-center">
+                                                    <button  id="create-company" type="submit" class="btn btn-info btn-fill btn-wd"> Create Organization </button>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                           
+                                        </div>
+                                    </div>
+
+                                   
+                                  </form>
+                                
+                                    <div class="text-center">
+                                        <button id="continue" type="submit" class="btn btn-info btn-fill btn-wd"> Continue </button>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button id="skip" class="btn btn-info btn-fill btn-wd"> Skip </button>
+                                    </div>
                                
                             </div>
                         </div>
                        </div>
 
                        <div class="col-md-5">
-                        <div class="card box-shape">
-                            <div class="header">
-                                <h4 class="title float-left">Add Collaborators</h4>
-                                <btn id="add-collaborator" class='btn add-collaborator'><i class='ti-plus'></i></btn>
-                                <br><br>
-                            </div>
-                            <div class="content">
-
-                                    <div id="collaborator-content" >
-                                    
-                                    </div>
-                                    
-                                    <div class="text-center">
-                                        <button  id="create-company" type="submit" class="btn btn-info btn-fill btn-wd"> Create Organization </button>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                        </div>
+                       
                        </div>
-                    </div>
-
-            	
-
-
-           
-
-
-               
-                
+                    </div>                
             </div>
         </div>
 
@@ -157,6 +172,17 @@
 
 <!-- javascript for this particular page -->
 <script> 
+
+    $("#collaborator-path").hide();
+    $("#skip").hide();
+    $("#continue").click(function(){
+        $(this).hide();
+        $("#header").hide();
+        $("#create-company").hide();
+        $("#new-company-path").hide();
+        $("#collaborator-path").show();
+         $("#skip").show();
+    });
 
     $("#create-company").click(function(event){
 
