@@ -14,14 +14,16 @@ before_filter :configure_account_update_params, only: [:update]
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    render :layout => 'user_dashboard'
+    # super
+
+  end
 
   # PUT /resource
-  def update
-    super
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy

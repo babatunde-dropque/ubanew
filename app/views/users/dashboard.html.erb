@@ -14,15 +14,17 @@
                         <div class="header col-md-4 col-md-offset-2">
                                 <h4 class="title">Organizations (<%= @user.companies.length %>)</h4>
                         </div>
-                        <div class="col-md-4 col-md-offset-2">
-                            <%= link_to new_company_path do %>
-                                <button  type="button" class="btn btn-raised btn-twitter">New Organization</button>
-                            <% end %>
-                        </div>
+                        <% if @user.companies.length > 0 %>
+                          <div class="col-md-4 col-md-offset-2">
+                              <%= link_to new_company_path do %>
+                                  <button  type="button" class="btn btn-raised btn-twitter">New Organization</button>
+                              <% end %>
+                          </div>
+                        <% end %>
                         <!-- test for zero state -->
                         <% if @user.companies.length > 0 %>
 
-                          <div class="card col-md-8 col-md-offset-2">
+                          <div class="card col-md-8 col-md-offset-2 box-shape">
                             <div class="content">
                                 <ul class="list-unstyled team-members">
                                     
@@ -35,10 +37,10 @@
                                             <div class="col-xs-3">
                                                 <div class="avatar">
                                                     <% if user_company.company.logo.file.nil? %>  
-                                                           <%= image_tag('logo1.png', class:"img-circle img-no-padding img-responsive", alt:"Thumb") %>
+                                                           <%= image_tag('logo1.png', class:" img-responsive", alt:"Thumb") %>
                                                        <% else %>
                                                           
-                                                            <img src="<%= user_company.company.logo.url %>" class="img-circle img-no-padding img-responsive" alt="Thumb" />
+                                                            <img src="<%= user_company.company.logo.url %>" class="img-responsive" alt="Thumb" />
                                                        <% end %>
                                                 </div>
                                             </div>
@@ -94,7 +96,7 @@
                                             </div>
 
                                             <div class="col-xs-3 text-right">
-                                                <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
+                                               <!--  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn> -->
                                             </div>
                                         </div>
 

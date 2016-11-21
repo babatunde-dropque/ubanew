@@ -3,7 +3,9 @@ class InterviewsController < ApplicationController
 	before_action :authenticate_user!
 	before_filter :set_up_user
   before_filter :set_up_company
-  before_filter :set_up_interview, :except => [:destroy, :new, :create, :index]
+
+  before_filter :set_up_interview, :except => [:new, :create, :index]
+
 
 
 
@@ -15,18 +17,18 @@ class InterviewsController < ApplicationController
 
 	end
 
-  def send_invite_mail
-       @int = Interview.find(@interview.id)
-       @list = @int.mail_list.split(",")
-       @list.map do |item|
-       InterviewMailer.interview_invite(@int, item).deliver
-       end
-      #  @int = Interview.find(params[:interview_id])
+  # def send_invite_mail
+  #      @int = Interview.find(@interview.id)
+  #      @list = @int.mail_list.split(",")
+  #      @list.map do |item|
+  #      InterviewMailer.interview_invite(@int, item).deliver
+  #      end
+  #     #  @int = Interview.find(params[:interview_id])
 
-        respond_to do |format|
-        format.html { redirect_to company_interviews_path, notice: "Interview was successfully sent." }
-    end
-  end
+  #       respond_to do |format|
+  #       format.html { redirect_to company_interviews_path, notice: "Interview was successfully sent." }
+  #   end
+  # end
 
   def single_interview_submissions
      @submissions = @interview.submissions.where(current_no: 500)
@@ -86,6 +88,7 @@ class InterviewsController < ApplicationController
 
 	def create
 		interview = Interview.new(interview_params)
+    # send_bulk_invite_mail(params[:contacts])
     puts interview_params[:status]
 	    interview.company = @company
 	    respond_to do |format|
@@ -105,9 +108,27 @@ class InterviewsController < ApplicationController
     redirect_to company_interviews_path, notice: "The  Interview #{@interview.title} has been deleted."
   end
 
-   
+
+  
+  def send_invite_mail
+     mail_list = params[:mail_list]
+     list = mail_list.split(",")
+     list.map do |item|
+        InterviewMailer.interview_invite(@interview, item).deliver
+     end
+
+     render 'show'
+
+    # respond_to do |format|
+    #   format.html { redirect_to company_interview_path(id: @interview.slug), notice: "Interview was successfully sent." }
+    # end
+  end
 
 
+
+
+
+  
 
 
 	private
@@ -118,10 +139,13 @@ class InterviewsController < ApplicationController
   end
 
   def set_up_interview
-    # @interview = Interview.find(params[:id])
-    # @interview = Interview.first
-    # @interview = Intrview.last
-    @interview = Interview.friendly.find(params[:interview_id] || params[:id])
+
+      @interview = Interview.friendly.find(params[:interview_id] || params[:id])
+      # check if company has permission to view the interview
+      if !(@interview.company_id == @company.id)
+        redirect_to company_path
+      end
+
   end
 
 	# set_up company details and check if the user has permission to access the company

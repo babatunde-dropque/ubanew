@@ -19,6 +19,12 @@ class GroupsController < ApplicationController
 
   end
 
+
+  def retrieve_contact
+    
+
+  end
+
   def create
     	@group = Group.new(group_params)
        # @group.company_id = @company.id

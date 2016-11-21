@@ -31,8 +31,6 @@
         <%= f.label :deadline %>
         <%= f.text_field :deadline, class: "form-control border-input" , id: "date" ,placeholder:"deadline dd/mm/yyy" %>
       </div>
-
-      
     </div>
 
 
@@ -129,7 +127,8 @@
 
 <script>
   $('#date').datepicker({
-    format: 'mm/dd/yyyy'
+    format: 'mm/dd/yyyy',
+    minDate: 0 
   });
 
 </script>

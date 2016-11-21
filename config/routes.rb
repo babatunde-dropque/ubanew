@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   post '/rate' => 'rater#create', :as => 'rate'
   # rails engine for comment
   mount Commontator::Engine => '/commontator'
@@ -28,10 +29,8 @@ Rails.application.routes.draw do
     get  action => 'applicants#'+action
   end
 
-
-
   # this is assigning device controllers for user(s)
-  devise_for :users, controllers: {invitations: 'devise/invitations', registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
+  devise_for :users, controllers: {invitations: 'users/invitations', registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
 
 
   # error handling routes, this will , pass the code to controller error and action show
@@ -113,9 +112,8 @@ Rails.application.routes.draw do
     end
 
     resources :interviews do
-      get 'send_invite_mail', on: :member
-      # get 'send_invite_mail',  on:  to: "interviews#send_invite_mail"
-      # get "send_invite_email", to: "interviews#send_invite_mail"
+
+      post 'send_invite_mail', on: :collection
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
