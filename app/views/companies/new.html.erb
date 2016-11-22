@@ -11,21 +11,20 @@
         <div class="content">
             <div class="container-fluid">
 
-                <div class="row">
-                      <div class="col-md-7">
+                <div style="width : 60%; margin: auto ;">
                         <div class="card box-shape">
                             <div class="header" id="header">
                                 <h4 class="title">New Company</h4>
                             </div>
                             <div class="content">
                              
-                                <form method="post" enctype="multipart/form-data" action="/companies">
+                                <form id="form" method="post" enctype="multipart/form-data" action="/companies">
                                   <div id="new-company-path">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Company Name</label>
-                                                <input type="text" class="form-control border-input"  placeholder="Company" name="name">
+                                                <input id="company-name" type="text" class="form-control border-input"  placeholder="Company" name="name">
                                             </div>
                                         </div>
 
@@ -33,7 +32,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label >Subdomain</label>
-                                                <input type="text" class="form-control border-input"  placeholder="subdomain" name="subdomain"> 
+                                                <input id="company-subdomain" type="text" class="form-control border-input"  placeholder="subdomain" name="subdomain"> 
                                             </div>
                                         </div>
 
@@ -120,23 +119,38 @@
                                     </div>
                                      <div id="collaborator-path">
                                         <div class="header">
-                                            <h4 class="title float-left">Add Collaborators</h4>
+                                            <h4 class="title float-left">Add Collaborator(s)</h4>
                                             <btn id="add-collaborator" class='btn add-collaborator'><i class='ti-plus'></i></btn>
                                             <br><br>
                                         </div>
                                         <div class="content">
 
-                                                <div id="collaborator-content" >
-                                                
+                                            <div id="collaborator-content" >
+                                                <div class='row'>
+                                                    <div class='col-md-6'>
+                                                     <div class='form-group'>
+                                                        <input type='text' class='form-control border-input box-shape' style='height: 36px ;'  placeholder='email'>
+                                                    </div>
+                                                    </div>
+                                                    <div class='col-md-6'>
+                                                        <select class='btn box-shape-1' >
+                                                            <option value='1'> admin </option>
+                                                            <option value='2'> user</option>
+                                                        </select>
+                                                        <btn class='btn box-shape width-perfect remove-new-collaborator' ><i class='ti-close'></i></btn>
+                                                    </div>
                                                 </div>
+                                                   
 
-                                                <br><br><br><br>
+                                            </div>
+
+                                                <br><br>
 
                                                 
 
                                                 
                                                 <div class="text-center">
-                                                    <button  id="create-company" type="submit" class="btn btn-info btn-fill btn-wd"> Create Organization </button>
+                                                    <button  id="create-company" type="submit" class="btn btn-info btn-fill btn-wd"> Add Collaborators </button>
                                                 </div>
                                                 <div class="clearfix"></div>
                                            
@@ -151,20 +165,36 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <button id="skip" class="btn btn-info btn-fill btn-wd"> Skip </button>
+                                        <a id="skip" href="#"> Skip Now </a>
                                     </div>
                                
                             </div>
                         </div>
-                       </div>
-
-                       <div class="col-md-5">
                        
-                       </div>
+
+                       
                     </div>                
             </div>
         </div>
 
+    </div>
+</div>
+
+
+<div hidden id="sample">
+    <div class='row'>
+        <div class='col-md-6'>
+         <div class='form-group'>
+            <input type='text' class='form-control border-input box-shape' style='height: 36px ;'  placeholder='email'>
+        </div>
+        </div>
+        <div class='col-md-6'>
+            <select class='btn box-shape-1' >
+                <option value='1'> admin </option>
+                <option value='2'> user</option>
+            </select>
+            <btn class='btn box-shape width-perfect remove-new-collaborator' ><i class='ti-close'></i></btn>
+        </div>
     </div>
 </div>
 
@@ -176,12 +206,20 @@
     $("#collaborator-path").hide();
     $("#skip").hide();
     $("#continue").click(function(){
-        $(this).hide();
-        $("#header").hide();
-        $("#create-company").hide();
-        $("#new-company-path").hide();
-        $("#collaborator-path").show();
-         $("#skip").show();
+        if ($("#company-name").val() == "" || $("#company-subdomain").val() == ""){
+            showMessage('top','right', "Organization name or subdomain cannot be empty", 4);
+        } else {
+            $(this).hide();
+            $("#header").hide();
+            $("#new-company-path").hide();
+            $("#collaborator-path").show();
+            $("#skip").show();
+        }
+    });
+
+    $("#skip").click(function(){
+        $("#collaborate-json").val(JSON.stringify([]));
+        $("#form").submit();
     });
 
     $("#create-company").click(function(event){
@@ -210,33 +248,13 @@
         });
 
             $("#collaborate-json").val(JSON.stringify(jsonObj));
-            console.log(JSON.stringify(jsonObj));
+         
 
     });
 
     
     $("#add-collaborator").click(function(){
-        console.log("working");
-        $("#collaborator-content").append(
-        "<div class='row'>"+
-            "<div class='col-md-6'>" +
-            "<div class='form-group'>"+
-            "<input type='text' class='form-control border-input'  placeholder='email'>"+
-            "</div>"+
-            "</div>"+
-            "<div class='col-md-6'>"+
-                "<select class='btn box-shape-1' >"+
-                    "<option value='1'> admin </option>"+
-                    "<option value='2'> user</option>"+
-                "</select>"+
-                "<btn class='btn box-shape width-perfect remove-new-collaborator' >"+
-                "<i class='ti-close'>"+
-                "</btn>"+
-            "</div>"+
-    
-        "</div>"
-            );
-    
+        $("#collaborator-content").append($('#sample').html());
     });
 
 
