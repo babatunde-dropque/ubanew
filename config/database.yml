@@ -24,9 +24,9 @@ test:
 
 staging:
   <<: *default
-    database: newdropque_staging
-    username: newdropque
-    password: <%= ENV['NEWDROPQUE_DATABASE_PASSWORD'] %>
+  database: newdropque_staging
+  username: newdropque
+  password: <%= ENV['NEWDROPQUE_DATABASE_PASSWORD'] %>
 
 
 production:
