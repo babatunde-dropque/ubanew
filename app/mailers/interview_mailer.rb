@@ -6,10 +6,10 @@ class InterviewMailer < ApplicationMailer
     @interview = interview
     @token = @interview.interview_token
     @company = interview.company
-    @interview_page = "#{@company.subdomain}.#{request.domain}/applicants/#{@token}"
+    @interview_page = "https://#{@company.subdomain}.dropque.com/applicants/#{@token}"
     @company_img = @company.logo
-    @url = 'www.dropque.com'
-    @app = 'bit.ly/dropqueapp'
+    @url = 'https://www.dropque.com'
+    @app = 'https://bit.ly/dropqueapp'
    mail(to: email, subject: "#{@company.name} Interview Invitation")
   end
 
@@ -19,8 +19,8 @@ class InterviewMailer < ApplicationMailer
     @company = interview.company
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'www.dropque.com'
-    @app = 'bit.ly/dropqueapp'
+    @url = 'https://www.dropque.com'
+    @app = 'https://bit.ly/dropqueapp'
     mail(to: email, subject: "#{@company.name} Notification: You are Shortlisted") 
   end
 
@@ -30,8 +30,8 @@ class InterviewMailer < ApplicationMailer
     @company = interview.company
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'www.dropque.com'
-    @app = 'bit.ly/dropqueapp'
+    @url = 'https://www.dropque.com'
+    @app = 'https://bit.ly/dropqueapp'
     mail(to: email, subject: "#{@company.name} Notification")
   end
 end
