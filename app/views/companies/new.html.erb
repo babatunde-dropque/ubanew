@@ -10,8 +10,8 @@
 
         <div class="content">
             <div class="container-fluid">
-
-                <div style="width : 60%; margin: auto ;">
+                <div class='row'>
+                <div class='col-md-8 col-md-offset-2'>
                         <div class="card box-shape">
                             <div class="header" id="header">
                                 <h4 class="title">New Company</h4>
@@ -31,7 +31,7 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label >Subdomain</label>
+                                                <label >Subdomain</label> <i id="symbol" ></i>
                                                 <input id="company-subdomain" type="text" class="form-control border-input"  placeholder="subdomain" name="subdomain"> 
                                             </div>
                                         </div>
@@ -140,6 +140,7 @@
                                                         <btn class='btn box-shape width-perfect remove-new-collaborator' ><i class='ti-close'></i></btn>
                                                     </div>
                                                 </div>
+
                                                    
 
                                             </div>
@@ -173,7 +174,8 @@
                        
 
                        
-                    </div>                
+                    </div> 
+                    </div>               
             </div>
         </div>
 
@@ -202,10 +204,38 @@
 
 <!-- javascript for this particular page -->
 <script> 
+var confirmed = true;
+    $("#company-subdomain").on('keyup', function() {
+        var word = $('#company-subdomain').val();
+        $.ajax({
+          url: '/check_subdomain', 
+          type: 'GET',
+          data: {subdomain: word },
+          success: function(data){
+              if (data == "yes"){
+                $('#symbol').addClass('ti-close');
+                $('#symbol').removeClass('ti-check');
+                confirmed = true;
+               }  else {
+                    $('#symbol').addClass('ti-check');
+                    $('#symbol').removeClass('ti-close');
+                    confirmed = false;
+               }
+          },
+          error : function(jqXHR, textStatus, errorThrown) {
+               
+           }
+       });
+      });
 
     $("#collaborator-path").hide();
     $("#skip").hide();
     $("#continue").click(function(){
+        if (confirmed){
+            showMessage('top','right', "Subdomain Already Exist", 4);
+            event.preventDefault();
+        }
+        
         if ($("#company-name").val() == "" || $("#company-subdomain").val() == ""){
             showMessage('top','right', "Organization name or subdomain cannot be empty", 4);
         } else {
@@ -223,6 +253,8 @@
     });
 
     $("#create-company").click(function(event){
+
+        
 
         jsonObj = [];
 

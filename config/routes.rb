@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     get  action => 'applicants#'+action
   end
 
+  get "check_subdomain", to: "companies#check_subdomain"
+
   # this is assigning device controllers for user(s)
   devise_for :users, controllers: {invitations: 'users/invitations', registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
 

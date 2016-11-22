@@ -2,12 +2,11 @@ class CompaniesController < ApplicationController
 	layout 'user_dashboard'
 	before_action :authenticate_user!
     before_filter :set_up_user
-    before_filter :set_up_company, :except => [:new, :create]
+    before_filter :set_up_company, :except => [:new, :create, :check_subdomain ]
 
    
 
 	def show
-
         @user_status = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
         @sigin_in_count = current_user.sign_in_count.to_s
         @all_interview = @company.interviews
@@ -88,6 +87,16 @@ class CompaniesController < ApplicationController
         else
 
         end        
+    end
+
+
+
+    def check_subdomain
+        if  Company.exists?(subdomain: params[:subdomain])
+          render plain: "yes"
+        else
+          render plain: "no"
+        end 
     end
 
 
