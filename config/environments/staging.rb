@@ -20,7 +20,7 @@ Rails.application.configure do
   # NGINX, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
-  config.action_mailer.default_url_options = { host: 'www.dropque.com' }
+  config.action_mailer.default_url_options = { host: 'staging.dropque.com' }
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -38,27 +38,12 @@ Rails.application.configure do
   config.assets.digest = true
 
 
-  # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
-  #  email sending
-  #     config.action_mailer.delivery_method = :smtp
-  #     config.action_mailer.smtp_settings = {
-  #     address: 'smtp.sendgrid.net',
-  #     port: 587,
-  #     domain: 'www.dropque.com',
-  #     user_name: ENV["SENDGRID_USERNAME"],
-  #     password:  ENV["SENDGRID_USERNAME"],
-  #     authentication: 'plain',
-  #     enable_starttls_auto: true
-  # }
-
-
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  
-  config.force_ssl = true
+
+  # config.force_ssl = true
  
 
   # Use the lowest log level to ensure availability of diagnostic information
