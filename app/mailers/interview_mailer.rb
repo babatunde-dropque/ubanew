@@ -6,7 +6,11 @@ class InterviewMailer < ApplicationMailer
     @interview = interview
     @token = @interview.interview_token
     @company = interview.company
-    @interview_page = "https://#{@company.subdomain}.dropque.com/applicants/#{@token}"
+    if ENV['SKIP_FORCE_SSL'] 
+       @interview_page = "https://#{@company.subdomain}.staging.dropque.com/applicants/#{@token}"
+    else 
+      @interview_page = "https://#{@company.subdomain}.dropque.com/applicants/#{@token}"
+    end 
     @company_img = @company.logo
     @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
