@@ -84,15 +84,9 @@
                                 <li>
                                    <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ]) , target: "_blank" do %> Edit Interview page <% end %> 
                                 </li>
-                                 <% if ENV['SKIP_FORCE_SSL'] %>
-                                  <li><a href="http://<%= @company.subdomain %>.staging.dropque.com" target= "_blank"> Interview Page </a>   
-                                  </li>
-
-                                 <% else %>
-                                    <li><a href="https://<%= @company.subdomain %>.dropque.com" target= "_blank"> Interview Page </a>
-                                   
-                                    </li>
-                                <% end %>
+                                <li><a href="<%= @company.subdomain %>.<%= request.domain %>"   target= "_blank"> Interview Page </a>
+                                 </li>
+                              
                                 
                                 <li>
                                  <!--   <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %> -->

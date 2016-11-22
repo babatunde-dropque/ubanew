@@ -18,14 +18,9 @@
                                 <center>
                                       <h4> Send Invitation</h4>
                                       <div class="typo-line">
-                                        <% if ENV['SKIP_FORCE_SSL'] %>
-                                            <h5>http://<%= @company.subdomain %>.staging.dropque.com/applicants/<%= @interview.interview_token %>
+                                        
+                                           <h5><%= @company.subdomain %>.<%= request.domain %>/applicants/<%= @interview.interview_token %>
                                             <p class="category">(Invitation Link)</p> </h5>
-
-                                         <% else %>
-                                           <h5>https://<%= @company.subdomain %>.dropque.com/applicants/<%= @interview.interview_token %>
-                                            <p class="category">(Invitation Link)</p> </h5>
-                                        <% end %>
                                        </div> 
                                       <form  method="POST" action="<%= send_invite_mail_company_interviews_path %>" >
 
