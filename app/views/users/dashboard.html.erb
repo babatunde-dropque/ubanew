@@ -35,12 +35,12 @@
                                         <%= link_to company_path(user_company.company) do%>  
                                         <div class="row">
                                             <div class="col-xs-3">
-                                                <div class="avatar">
+                                                <div class="">
                                                     <% if user_company.company.logo.file.nil? %>  
-                                                           <%= image_tag('logo1.png', class:" img-responsive", alt:"Thumb") %>
+                                                           <%= image_tag('logo1.png', height:"55") %>
                                                        <% else %>
                                                           
-                                                            <img src="<%= user_company.company.logo.url %>" class="img-responsive" alt="Thumb" />
+                                                            <img src="<%= user_company.company.logo.url %>" height="55"  />
                                                        <% end %>
                                                 </div>
                                             </div>
