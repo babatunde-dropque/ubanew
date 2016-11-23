@@ -4,6 +4,6 @@ class CustomDomainConstraint
   end
 
   def self.matching_organization? request
-    Company.where(:subdomain => request.subdomain).any?
+    Company.find_by(:subdomain => request.subdomain)
   end
 end
