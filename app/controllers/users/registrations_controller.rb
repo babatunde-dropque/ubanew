@@ -15,15 +15,19 @@ before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/edit
   def edit
+    @user = current_user
+    @notification = Notification.where(user_id: @user.id, read: 0)
     render :layout => 'user_dashboard'
     # super
 
   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @user = current_user
+    @notification = Notification.where(user_id: @user.id, read: 0)
+    super
+  end
 
   # DELETE /resource
   # def destroy
