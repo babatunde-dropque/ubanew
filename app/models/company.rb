@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+  before_save :downcase_fields
 	include FriendlyId
 	
 	 has_many :joint_user_companies 
@@ -10,6 +11,12 @@ class Company < ActiveRecord::Base
 
     mount_uploader :image, ImageUploader
     mount_uploader :logo, LogoUploader
+
+
+
+   def downcase_fields
+      self.subdomain.downcase!
+   end
 
      # find out what dependent destroy means before usin it
      # has_many :users, :through=> :joint_user_companies, dependent: :destroy 

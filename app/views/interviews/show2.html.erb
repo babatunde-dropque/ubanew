@@ -1,0 +1,269 @@
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="success">
+
+<!-- TODO Add Sidebar Panel -->
+     <%= render partial: "companies/sidebar" %>
+    <div class="main-panel">
+<!-- TODO Add Navbar Panel -->
+    <%= render partial: "users/navbar" %>
+        <div class="content">
+            <div class="container-fluid">
+
+
+
+              <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card box-shape">
+                              <div class="content">
+                                <center>
+                                      <h4> Send Invitation</h4>
+                                      <div class="typo-line">
+                                          <h5>https://<%= @company.subdomain %>.dropque.com/applicants/<%= @interview.interview_token %>
+                                            <p class="category">(Invitation Link)</p> </h5>
+                                       </div> 
+                                      <form  method="POST" action="<%= send_invite_mail_company_interviews_path %>" >
+
+                                          <!-- add csrf token -->
+                                       <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+
+                                       <input type="hidden" value="<%= @interview.slug %>" name="interview_id" />
+
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <input type="text" id="email-list" class="form-control border-input"  name="mail_list"/>
+                                           </div>
+                                           <label id="indicator-mail"> </label>
+                                        </div>
+
+
+
+                                      <button  type = "submit" class="btn btn-info btn-fill btn-wd">Send</button> 
+                                      </form>
+                                </center>
+                                   <button id="add-bulk-contact"> Show Button </button> 
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+
+
+          <div class="col-lg-12 col-md-12">
+              <div class="card box-shape">
+                      <div>
+                          <div class="header">
+                            <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>
+                          </div>
+                          <div class="content"><br><br></div>
+                      </div>
+
+
+                    <div class="content">
+
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-xs-12 col-lg-6 col-md-6">
+                                  
+                                   <div class="typo-line">
+                                      <h5><p class="category">Description</p><%= @interview.description %></h5>
+                                   </div>
+                                   
+                                    <!-- <div class="typo-line">
+                                      <h5><p class="category">Deadline</p> <%= @interview.deadline %></h5>
+                                   </div> -->
+                                   <div class="typo-line">
+                                      <h5><p class="category">Instruction</p><%= @interview.instruction %></h5>
+                                   </div>
+                                
+                                                                             
+                              </div>
+
+                              <div class="col-xs-12 col-lg-6 col-md-6">
+
+                                <div class="typo-line">
+                                      <h5><p class="category">Token</p><%= @interview.interview_token %></h5>
+                                   </div>
+                                  
+                                
+                                    <!-- <div class="typo-line">
+                                      <h5><p class="category">Deadline</p> <%= @interview.deadline %></h5>
+                                   </div> -->
+                                   <div class="typo-line">
+                                      <h5><p class="category">Completed Message</p><%= @interview.completed_message %></h5>
+                                   </div>
+                                                                         
+                              </div>
+                          </div>
+                      </div>
+                  </div> 
+
+
+                  <div class="content">
+                      <div class="typo-line">
+                        <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
+                          <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <tbody id="question-holder">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                          
+
+                      </div>
+                  </div>                           
+
+
+              </div>
+           </div>
+
+        </div>
+
+
+
+       <!--  <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card box-shape">
+                    <div class="header">
+                      <h4 class="title">Question(s)</h4>
+                    </div>
+
+                </div>
+          </div>
+        </div> -->
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+
+<div class="modal fade" id="model-contact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="myModalLabel"> Add bulk contact </h5>
+      </div>
+      <input type="text" id="contact-id" hidden >
+      <div class="modal-body" id="contact-body">
+
+        <div class="row">
+          <div class="col-md-4"><b>Group Name</b></div>
+          <div class="col-md-4"><b> Total</b></div>
+          <div class="col-md-4"><b> Check to add </b></div>
+        </div>
+        <hr>
+        <% @company.groups.each do | group | %>
+
+        <div class="row">
+          <div class="col-md-4">
+            <b><%= group.name %></b>
+
+          </div>
+          <div class="col-md-4"><%= group.bulks.length %></div>
+          <div class="col-md-4">
+            <div class="[ form-group ]">
+            <input onclick="tick(<%= group.id %>)"    value="<%= group.id %>" type="checkbox" name="fancy-checkbox-default" id="baba-<%= group.id %>" />
+            <div class="[ btn-group ]">
+                <label for="baba-<%= group.id %>" class="[ btn btn-default  box-shape ]">
+                    <span class="[ glyphicon glyphicon-ok ]"></span>
+                    <span> </span>
+                </label>
+               <!--  <label for="fancy-checkbox-default" class="[ btn btn-default  ]">
+                    Default Checkbox
+                </label> -->
+            </div>
+         </div>
+          </div>
+        </div>
+           
+        <% end %>
+         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn box-shape" data-dismiss="modal"> Cancel </button>
+        <button type="button" id="contact-continue" class="btn box-shape"> Continue </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<script >
+
+    $("#add-bulk-contact").click(function(){
+        $("#model-contact").modal();
+    });
+
+    $("#contact-continue").click(function(){
+
+
+    });
+
+
+    function tick(id){
+      $("#baba-"+id).change(function() {
+      if (this.checked) {
+        ajax(id, true);
+      } else {
+        ajax(id, false);
+      }
+      });
+    }
+
+
+     function ajax(id, isTick){
+      var url = "";
+      var mail_list = $("#email-list");
+      var link = $("#baba"+id);
+      if (isTick) {
+      url:  '<%= show_group_emails_company_group_path(group_id:5) %>';
+      }
+      else {
+       url: '';
+      }
+
+      $.ajax({
+        url: url,
+        type: 'GET',
+        data: { id: 5 },
+        success: function(data, status){
+         console.log( data);
+    },
+    error : function(jqXHR, textStatus, errorThrown) {
+
+           }
+     });
+
+
+
+    }
+
+
+
+
+
+
+
+</script>
