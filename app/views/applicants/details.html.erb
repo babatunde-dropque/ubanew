@@ -4,61 +4,61 @@
     <div class="container">
       <h2 class="dq-interview-question">Interview for <%= @interview.title %> </h2>
 
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <div class="row dq-intro-section">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-1 dq-intro-icon">
-              <span class="fa fa-3x fa-calendar"></span>
-            </div>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-11">
-              <h5>Number of Quesionts</h5>
-              <p><%= @interview.questions.length %></p>
-            </div>
-          </div>
-
-          <% if !@interview.deadline.nil? %>
-
-            <div class="row dq-intro-section">
-              <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 dq-intro-icon">
-                <span class="fa fa-3x fa-calendar-o"></span>
-              </div>
-                <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
-                  <h5>Deadline</h5>
-                  <p> <%= @interview.deadline %></p>
-                </div>
-            </div>
-
-          <% end %>
-
-
-          <div class="row dq-intro-section">
-            <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 dq-intro-icon">
-              <span class="fa fa-3x fa-calendar-o"></span>
-            </div>
-            <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
-              <h5>Interview details</h5>
-              <p> <%= @interview.description %></p>
-            </div>
+<hr>
+      <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+          <div class="dq-intro-section">
+              <span class="fa fa-2x fa-question-circle"></span>
+              <h6>Number of Question</h6>
+              <h5><%= @interview.questions.length %></h5>
           </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <div class="well well-sm">
-            <h5>Instructions</h5>
-            <p>  Be sure you have a working Network connectivity </p>
-            <p>  Be sure you have a working webcam either built-in or detachable </p>
-            <p>  Be sure your computer has speakers or headphones, and double check that they can play audio </p>
-            <p> A working microphone is required to record the audio portion of your interview </p>
-            <p> Be aware of your lighting and background (Make sure the evironment is well lit and avoid sources of bright light directly behind you) </p>
-            <p> Close all other applications other than Dropque that use your webcam and microphone it may interfere with Dropque ability to leverage your webcam and microphone </p>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="dq-intro-section"> 
+              <span class="fa fa-2x fa-calendar"></span>         
+              <h6>Interview deadline</h6>
+              <% if  @interview.deadline.nil? %>
+                  <h5> No Deadline</h5>
+              <% else %>
+                 <h5> <%= @interview.deadline%></h5>
+              <% end %>
+
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="dq-intro-section"> 
+              <span class="fa fa-2x fa-lock"></span>         
+              <h6>Interview  Access</h6>
+              <% if  @interview.status == 0 %>
+                  <h5> Private</h5>
+              <% else %>
+                 <h5> Public</h5>
+              <% end %>
+          </div>
+        </div>
         
-            <p>
-             <%= @interview.instruction %> 
-            </p>
-
-          </div>
         </div>
+<hr>
+
+
+
+      <div class="dq-page-container">
+          <span class="fa fa-3x fa-info-circle dq-page-icon"></span> <h5>Instructions</h5>
+            <div class="dq-instruction">
+              <p>  Be sure you have a working Network connectivity, a working webcam either built-in or detachable, A working microphone and speakers or headphones (double check that they can play audio)  </p>
+               
+              <p> Close all other applications other than Dropque that use your webcam and microphone it may interfere with Dropque ability to leverage your webcam or microphone. Be aware of your lighting and background (Make sure the evironment is well lit and avoid sources of bright light directly behind you) </p>
+              
+
+                <p>
+                 <%= @interview.instruction %> 
+                </p>
+          </div>
       </div>
+
+      
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
@@ -79,3 +79,22 @@
       </div>
     </div>
 
+
+
+
+<!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="well well-sm">
+           
+            <p>  Be sure you have a working Network connectivity </p>
+            <p>  Be sure you have a working webcam either built-in or detachable </p>
+            <p>  Be sure your computer has speakers or headphones, and double check that they can play audio </p>
+            <p> A working microphone is required to record the audio portion of your interview </p>
+            <p> Be aware of your lighting and background (Make sure the evironment is well lit and avoid sources of bright light directly behind you) </p>
+            <p> Close all other applications other than Dropque that use your webcam and microphone it may interfere with Dropque ability to leverage your webcam and microphone </p>
+        
+            <p>
+             <%= @interview.instruction %> 
+            </p>
+
+          </div>
+        </div> -->
