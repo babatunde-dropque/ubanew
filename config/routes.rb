@@ -118,6 +118,8 @@ Rails.application.routes.draw do
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
+      put "change_status", to: "interviews#change_status"
+      get "unfinish_submission", to: "interviews#unfinish_submission" 
     end
 
   end

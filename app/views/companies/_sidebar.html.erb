@@ -29,26 +29,34 @@
                 </li>
                 <% if !@interview.nil? && @new_interview.nil? %>
                 <li id="step4" class="<%= (params[:c] == "3") ? "active": "" %>">
-                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 3, status: 1, interview_id: @interview.slug) do %>
+                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 3, status: 0, interview_id: @interview.slug) do %>
                         <i class="ti-check-box"></i>
                         <p>Shortlisted</p>
                     <% end %>
                    
                 </li>
                 <li id="step5" class="<%= (params[:c] == "4") ? "active": "" %>">
-                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 4, status: 2, interview_id: @interview.slug) do %>
+                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 4, status: 1, interview_id: @interview.slug) do %>
                         <i class="ti-pencil-alt"></i>
                         <p>Pending</p>
                     <% end %>
                                      
                 </li>
                 <li id="step6" class="<%= (params[:c] == "5") ? "active": "" %> ">
-                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 5, status: 3, interview_id: @interview.slug) do %>
+                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: @interview.slug) do %>
                         <i class="ti-trash"></i>
                         <p>Declined</p>
                     <% end %>
                                
                 </li> 
+                <!-- <li id="step6" class="<%= (params[:c] == "6") ? "active": "" %> ">
+                    <%= link_to company_interview_unfinish_submission_path(params[:company_id] || params[:id], c: 6, interview_id: @interview.slug) do %>
+                        <i class="ti-control-pause"></i>
+                        <p>Unfinished</p>
+                    <% end %>       
+                </li>  -->
+
+                
                 <% end %>                 
             </ul>
         

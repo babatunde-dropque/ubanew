@@ -234,9 +234,8 @@ var confirmed = true;
         if (confirmed){
             showMessage('top','right', "Subdomain Already Exist", 4);
             event.preventDefault();
-        }
-        
-        if ($("#company-name").val() == "" || $("#company-subdomain").val() == ""){
+        } else {
+            if ($("#company-name").val() == "" || $("#company-subdomain").val() == ""){
             showMessage('top','right', "Organization name or subdomain cannot be empty", 4);
         } else {
             $(this).hide();
@@ -244,7 +243,9 @@ var confirmed = true;
             $("#new-company-path").hide();
             $("#collaborator-path").show();
             $("#skip").show();
+           }
         }
+        
     });
 
     $("#skip").click(function(){

@@ -33,36 +33,6 @@
       </div>
     </div>
 
-
-
-    <!-- <div class="row">
-      <div class="form-group col-md-12">
-        <%= f.label :candidate_emails %>
-          <%= f.text_field :mail_list, :id => 'emails', class: "form-control border-input", html: {spellcheck: "false"} %>
-        <label id ="indicator"> </label>
-      </div>
-    </div> -->
-
-     <!-- <div class="row" >
-          <div class='col-md-6'>
-            <h5 class ="left-edge col-md-11 "> Group Invitation </h5> 
-          </div>
-
-          <div class='col-md-4'>
-         <select id="question-type" class='btn box-shape float-left margin-top-form'  name="interview[contacts]" >
-               <%@company = Company.friendly.find(params[:company_id] || params[:id])%>
-               <%@con = Group.where(company_id: @company.id) %>
-               <option value="">Select Group</option>
-               <%@con.each do|conn|%>
-               <option value='<%=conn.id%>'> <%= conn.name%> </option>
-               <% end %>
-             </select>
-          </div>
-
-       
-
-        </div> -->
-
       <input type="hidden" value="<%= @interview.questions.to_json %>" name="interview[questions]" id="questions-json" />
 
 
@@ -100,7 +70,7 @@
      
      <div class="row">
         <div class=" form-group col-md-10" >
-          <label>Private interviews? </label><br>
+          <label>Interviews Access </label><br>
         </div>
         <div class="col-md-2 ">
           <div class="float-right">
