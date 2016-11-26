@@ -202,7 +202,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label> Tags </label>
-                                                <input type="text" class="form-control border-input" placeholder="Tags" name="tags" id="tags" >
+                                                <input type="text" class="form-control border-input" placeholder="Tags" value="<%= @company.tags %>" name="tags" id="tags"  >
                                             </div>
                                         </div>
                                     </div>
@@ -345,6 +345,8 @@
     })
 
 
+
+
  $("#submit-colloborators").click(function(event){
         
         jsonObj = [];
@@ -361,17 +363,20 @@
                 event.preventDefault();
 
              } else{
-                
-                collaborateItem = {}
-                collaborateItem["email"] = email;
-                collaborateItem["status"] = status ;
-                jsonObj.push(collaborateItem);
+                if (validateEmail(email)){
+                    collaborateItem = {}
+                    collaborateItem["email"] = email;
+                    collaborateItem["status"] = status ;
+                    jsonObj.push(collaborateItem);
+                } else {
+                     showMessage('top','right', "Email not valid, Enter a valid email", 4);
+                     event.preventDefault();
+                }
              }
              
         });
 
             $("#collaborators_list").val(JSON.stringify(jsonObj));
-            console.log(JSON.stringify(jsonObj));
 
     });
 
@@ -435,6 +440,11 @@
         }
 
     });
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
 
     
 

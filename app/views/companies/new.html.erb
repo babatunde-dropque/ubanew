@@ -254,42 +254,36 @@ var confirmed = true;
     });
 
     $("#create-company").click(function(event){
-
-        
-
         jsonObj = [];
-
          $("#collaborator-content").find(".row").each(function(index) {
              var emailObject = $(this).find("input");
              var email = emailObject.get(0).value ;
              var statusObject = $(this).find("option:selected");
              var status = statusObject.get(0).value;
-             
              if (!email || !status){
                 // check if email or status is empty
                 showMessage('top','right', "Email cannot be empty", 4);
                 event.preventDefault();
-
              } else{
-                
-                collaborateItem = {}
-                collaborateItem["email"] = email;
-                collaborateItem["status"] = status ;
-                jsonObj.push(collaborateItem);
+                if (validateEmail(email)){
+                    collaborateItem = {}
+                    collaborateItem["email"] = email;
+                    collaborateItem["status"] = status ;
+                    jsonObj.push(collaborateItem);
+                } else {
+                    showMessage('top','right', "Invalid Email, Enter a valid email", 4);
+                    event.preventDefault();
+                }
              }
              
         });
-
             $("#collaborate-json").val(JSON.stringify(jsonObj));
-         
-
     });
 
     
     $("#add-collaborator").click(function(){
         $("#collaborator-content").append($('#sample').html());
     });
-
 
     //  remove added collaborators
      $("#collaborator-content").on("click", ".remove-new-collaborator", function(){
@@ -307,6 +301,11 @@ var confirmed = true;
         }
 
     });
+
+ function validateEmail(email){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
 
 
 </script>
