@@ -21,7 +21,7 @@
               <% if  @interview.deadline.nil? %>
                   <h5> No Deadline</h5>
               <% else %>
-                 <h5> <%= @interview.deadline%></h5>
+                 <h5> <%= @interview.deadline.strftime("%d-%m-%Y") %></h5>
               <% end %>
 
           </div>

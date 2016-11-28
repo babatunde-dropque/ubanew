@@ -6,17 +6,14 @@ Rails.application.routes.draw do
   # rails engine for comment
   mount Commontator::Engine => '/commontator'
   
-  # resources :bulks do
-  #   collection {post :import}
-  #   collection {post :fetch}
-  # end
-
-
   get 'applicants/index'
   get 'landings/index'
   get 'contact' => 'landings#contact'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard'
+  get "dashboard/account", to: "users#account", as: 'user_account'
+  post "dashboard/account", to: "users#account", as: 'user_account_put'
+  get "dashboard/check_password", to: "users#check_password", as: 'check_password'
 
 
   # post request for applicant data
