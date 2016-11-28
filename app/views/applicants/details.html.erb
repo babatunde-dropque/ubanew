@@ -2,14 +2,14 @@
         <%= render partial: "header" %>
 
     <div class="container">
-      <h2 class="dq-interview-question">Interview for <%= @interview.title %> </h2>
+      <h2 class="dq-interview-question"><%= @interview.title %> </h2>
 
 <hr>
       <div class="row text-center">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
           <div class="dq-intro-section">
               <span class="fa fa-2x fa-question-circle"></span>
-              <h6>Number of Question</h6>
+              <h6>Number of Question(s)</h6>
               <h5><%= @interview.questions.length %></h5>
           </div>
         </div>
@@ -47,10 +47,9 @@
       <div class="dq-page-container">
           <span class="fa fa-3x fa-info-circle dq-page-icon"></span> <h5>Instructions</h5>
             <div class="dq-instruction">
-              <p>  Be sure you have a working Network connectivity, a working webcam either built-in or detachable, A working microphone and speakers or headphones (double check that they can play audio)  </p>
+              <p>  Be sure you have a working network connectivity, a working webcam either built-in or detachable, A working microphone and speakers or headphones (double check that they can play audio)  </p>
                
               <p> Close all other applications other than Dropque that use your webcam and microphone it may interfere with Dropque ability to leverage your webcam or microphone. Be aware of your lighting and background (Make sure the evironment is well lit and avoid sources of bright light directly behind you) </p>
-              
 
                 <p>
                  <%= @interview.instruction %> 
