@@ -2,13 +2,14 @@
      <%= render partial: "header" %>
 
     <div class="container">
-      <h2 class="dq-interview-question"> <%= @interview.completed_message %> </h2>
-
       <div class="row dq-page-container">
         <span class="fa fa-5x fa-thumbs-o-up dq-page-icon"></span>
-        <div class="dq-interview-complete-message">
-        </div>
       </div>
+      <hr>
+      <div class="dq-interview-question" style="white-space: pre-line; font-size: 1.5em;"> <%= (@interview.completed_message) %> </div>
+      <hr>
+
+      
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
