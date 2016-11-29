@@ -1,28 +1,4 @@
 
-<body class="index-page">
-	<!-- Load Facebook SDK for JavaScript -->
-	<script>
-	 window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '955382917904238',
-      xfbml      : true,
-      version    : 'v2.7'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-
-
-	</script>
-
-<!-- Navbar -->
 <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
 	<div class="container">
         <div class="navbar-header">
@@ -68,39 +44,19 @@
 			
 		    <div class="section section-download" >
 		        <div class="container">
+		            
+
+		            <br> <br> <br><br><br> <br> <br><br>
 		            <div class="row sharing-area text-center">
-		                <br> <br>			            	     	
-	                    <h3> Unprocessable Entity </strong></h3>
-						<h5>We couldn't process your request</h5>
+		                 <br> <br>	            	     	
 	                    
+	                    <h3><strong>Unprocessable Entity </strong></h3>
+						<h5>We couldn't process your request</h5>
 
-	            	
-		            </div>
-
-		            <div class="row sharing-area text-center">
-		                 <br> <br> <br>	<br>				            	     	
-	                    <h3>Tell your friends about <strong>Dropque!</strong></h3>
-	                    <a href="#" class="btn btn-raised btn-twitter">
-	                        <i class="fa fa-twitter"></i>
-	                        Tweet
-	                    </a>
-	                     <a href="#" id="fbshareBtn" class="btn btn-raised btn-facebook">
-	                        <i class="fa fa-facebook-square"></i>
-	                        Share
-	                    </a>
-						<!-- <a href="#" class="btn btn-raised btn-google-plus">
-	                        <i class="fa fa-google-plus"></i>
-	                        Share
-	                    </a>  -->
-
-	            	
+	                   	            	
 		            </div>
 		        </div>
-		    </div>
-
-		    <!-- 404 page not found  -->
-
-		   
+		    </div>   
 		</div>
 		
 	</div>
@@ -130,31 +86,4 @@
 	</footer>
 </div>
 
-<script type="text/javascript">
 
-	document.getElementById('fbshareBtn').onclick = function() {
-	  FB.ui({
-	    method: 'share',
-	    display: 'popup',
-	    href: 'http://dropque.com',
-	  }, function(response){});
-	}
-
-		$(document).ready(function(){
-			// the body of this function is in assets/material-kit.js
-			materialKit.initSliders();
-			$(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
-
-            window_width = $(window).width();
-
-            if (window_width >= 768){
-                big_image = $('.wrapper > .header');
-
-				$(window).on('scroll', materialKitDemo.checkScrollForParallax);
-			}
-
-		});
-	</script>
-
-
-</body>

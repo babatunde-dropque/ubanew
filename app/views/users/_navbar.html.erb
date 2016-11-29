@@ -8,21 +8,15 @@
                         <span class="icon-bar bar3"></span>
                     </button>
                     <% if @company.nil? %>
-                       <%= image_tag('dqlg.png')%>
+                       <%= image_tag('dqlg.png', style:"height: 65px;" )%>
                     <% end %>
 
                 </div>
                 <div class="collapse navbar-collapse">
-
-
                   <% if !@interview.nil? %>
                     <a class="navbar-brand" href="#"><%= @interview.title %></a>
                   <% end %>
-               
-
-
                     <ul class="nav navbar-nav navbar-right">
-
                              <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <p  id="notification-number" class="notification small-text-notification"> <%= @notification.length %> </p>
@@ -45,7 +39,7 @@
                                                 </btn>
 
                                                    <div class="author">
-                                                    <%= image_tag('dummy.jpg', class:"avatar small", alt:"Thumb") %>
+                                                    <%= image_tag('dummy.png', class:"avatar small", alt:"Thumb") %>
                                                      <% if noti.type_notification == 1 %>
                                                         <span itemprop="author"> Interview Completed </span>
                                                     <% elsif noti.type_notification == 2 %>
@@ -79,27 +73,19 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                   <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Edit <% end %>
+                                   <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Settings <% end %>
                                 </li>
                                 <li>
                                    <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ]) , target: "_blank" do %> Edit Interview page <% end %> 
                                 </li>
-
-                                <li><a href="http://<%= @company.subdomain %>.<%= request.host_with_port %>" target= "_blank"> Interview Page </a>
-                                   
+                                <li><a href="https://<%= @company.subdomain %>.dropque.com"   target= "_blank"> Interview Page </a>
                                 </li>
-
-
                                 <li>
                                    <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %> 
                                 </li>
-
-
-
-                              </ul>
+                            </ul>
                         </li>
                         <% end %>
-
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="ti-user"></i>
@@ -107,11 +93,11 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><%= link_to "Dashboard", root_path %></li>
-                                <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-                                <!-- <li> <%= link_to "Profile", edit_user_registration_path %> </li> -->
-
-                              </ul>
+                               <li><%= link_to "Dashboard", root_path %></li>
+                               <!-- <li> <%= link_to "Profile", edit_user_registration_path %> </li>  -->
+                               <li> <%= link_to "Account", user_account_path %> </li>
+                               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                            </ul>
                         </li>
                     </ul>
 

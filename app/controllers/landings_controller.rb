@@ -15,7 +15,7 @@ class LandingsController < ApplicationController
   end
 
   def errors
-  	 render status_code.to_s, :status => status_code
+  	 render status_code.to_s, :status => status_code, :layout => 'signin'
   end
 
   def letsencrypt

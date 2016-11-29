@@ -18,8 +18,7 @@
                                 <center>
                                       <h4> Send Invitation</h4>
                                       <div class="typo-line">
-                                        
-                                           <h5>https://<%= @company.subdomain %>.dropque.com/applicants/<%= @interview.interview_token %>
+                                          <h5>https://<%= @company.subdomain %>.dropque.com/applicants/<%= @interview.interview_token %>
                                             <p class="category">(Invitation Link)</p> </h5>
                                        </div> 
                                       <form  method="POST" action="<%= send_invite_mail_company_interviews_path %>" >
@@ -35,17 +34,13 @@
                                            </div>
                                            <label id="indicator-mail"> </label>
                                         </div>
-<<<<<<< HEAD
 
 
 
-=======
-                                
->>>>>>> c4caaa05994a037015330d05df16b532dccf16b7
                                       <button  type = "submit" class="btn btn-info btn-fill btn-wd">Send</button> 
                                       </form>
                                 </center>
-                                   <button id="add-bulk-contact"> Import Emails </button> 
+                                   <button id="add-bulk-contact"> Show Button </button> 
                             </div>  
                         </div>
                     </div>
@@ -221,20 +216,18 @@
         $("#model-contact").modal();
     });
 
-
     $("#contact-continue").click(function(){
 
 
     });
-    function tick(id)
-    {
+
+
+    function tick(id){
       $("#baba-"+id).change(function() {
       if (this.checked) {
         ajax(id, true);
-        alert ("Check "+id);
       } else {
         ajax(id, false);
-        alert("Uncheck "+id);
       }
       });
     }
@@ -245,20 +238,18 @@
       var mail_list = $("#email-list");
       var link = $("#baba"+id);
       if (isTick) {
-      url:  '<%= company_group_showGroupEmail_path(group_id:5) %>';
+      url:  '<%= show_group_emails_company_group_path(group_id:5) %>';
       }
       else {
-       url: '<%= company_group_showGroupEmail_path(group_id:5) %>';
+       url: '';
       }
 
       $.ajax({
+        url: url,
         type: 'GET',
         data: { id: 5 },
-        success: function(data){
-        var dat = data;
-        //if (data =="success");
-        console.log(data);
-        mail_list.val(data);
+        success: function(data, status){
+         console.log( data);
     },
     error : function(jqXHR, textStatus, errorThrown) {
 
@@ -270,24 +261,7 @@
     }
 
 
-// $.ajax({
-//           url: '/validate_email',
-//           type: 'GET',
-//           data: { email: email },
-//           success: function(data){
-//               if (data == "success" || trigger ){
-//                   $("#form-register").submit();
-//               } else {
-//                   trigger = true
-//                   $("#email-box").prop("readonly", true);
-//                   $("#name-box").show();
-//                   $("#create").val("yes");
-//              }
-//           },
-//           error : function(jqXHR, textStatus, errorThrown) {
 
-//            }
-//        });
 
 
 

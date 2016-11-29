@@ -1,18 +1,12 @@
  <!-- TODO Add header Partial -->
     <%= render partial: "header" %>
-
     <div class="container">
       <h2 class="dq-interview-question">  <%= @question_video %>  </h2>
 
+
       <div class="row dq-page-container">
-        <!-- <span class="fa fa-2x fa-video-camera dq-page-icon"></span>
-        <span class="dq-page-icon dq-question-property" id= "duration"> </span> -->
         <div id="video-container" class="dq-inner-video"> </div>
-        
-        <!-- <div class="row">
-          <div class=" col-md-8"> <div id="video-container" class="dq-inner-video">  </div></div>
-          <div class=" col-md-3">  t </div></div>
-        </div>   -->      
+        <div id="duration" class="word-counter"></div>         
      </div>
 
       <div class="row">
@@ -91,25 +85,16 @@ function milisecondsToMins(milliseconds){
   var minutes = milliseconds / (1000 * 60)
   var absoluteMinutes = Math.floor(minutes);
   var m = absoluteMinutes > 9 ? absoluteMinutes : '0' +  absoluteMinutes;
-
-  //Get remainder from minutes and convert to seconds
   var seconds = (minutes - absoluteMinutes) * 60;
   var absoluteSeconds = Math.floor(seconds);
   var s = absoluteSeconds > 9 ? absoluteSeconds : '0' + absoluteSeconds;
-
   return + m + ' min : ' + s+' sec';
 }
 
 
  function addZiggeo(){
-  //  the responsive key in ziggeo can maximax to the size of the parent tag
-  // tags key in ziggeo (array): Tags that a newly created video should be associated with
-  // limit (int): Maximum duration of video
   var embedding = ZiggeoApi.Embed.embed("#video-container",  
     { 
-      // responsive : true, 
-      // disable_first_screen: true,
-      // disable_snapshots: true,
       popup : true,
       immediate_playback: true,
       limit: <%= @time_allowed.to_i / 1000 %>,
@@ -122,11 +107,9 @@ function milisecondsToMins(milliseconds){
  }
 
 
-
  function setTimeForQuestion(milliseconds){
    var stringTime = milisecondsToMins(milliseconds);
-   $('#duration').text("Time Allowed :" +stringTime);
-
+   $('#duration').text("Time Allowed: " +stringTime);
  } 
 
 
@@ -153,14 +136,13 @@ function milisecondsToMins(milliseconds){
  
  addZiggeo();
  var submitted = false;
- // setTimeForQuestion(<%= @time_allowed %>);
+ setTimeForQuestion(<%= @time_allowed %>);
 
   
   ZiggeoApi.Events.on("submitted", function (data) {
     var answer = setUpParameters(data.video.token);
 
   if (!submitted){
-    // create a new submission table
     $.ajax({
           url:'/applicants/submit_video',
           type: 'POST',
@@ -173,10 +155,8 @@ function milisecondsToMins(milliseconds){
           success: function(data){
               if (data == "success"){
                    $("#submit").show();
-                   console.log("working fine");
                    submitted = true;
               } else {
-                  console.log("working fine but error occur");
               }
           },
           error : function(jqXHR, textStatus, errorThrown) {
@@ -191,8 +171,6 @@ function milisecondsToMins(milliseconds){
         className: 'menu',
         position: "top center"
       });
-    // just display submitted without creating a new submission table
-    // $("#submitted-updated").text("video updated successfully");
   }
  
 });

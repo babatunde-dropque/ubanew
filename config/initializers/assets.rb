@@ -33,6 +33,10 @@ Rails.application.config.assets.precompile += %w( classie.js )
 Rails.application.config.assets.precompile += %w( modernizr.custom.js )
 
 
+# this is for jquery lazy load
+Rails.application.config.assets.precompile += %w( jquery.lazyload.js )
+
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

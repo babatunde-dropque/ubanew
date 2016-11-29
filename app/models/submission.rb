@@ -2,7 +2,8 @@ class Submission < ActiveRecord::Base
 
 	belongs_to :interview
 	belongs_to :user
-	enum status: [:reject, :pend, :shortlist]
+	enum status: [:shortlist, :pend, :reject]
+
 
 	# allow user to be able to commend on this model
 	acts_as_commontable

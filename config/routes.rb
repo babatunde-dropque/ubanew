@@ -6,17 +6,14 @@ Rails.application.routes.draw do
   # rails engine for comment
   mount Commontator::Engine => '/commontator'
   
-  # resources :bulks do
-  #   collection {post :import}
-  #   collection {post :fetch}
-  # end
-
-
   get 'applicants/index'
   get 'landings/index'
   get 'contact' => 'landings#contact'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard'
+  get "dashboard/account", to: "users#account", as: 'user_account'
+  post "dashboard/account", to: "users#account", as: 'user_account_put'
+  get "dashboard/check_password", to: "users#check_password", as: 'check_password'
 
 
   # post request for applicant data
@@ -28,6 +25,8 @@ Rails.application.routes.draw do
   %w( validate_interview validate_email ).each do |action|
     get  action => 'applicants#'+action
   end
+
+  get "check_subdomain", to: "companies#check_subdomain"
 
   # this is assigning device controllers for user(s)
   devise_for :users, controllers: {invitations: 'users/invitations', registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
@@ -123,6 +122,8 @@ Rails.application.routes.draw do
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
+      put "change_status", to: "interviews#change_status"
+      get "unfinish_submission", to: "interviews#unfinish_submission" 
     end
 
   end

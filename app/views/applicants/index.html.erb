@@ -39,10 +39,7 @@
 
                  <!--   <li>
                        <button contenteditable="false" class="btn dq-color-customized" > Background  image
-                       </button> 
-
-
-                          
+                       </button>    
               
                    </li> -->
                      <li>
@@ -72,6 +69,17 @@
 
                   </ul>
               </div>
+          <% else %>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <div style="margin: 15px;">
+                  <ul class="nav navbar-nav navbar-right">
+                    <!-- <li><strong><a  href="#" >Login</a></strong></li> -->
+                    <li><strong><a  href="<%= new_user_session_path %>" >Login</a></strong></li>
+                  </ul>
+              </div>
+            </div>
+
           <% end %>
           <!-- /.navbar-collapse -->
         </nav>

@@ -32,7 +32,7 @@
                                 <div class="dq-center-video">
                                   <% if !submission.first_video.nil? %>
                                     <% first_video = submission.first_video - 1 %>
-                                  <img src="https://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
+                                  <img class="lazy"  src="<%= asset_path('dummy.png') %>" data-original="https://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
                                   <% else %> 
                                     <%= image_tag('dummy.png')%>
                                   <% end %>
@@ -87,10 +87,10 @@
 
                 <td  rowspan="2" style=" width: 40%;" class="padding-5" > 
                   <div class="rate">
-                    <div class="centralize "> 
-                      <button class="btn btn-sm btn-danger btn-icon box-shape" title='reject' ><i class="ti-close"></i></button>
-                      <button class="btn btn-sm btn-icon  box-shape" title='pending'><i class="ti-minus"></i></button>
-                      <button class="btn btn-sm btn-success btn-icon  box-shape" title='shortlist'><i class="ti-check"></i></button>
+                    <div class="centralize " submission-id="<%= submission.id %>"> 
+                      <button class="btn btn-sm btn-danger btn-icon box-shape status <%= (submission.status == 'reject') ? "btn-fill": "" %> " status="2" title='reject' ><i class="ti-close"></i></button>
+                      <button class="btn btn-sm btn-icon  box-shape status <%= (submission.status == 'pend') ? "btn-fill": "" %>" status="1" title='pending'><i class="ti-minus"></i></button>
+                      <button class="btn btn-sm btn-success btn-icon  box-shape status <%= (submission.status == 'shortlist') ? "btn-fill": "" %> " status="0" title='shortlist'><i class="ti-check"></i></button>
                       <br><br>
                     </div> 
                       
@@ -291,7 +291,40 @@
                
            }
        });
-  }  
+  } 
+
+
+  $(".status").click(function(){
+    var current = $(this);
+    var parent =  $(this).parent();
+    var submissionId = parent.attr('submission-id');
+    var status = current.attr('status');
+    console.log(submissionId);
+
+    $.ajax({  
+          url: '<%= company_interview_change_status_path(company_id:@company.slug, interview_id:@interview.slug)%>', 
+          type: 'PUT',
+          data: { submission_id: submissionId, status: status},
+          success: function(data){
+              if (data == "success" ){
+                 parent.children().removeClass('btn-fill');
+                 current.addClass('btn-fill');
+             } else if (data == "error"){
+                parent.children().removeClass('btn-fill');     
+             }
+          },
+          error : function(jqXHR, textStatus, errorThrown) {
+               parent.children().removeClass('btn-fill');    
+           }
+       });
+  });
+
+
+  // lazy load images
+  $("img.lazy").show().lazyload({
+    effect : "fadeIn"
+  });
+
 </script>
 
 

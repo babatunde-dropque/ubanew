@@ -32,15 +32,15 @@
                                       <li>
 
                                         
-                                        <%= link_to company_path(user_company.company) do%>  
+                                        <%= link_to company_path(user_company.company, c:"1") do%>  
                                         <div class="row">
                                             <div class="col-xs-3">
-                                                <div class="avatar">
+                                                <div class="">
                                                     <% if user_company.company.logo.file.nil? %>  
-                                                           <%= image_tag('logo1.png', class:" img-responsive", alt:"Thumb") %>
+                                                           <%= image_tag('logo1.png', height:"55") %>
                                                        <% else %>
                                                           
-                                                            <img src="<%= user_company.company.logo.url %>" class="img-responsive" alt="Thumb" />
+                                                            <img src="<%= user_company.company.logo.url %>" height="55"  />
                                                        <% end %>
                                                 </div>
                                             </div>
@@ -59,7 +59,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                           <span class="text-muted">
-                                                            No of collaborator: <%= num_collabs %>
+                                                            No of collaborator(s): <%= num_collabs %>
                                                           </span> 
                                                         </div>
                                                     </div>
@@ -72,7 +72,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                           <span class="text-muted">
-                                                            No of collaborator: <%= num_collabs %>
+                                                            No of collaborator(s): <%= num_collabs %>
                                                           </span> 
                                                         </div>
                                                     </div>
@@ -85,7 +85,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                           <span class="text-muted">
-                                                            No of collaborator: <%= num_collabs %>
+                                                            No of collaborator(s): <%= num_collabs %>
                                                           </span> 
                                                         </div>
                                                     </div>
@@ -122,5 +122,13 @@
 
     </div>
 </div>
+
+<script >
+
+<% flash.each do |key, value| %>
+    showMessage('top','center', "<%= value %>", 2);                   
+<% end %>
+
+</script>
 
 

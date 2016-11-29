@@ -117,20 +117,29 @@ class InterviewsController < ApplicationController
      end
 
      render 'show'
-
-    # respond_to do |format|
-    #   format.html { redirect_to company_interview_path(id: @interview.slug), notice: "Interview was successfully sent." }
-    # end
   end
 
-  
 
 
 
 
+  def change_status
+    submission = Submission.find(params[:submission_id])
+     if submission.update(status: params[:status].to_i)
+        render plain: "success"
+      else
+        render plain: "error"
+      end
+  end
+
+ <<<<<<< HEAD
 
 
-
+=======
+  def unfinish_submission
+     @submissions = @interview.submissions.where(current_no: 500)
+  end
+>>>>>>> c4caaa05994a037015330d05df16b532dccf16b7
 
 	private
 
