@@ -36,11 +36,11 @@
                                         </div>
 
 
-                                
+
                                       <button  type = "submit" class="btn btn-info btn-fill btn-wd">Send</button> 
                                       </form>
                                 </center>
-                                   <!-- <button id="add-bulk-contact"> Show Button </button>  -->
+                                   <button id="add-bulk-contact"> Import Emails </button> 
                             </div>  
                         </div>
                     </div>
@@ -130,8 +130,7 @@
                     <div class="header">
                       <h4 class="title">Question(s)</h4>
                     </div>
-                    
-                                                                      
+
                 </div>
           </div>
         </div> -->
@@ -171,7 +170,7 @@
         <hr>
         <% @company.groups.each do | group | %>
 
-        <div class="row"> 
+        <div class="row">
           <div class="col-md-4">
             <b><%= group.name %></b>
 
@@ -179,9 +178,9 @@
           <div class="col-md-4"><%= group.bulks.length %></div>
           <div class="col-md-4">
             <div class="[ form-group ]">
-            <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-<%= group.id %>" />
+            <input onclick="tick(<%= group.id %>)"    value="<%= group.id %>" type="checkbox" name="fancy-checkbox-default" id="baba-<%= group.id %>" />
             <div class="[ btn-group ]">
-                <label for="fancy-checkbox-<%= group.id %>" class="[ btn btn-default  box-shape ]">
+                <label for="baba-<%= group.id %>" class="[ btn btn-default  box-shape ]">
                     <span class="[ glyphicon glyphicon-ok ]"></span>
                     <span> </span>
                 </label>
@@ -219,9 +218,73 @@
 
 
     $("#contact-continue").click(function(){
-       
-      
+
+
     });
+    function tick(id)
+    {
+      $("#baba-"+id).change(function() {
+      if (this.checked) {
+        ajax(id, true);
+        alert ("Check "+id);
+      } else {
+        ajax(id, false);
+        alert("Uncheck "+id);
+      }
+      });
+    }
 
 
-</script>   
+     function ajax(id, isTick){
+      var url = "";
+      var mail_list = $("#email-list");
+      var link = $("#baba"+id);
+      if (isTick) {
+      url:  '<%= company_group_showGroupEmail_path(group_id:5) %>';
+      }
+      else {
+       url: '<%= company_group_showGroupEmail_path(group_id:5) %>';
+      }
+
+      $.ajax({
+        type: 'GET',
+        data: { id: 5 },
+        success: function(data){
+        var dat = data;
+        //if (data =="success");
+        console.log(data);
+        mail_list.val(data);
+    },
+    error : function(jqXHR, textStatus, errorThrown) {
+
+           }
+     });
+
+
+
+    }
+
+
+// $.ajax({
+//           url: '/validate_email',
+//           type: 'GET',
+//           data: { email: email },
+//           success: function(data){
+//               if (data == "success" || trigger ){
+//                   $("#form-register").submit();
+//               } else {
+//                   trigger = true
+//                   $("#email-box").prop("readonly", true);
+//                   $("#name-box").show();
+//                   $("#create").val("yes");
+//              }
+//           },
+//           error : function(jqXHR, textStatus, errorThrown) {
+
+//            }
+//        });
+
+
+
+
+</script>

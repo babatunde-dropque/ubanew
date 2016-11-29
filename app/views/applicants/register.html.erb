@@ -82,7 +82,7 @@ $.notify.addStyle('happyblue', {
     }else if (validateEmail(email)){
 
       $.ajax({
-          url: '/validate_email', 
+          url: '/validate_email',
           type: 'GET',
           data: { email: email },
           success: function(data){

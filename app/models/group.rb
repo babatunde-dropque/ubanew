@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
 
 	validates :name, presence: true
 	belongs_to  :company
-	has_many  :bulks
+	has_many  :bulks, dependent: :destroy
 
 
 	friendly_id :name, :use => :slugged 
