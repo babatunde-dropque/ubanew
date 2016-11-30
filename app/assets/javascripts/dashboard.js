@@ -61,73 +61,6 @@ $(document).ready(function(){
 		tour.start();
 	} 
 
-
-
-	
-
-	$('.filterismo').on("click", "a.ajax-btn", function(){
-		var thisObject = $(this);
-		var patchLink = thisObject.attr('href');
-		$.ajax({
-		      url: patchLink,
-		      type: 'PATCH',
-		      success: function(data){
-		      	if (data == "success"){
-		      		var current_status_parent = $('#current_status_stored').val();
-		      		var current_status = thisObject.attr('current_status');
-		      		if (current_status == current_status_parent){
-		      			if (current_status == "reject"){
-    							showMessage('top','right', "Candidate already declined", 4);
-    						} else if (current_status == "pend"){
-    							showMessage('top','right', "Candidate already pended", 1);
-    						} else {
-    							showMessage('top','right', "Candidate already shortlisted", 2);
-    						}
-		      		} else{
-				      	var  parentCard = thisObject.parents('div.card-start');
-				      	parentCard.hide("slide", { direction: "left"}, 300, function() {
-    						thisObject.parents('div.card-start')[0].remove();
-    						if (current_status == "reject"){
-    							showMessage('top','right', "you have Declined this candidate", 4);
-    						} else if (current_status == "pend"){
-    							showMessage('top','right', "you have pended this candidate", 1);
-    						} else {
-    							showMessage('top','right', "you have shortlisted this candidate", 2);
-    						}
-						});
-		      		}
-		      		
-		      	} else {
-		      		showMessage('top','right', "An error occurred, please try again", 4);
-		      	}
-		      },
-		      error : function(jqXHR, textStatus, errorThrown) {
-		      	   showMessage('top','right', "An error occurred, please try again", 4);
-		       }
-		   });
-		return false;
-	});
-
-
-	$('.filterismo').on("click", "button.comment_button", function(){
-		var id = $(this).attr('id-modal');
-
-		var isAttached = $(this).attr('attached');
-		if (isAttached == "false"){
-		   var modalView = $(this).parent().find('div.myModal');
-           $('#modal-list').append(modalView.html());
-           modalView.html("");
-           $(this).attr("attached", "true");
-		} 
-           $(id).modal();
-	});
-
-
-	$('.myModal').on('shown.bs.modal', function () {
-
-	});
-
-
 	$('#selectThis').change(function(){
 		var option = $('#selectThis option:selected');
 		var link = option.attr('link');
@@ -135,69 +68,12 @@ $(document).ready(function(){
 		filterAjaxRequest(link+"&status="+status);
 	});
 
-	$(".filterismo").on("click", ".upvoted", function(){
-		var hrefValue = $(this).attr('href');
-     	var thisObject = $(this).find('.upvote_count');
-     	var sibling = $(this).parent().find('.downvote_count');
-     	var val = thisObject.html();
-     	var siblingVal = sibling.html();
-     		thisObject.html(1 + parseInt(val));
-     		if (parseInt(siblingVal) >= 1){
-		   		sibling.html(parseInt(siblingVal) - 1);
-		   	}
-     	$.ajax({
-		      url: hrefValue,
-		      type: 'GET',
-		      success: function(data){
-		          if (data == "false"){
-		          	thisObject.html(val);
-		          	sibling.html(siblingVal);
-		          }
-		      },
-		      error : function(jqXHR, textStatus, errorThrown) {
-		      	    thisObject.html(val);
-		          	sibling.html(siblingVal);
-		       }
-		   });
-     	return false; 
-    });
-
-
-    $(".filterismo").on("click", ".downvoted", function(){
-     	var hrefValue = $(this).attr('href');
-     	var thisObject = $(this).find('.downvote_count');
-     	var sibling = $(this).parent().find('.upvote_count');
-     	var val = thisObject.html();
-     	var siblingVal = sibling.html();
-     		thisObject.html(parseInt(val) + 1);
-     		if (parseInt(siblingVal) >= 1){
-		      	sibling.html(parseInt(siblingVal) - 1);
-		     }
-     	$.ajax({
-		      url: hrefValue,
-		      type: 'GET',
-		      success: function(data){
-		      	if (data == "false"){
-		          	thisObject.html(val);
-		          	sibling.html(siblingVal);
-		          }
-		      },
-		      error : function(jqXHR, textStatus, errorThrown) {
-		      	  thisObject.html(val);
-		          sibling.html(siblingVal);
-		       }
-		   });
-     	return false;
-    });
-
-
-	
+		
 	// this is the script responsible for tags
 	var emailTag = $('#emails');
 	emailTag.tagit({
 		placeholderText: "mail@example.com",
 		beforeTagAdded: function(event, ui) {
-        // do something special
 	        var email = emailTag.tagit('tagLabel', ui.tag);
 	        if (!validateEmail(email)){
 	        	$("#indicator").html("Invalid Email");
@@ -206,9 +82,6 @@ $(document).ready(function(){
 	        $("#indicator").html("");
     	}
 	});
-
-
-	
 
 	var emailTagList = $('#email-list');
 	emailTagList.tagit({
@@ -251,16 +124,12 @@ $(document).ready(function(){
 	    		}
 			}
 		}
-
 	}
-
-
 
 
 
     $("#add-new").click(function(){
     	  var checkType = $("#question-type").val(); 
- 
     	if(checkType == 1){
     	  var newQuestion = addNewQuestionWithDetails("",null, checkType);
         } else if(checkType == 2){
@@ -268,51 +137,40 @@ $(document).ready(function(){
         } else if(checkType == 3){
           var newQuestion = addNewFileUpload("","", checkType);
         }
-
         $("#question-tag").append(newQuestion);
-
-       
     });
 
 
      $("#question-tag").on("click", ".remove", function(){
-     	$(this).parents('div.row')[0].remove(); 
-    
-        // var question = $(this).attr("cartprice");
-        // var index = $(this).closest('div.cart-item').index();
-        // var productList = (Cookies.getJSON('cart'));
-        // productList.splice(productList.length - 1 - index,1);
-        // Cookies.set('cart', productList, { expires: 7 });
-        
-        // $('#cartsum').text(parseInt($('#cartsum').text()) - parseInt(price));
-        // $('.sum').text($('#cartsum').text());
-        // $('#cartcount').text(parseInt($('#cartcount').text()) - 1);
-          // alert("clidk me");
+     	$(this).parents('div.row')[0].remove();
         return false;
     });
 
  function validateTime(email) {
      var re = /^[0-9]{1,2}:[0-9]{1,2}$/;
     return re.test(email);
-}
+ }
+
+ function validateNumber(number){
+ 	var re = /^[0-9]+$/
+ 	return re.test(number)
+ }
 
 
      $("#interview-submit").click(function(event){
-    	// this part will add the questions to the question field before submission
-    	// check if title is empty
     	var titleInterview = $("#title-interview").val()
     	if (!titleInterview) {
-    		showMessage('top','right', "Interview title cannot be empty", 4);
+    		showMessage('top','center', "Interview title cannot be empty", 4);
     		event.preventDefault();
     	}
     	var descriptionInterview = $("#title-description").val()
     	if(!descriptionInterview) {
-    		showMessage('top','right', "Interview description cannot be empty", 4);
+    		showMessage('top','center', "Interview description cannot be empty", 4);
     		event.preventDefault();
     	} 
     	var instructionInterview = $("#title-instruction").val()
     	if(!instructionInterview) {
-    		showMessage('top','right', "Interview instruction cannot be empty", 4);
+    		showMessage('top','center', "Interview instruction cannot be empty", 4);
     		event.preventDefault();
     	} 
     	
@@ -326,15 +184,14 @@ $(document).ready(function(){
 		     
 		     if (!firstField || !secondField){
 		     	// check if question or timeAllowed is empty
-		     	showMessage('top','right', "question field cannot be empty", 4);
+		     	showMessage('top','center', "question field cannot be empty", 4);
 		     	event.preventDefault();
 
 		     } else{
-
 		     	if (type == 1){
 		     		// check time format
 			     	if (!validateTime(secondField)){
-				        showMessage('top','right', "Time format not correct, use mm:ss ", 4);
+				        showMessage('top','center', "Time format not correct, use mm:ss ", 4);
 				        event.preventDefault();
 		       		 } else {
 		       		 	questionItem = {}
@@ -345,24 +202,36 @@ $(document).ready(function(){
 
 		       		 }
 	       		} else if (type == 2){
+	       			if (!validateNumber(secondField)){
+	       				showMessage('top','center', "Max word allowed must be number", 4);
+				        event.preventDefault();
+	       			} else {
 	       				questionItem = {}
 		       		 	questionItem["question_type"] = type ;
 			         	questionItem["question_text"] = firstField;
 			         	questionItem["max_char"] = secondField;
 			         	jsonObj.push(questionItem);
+			        }
 
 	       		} else if (type == 3 ){
+	       			if (!validateNumber(secondField)){
+	       				showMessage('top','center', "Max file size must be number", 4);
+				        event.preventDefault();
+	       			} else {
 	       				questionItem = {}
 		       		 	questionItem["question_type"] = type ;
 			         	questionItem["file_text"] = firstField;
 			         	questionItem["file_size"] = secondField;
 			         	jsonObj.push(questionItem);
-
+			         }
 	       		}
 		     }
 		     
 		});
-
+			if (jsonObj.length == 0){
+				showMessage('top','center', "You cannot create interview without any question ", 4);
+				event.preventDefault();
+			}
      	 	$("#questions-json").val(JSON.stringify(jsonObj));
 
         });
@@ -417,7 +286,7 @@ function addNewQuestionWithDetails(q,t, type){
 		      "</div>"+
 		      "<div class='col-md-3'>"+
 		          "<div class='form-group'>"+
-		              "<input type='text' class='form-control border-input' placeholder='Time allowed' value='"+fomattedTime+"'>"+
+		              "<input type='text' class='form-control border-input' placeholder='mm:ss Time allow' value='"+fomattedTime+"'>"+
 		          "</div>"+
 		      "</div>"+
 		      "<div class='col-md-1 close'>"+
@@ -572,7 +441,7 @@ function showMessage(from, align, message, color){
     	message: message
     },{
         type: type[color],
-        timer: 2500,
+        timer: 3500,
         placement: {
             from: from,
             align: align
