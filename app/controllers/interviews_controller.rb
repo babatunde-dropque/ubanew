@@ -132,14 +132,7 @@ class InterviewsController < ApplicationController
       end
   end
 
- <<<<<<< HEAD
 
-
-=======
-  def unfinish_submission
-     @submissions = @interview.submissions.where(current_no: 500)
-  end
->>>>>>> c4caaa05994a037015330d05df16b532dccf16b7
 
 	private
 
