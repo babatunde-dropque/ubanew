@@ -1,9 +1,9 @@
 class InterviewsController < ApplicationController
 	layout 'user_dashboard'
-	before_action :authenticate_user!, :except => [:show_group_emails]
-	before_action :set_up_user, :except => [:show_group_emails]
-  before_action :set_up_company, :except => [:show_group_emails]
-  before_action :set_up_interview, :except => [:new, :create, :index, :show_group_emails]
+	before_action :authenticate_user!
+	before_action :set_up_user
+  before_action :set_up_company
+  before_action :set_up_interview, :except => [:new, :create, :index]
 
 
 

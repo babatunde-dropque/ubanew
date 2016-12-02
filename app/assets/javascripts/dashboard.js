@@ -73,7 +73,7 @@ $(document).ready(function(){
 	var emailTag = $('#emails');
 	emailTag.tagit({
 		placeholderText: "mail@example.com",
-		beforeTagAdded: function(event, ui) {
+		beforeTagAdded: function(event, ui){
 	        var email = emailTag.tagit('tagLabel', ui.tag);
 	        if (!validateEmail(email)){
 	        	$("#indicator").html("Invalid Email");
@@ -83,19 +83,6 @@ $(document).ready(function(){
     	}
 	});
 
-	var emailTagList = $('#email-list');
-	emailTagList.tagit({
-		placeholderText: "mail@example.com",
-		beforeTagAdded: function(event, ui) {
-        // do something special
-	        var email = emailTagList.tagit('tagLabel', ui.tag);
-	        if (!validateEmail(email)){
-	        	$("#indicator-mail").html("Invalid Email");
-	        	return false;
-	        }
-	        $("#indicator-mail").html("");
-    	}
-	});
 
 
     formatQuestion();

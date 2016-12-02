@@ -103,21 +103,13 @@ Rails.application.routes.draw do
     get "all_interview", to: "companies#all_interview"
 
     resources :groups do
-      get "showGroupEmail", to: "groups#showGroupEmail"
-      get "unshowGroupEmail", to: "groups#unshowGroupEmail"
-      # get 'show_group_emails', on: :member
-     # get  'show_group_emails' => 'groups#show_emails'
-
-      resources :bulks do
-       post 'import', on: :collection
-     # collection{post :import
-     #            post :fetch}
+       get 'show_group_emails', on: :member
+       resources :bulks do
+          post 'import', on: :collection
       end
     end
 
     resources :interviews do
-
-      # post 'show_group_emails', on: :member
       post 'send_invite_mail', on: :collection
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
