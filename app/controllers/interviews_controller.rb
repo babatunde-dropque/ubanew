@@ -1,9 +1,9 @@
 class InterviewsController < ApplicationController
 	layout 'user_dashboard'
-	before_action :authenticate_user!, :except => [:show_group_emails]
-	before_action :set_up_user, :except => [:show_group_emails]
-  before_action :set_up_company, :except => [:show_group_emails]
-  before_action :set_up_interview, :except => [:new, :create, :index, :show_group_emails]
+	before_action :authenticate_user!
+	before_action :set_up_user
+  before_action :set_up_company
+  before_action :set_up_interview, :except => [:new, :create, :index]
 
 
 
@@ -16,19 +16,7 @@ class InterviewsController < ApplicationController
 
 	end
 
-  # def send_invite_mail
-  #      @int = Interview.find(@interview.id)
-  #      @list = @int.mail_list.split(",")
-  #      @list.map do |item|
-  #      InterviewMailer.interview_invite(@int, item).deliver
-  #      end
-  #     #  @int = Interview.find(params[:interview_id])
-
-  #       respond_to do |format|
-  #       format.html { redirect_to company_interviews_path, notice: "Interview was successfully sent." }
-  #   end
-  # end
-
+  
   def single_interview_submissions
      @submissions = @interview.submissions.where(current_no: 500)
      render :layout => 'single_interview_submissions'
@@ -81,8 +69,6 @@ class InterviewsController < ApplicationController
 
 	def index
 		@interview_all = @company.interviews
-		# @interview_all = Interview.where(company_id: @company.id)
-
 	end
 
 	def create
@@ -119,6 +105,10 @@ class InterviewsController < ApplicationController
      render 'show'
   end
 
+
+  def unfinish_submission
+      @submissions = @interview.submissions.where(current_no: 500)
+  end
 
 
 

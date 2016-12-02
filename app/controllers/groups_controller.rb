@@ -41,35 +41,15 @@ class GroupsController < ApplicationController
   end
 
 
-
   def show_group_emails
-      @group = Group.find_by(id:params[:id])
-      contact = @group.bulks
-      @arr = Array.new('contact.length')
-      contact.find_each do |con|
-      @arr.push('con.email')
-      # render :json => {:one => @arr.push('con.email') , :two =>"two" }
-      # render :json => {:goood => "yes", :bad =>"no" }
-      end
-       render :json => @arr.to_json
-    end
-    # redirect_to company_group_path, notice: "The group #{@arr} has been uploaded."
-
-
-  def unshow_group_emails
-      @group = Group.find_by(id:params[:group_id])
-      contact = @group.bulks
-      @arr = Array.new('contact.length')
-      contact.find_each do |con|
-       @arr.push('con.email')
-      end
-    # redirect_to company_group_path, notice: "The group #{@arr} has been uploaded."
+    contact = @group.bulks
+    render :json => contact.as_json(:only => [:email])
   end
 
 
 private
+      
       def set_group
-
         @group = Group.friendly.find(params[:group_id] || params[:id])
         # check if company has permission to view the interview
         if !(@group.company_id == @company.id)

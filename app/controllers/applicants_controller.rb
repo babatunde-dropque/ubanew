@@ -57,6 +57,7 @@ class ApplicantsController < ApplicationController
 
 
   def question
+     set_cache_buster()
      @position =  test_for_end(@interview.questions.length, params[:pos].to_i)
      if (params[:submission] == "text")
         @submission.update_attributes(current_no: @position, answers: params[:answers])
@@ -149,6 +150,14 @@ class ApplicantsController < ApplicationController
     end
   end
 
+
+ 
+  # this will diable cache from browser
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
   
 
 
