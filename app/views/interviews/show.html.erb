@@ -47,52 +47,37 @@
                 </div>
 
 
-                <div class="row">
+                
 
-
-
+      <div class="row">
           <div class="col-lg-12 col-md-12">
               <div class="card box-shape">
                       <div>
                           <div class="header">
                             <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>
+                             <h5> Details </h5>
                           </div>
-                          <div class="content"><br><br></div>
                       </div>
 
 
                     <div class="content">
-
-                      <div class="container-fluid">
-                          <div class="row">
-                              <div class="col-xs-12 col-lg-6 col-md-6">
-                                   <div class="typo-line">
-                                      <h5><p class="category">Description</p><%= @interview.description %></h5>
-                                   </div>
-                                  
-                                   <div class="typo-line">
-                                      <h5><p class="category">Instruction</p><%= @interview.instruction %></h5>
-                                   </div>
-                                
-                                                                             
-                              </div>
-
-                              <div class="col-xs-12 col-lg-6 col-md-6">
-
-                                <div class="typo-line">
-                                      <h5><p class="category">Token</p><%= @interview.interview_token %></h5>
-                                   </div>
-                                   <div class="typo-line">
-                                      <h5><p class="category">Completed Message</p><%= @interview.completed_message %></h5>
-                                   </div>
-                                                                         
-                              </div>
-                          </div>
-                      </div>
-                  </div> 
-
-
+                        <div class="content table-responsive table-full-width">
+                          <table class="table table-striped">
+                            <tbody>
+                              <tr><td >Description</td><td style="white-space: pre-line;"><%= @interview.description %></td></tr>
+                              <tr><td>Instruction</td><td style="white-space: pre-line;"><%= @interview.instruction %></td></tr>
+                              <tr><td>Message</td><td style="white-space: pre-line;"><%= @interview.completed_message %></td></tr>
+                              <tr><td>Token</td><td><%= @interview.interview_token %></td></tr>
+                              <tr><td>Deadline</td><td><%= @interview.deadline %></td></tr>
+                              <tr><td>Access</td>
+                                <td><%= (@interview.status == "1") ? "Private": "Public" %></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                    </div> 
                   <div class="content">
+                     <h5> Question(s) </h5>
                       <div class="typo-line">
                         <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
                           <div class="content table-responsive table-full-width">
@@ -104,8 +89,6 @@
                             </div>
                       </div>
                   </div>                           
-
-
               </div>
            </div>
 
