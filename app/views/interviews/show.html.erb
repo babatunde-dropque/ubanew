@@ -15,7 +15,12 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card box-shape">
                               <div class="content">
-                                      <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulks Emails </button> 
+                                                  <% if !flash[:notice].blank? %>
+                                <div class="alert alert-info">
+                                         <%= flash[:notice] %>
+                                                      </div>
+                                                     <% end %>
+                                      <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulk Emails </button> 
                                       <h5> Send Invitation</h5>
                                     <div class="text-center">
                                       <div class="typo-line"> 

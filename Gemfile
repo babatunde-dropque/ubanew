@@ -96,3 +96,5 @@ gem 'delayed_job_active_record'
 gem 'ratyrate'
 # rails admin gem for admin dashboard
 gem 'rails_admin'
+
+gem 'twitter'

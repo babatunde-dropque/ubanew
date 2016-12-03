@@ -102,7 +102,9 @@ class InterviewsController < ApplicationController
         InterviewMailer.interview_invite(@interview, item).deliver
      end
 
-     render 'show'
+     # render 'show'
+     # notice: 'Contact was successfully updated.'
+     redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Invitation was successfully sent.'
   end
 
 
