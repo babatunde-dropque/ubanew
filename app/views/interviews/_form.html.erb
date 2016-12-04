@@ -38,12 +38,12 @@
 
     <div class="row">
         <div class=" form-group col-md-10" >
-          <label>Interviews Access </label><br>
+          <label>Interviews Access (Available for Business and Enterprise plan) </label><br>
         </div>
         <div class="col-md-2 ">
           <div class="float-right">
             <div class="onoffswitch file">
-              <%= f.check_box :status, :id => 'myonoffswitch', class: "onoffswitch-checkbox"  %>
+              <%= f.check_box :status, :id => 'myonoffswitch', class: "onoffswitch-checkbox",  disabled:true %>
 
                 <label class="onoffswitch-label" for="myonoffswitch">
                     <span class="onoffswitch-inner"></span>

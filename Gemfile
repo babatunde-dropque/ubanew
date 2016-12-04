@@ -96,3 +96,5 @@ gem 'delayed_job_active_record'
 gem 'ratyrate'
 # rails admin gem for admin dashboard
 gem 'rails_admin'
+# for heroku erro logs
+gem 'rails_12factor'

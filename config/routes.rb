@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post 'applicants/submit_video' => 'applicants#submit_video'
   post 'applicants/upload_file' => 'applicants#upload_file'
 
+
   %w( validate_interview validate_email ).each do |action|
     get  action => 'applicants#'+action
   end

@@ -3,7 +3,7 @@ class ApplicantsController < ApplicationController
   before_filter :set_up_company, :except => [:validate_interview, :validate_email]
   before_filter :set_up_interview, :except => [:index, :validate_interview, :validate_email, :submit_video]
   before_filter :set_up_user_and_submission, :except => [:index, :validate_interview, :validate_email, :submit_video]
-
+  # before_filter :no_browser_cache, :except => [:index, :upload_file, :validate_interview ]
   
   def index
 
@@ -11,8 +11,12 @@ class ApplicantsController < ApplicationController
   	# check details parameter and validate interview token once again
   	if params[:page] == "register"
       @interview = Interview.find_by(interview_token: params[:interview_token], company_id: @company.id )
-        if !@interview.nil?
+        if !@interview.nil? && !@interview.deadline.nil? && @interview.deadline.to_date.past?
+          render "expired"
+        elsif !@interview.nil? && @interview.status == "0"
             render "register"
+        elsif !@interview.nil? && @interview.status == "1"
+            render "register_private"
         end 
     elsif params[:page] == "details"
       @interview = Interview.find(params[:interview_id])
@@ -38,27 +42,18 @@ class ApplicantsController < ApplicationController
       end
       render "details"
     end
-  
-  	# render default index.html.erb
   end
-
-   # also check if the deadline has been reached
-      # also confirm the interview token belongs to the company
-      # check if user exist and create if not
-      # if User.exists?(email: params[:email])
-      
-    #   else
-    
-    #   end
-
-     # create new user
 
   
 
 
   def question
-     set_cache_buster()
+     current_position = ( @submission.current_no.nil? ) ? 0 : @submission.current_no
      @position =  test_for_end(@interview.questions.length, params[:pos].to_i)
+     if current_position > @position
+        @position = current_position
+     end
+
      if (params[:submission] == "text")
         @submission.update_attributes(current_no: @position, answers: params[:answers])
      end
@@ -91,6 +86,7 @@ class ApplicantsController < ApplicationController
        render "complete"
      end 
  end
+
 
 
  def upload_file
@@ -151,13 +147,11 @@ class ApplicantsController < ApplicationController
   end
 
 
- 
-  # this will diable cache from browser
-  def set_cache_buster
-    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+def no_browser_cache
+    response.headers["Cache-Control"] = "no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-  end
+end
   
 
 

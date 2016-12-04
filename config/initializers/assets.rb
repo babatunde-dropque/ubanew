@@ -35,6 +35,8 @@ Rails.application.config.assets.precompile += %w( modernizr.custom.js )
 
 # this is for jquery lazy load
 Rails.application.config.assets.precompile += %w( jquery.lazyload.js )
+# jquery cookies handler
+Rails.application.config.assets.precompile += %w( js.cookie.js )
 
 
 # Add additional assets to the asset load path

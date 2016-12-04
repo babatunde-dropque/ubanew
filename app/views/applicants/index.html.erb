@@ -90,25 +90,41 @@
           </div>
           <div class="dq-bottom-overlay">
             <div class="container">
+               <br>
               <h5 class="dq-pre-cta editableContent max-char" max="60" >Pre cta text here</h5>
 
           
-          <form  id="form-details" method="post" action="/applicants"> 
-            
-            <br><br>
-            <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here" value="<%= params[:interview_token] %>" name="interview_token" contenteditable="false" hidden />
-            <br><br><br>
-            
+          <% if params[:interview_token].present? %>
+              <form  id="form-details" method="post" action="/applicants"> 
+                <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here" value="<%= params[:interview_token] %>" name="interview_token" contenteditable="false" hidden />
+                <br><br>
+                <input type="hidden" value="register" name ="page" />
+                  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>  
+                <% if  Interview.exists?(interview_token: params[:interview_token]) %>
+                   <div class="editableContent">
+                        <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> Start your interview </button>
+                   </div>
+              <%  else %>
+                 <div class="editableContent">
+                      <button disabled class="btn btn-large dq-color-customized"> Invalid Interview Token, Check the url </button>
+                 </div>
+               <% end %>
+               <br><br>
+              </form>
+          <% else  %>
 
-            
-            <input type="hidden" value="register" name ="page" />
-              <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>   
-         <div class="editableContent">
-              <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> Start your interview </button>
-         </div>
-        
-            
-          </form>
+          <form  id="form-details" method="post" action="/applicants"> 
+              <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here"  name="interview_token" contenteditable="false"  />
+                        
+              <input type="hidden" value="register" name ="page" />
+                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>   
+             <div class="editableContent">
+                  <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> Start your interview </button>
+             </div>
+            </form>
+          <% end %>
+
+
 
 
               <h6 class="dq-company-contact editableContent max-char" max="100">Have questions? Contact us on info@dropque.com</h6>
