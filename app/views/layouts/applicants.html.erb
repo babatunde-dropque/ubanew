@@ -4,20 +4,20 @@
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="turbolinks-cache-control" content="no-cache">
    <title>Application Interview </title>
 
      <%= favicon_link_tag 'dqfav.png' %>
-  	 <%= stylesheet_link_tag 'application', 'material-boostrap' %>
-	   <%= stylesheet_link_tag 'applicants' %>
+     <%= stylesheet_link_tag 'application', 'material-boostrap' %>
+     <%= stylesheet_link_tag 'applicants' %>
 
-	  <!-- Material Design Icons -->
+    <!-- Material Design Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag 'application', 'material-boostrap', 'notify.min', 'js.cookie' %> 
+    <%= javascript_include_tag 'application', 'material-boostrap', 'notify.min' %> 
+
 
     <!-- Heap Analytics Tracking Code -->
   <script type="text/javascript"> window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])}; heap.load("220824124"); 
@@ -33,21 +33,18 @@
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-
     </script> 
-	
+  
 </head>
 <body >
 
 
 <%= yield %>
 
+<%= javascript_include_tag 'applicants' %> 
 <script >
-
-
   (function() {
     'use strict';
-
     <% if !@company.properties.nil?  %>
     var companyCustomization = {
       name: '<%= @company.name %>',
@@ -70,26 +67,14 @@
         ctaButton: $('.dq-btn-start-interview').text(),
         contactInfo: $('.dq-company-contact').text()
     };
-
     <% end %>
-
       setProperites(companyCustomization, <%= @editable %>);
-
   }).call(this);
-
-
   // auto style and replace in contact
   var contact = $(".dq-company-contact").text();
   var email_regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
   var result = contact.replace(email_regex,'<a href="mailto:$1">$1</a>');
   $(".dq-company-contact").html(result);
-
-
 </script>
-
-
-
 </body>
 </html>
-
-
