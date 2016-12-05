@@ -107,7 +107,8 @@ class InterviewsController < ApplicationController
 
 
   def unfinish_submission
-      @submissions = @interview.submissions.where(current_no: 500)
+      @unfinish_submissions = @interview.submissions.where("current_no < ?", 500)
+      render :layout => 'single_interview_submissions'
   end
 
 

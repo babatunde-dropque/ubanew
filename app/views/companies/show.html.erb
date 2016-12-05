@@ -17,6 +17,7 @@
 
                 <div class="row" >
                   <% @all_interview.each do |interview| %>
+                  <% unfinish_submission = interview.submissions.where("current_no < ?", 500) %>
                   <% submissions_total = interview.submissions %>
                   <% submissions = interview.submissions.where(current_no: 500) %>
                 
@@ -30,7 +31,8 @@
                                         <br>
                                       </div>
                                   <div class="chart-legend">
-                                       <br> <i class="fa fa-circle text-danger"></i> Unfinished: <%= submissions_total.length - submissions.length %>
+                                       <br> <i class="fa fa-circle text-danger"></i> Unfinished: <%= unfinish_submission.length %>
+                                       <br> <i class="fa fa-circle text-danger"></i> Started: <%= submissions_total.length - (unfinish_submission.length + submissions.length) %>
                                        <br><i class="fa fa-circle text-warning"></i> Total : <%= submissions_total.length %>
                                        <br><i class="fa fa-circle text-warning"></i> No of question : <%= interview.questions.length %>
                                     </div>

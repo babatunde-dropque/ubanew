@@ -49,13 +49,12 @@
                     <% end %>
                                
                 </li> 
-                <!-- <li id="step6" class="<%= (params[:c] == "6") ? "active": "" %> ">
+                <li id="step6" class="<%= (params[:c] == "6") ? "active": "" %> ">
                     <%= link_to company_interview_unfinish_submission_path(params[:company_id] || params[:id], c: 6, interview_id: @interview.slug) do %>
                         <i class="ti-control-pause"></i>
                         <p>Unfinished</p>
                     <% end %>       
-                </li>  -->
-
+                </li>  
                 
                 <% end %>                 
             </ul>
