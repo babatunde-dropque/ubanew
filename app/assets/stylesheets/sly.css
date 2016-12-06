@@ -142,8 +142,8 @@ div.card.main{
 }
 
 .max-height-width{
-	max-width: 199px;
-	max-height: 150px;
+	width: 199px;
+	height: 150px;
 }
 
 
