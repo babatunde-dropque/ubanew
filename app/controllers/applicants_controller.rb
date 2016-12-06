@@ -59,8 +59,12 @@ class ApplicantsController < ApplicationController
 
 
   def question
-     set_cache_buster()
+     current_position = ( @submission.current_no.nil? ) ? 0 : @submission.current_no
      @position =  test_for_end(@interview.questions.length, params[:pos].to_i)
+     if current_position > @position
+        @position = current_position
+     end
+
      if (params[:submission] == "text")
         @submission.update_attributes(current_no: @position, answers: params[:answers])
      end
