@@ -76,9 +76,6 @@
   text-align: center;
   margin: 0 auto; 
   padding: 0px;
-
-/*  width: 493px;
-  height: 370px;*/
 }
 
 
@@ -144,3 +141,10 @@ div.card.main{
 	height: 90%;
 }
 
+.max-height-width{
+	max-width: 199px;
+	max-height: 150px;
+}
+
+
+/*set max height and max weight*/
