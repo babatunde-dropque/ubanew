@@ -98,3 +98,8 @@ gem 'ratyrate'
 gem 'rails_admin'
 # for heroku erro logs
 gem 'rails_12factor'
+
+# for crash reporting and errors
+gem 'rollbar'
+# suggestion from rollbar
+gem 'oj', '~> 2.12.14'
