@@ -15,7 +15,15 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card box-shape">
                               <div class="content">
-                                     <!--  <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulks Emails </button>  -->
+
+                              <% if !flash[:notice].blank? %>
+                                <div id="notice"  class="alert alert-info">
+                                     <%= flash[:notice] %>
+                                </div>
+                              <% end %>
+                              
+                                      <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulk Emails </button> 
+
                                       <h5> Send Invitation</h5>
                                     <div class="text-center">
                                       <div class="typo-line"> 
@@ -113,6 +121,9 @@
         <h5 class="modal-title" id="myModalLabel"> Add bulk contact </h5>
       </div>
       <input type="text" id="contact-id" hidden >
+
+      <%if @company.groups.length >= 1 %>
+
       <div class="modal-body" id="contact-body">
 
         <div class="row">
@@ -149,6 +160,27 @@
         <button type="button" class="btn box-shape" data-dismiss="modal"> Cancel </button>
         <button type="button" id="contact-continue" class="btn box-shape"> Okay </button>
       </div>
+      <%else%>
+
+      <div class="modal-body" id="contact-body">
+
+        <div class="row">
+       <center> <b> No Contact Group </b></center>
+        </div>
+        <hr>
+
+
+        <div class="row">
+       <center> <%= link_to 'Create New Contact Group', new_company_group_path(company_id: @company.slug), class: "btn  box-shape" %></center>
+        </div>
+        </div>
+
+      </div>
+
+
+
+      <%end%>
+
     </div>
   </div>
 </div>
@@ -161,7 +193,7 @@
 
 
 <script >
-
+  $("#notice").fadeOut(9000);
   var emailTagList = $('#email-list');
     emailTagList.tagit({
     placeholderText: "mail@example.com",
@@ -204,11 +236,12 @@
         type: 'GET',
         url: '/companies/<%= @company.slug %>/groups/'+id+'/show_group_emails',
         success: function(data){
-          console.log(data);
+          //console.log(data);
           var newData = {}
           newData['isTick'] = isTick;
           newData['emails'] = data;
           emailListEvent.push(newData);
+          console.log(emailListEvent);
         },
         error :function(jqXHR, textStatus, errorThrown){
 

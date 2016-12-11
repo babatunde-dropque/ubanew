@@ -14,8 +14,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def new
-		
-		
+
 	end
 
 
@@ -83,10 +82,10 @@ class CompaniesController < ApplicationController
         if current_owner.update_attributes(status: 1) && new_owner.update_attributes(status: 0)
              # send notification 
             self.send_notification(new_owner.user.id, 5 , current_owner.user.id, @company.name)
-            redirect_to edit_company_path(@company)    
+            redirect_to edit_company_path(@company)
         else
 
-        end        
+        end
     end
 
 
@@ -96,7 +95,7 @@ class CompaniesController < ApplicationController
           render plain: "yes"
         else
           render plain: "no"
-        end 
+        end
     end
 
 

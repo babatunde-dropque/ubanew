@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
   end
 
 
-  
+
 
   def create
     	@group = Group.new(group_params)
@@ -48,7 +48,6 @@ class GroupsController < ApplicationController
 
 
 private
-      
       def set_group
         @group = Group.friendly.find(params[:group_id] || params[:id])
         # check if company has permission to view the interview

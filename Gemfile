@@ -96,6 +96,7 @@ gem 'delayed_job_active_record'
 gem 'ratyrate'
 # rails admin gem for admin dashboard
 gem 'rails_admin'
+
 # for heroku erro logs
 gem 'rails_12factor'
 
@@ -103,3 +104,6 @@ gem 'rails_12factor'
 gem 'rollbar'
 # suggestion from rollbar
 gem 'oj', '~> 2.12.14'
+
+# gem 'twitter'
+
