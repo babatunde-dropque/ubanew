@@ -21,7 +21,7 @@
                                      <%= flash[:notice] %>
                                 </div>
                               <% end %>
-                              
+
                                       <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulk Emails </button> 
 
                                       <h5> Send Invitation</h5>
@@ -194,6 +194,7 @@
 
 <script >
   $("#notice").fadeOut(9000);
+  
   var emailTagList = $('#email-list');
     emailTagList.tagit({
     placeholderText: "mail@example.com",

@@ -79,9 +79,9 @@
                                 </li>
                                 <li><a href="https://<%= @company.subdomain %>.dropque.com"   target= "_blank"> Interview Page </a>
                                 </li>
-                                <!-- <li>
+                                <li>
                                    <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %> 
-                                </li> -->
+                                </li> 
                             </ul>
                         </li>
                         <% end %>
@@ -93,7 +93,6 @@
                             </a>
                             <ul class="dropdown-menu">
                                <li><%= link_to "Dashboard", root_path %></li>
-                               <!-- <li> <%= link_to "Profile", edit_user_registration_path %> </li>  -->
                                <li> <%= link_to "Account", user_account_path %> </li>
                                <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
                             </ul>

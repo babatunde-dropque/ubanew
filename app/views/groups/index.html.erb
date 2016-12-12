@@ -6,46 +6,70 @@
 <div class="main-panel">
 <!-- TODO Add Navbar Panel -->
     <%= render partial: "users/navbar" %>
-        <div class="content">
-            <div class="container-fluid">
-        
 
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-					<!--<% if !flash[:notice].blank? %>
+    <div class="content">
+    	<div class="container-fluid">
+		 <div class="card box-shape">
+		 	<!-- <div > -->
+		 	<!--<% if !flash[:notice].blank? %>
 						<div class="alert alert-info">
 						<%= flash[:notice] %>
 						</div>
 					<% end %> -->
-					<br/>
+             <!-- </div> -->
 
-					<%= link_to "New group", new_company_group_path, class: "btn btn-primary" %>
-					<table  class="table table-bordered table-striped">
-						<thead>
-						 <tr>
-						 	<th>Name</th><th>Size</th><th>Modify</th><th></th>
-						</tr>
-						</thead>
-						<tbody>
-							<% @groups.each do |group|%>
-						<tr>
+        	<div class="content">
+			    <div class="content table-responsive table-full-width">
+			      <table  class="table table-striped">
+					<thead>
+					 <tr>
+					 	<th>Name</th><th>Size</th><th>Modify</th><th></th>
+					</tr>
+					</thead>
+					<tbody>
+						<% @groups.each do |group|%>
+					<tr>
 						<td> <%=group.name%></td>
 						<% @size = group.bulks.length %>
 						<td> <%= @size %> Contact </td>
 						<td> <%= link_to "Update", company_group_bulks_path(company_id:@company.slug, group_id:group.slug) %> </td>
 						
-						<td> <%= button_to  "Delete", company_group_path(id: group.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you sure you want to delete  #{group.name}?" } %>    </td>
-						</tr>
-						<% end %>
-						</tbody>
-					</table>
+						<td> 
+							<%= link_to  "Delete", company_group_path(id: group.id), method: :delete, data: { confirm: "Are you sure you want to delete  #{group.name}?" } %>   
+						</td>
+					</tr>
+					<% end %>
+					</tbody>
+				</table>
+			    </div>	
+				<hr>
+					<%= form_for ([@company, @group_new]), html:{multipart:true} do |f| %>
+					 <div class="row">
+				    	<div class="form-group col-md-5" >
+				    		<%= f.label :name %>
+							<%=f.text_field :name, placeholder:"New group name", class: "form-control border-input" %>
+					    </div>
+				    	<div class="form-group col-md-5" >
+				    		<%=f.label :auto_response %>
+							<%=f.text_field :auto_response, placeholder:"(Optional) Auto response message " , class: "form-control border-input" %>
+				    	</div>
+				    	<div class="form-group col-md-2" >
+				    		 <label>  &nbsp;  </label>
+				    		<%=f.submit "Save", class: "btn btn-info btn-fill btn-wd"%>
+				    	</div>	
+						</div>
+					<% end %>
+				  <!-- <div class="header">
+                    <%= link_to 'New group', new_company_group_path, class: "btn float-right box-shape" %>
+                  </div> -->
+				
+				<br>
+			   </div>
+	</div>
+	</div>
+	</div> 
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
         </div>
     </div>
 

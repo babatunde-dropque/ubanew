@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
 
   def index
   	@groups = @company.groups
+    @group_new = Group.new
   end
 
   def new
