@@ -82,38 +82,16 @@ drift.load('vzu4sn5mkb84');
 
       <div class="collapse navbar-collapse" id="navigation-index">
         <ul class="nav navbar-nav navbar-right">
-        <li>
+        <!-- <li>
           <a href="https://play.google.com/store/apps/details?id=com.dropque.app" class="btn" target="_blank">
             <i class="material-icons">cloud_download</i> Download the app
           </a>
-        </li>
+        </li> -->
         <li>
           <%= link_to new_user_session_path, {:class => 'btn'} do %>
             <i class="material-icons">account_box</i> Log in
           <% end %>
         </li> 
-               <!--  <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">account_box</i>Sign in
-            <b class="caret"></b>
-          </a>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                     <li>
-                  <%= link_to new_user_session_path do %>
-                    Applicant Sign in
-                  <% end %>         
-                </li>
-                 <li class="divider"></li>
-                       <li>
-                <%= link_to new_user_session_path do %>
-                 Recruiter Sign in
-              <% end %>         
-            </li>
-                    </ul>
-              </li> -->
-
-<!--        <li>
-          <a class="btn btn-primary btn-raised btn-raised" style="background-color: white; color: #5e337b"><strong>Recruiter Sign up</strong></a>
-        </li> -->
         <li>
           <%= link_to new_user_registration_path, {:style => 'background-color: white; color: #5e337b;', :class => 'btn btn-primary btn-raised'} do %>
             <strong>Sign up</strong>
