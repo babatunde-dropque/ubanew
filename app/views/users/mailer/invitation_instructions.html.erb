@@ -28,10 +28,11 @@
                         <td style="font-size: 15px; line-height:1.5em; font-family: Arial,Helvetica,sans-serif;padding-bottom:20px;background-color:#ffffff" valign="top"><b><p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %>,</b><br>
 
                         <p>
-                           <%= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %>
+                           <%= @resource.invited_by.name %>(<%= @resource.invited_by.email %>) has invited you to <%= root_url %>, you can accept it through the link below
+
                         </p>
 
-                      </td></tr>
+                        </td></tr>
 
                       <tr>
 
