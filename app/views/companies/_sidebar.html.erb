@@ -55,7 +55,15 @@
                         <p>Unfinished</p>
                     <% end %>       
                 </li>   -->
-                
+                <li id="step6" class="<%= (params[:c] == "6") ? "active": "" %> ">
+                    <%= link_to  company_interview_export_submissions_path(params[:company_id] || params[:id], c: 6, interview_id: @interview.slug) do %>
+                        <i class="ti-export"></i>
+                        <p>Export Details</p>
+                    <% end %>
+                               
+                </li> 
+
+                    
                 <% end %>                 
             </ul>
         

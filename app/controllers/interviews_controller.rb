@@ -114,7 +114,7 @@ class InterviewsController < ApplicationController
   end
 
 
-
+  
 
   def change_status
     submission = Submission.find(params[:submission_id])

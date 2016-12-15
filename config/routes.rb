@@ -117,6 +117,7 @@ Rails.application.routes.draw do
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
       put "change_status", to: "interviews#change_status"
       get "unfinish_submission", to: "interviews#unfinish_submission" 
+      get "export_details", to: "submissions#export",  as: 'export_submissions'
     end
 
   end

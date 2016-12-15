@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Email </Data></Cell>
+        <Cell><Data ss:Type="String">Progress</Data></Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        
+        <% @length = @interview.questions.length %>
+
+      </Row>
+
+    <% @submissions.each do |submission| %>
+
+      <Row>
+        <% if !submission.user.nil? %>
+            <Cell><Data ss:Type="String"> <%= submission.user.name %> </Data></Cell>
+            <Cell><Data ss:Type="String"> <%= submission.user.email %> </Data></Cell>
+        <% else %>
+            <Cell><Data ss:Type="String"> </Data></Cell>
+            <Cell><Data ss:Type="String"> </Data></Cell>
+        <% end %>
+        
+        
+        <% if submission.current_no == 500 %>
+          <Cell><Data ss:Type="String"> Completed </Data></Cell>
+        <% elsif submission.current_no.nil? %>
+          <Cell><Data ss:Type="String"> 0% </Data></Cell>
+        <% else %>
+          <Cell><Data ss:Type="String"> <%= (submission.current_no + 1)/ @length  %> % </Data></Cell>
+        <% end %>    
+
+         <% if submission.status.nil? %>
+           <Cell><Data ss:Type="String"> None </Data></Cell>
+        <% elsif submission.status == 'reject' %>
+         <Cell><Data ss:Type="String"> Reject </Data></Cell>
+        <% elsif submission.status == 'pend' %>
+          <Cell><Data ss:Type="String"> Pend</Data></Cell>
+        <% elsif submission.status == 'shortlist'%>
+         <Cell><Data ss:Type="String"> Shortlist </Data></Cell>
+        <% end %>    
+   
+         <Cell><Data ss:Type="String"> <%= submission.created_at.strftime("%d-%m-%Y") %>  </Data></Cell>  
+     
+      </Row>
+    <% end %>
+
+    </Table>
+  </Worksheet>
+</Workbook>

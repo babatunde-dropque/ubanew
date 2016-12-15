@@ -1,0 +1,86 @@
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+<!-- Add Sidebar Panel -->
+    <%= render partial: "companies/sidebar" %>
+    	<div class="main-panel">
+<!-- Add Navbar Panel -->
+    	<%= render partial: "users/navbar" %>
+
+	    <div class="content">
+	        <div class="container-fluid">
+
+
+	  Download:
+	  <%= link_to "CSV", company_interview_export_submissions_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: params[:interview_id], format: "csv") %> 
+	  |
+	   <%= link_to "XLS", company_interview_export_submissions_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: params[:interview_id], format: "xls") %> 
+	
+	<br><br>
+
+     <div class="content">
+        <div class="table-responsive table-full-width">
+           <table class="table table-striped">
+					  <tr>
+					    <td>Name</td>
+					    <td>Email </td>
+					    <td>Progress</td>
+					    <td>Status</td>
+					    <td>Date</td>
+					    
+					    <% @length = @interview.questions.length %>
+					  </tr>
+
+					<% @submissions.each do |submission| %>
+                   
+					  <tr>
+					  	<% if !submission.user.nil? %>
+					  		<td> <%= submission.user.name %> </td>
+					  		<td> <%= submission.user.email %> </td>
+					  	<% else %>
+					  		<td></td>
+					  		<td> </td>
+					  	<% end %>
+					    
+					    <% if submission.current_no == 500 %>
+					      <td> Completed </td>
+					    <% elsif submission.current_no.nil? %>
+					      <td> 0% </td>
+					    <% else %>
+					      <td> <%= (submission.current_no + 1)/ @length  %> % </td>
+					    <% end %> 
+
+
+					    <% if submission.status.nil? %>
+					       <td> Non </td>
+					    <% elsif submission.status == 'reject' %>
+					      <td> Reject </td>
+					    <% elsif submission.status == 'pend' %>
+					      <td>  Pend</td>
+					    <% elsif submission.status == 'shortlist'%>
+					      <td> Shorlist </td>
+					    <% end %> 
+
+					    <td> <%= submission.created_at.strftime("%d-%m-%Y") %> </td>   
+
+					  </tr>
+
+					<% end %>
+
+					</table>
+					
+         </div>
+       </div>
+	                
+	        </div>
+	    </div>
+
+       </div>
+    </div>
+</div>
+
+
+
+
+
+

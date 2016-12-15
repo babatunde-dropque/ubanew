@@ -28,4 +28,14 @@ class Interview < ActiveRecord::Base
   	self.interview_token = SecureRandom.hex(3)
   end
 
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |submission|
+        csv << submission.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 end
