@@ -34,7 +34,7 @@ class Submission < ActiveRecord::Base
 	    end 
 
 	    if submission.status.nil? 
-	     	single.push("Non")
+	     	single.push("None")
 	    elsif submission.status == 'reject'
 	      single.push("Reject")
 	    elsif submission.status == 'pend'
