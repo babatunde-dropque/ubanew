@@ -20,7 +20,7 @@
 				<header class="codrops-header">
 					<h1>Interview candidates anywhere, anytime <i>Dropque is the fastest way to find the right talent at a lower cost with secure video interviews</i></h1>
 					<div class="wrapp">
-                         <a class="button2" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();"><strong>REQUEST A DEMO</strong></a>                  
+                         <a class="button2"><strong>REQUEST A DEMO</strong></a>                  
 
                      </div>
 	                </div>
@@ -35,7 +35,7 @@
                     <div class="col-md-6">
                     	<h2 class="title">Adopt a more efficient way to find the right talent</h2>
                     	<h4>No more expensive time-consuming and wordy interviews. <br/> Dropque simplifies recruitment for managers and gives candidates a better and flexible experience.</h4>
-                    	<a class="btn btn-primary btn-raised" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">
+                    	<a class="btn btn-primary btn-raised" >
 	                       <strong>REQUEST A DEMO</strong>
                         </a>
                     </div>
@@ -195,16 +195,16 @@
 	    <div class="container">
 	        <nav class="pull-left">
 	            <ul>
-					<!-- <li>
-						<a href="#">
-						   About Us
-						</a>
-					</li> -->
 					<li>
 						<a href="/contact">
-							Contact Us
+							Contact Us (info@dropque.com)
 						</a>
 					</li>
+					<!-- <li>
+						<a href="#">
+						   
+						</a>
+					</li> -->
 	            </ul>
 	        </nav>
 	        <div class="copyright pull-right">
@@ -249,9 +249,24 @@
                 <div class="content registerBox">
                  <div class="form">
                     <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
-                    <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                    <input  class="form-control" type="text" placeholder="Name" name="name">
-                    <input  class="form-control" type="text" placeholder="Company" name="company">
+                    <div class="row">
+                    	<div class="col-md-6">
+                    		 <input id="email" class="form-control" type="text" placeholder="Business/Official Email" name="email">
+                    	</div>
+                    	<div class="col-md-6">
+                    		<input  class="form-control" type="text" placeholder="FirstName LastName" name="name">
+                    	</div>
+                    </div>
+                   
+                    
+                    <input  class="form-control" type="text" placeholder="Organization Name" name="organization">
+                     <input  class="form-control" type="text" placeholder="Job Title/Role Name" name="organization">
+                     <select  class="form-control"  name="usecase">
+                     	<option value="" > Recruiting</option>
+                     	<option value="" > Talent Acquisition </option>
+                     	<option value="" > Others </option>
+                     </select>
+                     </select>
                     <input id="submit" class="btn btn-default btn-register" type="submit" value="Submit Request" name="commit" onclick="submitAjax($('#email').val())">
                     </form>
                     </div>
@@ -261,8 +276,10 @@
         <div class="modal-footer">
             <div class="forgot login-footer">
                 <span>Looking to 
-                     <a href="#">create an account</a>
-                ?</span>
+                	 <%= link_to new_user_registration_path do %>
+                	 	create an account ?
+          			<% end %>
+                </span>
             </div>
         </div>        
       </div>
