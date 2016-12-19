@@ -1,294 +1,266 @@
-
 <div class="wrapper">
-
-
+     
     <div class="main-panel expand">
-
         <!-- TODO Add Footer Partial -->
         <%= render partial: "users/navbar" %>
 
 
-        <div class="content">
+<div class="image-container set-full-height" >
+        
+        <!--   Big container   -->
+        <div class="container">
             <div class="container-fluid">
-                <div class='row'>
-                <div class='col-md-8 col-md-offset-2'>
-                        <div class="card box-shape">
-                            <div class="header" id="header">
-                                <h4 class="title">New Company</h4>
-                            </div>
-                            <div class="content">
-                             
-                                <form id="form" method="post" enctype="multipart/form-data" action="/companies">
-                                  <div id="new-company-path">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Company Name</label>
-                                                <input id="company-name" type="text" class="form-control border-input"  placeholder="Company" name="name">
-                                            </div>
-                                        </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
 
+                    <!--      Wizard container        -->
+                    <!-- <div class="wizard-container"> -->
+                         <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
+                         <br><br>
+                        <div class="card wizard-card box-shape" data-color="orange" id="wizardProfile">
+                            <form id="form" method="post" enctype="multipart/form-data" action="/companies">
+                                <div class="wizard-header text-center">
+                                    <h3 class="wizard-title">Create Organization</h3>
+                                    <p class="category">This information will be used to create your organization </p>
+                                </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label >Subdomain</label> <i id="symbol" ></i>
-                                                <input id="company-subdomain" type="text" class="form-control border-input"  placeholder="subdomain" name="subdomain"> 
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>  &nbsp;  </label>
-                                                 <input type="text" class="form-control border-input"  value=".dropque.com" disabled="" > 
-                                            </div>
-                                        </div>
+                                <div class="wizard-navigation">
+                                    <div class="progress-with-circle">
+                                         <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
                                     </div>
+                                    <ul>
+                                        <li>
+                                            <a href="#about" data-toggle="tab">
+                                                <div class="icon-circle">
+                                                    <i class="ti-info"></i>
+                                                </div>
+                                                Infomation
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#address" data-toggle="tab">
+                                                <div class="icon-circle">
+                                                    <i class="ti-map"></i>
+                                                </div>
+                                                Address
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#account" data-toggle="tab">
+                                                <div class="icon-circle">
+                                                    <i class="ti-bell"></i>
+                                                </div>
+                                                Notifications
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#collaborators" data-toggle="tab">
+                                                <div class="icon-circle">
+                                                    <i class="ti-user"></i>
+                                                </div>
+                                                Collaborators
+                                            </a>
+                                        </li>
+                                                    
 
-            
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control border-input" placeholder="Company Address" class="address" name="address">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control border-input" placeholder="City" name="city">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control border-input" placeholder="Country" name="country"  >
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea rows="5" class="form-control border-input" placeholder="Description" name="description">
-                                            </textarea> 
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label >Tags</label>
-                                                <input type="text" id="tags" class="form-control border-input"  placeholder="Tags" name="tags">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="file-upload" class="btn custom-upload">
-                                                    <input id="file-upload" type="file" name="logo">
-                                                    Add Logo </label>
-                                                    <div class="text-center">
-                                                        <label> Transparent 330 X 80 pixels </label>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="about">
+                                        <div class="row">
+                                            <h5 class="info-text"> Please tell us more about yourself.</h5>
+                                            <div class="col-sm-4 col-sm-offset-1">
+                                                <div class="picture-container">
+                                                    <div class="picture">
+                                                        <%= image_tag('logo1.png', height:"55", class:"picture-src", id:"wizardPicturePreview",title:"") %>
+                                                        
+                                                        <input type="file" id="wizard-picture" name="logo">
                                                     </div>
+                                                    <h6>Choose Logo</h6>
+                                                    <small> Transparent 330 X 80 </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label> Organization Name <small>(required)</small></label>
+                                                    <input name="name" type="text" class="form-control" placeholder="Organization">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Subdomain <small>(required)</small></label>  &nbsp;  &nbsp;  &nbsp;   <i id="symbol" ></i>
+                                                    <input name="subdomain" type="text" class="form-control" placeholder="Subdomain" id="company-subdomain">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-10 col-sm-offset-1">
+                                                <div class="form-group">
+                                                    <label>Tags</label>
+                                                    <input name="tags" type="text" id="tags" class="form-control" >
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="tab-pane" id="address">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h5 class="info-text"> Location of your organization </h5>
+                                            </div>
+                                            <div class="col-sm-10 col-sm-offset-1">
+                                                
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <input type="text" name="address" class="form-control" placeholder="Organization Address">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-5 col-sm-offset-1">
+                                                <div class="form-group">
+                                                    <label>City</label>
+                                                    <input type="text" name="city" class="form-control" placeholder="City">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label>Country</label><br>
+                                                    <select name="country" class="form-control">
+                                                        <option value="Nigeria"> Nigeria </option>
+                                                        <option value="Albania"> Albania </option>
+                                                        <option value="Algeria"> Algeria </option>
+                                                        <option value="American Samoa"> American Samoa </option>
+                                                        <option value="Andorra"> Andorra </option>
+                                                        <option value="Angola"> Angola </option>
+                                                        <option value="Anguilla"> Anguilla </option>
+                                                        <option value="Antarctica"> Antarctica </option>
+                                                        <option value="...">...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="account">
+                                        <h5 class="info-text"> Get notification(s) via?  </h5>
+                                        <div class="row">
+                                            <div class="col-sm-8 col-sm-offset-2">
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox"  value="Design">
+                                                        <div class="card card-checkboxes card-hover-effect">
+                                                            <i class="ti-email"></i>
+                                                            <p>Email</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox"  value="Code">
+                                                        <div class="card card-checkboxes card-hover-effect">
+                                                            <i class="ti-comment"></i>
+                                                            <p>Sms</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox"  value="Develop">
+                                                        <div class="card card-checkboxes card-hover-effect">
+                                                            <i class="ti-alert"></i>
+                                                            <p>Inbuilt Alert</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="collaborators">
+                                        <h5 class="info-text"> Add Collaborators &nbsp;&nbsp;&nbsp; <btn id="add-collaborator" class='btn add-collaborator'><i class='ti-plus'></i></btn></h5> 
 
-                                    <!-- add csrf token -->
+                                        <div class="row">
+                                            <div class="col-sm-10 col-sm-offset-1">
+                                            
+                                                                               
+                                            <div id="collaborator-content" >
+                                                <div class='row'>
+                                                    <div class='col-sm-7'>
+                                                     <div class='form-group'>
+                                                        <input type='email' class='form-control collaborator'  placeholder='email' name="name33">
+                                                    </div>
+                                                    </div>
+                                                    <div class='col-sm-3'>
+                                                        <div class="form-group">
+                                                            <select name='country' class='form-control'>
+                                                                 <option value='1'> admin </option>
+                                                                 <option value='2'> user</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class='col-sm-2'>
+                                                         <btn class='btn box-shape remove-new-collaborator' ><i class='ti-close'></i></btn>
+                                                    </div>
+                                                </div>
+
+                                                <div class='row'>
+                                                    <div class='col-sm-7'>
+                                                     <div class='form-group'>
+                                                        <input type='email' class='form-control collaborator'  placeholder='email' name="name90">
+                                                    </div>
+                                                    </div>
+                                                    <div class='col-sm-3'>
+                                                        <div class="form-group">
+                                                            <select name='country' class='form-control'>
+                                                                 <option value='1'> admin </option>
+                                                                 <option value='2'> user</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class='col-sm-2'>
+                                                         <btn class='btn box-shape remove-new-collaborator' ><i class='ti-close'></i></btn>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- add csrf token -->
                                     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
 
                                     <!-- hiddden user's id -->
                                     <input type="text" name="user_id" value="<%= @user.id %>" hidden >
-                                    <!-- hiddent stringify emails for collaboartions -->
+                                    <!-- hidden stringify emails for collaboartions -->
                                     <input type="text" id="collaborate-json" name="collaborators_list"  hidden>
-                                    </div>
-                                     <div id="collaborator-path">
-                                        <div class="header">
-                                            <h4 class="title float-left">Add Collaborator(s)</h4>
-                                            <btn id="add-collaborator" class='btn add-collaborator'><i class='ti-plus'></i></btn>
-                                            <br><br>
-                                        </div>
-                                        <div class="content">
-
-                                            <div id="collaborator-content" >
-                                                <div class='row'>
-                                                    <div class='col-md-6'>
-                                                     <div class='form-group'>
-                                                        <input type='text' class='form-control border-input box-shape' style='height: 36px ;'  placeholder='email'>
-                                                    </div>
-                                                    </div>
-                                                    <div class='col-md-6'>
-                                                        <select class='btn box-shape-1' >
-                                                            <option value='1'> admin </option>
-                                                            <option value='2'> user</option>
-                                                        </select>
-                                                        <btn class='btn box-shape width-perfect remove-new-collaborator' ><i class='ti-close'></i></btn>
-                                                    </div>
-                                                </div>
-
-                                                   
-
-                                            </div>
-
-                                                <br><br>
-
-                                                
-
-                                                
-                                                <div class="text-center">
-                                                    <button  id="create-company" type="submit" class="btn btn-info btn-fill btn-wd"> Add Collaborators </button>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                           
-                                        </div>
-                                    </div>
-
                                    
-                                  </form>
-                                
-                                    <div class="text-center">
-                                        <button id="continue" type="submit" class="btn btn-info btn-fill btn-wd"> Continue </button>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    
+                                    
+
+                                </div>
+                                <div class="wizard-footer">
+                                    <div class="pull-right">
+                                        <input type='button' class='btn btn-next btn-fill btn-warning btn-wd' name='next' value='Next' />
+                                        <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd' name='finish' id="finish" value='Finish' />
                                     </div>
 
-                                    <div class="text-center">
-                                        <a id="skip" href="#"> Skip Now </a>
+                                    <div class="pull-left">
+                                        <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Previous' />
                                     </div>
-                               
-                            </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
                         </div>
-                       
-
-                       
-                    </div> 
-                    </div>               
-            </div>
-        </div>
+                    <!-- </div> wizard container -->
+                </div>
+            </div><!-- end row -->
+         </div> <!-- end container fluid -->
+        </div> <!--  big container -->
 
     </div>
+
+</div>
 </div>
 
 
-<div hidden id="sample">
-    <div class='row'>
-        <div class='col-md-6'>
-         <div class='form-group'>
-            <input type='text' class='form-control border-input box-shape' style='height: 36px ;'  placeholder='email'>
-        </div>
-        </div>
-        <div class='col-md-6'>
-            <select class='btn box-shape-1' >
-                <option value='1'> admin </option>
-                <option value='2'> user</option>
-            </select>
-            <btn class='btn box-shape width-perfect remove-new-collaborator' ><i class='ti-close'></i></btn>
-        </div>
-    </div>
-</div>
+<script>
 
-
-
-<!-- javascript for this particular page -->
-<script> 
-var confirmed = true;
-    $("#company-subdomain").on('keyup', function() {
-        var word = $('#company-subdomain').val();
-        $.ajax({
-          url: '/check_subdomain', 
-          type: 'GET',
-          data: {subdomain: word },
-          success: function(data){
-              if (data == "yes"){
-                $('#symbol').addClass('ti-close');
-                $('#symbol').removeClass('ti-check');
-                confirmed = true;
-               }  else {
-                    $('#symbol').addClass('ti-check');
-                    $('#symbol').removeClass('ti-close');
-                    confirmed = false;
-               }
-          },
-          error : function(jqXHR, textStatus, errorThrown) {
-               
-           }
-       });
-      });
-
-    $("#collaborator-path").hide();
-    $("#skip").hide();
-    $("#continue").click(function(){
-        if (confirmed){
-            showMessage('top','right', "Subdomain Already Exist", 4);
-            event.preventDefault();
-        } else {
-            if ($("#company-name").val() == "" || $("#company-subdomain").val() == ""){
-            showMessage('top','right', "Organization name or subdomain cannot be empty", 4);
-        } else {
-            $(this).hide();
-            $("#header").hide();
-            $("#new-company-path").hide();
-            $("#collaborator-path").show();
-            $("#skip").show();
-           }
-        }
-        
-    });
-
-    $("#skip").click(function(){
-        $("#collaborate-json").val(JSON.stringify([]));
-        $("#form").submit();
-    });
-
-    $("#create-company").click(function(event){
-        jsonObj = [];
-         $("#collaborator-content").find(".row").each(function(index) {
-             var emailObject = $(this).find("input");
-             var email = emailObject.get(0).value ;
-             var statusObject = $(this).find("option:selected");
-             var status = statusObject.get(0).value;
-             if (!email || !status){
-                // check if email or status is empty
-                showMessage('top','right', "Email cannot be empty", 4);
-                event.preventDefault();
-             } else{
-                if (validateEmail(email)){
-                    collaborateItem = {}
-                    collaborateItem["email"] = email;
-                    collaborateItem["status"] = status ;
-                    jsonObj.push(collaborateItem);
-                } else {
-                    showMessage('top','right', "Invalid Email, Enter a valid email", 4);
-                    event.preventDefault();
-                }
-             }
-             
-        });
-            $("#collaborate-json").val(JSON.stringify(jsonObj));
-    });
-
-    
-    $("#add-collaborator").click(function(){
-        $("#collaborator-content").append($('#sample').html());
-    });
-
-    //  remove added collaborators
-     $("#collaborator-content").on("click", ".remove-new-collaborator", function(){
-        $(this).parents('div.row')[0].remove();
-    });
-
-
-     // this is the script responsible for tags
-  
     $('#tags').tagit({
         tagLimit: 4,
         placeholderText: "Add tags",
@@ -297,12 +269,57 @@ var confirmed = true;
         }
     });
 
- function validateEmail(email){
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
 
+    var counter = 0;
+    $("#add-collaborator").click(function(){
+        $("#collaborator-content").append(addCollaborator("name"+counter));
+        counter++;
+    });
+
+    //  remove added collaborators
+     $("#collaborator-content").on("click", ".remove-new-collaborator", function(){
+        $(this).parents('div.row')[0].remove();
+    });
+
+
+    $("#finish").click(function(event){
+         jsonObj = [];
+         $("#collaborator-content").find(".row").each(function(index) {
+             var emailObject = $(this).find("input");
+             var email = emailObject.get(0).value ;
+             var statusObject = $(this).find("option:selected");
+             var status = statusObject.get(0).value;
+             collaborateItem = {}
+             collaborateItem["email"] = email;
+             collaborateItem["status"] = status ;
+             jsonObj.push(collaborateItem); 
+    
+        });
+         $("#collaborate-json").val(JSON.stringify(jsonObj))
+         $("#form").submit();
+    });
+
+function addCollaborator(name){
+    var result = "<div class='row'>"+
+                    "<div class='col-sm-7'>"+
+                     "<div class='form-group'>"+
+                        "<input type='email' class='form-control collaborator' name='"+name+"' placeholder='email'>"+
+                    "</div>"+
+                    "</div>"+
+                    "<div class='col-sm-3'>"+
+                        "<div class='form-group'>"+
+                            "<select name='country' class='form-control'>"+
+                                 "<option value='1'> admin </option>"+
+                                 "<option value='2'> user</option>"+
+                            "</select>"+
+                        "</div>"+
+                    "</div>"+
+                    "<div class='col-sm-2'>"+
+                         "<btn class='btn box-shape remove-new-collaborator' ><i class='ti-close'></i></btn>"+
+                    "</div>"+
+                "</div>" ;
+    return result;
+}
+    
 
 </script>
-
-

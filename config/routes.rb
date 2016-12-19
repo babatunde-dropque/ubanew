@@ -102,6 +102,7 @@ Rails.application.routes.draw do
     get "edit_preview", to: "companies#edit_preview"
     post "edit_preview", to: "companies#edit_preview"
     get "all_interview", to: "companies#all_interview"
+   
 
     resources :groups do
        get 'show_group_emails', on: :member

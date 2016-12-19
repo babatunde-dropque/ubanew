@@ -1,31 +1,58 @@
-
-<div class="content">
-  <div id="part1">
-     <div class="row">
-      <div class="form-group col-md-12">
-        <%= f.label :title %>
-          <%= f.text_field :title,:id => 'title-interview', :placeholder => 'Role Title', class: "form-control border-input", html: {spellcheck: "false"} %>
-      </div>
+  <div class="wizard-header">
+        <h3 class="wizard-title"><%= n %></h3>
+        <p class="category">Kindly fill out the interview details as required </p>
     </div>
 
-    <div class="row">
+<div class="wizard-navigation">
+<div class="progress-with-circle">
+ <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
+</div>
+<ul>
+            <li>
+<a href="#details" data-toggle="tab">
+  <div class="icon-circle">
+    <i class="ti-list"></i>
+  </div>
+  Details
+</a>
+</li>
+            <li>
+<a href="#captain" data-toggle="tab">
+  <div class="icon-circle">
+    <i class="ti-pencil"></i>
+  </div>
+  Questions
+</a>
+</li>
+
+        </ul>
+</div>
+      <div class="tab-content">
+          <div class="tab-pane" id="details">
+            <div class="row">
+              <div class="form-group col-md-12">
+                <%= f.label :title %>
+                  <%= f.text_field :title,:id => 'title-interview', :placeholder => 'Role Title', class: "form-control border-input interview-details", html: {spellcheck: "false"} %>
+              </div>
+            </div>
+            <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :description %>
-          <%= f.text_area :description,:id => 'title-description', :placeholder => 'Role Description', class: "form-control border-input", rows:"4", html: {spellcheck: "false"} %>
+          <%= f.text_area :description,:id => 'title-description', :placeholder => 'Role Description', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "false"} %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :instruction %>
-          <%= f.text_area :instruction, :id => 'title-instruction', :placeholder => 'Instructions for the Candidates', class: "form-control border-input", rows:"4", html: {spellcheck: "true"} %>
+          <%= f.text_area :instruction, :id => 'title-instruction', :placeholder => 'Instructions for the Candidates', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"} %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :completed_message %>
-          <%= f.text_area :completed_message, :id => 'title-completed-message', :placeholder => 'Completed Message after', class: "form-control border-input", rows:"4", html: {spellcheck: "true"} %>
+          <%= f.text_area :completed_message, :id => 'title-completed-message', :placeholder => 'Completed Message after', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"} %>
       </div>
     </div>
 
@@ -36,52 +63,57 @@
       </div>
     </div>
 
+
+
+
     <div class="row">
-        <div class=" form-group col-md-10" >
-          <label>Interviews Access (Available for Business and Enterprise plan) </label><br>
-        </div>
-        <div class="col-md-2 ">
-          <div class="float-right">
+        <div class=" form-group col-md-12" >
+          <label>Interviews Access (Available for Business and Enterprise plan) </label>
             <div class="onoffswitch file">
               <%= f.check_box :status, :id => 'myonoffswitch', class: "onoffswitch-checkbox",  disabled:true %>
-
                 <label class="onoffswitch-label" for="myonoffswitch">
                     <span class="onoffswitch-inner"></span>
                     <span class="onoffswitch-switch"></span>
                 </label>
             </div>
-          </div>
+        </div>
+    </div>
+
+    <label class="radio">
+        <input type="radio" name="optionsRadios" data-toggle="radio" id="optionsRadios1" value="option1">
+        <i></i>Radio is off
+      </label>
+
+
 
         </div>
-     </div>
-     <br><br>
+          <div class="tab-pane" id="captain">
+              <div class="row">
+                  <div class="col-sm-10 col-sm-offset-1">
+                    <input type="hidden" value="<%= @interview.questions.to_json %>" name="interview[questions]" id="questions-json" />
 
-    <div class="text-center">
-      <button class="btn btn-info btn-fill btn-wd" id="continue"> Continue </button>
-    </div>
-  </div>
-  <div id="part2">
-      <input type="hidden" value="<%= @interview.questions.to_json %>" name="interview[questions]" id="questions-json" />
-
+      <div class="text-center">
+        <h5>Add Questions </h5>
+      </div>
 
       <div class="row" >
-          <div class='col-md-6'>
-            <h5 class ="left-edge col-md-11 ">Add Questions </h5>
-          </div>
-          <div class='col-md-4'>
-
-             <select id="question-type" class='btn box-shape float-left margin-top-form' >
-                <option value='1'> Video Question </option>
-                <option value='2'> Text Question </option>
-                <option value='3'> File/Image Upload </option>
-             </select>
-          </div>
-          <div class='col-md-2 '>
-              <btn class="btn box-shape width-100 margin-top-form"  id="add-new"> Add new </btn>
-          </div>
+          <div class='col-md-8 col-sm-offset-2'>
+            <div class='col-md-8'>
+              <div class="form-group">
+                  <select id="question-type" class="form-control">
+                      <option value='1'> Video Question </option>
+                      <option value='2'> Text Question </option>
+                      <option value='3'> File/Image Upload </option>
+                  </select>
+              </div>
+            </div>
+            <div class='col-md-4'>
+                <btn class="btn margin-top-form"  id="add-new"> Add new </btn>
+            </div>
         </div>
-
-      <hr>
+        </div>
+        <hr>
+     
 
      <div id ="question-tag">
         <!-- this is where all the question will be added -->
@@ -89,12 +121,12 @@
         <div class='row' type ='1'>
           <div class='col-md-8'>
              <div class='form-group'>
-                  <input type='text' class='form-control border-input' placeholder='Video Question' >
+                  <input type='text' class='form-control border-input interview-details' placeholder='Video Question' name="first" >
               </div>
           </div>
           <div class='col-md-3'>
               <div class='form-group'>
-                  <input type='text' class='form-control border-input' placeholder='mm:ss Time allow' >
+                  <input type='text' class='form-control border-input interview-time' placeholder='mm:ss Time allow' name="third" >
               </div>
           </div>
           <div class='col-md-1 close'>
@@ -105,12 +137,12 @@
         <div class='row'  type ='2'>
           <div class='col-md-8'>
              <div class='form-group'>
-                  <input type='text' class='form-control border-input' placeholder='Text Question'  >
+                  <input type='text' class='form-control border-input interview-details' placeholder='Text Question'  name="second" >
              </div>
           </div>
           <div class='col-md-3'>
               <div class='form-group'>
-                  <input type='text' class='form-control border-input' placeholder='Max words allowed' >
+                  <input type='text' class='form-control border-input interview-number' placeholder='Max words allowed' name="fourth">
               </div>
           </div>
           <div class='col-md-1 close'>
@@ -120,54 +152,29 @@
       <% end %>
 
      </div>
-     
-   
-     
-     <br>
-      <div class="text-center">
-        <%= f.submit :id => 'interview-submit', :value => d, class: "btn btn-info btn-fill btn-wd" %>
+                           
+                  </div>
+              </div>
+          </div>
+          
       </div>
-    </div>
-</div>
+      <div class="wizard-footer">
+        <div class="pull-right">
+              <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='Next' />
+              <%= f.submit :id => 'interview-submit', :value => d, class: "btn btn-finish btn-fill btn-primary btn-wd", name:'finish' %>
+          </div>
 
-
+          <div class="pull-left">
+              <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Previous' />
+          </div>
+          <div class="clearfix"></div>
+          <br>
+      </div>
 
 
 <script>
-  
-  $('#part2').hide();
-  $('#continue').click(function(event){
-    var validation = true;
-    var titleInterview = $("#title-interview").val()
-      if (!titleInterview) {
-        showMessage('top','center', "Interview title cannot be empty", 4);
-        validation = false;
-        event.preventDefault();
-      }
-      var descriptionInterview = $("#title-description").val()
-      if(!descriptionInterview) {
-        showMessage('top','center', "Interview description cannot be empty", 4);
-        validation = false;
-        event.preventDefault();
-      } 
-      var instructionInterview = $("#title-instruction").val()
-      if(!instructionInterview) {
-        showMessage('top','center', "Interview instruction cannot be empty", 4);
-        validation = false;
-        event.preventDefault();
-      } 
-      var completedMessage = $("#title-completed-message").val();
-      if(!completedMessage) {
-        showMessage('top','center', "Interview completed message cannot be empty", 4);
-        validation = false;
-        event.preventDefault();
-      } 
-    if (validation){
-       $('#part1').hide();
-       $('#part2').show();
-    }
-    return false;
-  });
+
+
 
   $('#date').datepicker({
     dateFormat:"yy-mm-dd",

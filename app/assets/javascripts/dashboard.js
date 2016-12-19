@@ -87,6 +87,7 @@ $(document).ready(function(){
 
     formatQuestion();
 
+    var counterEdit = 0;
 	// check if the there is questions and parse the json 
 	var questionString = $("#questions-json").val() ;
 	if (questionString && questionString != null ) {
@@ -97,16 +98,16 @@ $(document).ready(function(){
 				if (resultArray[i]["question_type"] == 1){
 		    		 var q = resultArray[i]["question_video"];
 		    		 var t = resultArray[i]["time_allowed"] ;
-		    		$("#question-tag").append(addNewQuestionWithDetails(q,t, 1));   
+		    		$("#question-tag").append(addNewQuestionWithDetails(q,t, 1, 'name'+counterEdit++, 'name'+counterEdit++));   
 	    		} else if (resultArray[i]["question_type"] == 2){
 	    			 var q = resultArray[i]["question_text"];
 		    		 var t = resultArray[i]["max_char"] ;
-		    		$("#question-tag").append(addNewTextQuestionWithDetails(q,t, 2));   
+		    		$("#question-tag").append(addNewTextQuestionWithDetails(q,t, 2, 'name'+counterEdit++, 'name'+counterEdit++));   
 
 	    		} else if (resultArray[i]["question_type"] == 3){
 	    			 var q = resultArray[i]["file_text"];
 		    		 var t = resultArray[i]["file_size"] ;
-		    		$("#question-tag").append(addNewFileUpload(q,t, 3));   
+		    		$("#question-tag").append(addNewFileUpload(q,t, 3,'name'+counterEdit++, 'name'+counterEdit++));   
 
 	    		}
 			}
@@ -114,15 +115,15 @@ $(document).ready(function(){
 	}
 
 
-
+	var counter = 0;
     $("#add-new").click(function(){
     	  var checkType = $("#question-type").val(); 
     	if(checkType == 1){
-    	  var newQuestion = addNewQuestionWithDetails("",null, checkType);
+    	  var newQuestion = addNewQuestionWithDetails("",null, checkType, 'name'+counter++, 'name'+counter++);
         } else if(checkType == 2){
-          var newQuestion = addNewTextQuestionWithDetails("","", checkType);
+          var newQuestion = addNewTextQuestionWithDetails("","", checkType, 'name'+counter++, 'name'+counter++);
         } else if(checkType == 3){
-          var newQuestion = addNewFileUpload("","", checkType);
+          var newQuestion = addNewFileUpload("","", checkType, 'name'+counter++, 'name'+counter++);
         }
         $("#question-tag").append(newQuestion);
     });
@@ -133,34 +134,12 @@ $(document).ready(function(){
         return false;
     });
 
- function validateTime(email) {
-     var re = /^[0-9]{1,2}:[0-9]{1,2}$/;
-    return re.test(email);
- }
 
- function validateNumber(number){
- 	var re = /^[0-9]+$/
- 	return re.test(number)
- }
+ 
 
 
      $("#interview-submit").click(function(event){
-    	var titleInterview = $("#title-interview").val()
-    	if (!titleInterview) {
-    		showMessage('top','center', "Interview title cannot be empty", 4);
-    		event.preventDefault();
-    	}
-    	var descriptionInterview = $("#title-description").val()
-    	if(!descriptionInterview) {
-    		showMessage('top','center', "Interview description cannot be empty", 4);
-    		event.preventDefault();
-    	} 
-    	var instructionInterview = $("#title-instruction").val()
-    	if(!instructionInterview) {
-    		showMessage('top','center', "Interview instruction cannot be empty", 4);
-    		event.preventDefault();
-    	} 
-    	
+    	    	
        jsonObj = [];
 
      	 $("#question-tag").find(".row").each(function(index) {
@@ -168,51 +147,29 @@ $(document).ready(function(){
      	 	 var questionObject = $(this).find("input");
 		     var firstField = questionObject.get(0).value ;
 		     var secondField = questionObject.get(1).value
-		     
-		     if (!firstField || !secondField){
-		     	// check if question or timeAllowed is empty
-		     	showMessage('top','center', "question field cannot be empty", 4);
-		     	event.preventDefault();
-
-		     } else{
 		     	if (type == 1){
-		     		// check time format
-			     	if (!validateTime(secondField)){
-				        showMessage('top','center', "Time format not correct, use mm:ss ", 4);
-				        event.preventDefault();
-		       		 } else {
 		       		 	questionItem = {}
 		       		 	questionItem["question_type"] = type ;
 			         	questionItem["question_video"] = firstField;
 			         	questionItem["time_allowed"] = convertTimeToMillisecond(secondField);
 			         	jsonObj.push(questionItem);
 
-		       		 }
 	       		} else if (type == 2){
-	       			if (!validateNumber(secondField)){
-	       				showMessage('top','center', "Max word allowed must be number", 4);
-				        event.preventDefault();
-	       			} else {
+	       			
 	       				questionItem = {}
 		       		 	questionItem["question_type"] = type ;
 			         	questionItem["question_text"] = firstField;
 			         	questionItem["max_char"] = secondField;
 			         	jsonObj.push(questionItem);
-			        }
 
 	       		} else if (type == 3 ){
-	       			if (!validateNumber(secondField)){
-	       				showMessage('top','center', "Max file size must be number", 4);
-				        event.preventDefault();
-	       			} else {
 	       				questionItem = {}
 		       		 	questionItem["question_type"] = type ;
 			         	questionItem["file_text"] = firstField;
 			         	questionItem["file_size"] = secondField;
 			         	jsonObj.push(questionItem);
-			         }
 	       		}
-		     }
+		     
 		     
 		});
 			if (jsonObj.length == 0){
@@ -258,7 +215,7 @@ $(document).ready(function(){
 // end of document ready function
 
 
-function addNewQuestionWithDetails(q,t, type){
+function addNewQuestionWithDetails(q,t, type, name1, name2){
 	var fomattedTime = "";
 	if (t != null){
 		fomattedTime = milisecondsToMinsFormat2(t);
@@ -268,12 +225,12 @@ function addNewQuestionWithDetails(q,t, type){
 			"<div class='row' type ='"+type+"'>" +
 		      "<div class='col-md-8'>"+
 		         "<div class='form-group'>"+
-		              "<input type='text' class='form-control border-input' placeholder='Video Question' value='"+q+"' >"+
+		              "<input type='text' class='form-control border-input interview-details'  name='"+name1+"' placeholder='Video Question' value='"+q+"' >"+
 		          "</div>"+
 		      "</div>"+
 		      "<div class='col-md-3'>"+
 		          "<div class='form-group'>"+
-		              "<input type='text' class='form-control border-input' placeholder='mm:ss Time allow' value='"+fomattedTime+"'>"+
+		              "<input type='text' class='form-control border-input interview-time'  name='"+name2+"' placeholder='mm:ss Time allow' value='"+fomattedTime+"'>"+
 		          "</div>"+
 		      "</div>"+
 		      "<div class='col-md-1 close'>"+
@@ -283,17 +240,17 @@ function addNewQuestionWithDetails(q,t, type){
 	return result;
 }
 
-function addNewTextQuestionWithDetails(q, c, type){
+function addNewTextQuestionWithDetails(q, c, type, name1, name2){
 	var result = 
 		"<div class='row'  type ='"+type+"'>" +
 	          "<div class='col-md-8'>" +
 	             "<div class='form-group'>" +
-	                  "<input type='text' class='form-control border-input' placeholder='Text Question' value='"+q+"' >" +
+	                  "<input type='text' class='form-control border-input interview-details'  name='"+name1+"' placeholder='Text Question' value='"+q+"' >" +
 	              "</div>" +
 	          "</div>" +
 	          "<div class='col-md-3'>" +
 	              "<div class='form-group'>" +
-	                  "<input type='text' class='form-control border-input' placeholder='Max words allowed' value='"+c+"'>" +
+	                  "<input type='text' class='form-control border-input interview-number' placeholder='Max words allowed'  name='"+name2+"' value='"+c+"'>" +
 	              "</div>"+
 	          "</div>"+
 	          "<div class='col-md-1 close'>"+
@@ -303,17 +260,17 @@ function addNewTextQuestionWithDetails(q, c, type){
 	  return result;
 }
 
-function addNewFileUpload(q, s, type){
+function addNewFileUpload(q, s, type, name1, name2){
 	var result = 
 	"<div class='row' type ='"+type+"'>" +
           "<div class='col-md-8'>" +
              "<div class='form-group'>"+
-                  "<input type='text' class='form-control border-input' placeholder='File Description' value='"+q+"'>"+ 
+                  "<input type='text' class='form-control border-input interview-details' name='"+name1+"' placeholder='File Description' value='"+q+"'>"+ 
               "</div>" +
           "</div>" +
           "<div class='col-md-3'>"+
               "<div class='form-group'>"+
-                  "<input type='text' class='form-control border-input' placeholder='Max File Size' value='"+s+"'>"+
+                  "<input type='text' class='form-control border-input interview-number'  name='"+name2+"' placeholder='Max File Size' value='"+s+"'>"+
               "</div>"+
           "</div>"+
           "<div class='col-md-1 close'>"+

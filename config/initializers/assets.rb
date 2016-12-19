@@ -38,6 +38,18 @@ Rails.application.config.assets.precompile += %w( jquery.lazyload.js )
 # jquery cookies handler
 Rails.application.config.assets.precompile += %w( js.cookie.js )
 
+# Paper dashboard wizard
+Rails.application.config.assets.precompile += %w( demo.css )
+Rails.application.config.assets.precompile += %w( paper-bootstrap-wizard.css )
+Rails.application.config.assets.precompile += %w( jquery.bootstrap.wizard.js )
+Rails.application.config.assets.precompile += %w( jquery.validate.min.js )
+Rails.application.config.assets.precompile += %w( paper-bootstrap-wizard.js )
+
+# landing page demo
+Rails.application.config.assets.precompile += %w( landings.css )
+Rails.application.config.assets.precompile += %w( landings.js )
+
+
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

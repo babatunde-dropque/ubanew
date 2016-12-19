@@ -3688,13 +3688,6 @@ div.main-panel.expand{
 }
 
 
-btn.btn.add-collaborator{
-  float: right;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 
 select.btn.box-shape {
   border-radius: 0;
@@ -3712,12 +3705,6 @@ select.btn.box-shape-1 {
   border-width: 1px;
 }
 
-
-
-.width-perfect{
-  width: 20%;
-  padding: 6px;
-}
 
 .text-right.right-margin{
   margin-right: 15px;
@@ -3739,13 +3726,6 @@ div.file > span  {
   margin: 4px;
 }
 
-.width-100{
-  width: 100%;
-}
-
-.margin-top-form {
-  margin-top: 17px; 
-}
 
 .card .numbers-1 {
   font-size: 2em;
@@ -3833,4 +3813,7 @@ div.file > span  {
 .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
     display: none;   
 }
+
+
+
 

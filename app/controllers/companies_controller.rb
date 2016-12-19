@@ -15,8 +15,10 @@ class CompaniesController < ApplicationController
 
 	def new
 
+        render  :layout => 'wizard'
 	end
 
+    
 
     def edit_preview
         if params[:properties].present?

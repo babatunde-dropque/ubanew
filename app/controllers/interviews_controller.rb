@@ -13,7 +13,7 @@ class InterviewsController < ApplicationController
 	end
 
 	def edit
-
+    render  :layout => 'wizard'
 	end
 
   
@@ -46,11 +46,11 @@ class InterviewsController < ApplicationController
   end
 
 
-	def new
-		@interview = Interview.new
+  def new
+    @interview = Interview.new
     @new_interview = true
-
-	end
+     render  :layout => 'wizard'
+  end
 
 
   def update
