@@ -87,7 +87,7 @@ $(document).ready(function(){
 
     formatQuestion();
 
-    var counterEdit = 0;
+    var counter = 0;
 	// check if the there is questions and parse the json 
 	var questionString = $("#questions-json").val() ;
 	if (questionString && questionString != null ) {
@@ -98,16 +98,16 @@ $(document).ready(function(){
 				if (resultArray[i]["question_type"] == 1){
 		    		 var q = resultArray[i]["question_video"];
 		    		 var t = resultArray[i]["time_allowed"] ;
-		    		$("#question-tag").append(addNewQuestionWithDetails(q,t, 1, 'name'+counterEdit++, 'name'+counterEdit++));   
+		    		$("#question-tag").append(addNewQuestionWithDetails(q,t, 1, 'name'+counter++, 'name'+counter++));   
 	    		} else if (resultArray[i]["question_type"] == 2){
 	    			 var q = resultArray[i]["question_text"];
 		    		 var t = resultArray[i]["max_char"] ;
-		    		$("#question-tag").append(addNewTextQuestionWithDetails(q,t, 2, 'name'+counterEdit++, 'name'+counterEdit++));   
+		    		$("#question-tag").append(addNewTextQuestionWithDetails(q,t, 2, 'name'+counter++, 'name'+counter++));   
 
 	    		} else if (resultArray[i]["question_type"] == 3){
 	    			 var q = resultArray[i]["file_text"];
 		    		 var t = resultArray[i]["file_size"] ;
-		    		$("#question-tag").append(addNewFileUpload(q,t, 3,'name'+counterEdit++, 'name'+counterEdit++));   
+		    		$("#question-tag").append(addNewFileUpload(q,t, 3,'name'+counter++, 'name'+counter++));   
 
 	    		}
 			}
@@ -115,7 +115,7 @@ $(document).ready(function(){
 	}
 
 
-	var counter = 0;
+
     $("#add-new").click(function(){
     	  var checkType = $("#question-type").val(); 
     	if(checkType == 1){
