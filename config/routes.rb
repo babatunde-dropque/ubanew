@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   
   get 'applicants/index'
   get 'landings/index'
+  post 'landings/requestdemo', to: "landings#request_demo"
   get 'contact' => 'landings#contact'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
-  get "dashboard", to: "users#dashboard", as: 'user_dashboard'
-  get "dashboard/account", to: "users#account", as: 'user_account'
+  get "dashboard", to: "users#dashboard", as: 'user_dashboard', :format => false
+  get "dashboard/account", to: "users#account", as: 'user_account', :format => false
   post "dashboard/account", to: "users#account", as: 'user_account_put'
   get "dashboard/check_password", to: "users#check_password", as: 'check_password'
 

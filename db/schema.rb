@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110110751) do
+ActiveRecord::Schema.define(version: 20170111120051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,15 +96,6 @@ ActiveRecord::Schema.define(version: 20161110110751) do
   end
 
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
-
-  create_table "contact_forms", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "subject"
-    t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -214,6 +205,17 @@ ActiveRecord::Schema.define(version: 20161110110751) do
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+
+  create_table "request_demos", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "organization"
+    t.string   "role"
+    t.string   "purpose"
+    t.string   "additional_message"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "status"

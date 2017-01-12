@@ -2,4 +2,4 @@
 //= require jquery.min
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require_tree ./material-kit
+//= require_tree ./material-boostrap-applicant

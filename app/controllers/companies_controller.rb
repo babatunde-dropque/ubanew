@@ -1,3 +1,4 @@
+require 'slack-notifier'
 class CompaniesController < ApplicationController
 	layout 'user_dashboard'
 	before_action :authenticate_user!
@@ -122,6 +123,8 @@ class CompaniesController < ApplicationController
         	#  create add the user as the super admin and ower to company
         	owner = JointUserCompany.new(status:0, user_id: params[:user_id], company_id: company.id)
         	owner.save
+
+            
         	# after this, loop through everyother user and send notification and email to them
         	collaborator_list = JSON.parse(params[:collaborators_list])
         	collaborator_list.each do | collborator | 
@@ -144,6 +147,18 @@ class CompaniesController < ApplicationController
                     one_collaborator.save   
                 end             
             end
+
+            # send notification to slack
+            if Rails.env.production?
+                notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'NewOrganization'
+                notifier.ping "New organization ("+  company.name + ") by " + current_user.name + "\n" +
+                              "email: " + current_user.email + "\n" +
+                              "subdomain: " + company.subdomain + "\n" +
+                              "Tumbs up guys, getting better. Thanks Dropque Bot"
+            end 
+            # end of slack notification
+
+           
 
         	redirect_to  user_dashboard_path 
         else 

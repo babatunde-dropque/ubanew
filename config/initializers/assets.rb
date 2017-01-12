@@ -24,8 +24,8 @@ Rails.application.config.assets.precompile += %w( plugins.js )
 
 
 # material design for boostrap for applicants view
-Rails.application.config.assets.precompile += %w( material-boostrap.css )
-Rails.application.config.assets.precompile += %w( material-boostrap.js )
+Rails.application.config.assets.precompile += %w( material-applicant.css )
+Rails.application.config.assets.precompile += %w( material-applicant.js )
 
 
 Rails.application.config.assets.precompile += %w( main.js )

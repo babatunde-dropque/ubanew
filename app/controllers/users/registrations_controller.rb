@@ -50,7 +50,7 @@ before_filter :configure_account_update_params, only: [:update]
   def configure_sign_up_params
     devise_parameter_sanitizer.for(:sign_up) << :name
     if Rails.env.production?
-      notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#development', username: 'signup'
+      notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'signup'
       notifier.ping "New Signup by " + params[:user][:name] + " email: " + params[:user][:email]
     end 
   end
