@@ -28,6 +28,8 @@ function submitAjax(){
 
 
 function finalSubmit(){
+  $('.error').removeClass('alert-danger').addClass('alert alert-success').html("Sending ...");
+  $('#loading').addClass('fa fa-spinner fa-spin');
     var requestForm = $('#request-demo');
     $.ajax({
           url: '/landings/requestdemo',
@@ -47,7 +49,7 @@ function finalSubmit(){
 }
 
 function shakeModal(option, content){
-    
+        $('#loading').removeClass('fa fa-spinner fa-spin');
         if (option){
             $('.error').removeClass('alert-danger').addClass('alert alert-success').html("We will get back to you shortly. Sent successfully <span class='glyphicon glyphicon-ok'>");
             $('#request-demo').trigger("reset");
