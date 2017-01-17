@@ -1,5 +1,12 @@
 RailsAdmin.config do |config|
 
+
+
+  config.main_app_name = ["Dropque", "BackOffice"]
+  # or something more dynamic
+  # config.main_app_name = Proc.new { |controller| [ "Dropque", "BackOffice - #{controller.params[:action].try(:titleize)}" ] }
+
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -12,7 +19,7 @@ RailsAdmin.config do |config|
     if current_user.nil?
       redirect_to main_app.root_path
     else
-      redirect_to main_app.root_path unless current_user.email == "admin@dropque.com"
+      redirect_to main_app.root_path unless (current_user.email == "admin@dropque.com" || current_user.email == "ibukun@dropque.com" )
     end
   end
 
