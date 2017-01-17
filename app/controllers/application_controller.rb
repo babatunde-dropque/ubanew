@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   	  	# company invitation
   	  	sender = User.find(sender_id)
   	  	message = sender.name + ' (' + sender.email + ') ' + 'added you to ' + company_name
+        message_email = sender.name + ' (' + sender.email + ') ' + 'added you to ' + company_name
 
   	  elsif(type == 3)
   	  	# message from another user to company 
@@ -30,14 +31,18 @@ class ApplicationController < ActionController::Base
       # Transer Ownership to you
       sender = User.find(sender_id)
       message = sender.name + ' (' + sender.email + ') ' + 'transfer Ownership of ' + company_name + ' to you '
+      message_email = sender.name + ' (' + sender.email + ') ' + 'transfer Ownership of ' + company_name + ' to you '
   	  end
 
   	  notification =  Notification.new(read: 0, type_notification: type, message: message , user_id: user_id )
       notification.save!
+      
+      if (type == 2 || type == 5)
 
-      # get receivers object
-      # receiver = User.find(user_id)
-      # UserMailer.receive_notification(receiver, message).deliver_later
+        NotifierMailer.user_notification(User.find(user_id), company_name, message_email).deliver
+        
+      end
+      
 
   end
 
