@@ -1,5 +1,5 @@
 class InterviewMailer < ApplicationMailer
-  default from: "invite@dropque.com"
+  # default from: "invite@dropque.com"
 
 
   def interview_invite(interview, email)
@@ -10,7 +10,7 @@ class InterviewMailer < ApplicationMailer
     @company_img = @company.logo
     @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
-   mail(to: email, subject: "#{@company.name} Interview Invitation")
+   mail(from:"#{@company.name}", to: email, subject: "#{@company.name} Interview Invitation")
   end
 
 
