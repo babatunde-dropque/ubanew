@@ -1,5 +1,4 @@
 class InterviewMailer < ApplicationMailer
-  # default from: "invite@dropque.com"
 
 
   def interview_invite(interview, email)
@@ -10,7 +9,7 @@ class InterviewMailer < ApplicationMailer
     @company_img = @company.logo
     @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
-   mail(from:"#{@company.name}", to: email, subject: "#{@company.name} Interview Invitation")
+   mail(from:"#{@company.name}", to: email, subject: "#{@interview.title} Interview Invitation")
   end
 
 
@@ -21,7 +20,7 @@ class InterviewMailer < ApplicationMailer
     @interview_page = @company.subdomain
     @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
-    mail(to: email, subject: "#{@company.name} Notification: You are Shortlisted") 
+    mail(from:"#{@company.name}",to: email, subject: "#{@interview.title} Notification: You are Shortlisted") 
   end
 
 
@@ -32,6 +31,6 @@ class InterviewMailer < ApplicationMailer
     @interview_page = @company.subdomain
     @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
-    mail(to: email, subject: "#{@company.name} Notification")
+    mail(from:"#{@company.name}",to: email, subject: "#{@interview.title} Notification")
   end
 end
