@@ -36,7 +36,7 @@ class LandingsController < ApplicationController
     else
 
       render text: "false"
-    end    
+    end
   end
 
   def errors
