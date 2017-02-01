@@ -2,18 +2,36 @@ class SubmissionsController < ApplicationController
 	layout 'user_dashboard'
 	before_action :authenticate_user!
 	before_action :set_up_user
-    before_action :set_up_company
-    before_action :set_up_interview
+  before_action :set_up_company
+  before_action :set_up_interview
+  before_action :set_up_submission
 
 	def export
 	    @submissions = @interview.submissions
 	    respond_to do |format|
 	      format.html
 	      format.csv { send_data @submissions.to_csv(@interview.questions), filename: @interview.title + "-#{Date.today}.csv"  }
-	      format.xls 
+	      format.xls
 	    end
  	end
 
+def shortlist
+  # @id = @submission.id
+  if InterviewMailer.shortlist(@interview, @id).deliver
+    render plain:  "true"
+  else
+    render plain: "error"
+  end
+end
+
+  def reject
+   # @id = @submission.id
+   if InterviewMailer.reject(@interview, @id).deliver
+    render plain: "true"
+  else
+    render plain:"error"
+  end
+ end
 
 
  private
@@ -31,6 +49,13 @@ class SubmissionsController < ApplicationController
         redirect_to company_path
       end
 
+  end
+  def set_up_submission
+      # @submission = Submission.last
+      @submits = @interview.submissions
+       @submits.each do |submit|
+        @id = submit.id
+      end
   end
 
 	# set_up company details and check if the user has permission to access the company

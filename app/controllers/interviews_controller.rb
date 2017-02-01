@@ -134,23 +134,7 @@ class InterviewsController < ApplicationController
       end
   end
 
- #  def shortlist
-
- #    if (InterviewMailer.shortlist(id).deliver)
- #    render plain:  "true"
- #  else
- #    render plain: "error"
- #  end
- # end
-
- #  def reject
-
- #   if (InterviewMailer.reject(id).deliver)
- #    render plain: "true"
- #  else
- #    render plain:"error"
- #  end
- # end
+  
 
 
 

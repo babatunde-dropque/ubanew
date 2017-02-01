@@ -118,10 +118,12 @@ Rails.application.routes.draw do
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
       put "change_status", to: "interviews#change_status"
-      put "shortlist", to: "interviews#shortlist"
-      put "reject", to: "interviews#reject"
+      # get "shortlist", to: "interviews#shortlist"
+      # get "reject", to: "interviews#reject"
       get "unfinish_submission", to: "interviews#unfinish_submission" 
       get "export_details", to: "submissions#export",  as: 'export_submissions'
+      get "shortlist", to: "submissions#shortlist"
+      get "reject", to: "submissions#reject"
     end
 
   end
@@ -130,7 +132,7 @@ Rails.application.routes.draw do
 
   # checking if the subdomain is available, if yes to to route
   # if not route back to rool url
-  get '/' => 'applicants#index', :constraints => CustomDomainConstraint 
+  get '/' => 'applicants#index', :constraints => CustomDomainConstraint
 
   constraints(CustomDomainConstraint) do
      get '/' => 'applicants#index'

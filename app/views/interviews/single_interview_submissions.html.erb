@@ -142,8 +142,7 @@
       </div>
     </div>
   </div>
-  <%end%>
-
+<%end%>
 
 
 
@@ -185,8 +184,8 @@
        modalMajorView.css('max-height', modalBody.height() - modalWrap.height());
 
        height = modalMajorView.height() * 0.85 ;
-       width = height * 1.3333 ; 
-       
+       width = height * 1.3333 ;
+
        commentView.css('max-height', modalBody.height() - rateView.height());
        $(idToTrigger).attr("resized", "true");
     }
@@ -299,6 +298,7 @@
     var submissionId = parent.attr('submission-id');
     var status = current.attr('status');
     console.log(submissionId);
+    // var url = 
 
     $.ajax({
           url: '<%= company_interview_change_status_path(company_id:@company.slug, interview_id:@interview.slug)%>',
@@ -308,22 +308,45 @@
               if (data == "shortlist" ){
                  parent.children().removeClass('btn-fill');
                  current.addClass('btn-fill');
-                 // alert('You want to shortlist '+submissionId+'?');
+        
                   alert('You want to SHORTLIST this candidate?');
-                   <%InterviewMailer.shortlist(@interview, submission.id ).deliver%>
+                  $.ajax({
+                  url:'<%= company_interview_shortlist_path(company_id:@company.slug, interview_id:@interview.slug)%>',
+                  type: 'GET',
+                  data: { Id:submissionId},
+                  success: function(data){
+                      if (data == "true"){
+                        console.log("Shortlisting "+submissionId);
+                      }
+                      else if(data=="error"){
+                        console.log ("No way for "+submissionId);
+                      }
+                  }
 
+                 });
              } else if (data == "pend"){
                 parent.children().removeClass('btn-fill');
                 current.addClass('btn-fill');
-                // alert('You want to pend '+submissionId+' ?');
                 alert('You want to PEND this candidate?');
              }
              else if (data == "reject"){
                 parent.children().removeClass('btn-fill');
                 current.addClass('btn-fill');
-                // alert('You want to reject '+submissionId+'?');
                 alert('You want to REJECT this candidate?');
-                <%InterviewMailer.reject(@interview, submission.id ).deliver%>
+                   $.ajax({
+                  url:'<%= company_interview_reject_path(company_id:@company.slug, interview_id:@interview.slug)%>',
+                  type: 'GET',
+                  data: { Id:submissionId},
+                  success: function(data){
+                      if (data == "true"){
+                        console.log("Rejecting "+submissionId);
+                      }
+                      else if(data=="error"){
+                        console.log ("No way forb "+submissionId);
+                      }
+                  }
+
+                 });
 
              }
              else if (data == "error"){

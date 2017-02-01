@@ -34,7 +34,7 @@ class InterviewMailer < ApplicationMailer
     @id = submissionId
     @submission = Submission.find_by(id:@id)
     @candidate = User.find(@submission.user_id).name
-    @interview = interview.
+    @interview = interview
     @email = User.find(@submission.user_id).email
     @company = interview.company
     @company_email = @company.email
