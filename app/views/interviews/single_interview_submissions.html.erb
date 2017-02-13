@@ -308,8 +308,7 @@
               if (data == "shortlist" ){
                  parent.children().removeClass('btn-fill');
                  current.addClass('btn-fill');
-        
-                  alert('You want to SHORTLIST this candidate?');
+         alert('You want to SHORTLIST this candidate?');
                   $.ajax({
                   url:'<%= company_interview_shortlist_path(company_id:@company.slug, interview_id:@interview.slug)%>',
                   type: 'GET',

@@ -1,12 +1,14 @@
 class UserMailer < ApplicationMailer
-   default from: 'notifications@dropque.com'
+   default from: 'Dropque'
    # layout 'awesome' # use awesome.(html|text).erb as the layout
 
-  def welcome_email(user)
-    @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email , subject: 'Welcome to My Awesome Site')
-  end
+  # def welcome_email(user)
+  #   @user = user
+  #   @name = @user.name
+  #   @dashboard  = 'http://www.dropque.com/dashboard'
+  #   @dropque = "Dropque Inc"
+  #   mail( to: @user.email , subject: 'Welcome to Dropque')
+  # end
 
 
   def receive_notification(user, message )
