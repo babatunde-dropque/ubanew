@@ -2262,7 +2262,7 @@ h2, .h2 {
 h3, .h3 {
   font-size: 1.825em;
   line-height: 1.4em;
-  margin: -160px 0 10px;
+ /* margin: -160px 0 10px;*/
 }
 
 h4, .h4 {
