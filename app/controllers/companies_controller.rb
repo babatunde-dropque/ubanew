@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
     before_filter :set_up_user
     before_filter :set_up_company, :except => [:new, :create, :check_subdomain ]
 
-   
+
 
 	def show
         @user_status = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
         render  :layout => 'wizard'
 	end
 
-    
+
 
     def edit_preview
         if params[:properties].present?
@@ -124,11 +124,11 @@ class CompaniesController < ApplicationController
         	owner = JointUserCompany.new(status:0, user_id: params[:user_id], company_id: company.id)
         	owner.save
 
-            
+
         	# after this, loop through everyother user and send notification and email to them
         	collaborator_list = JSON.parse(params[:collaborators_list])
-        	collaborator_list.each do | collborator | 
-   
+        	collaborator_list.each do | collborator |
+
         		email = collborator["email"]
         		status = collborator["status"]
 
@@ -139,13 +139,13 @@ class CompaniesController < ApplicationController
                 result = JointUserCompany.find_by(user_id: user.id, company_id: company.id)
                 if result.nil?
 
-                    # send notification 
+                    # send notification
                     self.send_notification(user.id, 2 ,params[:user_id], company.name)
 
                     # add user to joint_user_company model
             		one_collaborator = JointUserCompany.new(status: status, user_id: user.id, company_id: company.id)
-                    one_collaborator.save   
-                end             
+                    one_collaborator.save
+                end
             end
 
             # send notification to slack
@@ -158,21 +158,21 @@ class CompaniesController < ApplicationController
             end 
             # end of slack notification
 
-           
 
-        	redirect_to  user_dashboard_path 
-        else 
-        	 
-        end 
+
+        	redirect_to  user_dashboard_path
+        else
+
+        end
 	end
 
-	
+
 
 
   private
 
   def create_company_params
-    params.permit(:name, :description, :tags, :image, :city, :address, :country, :subdomain, :logo)
+    params.permit(:name, :description, :tags, :image, :city, :address, :email, :country, :subdomain, :logo)
   end
 
 

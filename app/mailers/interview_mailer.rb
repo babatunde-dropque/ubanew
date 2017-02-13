@@ -1,6 +1,14 @@
 class InterviewMailer < ApplicationMailer
 
 
+  def welcome_email(user)
+    @user = user
+    @name = @user.name
+    @dashboard  = 'http://www.dropque.com/dashboard'
+    @dropque = "Dropque Inc"
+    mail(from: 'Dropque', to: @user.email , subject: 'Welcome to Dropque')
+  end
+
   def interview_invite(interview, email)
     @interview = interview
     @token = @interview.interview_token

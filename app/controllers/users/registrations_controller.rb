@@ -12,6 +12,7 @@ before_filter :configure_account_update_params, only: [:update]
   # POST /resource
   def create
     super
+    
   end
 
   # GET /resource/edit
@@ -20,7 +21,6 @@ before_filter :configure_account_update_params, only: [:update]
     @notification = Notification.where(user_id: @user.id, read: 0)
     render :layout => 'user_dashboard'
     # super
-
   end
 
   # PUT /resource
