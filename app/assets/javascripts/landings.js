@@ -17,7 +17,11 @@ function submitAjax(){
         shakeModal(false, "Invalid email/ email can't be empty");
     } else if (!($('#name').val())) {
         shakeModal(false, "Name can't be empty ");
-    } else if (!($('#organization').val())) {
+    }
+    else if (!($('#telephone').val())) {
+        shakeModal(false, "telephone can't be empty ");
+    }
+    else if (!($('#organization').val())) {
         shakeModal(false, "Organization can't be empty");
     } else if (!($('#role').val())) {
         shakeModal(false, "Role can't be empty");

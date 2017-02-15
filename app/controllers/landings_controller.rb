@@ -23,14 +23,15 @@ class LandingsController < ApplicationController
         notifier.ping "New Request Demo by " + params[:name] + "\n" +
                       "email: " + params[:email] + "\n" +
                       params[:role] + "\n" +
+                      "with number(" + params[:telephone] + ")\n" +
                       "at organization(" + params[:organization] + ")\n" +
                       "want to use dropque for " + params[:purpose] + "\n" +
                       "One of us should kindly reach out. Thanks Dropque Bot"
-      end 
+      end
 
       # send to our notificationgroup@dropque.com general mail
       # parameter is as follows, name, email, organization, role, purpose
-      NotifierMailer.demo_request(params[:name], params[:email], params[:organization],params[:role], params[:purpose]).deliver
+      NotifierMailer.demo_request(params[:name], params[:email], params[:organization],params[:role], params[:purpose], params[:telephone]).deliver
 
       render text: "true"
     else
