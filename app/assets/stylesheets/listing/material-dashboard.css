@@ -3669,7 +3669,7 @@ footer .btn {
 }
 
 .card [data-background-color="dropque"] {
-  background: linear-gradient(60deg, #ef5350, #5e337b ) 
+  background: linear-gradient(60deg, #ef5350, #5e337b );
   box-shadow: 0 12px 20px -10px rgba(94, 50, 122, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(94, 50, 122, 0.2);
 }
 .card [data-background-color] {
