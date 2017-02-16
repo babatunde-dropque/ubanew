@@ -36,7 +36,7 @@ class LandingsController < ApplicationController
     else
 
       render text: "false"
-    end    
+    end
   end
 
   def errors
@@ -58,7 +58,7 @@ protected
 private
 
 def create_request_params
-    params.permit(:name, :email, :organization, :role, :purpose, :additional_message)
+    params.permit(:name, :telephone, :email, :organization, :role, :purpose, :additional_message)
 end
 
 end

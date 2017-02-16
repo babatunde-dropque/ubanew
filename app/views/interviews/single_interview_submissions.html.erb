@@ -19,30 +19,30 @@
             <% if @submissions.length == 0  %>
              <%= render partial: "when_empty" %>
             <% end %>
-            
+
 
            <div class="row">
 
             <% @submissions.each do |submission| %>
                   <div class="col-md-3">
                         <div class="content">
-                          
+
                             <div class="card main text-center box-shape" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
                               <span class="stats"> <%= submission.user.name %></span><br>
                                 <div class="dq-center-video">
                                   <% if !submission.first_video.nil? %>
                                     <% first_video = submission.first_video - 1 %>
                                   <img class="lazy max-height-width"  src="<%= asset_path('dummy.png') %>" data-original="https://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
-                                  <% else %> 
+                                  <% else %>
                                     <%= image_tag('dummy.png')%>
                                   <% end %>
-                                 
+
                                 </div>
                                 <div >
                                   <span class="text-info">
                                     <small> <%= submission.user.email %> </small>
                                   </span>
-                                 
+
                                 </div>
                                </div>
                         </div>
@@ -59,7 +59,7 @@
 
 
   <!-- Modal -->
-<% @submissions.each do |submission| %>      
+<% @submissions.each do |submission| %>
   <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" resized = "false" >
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -69,7 +69,7 @@
 
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>   
+          </button>
         </div>
         <div class="modal-body">
 
@@ -77,31 +77,31 @@
             <table height= "100%", width="100%">
 
               <tr>
-                <td style="width: 60%; heigth:80%" class="padding-5"> 
+                <td style="width: 60%; heigth:80%" class="padding-5">
                   <div class="text-center major-view centralize">
                      <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
-                     <div id="content-video-<%= submission.id %>-sly" class="centralize-video" > 
+                     <div id="content-video-<%= submission.id %>-sly" class="centralize-video" >
                     </div>
-                  </div>            
+                  </div>
                 </td>
 
-                <td  rowspan="2" style=" width: 40%;" class="padding-5" > 
+                <td  rowspan="2" style=" width: 40%;" class="padding-5" >
                   <div class="rate">
-                    <div class="centralize " submission-id="<%= submission.id %>"> 
+                    <div class="centralize " submission-id="<%= submission.id %>">
                       <button class="btn btn-sm btn-danger btn-icon box-shape status <%= (submission.status == 'reject') ? "btn-fill": "" %> " status="2" title='reject' ><i class="ti-close"></i></button>
                       <button class="btn btn-sm btn-icon  box-shape status <%= (submission.status == 'pend') ? "btn-fill": "" %>" status="1" title='pending'><i class="ti-minus"></i></button>
                       <button class="btn btn-sm btn-success btn-icon  box-shape status <%= (submission.status == 'shortlist') ? "btn-fill": "" %> " status="0" title='shortlist'><i class="ti-check"></i></button>
                       <br><br>
-                    </div> 
-                      
+                    </div>
+
                     <div class="centralize ">
                       <%= rating_for submission, 'response', disable_after_rate: false, cancel_hint: 'Cancel interview rating', imdb_avg: false , target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Interview rating: {score}"%>
                       <div style="color: #5e337b; " id="hint<%= submission.id %>"></div>
                     </div>
                   </div>
-                  
+
                  <div class="centralize full-fix ">
-                  <%= commontator_thread(submission) %> 
+                  <%= commontator_thread(submission) %>
                  </div>
               </td>
             </tr>
@@ -128,7 +128,7 @@
                       <% end %>
                     </ul>
                   </div>
-              </div>   
+              </div>
               </td>
            </tr>
 
@@ -137,14 +137,14 @@
 
 
         </div>
-        
+
 
       </div>
     </div>
   </div>
-<% end %>
+<%end%>
 
-  
+
 
 <script>
 
@@ -154,13 +154,13 @@
  $('.modal').on('shown.bs.modal', function (e) {
 
 
-   // $(idToTrigger).css('overflow-x', 'auto'); 
+   // $(idToTrigger).css('overflow-x', 'auto');
    // $(idToTrigger).css('min-width', $(idToTrigger).width());
 
     var cardView = $(e.relatedTarget); // cardView that triggered the modal
     var idToTrigger = cardView.data('target');
     var resizeAttr =  $(idToTrigger).attr("resized");
-    
+
 
     if (resizeAttr == "false"){
       var modalBody = $(idToTrigger).find('div.modal-body');
@@ -184,8 +184,8 @@
        modalMajorView.css('max-height', modalBody.height() - modalWrap.height());
 
        height = modalMajorView.height() * 0.85 ;
-       width = height * 1.3333 ; 
-       
+       width = height * 1.3333 ;
+
        commentView.css('max-height', modalBody.height() - rateView.height());
        $(idToTrigger).attr("resized", "true");
     }
@@ -248,7 +248,7 @@
            } else{
               replaceTextFile(submissionId, itemIndex, questionType, questionId, contentId);
            }
-           
+
      });
 
 });
@@ -266,12 +266,12 @@
 
   function replaceTextFile(submissionId, questionNumber, questionType, htmlQuestionId, htmlContentId ){
     $.ajax({
-          url: '<%= company_interview_returnTextFileApi_path(company_id:@company.slug, interview_id:@interview.slug)%>', 
+          url: '<%= company_interview_returnTextFileApi_path(company_id:@company.slug, interview_id:@interview.slug)%>',
           type: 'GET',
           data: { submission_id: submissionId, question_type: questionType, question_number: questionNumber},
           success: function(data){
               if (data == "error" ){
-                
+
               } else if(questionType == 2) {
                  $(htmlContentId).html(data.answer);
                  $(htmlQuestionId).html(data.question)
@@ -280,16 +280,16 @@
                     "File Name: "+data.answer.split('/').pop()+"<br>"+
                     "File Type: "+data.answer.split('/').pop().split('.').pop()+" <br>"+
                     "File size: "+(data.file_size / 1000)+" kb <br><br><br>"+
-                    "<a class='btn box-shape download-button' href='"+data.answer+"' target='_blank'>Download file </a>"+ 
+                    "<a class='btn box-shape download-button' href='"+data.answer+"' target='_blank'>Download file </a>"+
                  " </div> ");
                 $(htmlQuestionId).text(data.question);
              }
           },
           error : function(jqXHR, textStatus, errorThrown) {
-               
+
            }
        });
-  } 
+  }
 
 
   $(".status").click(function(){
@@ -298,21 +298,62 @@
     var submissionId = parent.attr('submission-id');
     var status = current.attr('status');
     console.log(submissionId);
+    // var url = 
 
-    $.ajax({  
-          url: '<%= company_interview_change_status_path(company_id:@company.slug, interview_id:@interview.slug)%>', 
+    $.ajax({
+          url: '<%= company_interview_change_status_path(company_id:@company.slug, interview_id:@interview.slug)%>',
           type: 'PUT',
           data: { submission_id: submissionId, status: status},
           success: function(data){
-              if (data == "success" ){
+              if (data == "shortlist" ){
                  parent.children().removeClass('btn-fill');
                  current.addClass('btn-fill');
-             } else if (data == "error"){
-                parent.children().removeClass('btn-fill');     
+         alert('You want to SHORTLIST this candidate?');
+                  $.ajax({
+                  url:'<%= company_interview_shortlist_path(company_id:@company.slug, interview_id:@interview.slug)%>',
+                  type: 'GET',
+                  data: { Id:submissionId},
+                  success: function(data){
+                      if (data == "true"){
+                        console.log("Shortlisting "+submissionId);
+                      }
+                      else if(data=="error"){
+                        console.log ("No way for "+submissionId);
+                      }
+                  }
+
+                 });
+             } else if (data == "pend"){
+                parent.children().removeClass('btn-fill');
+                current.addClass('btn-fill');
+                alert('You want to PEND this candidate?');
+             }
+             else if (data == "reject"){
+                parent.children().removeClass('btn-fill');
+                current.addClass('btn-fill');
+                alert('You want to REJECT this candidate?');
+                   $.ajax({
+                  url:'<%= company_interview_reject_path(company_id:@company.slug, interview_id:@interview.slug)%>',
+                  type: 'GET',
+                  data: { Id:submissionId},
+                  success: function(data){
+                      if (data == "true"){
+                        console.log("Rejecting "+submissionId);
+                      }
+                      else if(data=="error"){
+                        console.log ("No way forb "+submissionId);
+                      }
+                  }
+
+                 });
+
+             }
+             else if (data == "error"){
+                parent.children().removeClass('btn-fill');
              }
           },
           error : function(jqXHR, textStatus, errorThrown) {
-               parent.children().removeClass('btn-fill');    
+               parent.children().removeClass('btn-fill');
            }
        });
   });

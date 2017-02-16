@@ -1,5 +1,108 @@
-<h1>InterviewMailer#reject</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+<table class="" width="100%" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="" style="padding-top:10px;padding-bottom:10px" valign="top">
+            <table class="" cellpadding="0" cellspacing="0">
+              <tbody>
+              <%if !@company_img.blank? %>
+              <tr style="color:#ffffff;font-size:24px" >
+                  <td class="" style="padding-top:0px;padding-bottom:0px" valign="top"><span class="m_4259008208748564621sg-image"><img class="CToWUd" src="<%=@company_img%>" style="width:132px;height:50px" width="132" height="50"></span></td>
+                </tr>
+                <%end%>
+                <tr style="color:#ffffff; background-color:#eeeeee;font-size:24px" >
+                  <td class="" style="padding-top:10px;padding-bottom:10px" valign="top"><span class="m_4259008208748564621sg-image"><img class="CToWUd"  style="" ></span></td>
+                </tr>
+                <tr>
 
-<p>
-  <%= @greeting %>, find me in app/views/interview_mailer/reject.html.erb
-</p>
+                  <td class="m_4259008208748564621body-cell" valign="top">
+
+                  <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+
+                    <tbody>
+
+                      <tr>
+
+                        <td style="font-size: 15px; line-height:1.5em; font-family: Arial,Helvetica,sans-serif;padding-bottom:20px;background-color:#ffffff" valign="top"><b>Hello <%=@candidate%>,</b><br>
+
+                        <br>
+                        <p>Thank you for taking <%=@interview.slug.capitalize!%> interview with us. </p>
+                       <p> However, you did not make the final list</p>
+                        <p>We wish you  <strong> best</strong>  in future endearvors</p>
+
+                      </td></tr>
+
+                      <tr>
+
+                        <td>
+
+                        <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+
+                          <tbody>
+
+                            <tr>
+
+                              <td style="width:200px;background:#22baa0">
+
+                              
+
+                              </td>
+
+                              <td style="background-color:#ffffff;font-size:0;line-height:0" width="360">&nbsp;</td>
+
+                            </tr>
+
+                          </tbody>
+
+                        </table>
+
+                        </td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td style="padding-top:20px;background-color:#ffffff;font-family: Arial,Helvetica,sans-serif; font-size: 15px;color: #333333;line-height: 1.5em;"
+
+
+
+                        <div>Best,<br>
+                        <%= @company %>
+
+                       </div>
+
+                        </td>
+
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+  </body>
+</html>
+
+
+
+
+

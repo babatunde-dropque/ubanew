@@ -4,6 +4,7 @@ class InterviewsController < ApplicationController
 	before_action :set_up_user
   before_action :set_up_company
   before_action :set_up_interview, :except => [:new, :create, :index]
+  # before_action :set_up_submission, :except => [:new, :create, :index]
 
 
 
@@ -16,7 +17,7 @@ class InterviewsController < ApplicationController
     render  :layout => 'wizard'
 	end
 
-  
+
   def single_interview_submissions
      @submissions = @interview.submissions.where(current_no: 500)
      render :layout => 'single_interview_submissions'
@@ -37,7 +38,7 @@ class InterviewsController < ApplicationController
     if !submission.nil? && submission.answers[question_number]["question_type"] == question_type
       if question_type == "2"
          render :json => {:answer => submission.answers[question_number]["answer_text"],:question => submission.answers[question_number]["question_text"] }
-      elsif question_type = "3"
+      elsif question_type == "3"
          render :json =>{:answer => submission.answers[question_number]["file_link"], :question => submission.answers[question_number]["file_text"], :file_size => submission.answers[question_number]["file_size"] } 
       end
     else
@@ -114,16 +115,26 @@ class InterviewsController < ApplicationController
   end
 
 
-  
+
 
   def change_status
-    submission = Submission.find(params[:submission_id])
-     if submission.update(status: params[:status].to_i)
-        render plain: "success"
+
+      submission = Submission.find(params[:submission_id])
+       # InterviewMailer.shortlist(@interview, 2).deliver
+     if submission.update(status: params[:status].to_i) && submission.status == "shortlist"
+
+        render plain: "shortlist"
+      elsif submission.update(status: params[:status].to_i) && submission.status == "pend"
+        render plain: "pend"
+      elsif submission.update(status: params[:status].to_i) && submission.status ==  "reject"
+        # InterviewMailer.reject(@interview, 1).deliver
+        render plain: "reject"
       else
         render plain: "error"
       end
   end
+
+  
 
 
 
@@ -143,6 +154,10 @@ class InterviewsController < ApplicationController
       end
 
   end
+
+  # def set_up_submission
+  #     @submission = Submission.last
+  # end
 
 	# set_up company details and check if the user has permission to access the company
     # so user's can't access it from the url

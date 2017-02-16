@@ -40,7 +40,7 @@ function finalSubmit(){
                 shakeModal(true, "");
             } else if (data == "false"){
                 shakeModal(false, "Couldn't complete your request, kindly try again");
-            } 
+            }
           },
           error : function(jqXHR, textStatus, errorThrown) {
              shakeModal(false, "Couldn't complete your request, kindly try again");
@@ -57,11 +57,9 @@ function shakeModal(option, content){
             $('#loginModal .modal-dialog').addClass('shake');
             $('.error').addClass('alert alert-danger').html(content);
             $('input[type="password"]').val('');
-            setTimeout( function(){ 
-                    $('#loginModal .modal-dialog').removeClass('shake'); 
-            }, 1000 ); 
+            setTimeout( function(){
+                    $('#loginModal .modal-dialog').removeClass('shake');
+            }, 1000 );
         }
-         
-}
 
-   
+}
