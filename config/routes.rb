@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'applicants/index'
   get 'landings/index'
   post 'landings/requestdemo', to: "landings#request_demo"
-  get 'contact' => 'landings#contact'
+  get 'listing' => 'listings#listing_interview'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard', :format => false
   get "dashboard/account", to: "users#account", as: 'user_account', :format => false

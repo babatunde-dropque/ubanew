@@ -1,4 +1,4 @@
-<div class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url(<%= (@company.image.file.nil?) ? asset_path('interviewers.jpg') : @company.image.url %>);  background-repeat: no-repeat; background-size: cover;" >
+<div class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url(<%= asset_path('interviewers.jpg') %>);  background-repeat: no-repeat; background-size: cover;" >
 
 
     
@@ -143,6 +143,50 @@
     </div>
 
 </div>
+
+
+<!-- Details for single interviews should be show here -->
+
+
+
+ <% if  Interview.exists?(interview_token: params[:interview_token]) %>
+ <% @interview = Interview.find_by(interview_token: params[:interview_token]) %>
+
+ <!--  Add interview details Partial -->
+          <br><br>
+         <%= render partial: "interview_details" %>
+ <!--  Add interview footer Partial -->
+       
+    
+<% end %>
+  <%= render partial: "interview_footer" %>
+
+ 
+
+ <!-- Details of each interview should end here -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

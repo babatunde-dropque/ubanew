@@ -66,11 +66,13 @@
 
 
 
+   <br><br>
     <div class="row">
-        <div class=" form-group col-md-12" >
-          <label>Interviews Access (Available for Business and Enterprise plan) </label>
+        <!-- <label>Interviews Access (Available for Business and Enterprise plan) </label> -->
+        <div class=" form-group col-sm-2 col-sm-offset-5" >
+         <!--  <label>Interviews Access (Available for Business and Enterprise plan) </label> -->
             <div class="onoffswitch file">
-              <%= f.check_box :status, :id => 'myonoffswitch', class: "onoffswitch-checkbox",  disabled:true %>
+              <%= f.check_box :status, :id => 'myonoffswitch', class: "onoffswitch-checkbox" %>
                 <label class="onoffswitch-label" for="myonoffswitch">
                     <span class="onoffswitch-inner"></span>
                     <span class="onoffswitch-switch"></span>
@@ -79,10 +81,38 @@
         </div>
     </div>
 
-    <label class="radio">
-        <input type="radio" name="optionsRadios" data-toggle="radio" id="optionsRadios1" value="option1">
-        <i></i>Radio is off
-      </label>
+
+    <!-- add to public interview page -->
+
+        <!-- <h5 class="info-text"> Get notification(s) via?  </h5> -->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <div class="col-sm-4">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                        <input type="checkbox"  value="Design">
+                        <div class="card card-checkboxes card-hover-effect">
+                            <i class="ti-email"></i>
+                            <p>Add to public page</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                        <input type="checkbox"  value="Code">
+                        <div class="card card-checkboxes card-hover-effect">
+                            <i class="ti-comment"></i>
+                            <p>Sms</p>
+                        </div>
+                    </div>
+                </div>
+      
+            </div>
+        </div>
+ 
+
+      <!-- end public interview page  -->
+
+    
 
 
 

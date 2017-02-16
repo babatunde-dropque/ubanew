@@ -41,19 +41,10 @@ class ApplicantsController < ApplicationController
       render "details"
     end
   
+    
     # render default index.html.erb
   end
 
-   # also check if the deadline has been reached
-      # also confirm the interview token belongs to the company
-      # check if user exist and create if not
-      # if User.exists?(email: params[:email])
-      
-    #   else
-    
-    #   end
-
-     # create new user
 
   
 

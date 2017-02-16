@@ -108,5 +108,6 @@ gem 'oj', '~> 2.12.14'
 # for slack notification when there is a signup
 gem 'slack-notifier'
 
-# gem 'twitter'
+# this gem is for pagination
+gem 'will_paginate', '~> 3.1.0'
 

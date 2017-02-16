@@ -51,6 +51,13 @@ Rails.application.config.assets.precompile += %w( landings.js )
 
 
 
+# landing page demo
+Rails.application.config.assets.precompile += %w( listing.css )
+Rails.application.config.assets.precompile += %w( listing.js )
+
+
+
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

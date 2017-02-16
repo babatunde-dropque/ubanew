@@ -1,0 +1,46 @@
+
+
+<div>
+   <hr>
+
+    <% if @company.interviews.length > 0 %>
+     <% interview_list = @company.interviews.where(status:"0").limit(3) %>
+     
+     <div class="container">
+      <div class="row">
+        <div class="center ">
+          <h6> Open Interviews </h6>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+     <% interview_list.each do | single_interview | %>
+
+	    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style=" text-align: center; " >
+	    	<div class="dq-intro-section">
+              <h6 class="uppercase"><%= single_interview.title %> </h6>
+			  Posted on <%= single_interview.created_at.strftime("%d-%m-%Y")  %>
+			  <p class="dq-branding" ><%= truncate(single_interview.description , :length => 50) %></p>
+
+			  <a class="dq-branding" href="http://<%=  single_interview.company.subdomain %>.random.localhost:3000/applicants/<%= single_interview.interview_token %>"><button  class="btn small"> Take Interview </button></a>
+          </div>
+		</div>
+
+     <% end %>
+    <% end %>
+
+    <% if @company.interviews.length > 3 %>
+        <div class="container">
+          <div class="row">
+            <div class="center ">
+              <p class="dq-branding">More Interviews?  <a class="dq-branding" href="/listing?company=<%= @company.name %>" >Click here</a></p>
+            </div>
+          </div>
+        </div>
+     <% end %>
+    
+
+
+
+</div>
