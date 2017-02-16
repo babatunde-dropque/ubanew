@@ -79,8 +79,8 @@ div.center {
 }
 
 
-/*div.row.block-display {
-    display: inline;
+.margin-all{
+   margin: 5px;
+   padding: 5px;
 }
-*/
 
