@@ -157,9 +157,12 @@
          <%= render partial: "interview_details" %>
  <!--  Add interview footer Partial -->
        
-    
 <% end %>
-  <%= render partial: "interview_footer" %>
+
+<% if !@editable == "true" %>
+    <%= render partial: "interview_footer" %>
+<% end %>
+  
 
  
 
