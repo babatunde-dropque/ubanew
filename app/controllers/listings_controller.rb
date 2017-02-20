@@ -21,19 +21,21 @@ class ListingsController < ApplicationController
 		else
 		  @interviews = Interview.where(approve:1).paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
 		end
+
 	end
 
 
 	def listing_approval
-		@interviews = Interview.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+		
+		  @interviews_approval = Interview.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+	
 	end
 
 
 	def update_approval_status
 		interview = Interview.friendly.find(params[:id])
 		interview.update(approve:params[:value])
-		@interviews = Interview.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
-		render 'listing_approval'
+		redirect_to  approval_page_path
 	end
 
 

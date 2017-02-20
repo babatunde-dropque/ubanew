@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'landings/index', as: 'landing'
   post 'landings/requestdemo', to: "landings#request_demo"
   get 'listing' => 'listings#listing_interview'
-  get 'listing-approval' => 'listings#listing_approval'
+  get 'listing-approval' => 'listings#listing_approval', as: 'approval_page'
   put 'update_approval_status' => 'listings#update_approval_status', as: 'update_approval'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard', :format => false
