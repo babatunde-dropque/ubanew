@@ -1,0 +1,367 @@
+<div class="wrapper">
+
+	    <div class="sidebar" data-color="dropque" data-image="<%= asset_path('listing/sidebar-1.jpg') %>">
+
+			<div class="logo">
+				<a href="#" class="simple-text">
+					Interviews 
+				</a>
+			</div>
+
+	    	<div class="sidebar-wrapper">
+	            <ul class="nav">
+	                <li class="active">
+	                    <a href="/">
+	                        <i class="material-icons">dashboard</i>
+	                        <p>Verified Interviews</p>
+	                    </a>
+	                </li>
+
+	                <li class="active-pro">
+                        <a href="#">
+	                       
+	                      
+	                        <i class="material-icons">email</i>
+	                        <p>Info@dropque.com</p>
+	                    
+	                    </a>
+                    </li>
+
+
+	                <li>
+	                    <a href="user.html">
+	                        <i class="material-icons">person</i>
+	                        <p>Users</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="table.html">
+	                        <i class="material-icons">content_paste</i>
+	                        <p>Organization</p>
+	                    </a>
+	                </li>
+	            </ul>
+
+	  
+	    	</div>
+	    </div>
+
+	    <div class="main-panel">
+	    	<nav class="navbar navbar-transparent navbar-absolute">
+				 <form class="navbar-form center" role="search" method="GET"  >
+				 	
+					<div class="form-group  is-empty">
+						<input type="text" class="form-control" name="search" placeholder="Type in a keyword">
+						<span class="material-input"></span>
+					</div>
+					<button type="submit" class="btn btn-white  ">
+						Search
+						<i class="material-icons">search</i><div class="ripple-container"></div>
+					</button>
+				</form>
+			</nav> 
+
+
+
+
+	    	
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#"> Interview Approval Dashboard </a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="material-icons">dashboard</i>
+									<p class="hidden-lg hidden-md">Dashboard</p>
+								</a>
+
+							</li>
+							<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+						</ul>	
+					</div>
+				</div>
+			</nav>
+
+			<div class="content">
+				<div class="container-fluid">
+					
+					
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+
+							<div class="card card-nav-tabs">
+								<div class="card-header" data-background-color="dropque">
+									<div class="nav-tabs-navigation">
+										<div class="nav-tabs-wrapper">
+											<span class="nav-tabs-title"> </span>
+											<ul class="nav nav-tabs" data-tabs="tabs">
+												<li class="active">
+													<a href="#profile" data-toggle="tab">
+														<i class="material-icons">bug_report</i>
+														Approved Interviews
+													<div class="ripple-container"></div></a>
+												</li>
+												<li class="">
+													<a href="#messages" data-toggle="tab">
+														<i class="material-icons">code</i>
+														Unapproved Interviews
+													<div class="ripple-container"></div></a>
+												</li>
+												<li class="">
+													<a href="#settings" data-toggle="tab">
+														<i class="material-icons">cloud</i>
+														Server
+													<div class="ripple-container"></div></a>
+												</li>
+												<li class="">
+													<a href="">
+														Listing Approval Dashboard
+													</a>
+												</li>	
+											</ul>
+										</div>
+									</div>
+								</div>
+
+							<% if @interviews.length == 0 %>
+								<div class="card-content center">	
+	                    			<h4 class="title uppercase">No Interviews Found <br> </h4>
+					 			 </div>
+					 		<% end %>
+
+								<div class="card-content">
+									<div class="tab-content">
+										<div class="tab-pane active" id="profile">
+
+											<div class="row">
+
+					<% @interviews_approved = @interviews.where(approve:1) %>
+					<% @interviews_approved.each do | interview | %>
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="card card-stats">
+								
+					 <div class="card-content">
+						<div class="row">
+							<div class="col-md-5 col-sm-5" >
+									<h4 class="title uppercase"><%= truncate(interview.title, :length => 50) %></h4>
+									<p class="category"><%= truncate(interview.description , :length => 100) %></p>
+									
+
+									<br>
+									<p class="category"><span class="text-success"><i class="fa fa-key"></i> interview token:   </span> <%= interview.interview_token %></p>
+
+									<br>
+									<!-- Your share button code -->
+								  
+								  <a href="https://twitter.com/intent/tweet?hashtags=dropque&url=https://<%=  interview.company.subdomain %>.dropque.com/applicants/<%= interview.interview_token %>&via=dropqueapp&text=<%= interview.title %> at <%=interview.company.name %>" class="twitter-share-button" data-show-count="false">Tweet</a>
+
+								  <script type="IN/Share" data-url="https://<%=  interview.company.subdomain %>.dropque.com/applicants/<%= interview.interview_token %>"></script>
+
+								  <div class="fb-share-button" 
+								    data-href="https://<%=  interview.company.subdomain %>.dropque.com/applicants/<%= interview.interview_token %>" 
+								    data-layout="button"
+								    data-mobile-iframe="true"  style="vertical-align:top;zoom:1;*display:inline">
+								  </div>
+
+									
+
+							</div>
+						    <div class="col-md-4 col-sm-4" >
+									
+					                <h4 class="title"><%= interview.company.name %></h4>
+					                <a href="https://<%= interview.company.subdomain %>.dropque.com"> <%= interview.company.subdomain %>.dropque.com </a> <br>
+					               
+
+					             <% if interview.company.logo.file.nil? %>
+				                 <%= image_tag('placeholder-company.png', style:"height: 40px; width: 60px;") %>
+				                <% else %>
+				                  <img src="<%= interview.company.logo.url %>" style="height: 40px; width: 60px;"  />
+				                <% end %>
+
+				                <br>
+
+				                 <a href="https://<%=  interview.company.subdomain %>.dropque.com/applicants/<%= interview.interview_token %>"><button class="btn btn-dropque">Apply</button></a>
+
+							 </div>
+							 <div class="col-md-3 col-sm-3">
+							 	<button> Unapprove</button>
+							 	
+
+							 	<br><hr>
+							 	<h3 class="title"> <%= interview.submissions.length %></h3> Application
+
+
+
+							 </div>
+						</div>
+									
+					  </div>
+
+								<div class="card-footer">
+									<div class="row block-display">
+										<div class="col-lg-4 col-md-4 col-sm-4">
+
+												<div class="stats">
+													<i class="material-icons">access_time</i> Created at <%=  interview.created_at.strftime("%d-%m-%Y") %>
+												</div>
+
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4">
+											
+											<div class="stats">
+												<i class="material-icons">date_range</i> Updated at <%=  interview.updated_at.strftime("%d-%m-%Y") %>
+											</div>
+
+
+										</div class="col-lg-4 col-md-4 col-sm-4">
+
+											<% if !interview.deadline.nil? %>
+												<div class="stats">
+													<i class="material-icons">cancel</i> Deadline: <%=  interview.deadline.strftime("%d-%m-%Y") %>
+												</div>
+											<% end %>
+
+										<div>
+
+										</div>
+								    </div>
+								</div>
+
+							</div>
+						</div>
+					<% end %>
+
+
+								
+										</div>
+											
+					
+										</div>
+										<div class="tab-pane" id="messages">
+											
+											<% @interviews.each do | interview_u | %>
+
+											<!-- start of unapprove listing -->
+
+											<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="card card-stats">
+								
+					 <div class="card-content">
+						<div class="row">
+							<div class="col-md-5 col-sm-5" >
+									<h4 class="title uppercase"><%= truncate(interview_u.title, :length => 50) %></h4>
+									<p class="category"><%= truncate(interview_u.description , :length => 100) %></p>
+									
+
+									<br>
+									<p class="category"><span class="text-success"><i class="fa fa-key"></i> interview token:   </span> <%= interview_u.interview_token %></p>
+
+									<br>
+									
+								
+
+									
+
+							</div>
+						    <div class="col-md-4 col-sm-4" >
+									
+					                 <h4 class="title"><%= interview_u.company.name %></h4>
+					                <a href="https://<%= interview_u.company.subdomain %>.dropque.com"> <%= interview_u.company.subdomain %>.dropque.com </a> <br>
+					               
+
+					             <% if interview_u.company.logo.file.nil? %>
+				                 <%= image_tag('placeholder-company.png', style:"height: 40px; width: 60px;") %>
+				                <% else %>
+				                  <img src="<%= interview_u.company.logo.url %>" style="height: 40px; width: 60px;"  />
+				                <% end %>
+
+				                <br>
+
+				                 <a href="https://<%=  interview_u.company.subdomain %>.dropque.com/applicants/<%= interview_u.interview_token %>"><button class="btn btn-dropque">Apply</button></a>
+
+							 </div>
+							 <div class="col-md-3 col-sm-3">
+							 	
+							 	<%= link_to 'Approve', update_approval_path(id: interview_u.slug, value: 1), method: :put, data: { confirm: 'Are you sure?' } %>
+
+							 	
+							 	<button> Approve </button>
+
+							 	<br><hr>
+							 	<h3 class="title"><%= interview_u.submissions.length %> </h3>Application
+
+
+
+							 </div>
+						</div>
+									
+					  </div>
+
+								<div class="card-footer">
+									<div class="row block-display">
+										<div class="col-lg-4 col-md-4 col-sm-4">
+
+												<div class="stats">
+													<i class="material-icons">access_time</i> Created at <%=  interview_u.created_at.strftime("%d-%m-%Y") %>
+												</div>
+
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4">
+											
+											<div class="stats">
+												<i class="material-icons">date_range</i> Updated at <%=  interview_u.updated_at.strftime("%d-%m-%Y") %>
+											</div>
+
+
+										</div class="col-lg-4 col-md-4 col-sm-4">
+
+											<% if !interview_u.deadline.nil? %>
+												<div class="stats">
+													<i class="material-icons">cancel</i> Deadline: <%=  interview_u.deadline.strftime("%d-%m-%Y") %>
+												</div>
+											<% end %>
+
+										<div>
+
+										</div>
+								    </div>
+								</div>
+
+							</div>
+						</div>
+
+											<!-- end of unapprove listing -->
+
+											<% end %>
+
+
+										</div>
+										<div class="tab-pane" id="settings">
+											Tab space 3
+										</div>
+									</div>
+								</div>
+							</div>
+
+								<div class="center" ><%= will_paginate @interviews %></div>
+						</div>
+
+
+						
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+ 

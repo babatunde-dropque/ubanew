@@ -18,7 +18,7 @@ class InterviewMailer < ApplicationMailer
     @company_img = @company.logo
     @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
-   mail(from:"#{@company.name}", to: email, subject: "#{@interview.title} Interview Invitation")
+   mail(from:"Invite@dropque.com", to: email, subject: "#{@interview.title} Interview Invitation")
   end
 
 
@@ -34,7 +34,7 @@ class InterviewMailer < ApplicationMailer
     @interview_page = @company.subdomain
     @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
-    mail(from:"#{@company.name}",to: @email, subject: "#{@interview.title} Interview Outcome")
+    mail(from:"application@dropque.com",to: @email, subject: "#{@interview.title} Interview Outcome")
   end
 
 
@@ -50,6 +50,6 @@ class InterviewMailer < ApplicationMailer
     @interview_page = @company.subdomain
     @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
-    mail(from:"#{@company.name}",to: @email, subject: "#{@interview.title} Interview Outcome")
+    mail(from:"application@dropque.com",to: @email, subject: "#{@interview.title} Interview Outcome")
   end
 end
