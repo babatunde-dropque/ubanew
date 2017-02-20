@@ -41,7 +41,7 @@ class ListingsController < ApplicationController
 
 	# test if user has access to this page
 	def validate_user
-		if current_user.email != "admin@dropque.com"
+		if current_user.email != "admin@dropque.com" || current_user.email != "ibukun@dropque.com" || current_user.email != "opeyemi@dropque.com" || current_user.email != "yinka@dropque.com" || current_user.email != "mustapha@dropque.com"
 			redirect_to  landing_path
 		end
 	end
