@@ -189,11 +189,11 @@
 							 <div class="col-md-3 col-sm-3">
 
 							 	<% if interview.approve == 0 %>
-								 	<%= link_to update_approval_path(id: interview.slug, value: 1), method: :put, data: { confirm: 'Are you sure?' } do %>
+								 	<%= link_to update_approval_path(id: interview.slug, value: 1, page: params[:page]), method: :put, data: { confirm: 'Are you sure?' } do %>
 	                                     <button> Approve</button>  
 	                                 <% end %> 
 							 	<% else %>
-								 	<%= link_to  update_approval_path(id: interview.slug, value: 0), method: :put, data: { confirm: 'Are you sure?' } do %>
+								 	<%= link_to  update_approval_path(id: interview.slug, value: 0, page: params[:page]), method: :put, data: { confirm: 'Are you sure?' } do %>
 								 		<button> Unapprove </button>
 								 	<% end %>
 							 	<% end %>

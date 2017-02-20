@@ -35,7 +35,7 @@ class ListingsController < ApplicationController
 	def update_approval_status
 		interview = Interview.friendly.find(params[:id])
 		interview.update(approve:params[:value])
-		redirect_to  approval_page_path
+		redirect_to  approval_page_path(page:params[:page])
 	end
 
 
