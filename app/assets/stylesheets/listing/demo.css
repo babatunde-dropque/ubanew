@@ -84,3 +84,15 @@ div.center {
    padding: 5px;
 }
 
+
+.main-panel > div.content {
+    margin-top: 0px; 
+    padding: 6px 15px;
+    min-height: calc(100% - 123px);
+
+}
+
+.formatting{
+    /*padding:10px;*/
+}
+

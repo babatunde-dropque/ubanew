@@ -5032,6 +5032,13 @@ footer .btn {
 }
 
 
+.spacing{
+   vertical-align:top;
+   zoom:1;
+   *display:inline;
+}
+
+
 /*.navbar, .navbar.navbar-default {
     background-color: #5e337b;
     color: #FFFFFF;
