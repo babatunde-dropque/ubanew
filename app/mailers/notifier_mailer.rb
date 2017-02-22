@@ -1,4 +1,4 @@
-class NotifierMailer < ApplicationMaile
+class NotifierMailer < ApplicationMailer
 	default from: "notification@dropque.com"
 
 	def demo_request(name, email, organization, role, purpose, telephone)
