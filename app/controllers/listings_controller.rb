@@ -9,7 +9,7 @@ class ListingsController < ApplicationController
 
 		   @company = Company.find_by(subdomain:request.subdomain )
 		   interviews_all = @company.interviews.where(approve:1)
-		   @interviews = interviews_all.where("title LIKE ?", "%#{params[:search]}%").paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+		   @interviews = interviews_all.where("lower(title) LIKE ?", "%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
 		   
 		elsif  request.subdomain.present? && request.subdomain != 'www'
     		 @company = Company.find_by(subdomain: request.subdomain)
