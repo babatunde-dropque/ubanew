@@ -15,6 +15,10 @@ transparent = true;
         		      required: true,
         		      minlength: 3
         		    },
+                email: {
+                  required: true,
+                  minlength: 3
+                },
         		    subdomain: {
             		      required: true,
             		      minlength: 3,

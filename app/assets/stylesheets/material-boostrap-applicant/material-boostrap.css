@@ -1,22 +1,4 @@
-/*
- * Material Design for Bootstrap 3
- * Version: MDB FREE 3.4.1 
- *
- *
- * Copyright: Material Design for Bootstrap
- * www.mdbootstrap.com
- *
- * Read the license: http://mdbootstrap.com/license/
- *
- * Atribution: Animate CSS, Twitter Bootstrap, Materialize CSS, Normalize CSS, Waves JS, WOW JS, Toastr, Chart.js , Hammer.js
- * 
- */
-/*********************
-  Mixins
-**********************/
-/*********************
-Colors
-**********************/
+
 .materialize-red.lighten-5 {
   background-color: #fdeaeb !important;
 }

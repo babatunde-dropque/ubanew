@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   mount Commontator::Engine => '/commontator'
   
   get 'applicants/index'
-  get 'landings/index'
+  get 'landings/index', as: 'landing'
   post 'landings/requestdemo', to: "landings#request_demo"
-  get 'contact' => 'landings#contact'
+  get 'listing' => 'listings#listing_interview'
+  get 'listing-approval' => 'listings#listing_approval'
+  put 'update_approval_status' => 'listings#update_approval_status', as: 'update_approval'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard', :format => false
   get "dashboard/account", to: "users#account", as: 'user_account', :format => false

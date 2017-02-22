@@ -10,7 +10,17 @@ class Interview < ActiveRecord::Base
 
     def should_generate_new_friendly_id?
     	 slug.nil? || title_changed? || new_record?
- 	end
+ 	  end
+
+    # inbuilt search query added by Ibukun
+    def self.search(search)
+      where("title LIKE ?", "%#{search}%")
+      # where("description LIKE ?", "%#{search}%")
+    end
+
+
+
+
 
     # Try building a slug based on the following fields in
   	# increasing order of specificity.

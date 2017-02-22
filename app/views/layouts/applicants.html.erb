@@ -6,6 +6,17 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Application Interview </title>
 
+<% if !@interview.nil? %>
+
+   <meta property="og:url"   content="https://<%= @company.subdomain %>.dropque.com/applicants/<%= @interview.interview_token %>" />
+  <meta property="og:type"               content="Interview" />
+  <meta property="og:title"              content="<%= @interview.title %>" />
+  <meta property="og:description"        content="<%= @interview.description %>" />
+  <meta property="og:image"              content="<%= @company.logo.url %>" />
+ 
+
+<% end %>
+
      <%= favicon_link_tag 'dqfav.png' %>
      <%= stylesheet_link_tag 'material-applicant' %>
      <%= stylesheet_link_tag 'applicants' %>

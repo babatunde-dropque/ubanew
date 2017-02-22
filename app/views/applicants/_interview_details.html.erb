@@ -1,0 +1,83 @@
+ <div class="container">
+      <h2 class="dq-interview-question"><strong><%= @interview.title %></strong></h2>
+
+<hr>
+      <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+          <div class="dq-intro-section">
+              <span class="fa fa-2x fa-question-circle"></span>
+              <h6>Number of Question(s)</h6>
+               <p class="dq-branding"><strong><%= @interview.questions.length %></strong></p>
+              
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="dq-intro-section"> 
+              <span class="fa fa-2x fa-calendar"></span>         
+              <h6>Date Posted</h6>
+              <p class="dq-branding"><strong><%= @interview.created_at.strftime("%d-%m-%Y") %></strong></p>
+               
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="dq-intro-section"> 
+              <span class="fa fa-2x fa-calendar"></span>         
+              <h6>Interview deadline</h6>
+              <% if  @interview.deadline.nil? %>
+              <p class="dq-branding"><strong> No Deadline</strong></p>
+              <% else %>
+                 <p class="dq-branding"><strong> <%= @interview.deadline.strftime("%d-%m-%Y") %></strong></p>
+              <% end %>
+          </div>
+        </div>
+
+         
+        </div>
+<hr>
+
+
+
+      <div class="dq-page-container">
+           <h5>Description</h5>
+            <div class="dq-instruction">
+                <p>
+                 <%= @interview.description %> 
+                </p>
+          </div>
+      </div>
+
+
+
+<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
+
+           <form  id="form-details" method="post" action="/applicants"> 
+                      <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here" value="<%= params[:interview_token] %>" name="interview_token" contenteditable="false" hidden />
+                      <br><br>
+                      <input type="hidden" value="register" name ="page" />
+                        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>  
+                      <% if  Interview.exists?(interview_token: params[:interview_token]) %>
+                         <div class="editableContent">
+                              <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> Start your interview </button>
+                         </div>
+                    <%  else %>
+                       <div class="editableContent">
+                            <button disabled class="btn btn-large dq-color-customized"> Invalid Interview Token, Check the url </button>
+                       </div>
+                     <% end %>
+                     <br><br>
+            </form>
+        
+        </div>
+</div>
+
+
+     
+
+    </div>
+
+      
+
+     

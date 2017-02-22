@@ -1,12 +1,13 @@
-class NotifierMailer < ApplicationMailer
+class NotifierMailer < ApplicationMaile
 	default from: "notification@dropque.com"
 
-	def demo_request(name, email, organization, role, purpose)
+	def demo_request(name, email, organization, role, purpose, telephone)
 	    @name = name
 	    @email = email
 	    @organization = organization
 	    @role = role
 	    @purpose = purpose
+	    @telephone = telephone
 	   mail(to: "notificationgroup@dropque.com", subject: "New Demo Request")
 	end
 

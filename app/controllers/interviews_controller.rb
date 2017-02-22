@@ -108,6 +108,8 @@ class InterviewsController < ApplicationController
      redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Invitation was successfully sent.'
   end
 
+  
+
 
   def unfinish_submission
       @unfinish_submissions = @interview.submissions.where("current_no < ?", 500)

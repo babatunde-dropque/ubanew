@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125113210) do
+ActiveRecord::Schema.define(version: 20170219172720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170125113210) do
   end
 
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
+  add_index "companies", ["subdomain"], name: "index_companies_on_subdomain", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -148,11 +149,12 @@ ActiveRecord::Schema.define(version: 20170125113210) do
     t.text     "invite_message"
     t.text     "reject_message"
     t.integer  "company_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "slug"
     t.string   "completed_message"
     t.string   "status"
+    t.integer  "approve",           default: 0
   end
 
   add_index "interviews", ["slug"], name: "index_interviews_on_slug", unique: true, using: :btree
@@ -216,6 +218,7 @@ ActiveRecord::Schema.define(version: 20170125113210) do
     t.string   "additional_message"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "telephone"
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -251,7 +254,6 @@ ActiveRecord::Schema.define(version: 20170125113210) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
-    t.string   "package"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
