@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+   
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -60,5 +62,8 @@ class ApplicationController < ActionController::Base
 	# 	type 2: invitation  to join a company notification
 	# 	type 3: message notification by applicant
 	#   type 3: remove you from a company
-	# 
+	#
+
+  
+
 end

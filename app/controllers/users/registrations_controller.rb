@@ -1,8 +1,8 @@
 require 'slack-notifier'
 class Users::RegistrationsController < Devise::RegistrationsController
 layout 'signin'
-before_filter :configure_sign_up_params, only: [:create]
-before_filter :configure_account_update_params, only: [:update]
+ before_filter :configure_sign_up_params, only: [:create]
+ before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -12,7 +12,7 @@ before_filter :configure_account_update_params, only: [:update]
   # POST /resource
   def create
     super
-    
+
   end
 
   # GET /resource/edit
@@ -49,22 +49,26 @@ before_filter :configure_account_update_params, only: [:update]
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :telephone
     if Rails.env.production?
       notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'signup'
-      notifier.ping "New Signup by " + params[:user][:name] + " email: " + params[:user][:email]
+      notifier.ping "New Signup by " + params[:user][:name] + " with number " + params[:user][:telephone] + " email: " + params[:user][:email]
     end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.for(:account_update) << :name
+    devise_parameter_sanitizer.for(:account_update) << :telephone
   end
+ 
+
 
 
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    user_dashboard_path
+    user_profile_path
   end
 
   # The path used after sign up for inactive accounts.

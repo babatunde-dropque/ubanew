@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	
+
 	has_many :notifications
 	has_many :joint_user_companies
 	has_many :companies, :through => :joint_user_companies
@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     # end
      after_create :send_welcome_mail
      def send_welcome_mail
-     InterviewMailer.welcome_email(self).deliver
+     #InterviewMailer.welcome_email(self).deliver
      end
 
     # Include default devise modules. Others available are:

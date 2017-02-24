@@ -1,4 +1,4 @@
-class AddTelephoneToUsers < ActiveRecord::Migration
+class AddTelephoneToUser < ActiveRecord::Migration
   def change
     add_column :users, :telephone, :string
   end
