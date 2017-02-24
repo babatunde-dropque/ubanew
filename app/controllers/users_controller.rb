@@ -27,6 +27,12 @@ class UsersController < ApplicationController
 		
   end 
 
+
+  def application_timeline
+
+  end
+  
+
   def account
   	if params[:update].present?
 	  	bcrypt_object = BCrypt::Password.new(@user.encrypted_password) 
