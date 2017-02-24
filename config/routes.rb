@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard', :format => false
   get "profile", to: "users#profile", as: 'user_profile', :format => false
+  get "application_timeline", to: "users#application_timeline", as: 'user_timeline', :format => false
   get "dashboard/account", to: "users#account", as: 'user_account', :format => false
   post "dashboard/account", to: "users#account", as: 'user_account_put'
   get "dashboard/check_password", to: "users#check_password", as: 'check_password'

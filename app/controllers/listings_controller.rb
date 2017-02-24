@@ -26,9 +26,7 @@ class ListingsController < ApplicationController
 
 
 	def listing_approval
-		
-		  @interviews_approval = Interview.where.not(company_id: nil).paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
-	
+		@interviews_approval = Interview.where.not(company_id: nil).paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
 	end
 
 
