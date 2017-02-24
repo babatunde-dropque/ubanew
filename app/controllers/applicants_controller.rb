@@ -1,10 +1,11 @@
 class ApplicantsController < ApplicationController
   layout 'applicants'
+  before_action :authenticate_user!
   before_filter :set_up_company, :except => [:validate_interview, :validate_email]
   before_filter :set_up_interview, :except => [:index, :validate_interview, :validate_email, :submit_video]
   before_filter :set_up_user_and_submission, :except => [:index, :validate_interview, :validate_email, :submit_video]
 
-  
+
   def index
 
     @editable = "false" # disable editable view
@@ -15,9 +16,9 @@ class ApplicantsController < ApplicationController
           render "expired"
         elsif !@interview.nil? && @interview.status == "1"
             render "register_private"
-        elsif !@interview.nil? 
+        elsif !@interview.nil?
             render "register"
-        end 
+        end
     elsif params[:page] == "details"
       @interview = Interview.find(params[:interview_id])
       # check if user exit or not
@@ -40,13 +41,12 @@ class ApplicantsController < ApplicationController
       end
       render "details"
     end
-  
-    
+
     # render default index.html.erb
   end
 
 
-  
+
 
 
   def question
@@ -111,7 +111,7 @@ class ApplicantsController < ApplicationController
       render plain: "success"
     else
       render plain: "error"
-    end 
+    end
   end
 
   def validate_email
@@ -119,8 +119,8 @@ class ApplicantsController < ApplicationController
       render plain: "success"
     else
       render plain: "error"
-    end 
-  end 
+    end
+  end
 
   # this is a stand alone api 
   def submit_video
