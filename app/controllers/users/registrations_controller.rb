@@ -52,12 +52,16 @@ before_filter :configure_account_update_params, only: [:update]
     if Rails.env.production?
       notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'signup'
       notifier.ping "New Signup by " + params[:user][:name] + " email: " + params[:user][:email]
-    end 
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.for(:account_update) << :name
+  end
+
+  def configure_account_update_params
+    devise_parameter_sanitizer.for(:sign_up) << :telephone
   end
 
   # The path used after sign up.
