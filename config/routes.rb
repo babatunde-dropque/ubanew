@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   # rails engine for comment
   mount Commontator::Engine => '/commontator'
-  
+
   get 'applicants/index'
   get 'landings/index', as: 'landing'
   post 'landings/requestdemo', to: "landings#request_demo"
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   put 'update_approval_status' => 'listings#update_approval_status', as: 'update_approval'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard', :format => false
+  get "build_profile", to: "users#build_profile", as: 'build_profile', :format => false
   get "profile", to: "users#profile", as: 'user_profile', :format => false
   get "application_timeline", to: "users#application_timeline", as: 'user_timeline', :format => false
   get "dashboard/account", to: "users#account", as: 'user_account', :format => false

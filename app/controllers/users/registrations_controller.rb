@@ -60,6 +60,14 @@ layout 'signin'
   def configure_account_update_params
     devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:account_update) << :telephone
+    devise_parameter_sanitizer.for(:account_update) << :a_qualification
+    devise_parameter_sanitizer.for(:account_update) << :a_cv
+    devise_parameter_sanitizer.for(:account_update) << :a_experience
+    devise_parameter_sanitizer.for(:account_update) << :a_gender
+    devise_parameter_sanitizer.for(:account_update) << :a_dp
+    devise_parameter_sanitizer.for(:account_update) << :a_city
+    devise_parameter_sanitizer.for(:account_update) << :a_address
+    devise_parameter_sanitizer.for(:account_update) << :a_country
   end
  
 

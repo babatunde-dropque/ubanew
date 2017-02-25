@@ -22,12 +22,13 @@ class ApplicantsController < ApplicationController
     elsif params[:page] == "details"
       @interview = Interview.find(params[:interview_id])
       # check if user exit or not
-      if (params[:create] == "yes")
-        @user = User.new(name: params[:name], email: params[:email], password: 'dropqueapp', password_confirmation: 'dropqueapp')
-        @user.save()
-      elsif (params[:create] == "no")
-        @user = User.find_by(email: params[:email])
-      end
+      # if (params[:create] == "yes")
+      #   @user = User.new(name: params[:name], email: params[:email], password: 'dropqueapp', password_confirmation: 'dropqueapp')
+      #   @user.save()
+      # elsif (params[:create] == "no")
+      #   @user = User.find_by(email: params[:email])
+      # end
+      @user = current_user
 
       # create submission for user
       if  Submission.exists?(interview_id: @interview.id, user_id: @user.id)
@@ -122,7 +123,7 @@ class ApplicantsController < ApplicationController
     end
   end
 
-  # this is a stand alone api 
+  # this is a stand alone api
   def submit_video
     # am not just using Submission.find, so that any one can't just modify the submission
     # it has to be the right combination of interview_token and user_id
@@ -133,10 +134,10 @@ class ApplicantsController < ApplicationController
     submission = Submission.find_by(interview_id: interview.id , user_id: params[:user_id])
     if submission.update_attributes(current_no: position, answers: params[:answers], first_video: params[:position].to_i)
       render plain: "success"
-    else 
+    else
       render plain: "error"
     end
-  end 
+  end
 
 
   def test_for_end(length, position)

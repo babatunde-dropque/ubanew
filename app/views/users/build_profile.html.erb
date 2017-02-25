@@ -14,7 +14,7 @@
                 <div class="col-md-8 col-md-offset-2">
                          <br><br>
                         <div class="card wizard-card box-shape" data-color="blue" id="wizardProfile">
-                            <form id="form" method="post" enctype="multipart/form-data" action="/companies">
+                            <form id="form" method="post" enctype="multipart/form-data" action="">
                                 <div class="wizard-header text-center">
                                     <h3 class="wizard-title">Build a Profile on Dropque</h3>
                                     <p class="category">Build a  profile, take your career to next step  </p>
@@ -54,7 +54,7 @@
                                                 <div class="icon-circle">
                                                     <i class="ti-user"></i>
                                                 </div>
-                                                Preferred Opportunity
+                                                Resume
                                             </a>
                                         </li>
 
@@ -64,57 +64,63 @@
                                 <div class="tab-content">
                                     <div class="tab-pane" id="about">
                                         <div class="row">
-                                            <h5 class="info-text"> More about yourself.</h5>
+                                            <h5 class="info-text"> More about your professional life.</h5>
                                             <div class="col-sm-4 col-sm-offset-1">
                                                 <div class="picture-container">
                                                     <div class="picture">
                                                         <%= image_tag('default.jpg', class:"picture-src", id:"wizardPicturePreview",title:"") %>
 
-                                                        <input type="file" id="wizard-picture" name="logo">
+                                                        <input type="file" id="wizard-picture" name="a_dp">
                                                     </div>
-                                                    <h6>Choose Logo</h6>
+                                                    <h6>Choose profile pix</h6>
                                                     <small> Transparent 330 X 80 </small>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label> Organization Name <small>(required)</small></label>
-                                                    <input name="name" type="text" class="form-control" placeholder="Organization">
+                                                    <label> Highest Qualifcation <small>(required)</small></label>
+                                                    <select name="a_experience" class="form-control">
+                                                    <option value="phd">PhD</option>
+                                                    <option value="master">Master</option>
+                                                    <option value="degree">Degree</option>
+                                                    <option value="hnd">HND</option>
+                                                    <option value="ond">OND</option>
+                                                    <option value="ssce">SSCE</option>
+                                                    </select>
                                                 </div>
 
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                        <label>Subdomain <small>(required)</small></label>  &nbsp;  &nbsp;  &nbsp;
-                                                        <input name="subdomain" type="text" class="form-control" placeholder="Subdomain" id="company-subdomain" value="">
+                                                        <label>Date of birth <small>(required)</small></label>  &nbsp;  &nbsp;  &nbsp;
+                                                        <input name="a_dob" type="text" class="form-control border-input" placeholder="yyyy-mm-dd" id = "date" value="">
+
+
                                                 </div>
                                             </div >
                                             <div class="col-sm-2">
                                                 <div class="form-group">
                                                         <label>&nbsp; </label> <i id="symbol" ></i><br>
-                                                        <div style="margin-top: 8px;">.dropque.com</div>
-
+                                                        <select name="a_gender" class="form-control">
+                                                        <option val="male">male</option>
+                                                        <option val="female">female</option>
+                                                        </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-sm-offset-5">
                                                 <div class="form-group">
-                                                    <label> Organization Email <small>(required)</small></label>
-                                                    <input name="email" type="text" class="form-control" placeholder="Email">
+                                                    <label> Years of Experience <small>(required)</small></label>
+                                                    <input name="a_experience" type="text" class="form-control" placeholder="e.g 3">
                                                 </div>
 
                                             </div>
-                                            <div class="col-sm-10 col-sm-offset-1">
-                                                <div class="form-group">
-                                                    <label>Tags</label>
-                                                    <input name="tags" type="text" id="tags" class="form-control" >
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="address">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h5 class="info-text"> Location of your organization </h5>
+                                                
                                             </div>
                                             <div class="col-sm-10 col-sm-offset-1">
 
@@ -418,12 +424,43 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="collaborators">
-                                        <h5 class="info-text"> Add Collaborators &nbsp;&nbsp;&nbsp; <btn id="add-collaborator" class='btn add-collaborator'><i class='ti-plus'></i></btn></h5> 
+                                        <!-- <h5 class="info-text"> What type of Job Do You  Seek? &nbsp;&nbsp;&nbsp;<btn id="customize-job" class='btn add-collaborator'><i class='ti-plus'></i></btn></h5> -->
+
+                                           <!-- <div class="col-sm-12">
+                                               <center> <small class="info-text"> Customize the type of jobs you get from us </small></center>
+                                            </div> -->
+
+                                        <center>
+
+
+          <div >
+        
+        <div class="file-container">
+                                <div class="picture">
+                                <%= image_tag('default.jpg', class:"picture-src", id:"wizardPicturePreview",title:"") %>
+
+                                <input type="file" id="wizard-picture" name="a_cv">
+                                </div>
+                                <h6>Choose a CV</h6>
+                                </div>
+         <div class="word-counter">Max file size: 1mb  (Allowed files: pdf, png, ppt ) </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+                                        </center>
 
                                         <div class="row">
                                             <div class="col-sm-10 col-sm-offset-1">
 
-                                            <div id="collaborator-content" >
+                                           <!--  <div id="collaborator-content" >
                                                 <div class='row'>
                                                     <div class='col-sm-7'>
                                                      <div class='form-group'>
@@ -461,7 +498,7 @@
                                                          <btn class='btn box-shape remove-new-collaborator' ><i class='ti-close'></i></btn>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <!-- add csrf token -->
                                     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
@@ -506,6 +543,10 @@
 
 
 <script>
+$('#date').datepicker({
+    dateFormat:"yy-mm-dd",
+    minDate: 0
+  });
 
     $('#tags').tagit({
         tagLimit: 4,
@@ -517,8 +558,8 @@
 
 
     var counter = 0;
-    $("#add-collaborator").click(function(){
-        $("#collaborator-content").append(addCollaborator("name"+counter));
+    $("#customize-job").click(function(){
+        $("#collaborator-content").append(addCustom("name"+counter));
         counter++;
     });
 
@@ -545,7 +586,7 @@
          $("#form").submit();
     });
 
-function addCollaborator(name){
+function addCustom(name){
     var result = "<div class='row'>"+
                     "<div class='col-sm-7'>"+
                      "<div class='form-group'>"+
@@ -569,3 +610,9 @@ function addCollaborator(name){
 
 
 </script>
+
+<!-- <select>
+<option>Specialization</option>
+<option>Salary Range</option>
+<option>Job Location</option>
+</select> -->
