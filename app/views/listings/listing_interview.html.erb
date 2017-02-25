@@ -138,35 +138,6 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12">
 
-							<!-- <div class="card card-nav-tabs"> -->
-								<!-- <div class="card-header" data-background-color="purple">
-									<div class="nav-tabs-navigation">
-										<div class="nav-tabs-wrapper">
-											<span class="nav-tabs-title">Tasks:</span>
-											<ul class="nav nav-tabs" data-tabs="tabs">
-												<li class="active">
-													<a href="#profile" data-toggle="tab">
-														<i class="material-icons">bug_report</i>
-														Bugs
-													<div class="ripple-container"></div></a>
-												</li>
-												<li class="">
-													<a href="#messages" data-toggle="tab">
-														<i class="material-icons">code</i>
-														Website
-													<div class="ripple-container"></div></a>
-												</li>
-												<li class="">
-													<a href="#settings" data-toggle="tab">
-														<i class="material-icons">cloud</i>
-														Server
-													<div class="ripple-container"></div></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div> -->
-
 							<% if @interviews.length == 0 %>
 								<div class="card-content center">	
 	                    			<h4 class="title uppercase">No Interviews Found <br> </h4>
@@ -188,7 +159,7 @@
 						<div class="row">
 							<div class="col-md-7 col-sm-7" >
 									<h4 class="title uppercase"><%= truncate(interview.title, :length => 50) %></h4>
-									<p class="category"><%= truncate(interview.description , :length => 100) %></p>
+									<p class="category"><%= truncate(interview.description , :length => 150) %></p>
 									<!-- <h3 class="title">245 </h3>days left -->
 
 									<br>

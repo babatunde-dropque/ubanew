@@ -3834,3 +3834,7 @@ div.file > span  {
 }
 
 
+/*make footer for application timeline  inline */
+div.row.block-display{
+  display: block;
+}
