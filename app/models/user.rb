@@ -4,10 +4,12 @@ class User < ActiveRecord::Base
 	has_many :joint_user_companies
 	has_many :companies, :through => :joint_user_companies
     has_many :submissions
+    mount_uploader :a_dp, ADpUploader
+    mount_uploader :a_cv, ACvUploader
 
      after_create :send_welcome_mail
      def send_welcome_mail
-    #InterviewMailer.welcome_email(self).deliver
+     #InterviewMailer.welcome_email(self).deliver
      end
 
     # Include default devise modules. Others available are:

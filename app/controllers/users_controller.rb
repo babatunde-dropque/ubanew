@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 	layout 'user_dashboard'
 	before_action :authenticate_user!
 	
-	# this is used to initial user's object to that it will be available to all 
+	# this is used to initial user's object to that it will be available to all
 	# method without recalling it again
 	before_filter :set_up_user
 
@@ -24,9 +24,11 @@ class UsersController < ApplicationController
 
 
   def dashboard
-		
-  end 
 
+  end
+  def build_profile
+  render  :layout => 'wizard'
+  end
 
   def application_timeline
 
