@@ -3,8 +3,12 @@ class LandingsController < ApplicationController
 	layout 'landing'
 	
   def index
-		if user_signed_in?
+		if user_signed_in? && current_user.status == 1
 			redirect_to user_dashboard_path(current_user)
+    elsif user_signed_in? && current_user.status == 0
+      redirect_to user_timeline_path(current_user)
+    else
+      redirect_to user_profile_path(current_user)
 		end 
 		@minimum_password_length = 6
   end

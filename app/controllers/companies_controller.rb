@@ -113,7 +113,6 @@ class CompaniesController < ApplicationController
     def update  
         @company.update_attributes(create_company_params)
         redirect_to edit_company_path
-        
     end
 
 	def create
@@ -158,8 +157,6 @@ class CompaniesController < ApplicationController
             end 
             # end of slack notification
 
-
-
         	redirect_to  user_dashboard_path
         else
 
@@ -172,7 +169,7 @@ class CompaniesController < ApplicationController
   private
 
   def create_company_params
-    params.permit(:name, :description, :tags, :image, :city, :address, :email, :country, :subdomain, :logo)
+    params.permit(:name, :description, :tags, :image, :city, :address, :email, :country, :subdomain, :logo, :status)
   end
 
 

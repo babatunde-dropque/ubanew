@@ -9,12 +9,13 @@ Rails.application.routes.draw do
   get 'applicants/index'
   get 'landings/index', as: 'landing'
   post 'landings/requestdemo', to: "landings#request_demo"
-  get 'listing' => 'listings#listing_interview'
+  get 'listing' => 'listings#listing_interview', as: 'listing'
   get 'listing-approval' => 'listings#listing_approval', as: 'approval_page'
   put 'update_approval_status' => 'listings#update_approval_status', as: 'update_approval'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "dashboard", to: "users#dashboard", as: 'user_dashboard', :format => false
   get "build_profile", to: "users#build_profile", as: 'build_profile', :format => false
+  post "build_profile_update", to: "users#update_profile", as: 'update_profile', :format => false
   get "profile", to: "users#profile", as: 'user_profile', :format => false
   get "application_timeline", to: "users#application_timeline", as: 'user_timeline', :format => false
   get "dashboard/account", to: "users#account", as: 'user_account', :format => false

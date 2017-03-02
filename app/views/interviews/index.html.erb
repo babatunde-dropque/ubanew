@@ -22,7 +22,7 @@
                                             <div class="row">
                                             <%= link_to company_interview_path(id:interview.slug) do %>
                                                 <div class="col-xs-6">
-                                                    <%= interview.title %>
+                                                    <%= truncate( interview.title, :length => 70) %>
                                                 </div>
                                             <% end %>
                                                 <%= link_to 'Show', company_interview_path(id: interview.slug) %> | 

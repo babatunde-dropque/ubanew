@@ -25,7 +25,7 @@
                           <div class="img-responsive card box-shape">
                             <%= link_to company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) do %>
                               <div class="content">
-                                      <p> <%= interview.title %> </p>
+                                      <p><%= truncate( interview.title, :length => 35) %> </p>
                                       <div class="text-center numbers-1">
                                           <%= submissions.length %>
                                         <br>

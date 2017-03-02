@@ -26,9 +26,22 @@ class UsersController < ApplicationController
   def dashboard
 
   end
+
+
   def build_profile
-  render  :layout => 'wizard'
+    render  :layout => 'wizard'
   end
+
+  def profile
+     @user = current_user
+  end
+
+  def update_profile  
+        @user.update_attributes(user_params)
+        redirect_to user_timeline_path
+  end
+
+
 
   def application_timeline
 
@@ -71,6 +84,11 @@ class UsersController < ApplicationController
     # parameters used to update the notification
   def update_notification_params
     params.permit(:read)
+  end
+
+  # parameters to update user's details
+  def user_params
+    params.permit(:a_dp, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status)
   end
 
 

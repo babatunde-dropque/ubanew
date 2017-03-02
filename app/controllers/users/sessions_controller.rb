@@ -26,6 +26,13 @@ layout 'signin'
 
   def after_sign_in_path_for(resource)
       user_dashboard_path 
+      if user_signed_in? && current_user.status == 1
+         user_dashboard_path
+      elsif user_signed_in? && current_user.status == 0
+         user_timeline_path 
+      else
+        user_profile_path
+      end
   end
 
 end

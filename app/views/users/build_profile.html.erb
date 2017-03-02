@@ -14,7 +14,7 @@
                 <div class="col-md-8 col-md-offset-2">
                          <br><br>
                         <div class="card wizard-card box-shape" data-color="blue" id="wizardProfile">
-                            <form id="form" method="post" enctype="multipart/form-data" action="">
+                            <form id="form" method="post" enctype="multipart/form-data" action="<%= update_profile_path %>">
                                 <div class="wizard-header text-center">
                                     <h3 class="wizard-title">Build a Profile on Dropque</h3>
                                     <p class="category">Build a  profile, take your career to next step  </p>
@@ -61,6 +61,7 @@
 
                                     </ul>
                                 </div>
+                                <!-- Tab Open part -->
                                 <div class="tab-content">
                                     <div class="tab-pane" id="about">
                                         <div class="row">
@@ -126,7 +127,7 @@
 
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <input type="text" name="address" class="form-control" placeholder="Organization Address">
+                                                    <input type="text" name="address" class="form-control" placeholder=" Address">
                                                 </div>
                                             </div>
 
@@ -423,99 +424,40 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="collaborators">
-                                        <!-- <h5 class="info-text"> What type of Job Do You  Seek? &nbsp;&nbsp;&nbsp;<btn id="customize-job" class='btn add-collaborator'><i class='ti-plus'></i></btn></h5> -->
+                                    
+<div class="tab-pane" id="collaborators">
 
-                                           <!-- <div class="col-sm-12">
-                                               <center> <small class="info-text"> Customize the type of jobs you get from us </small></center>
-                                            </div> -->
+    <center>
+        <div>
+            <div class="picture-container">
+                <div class="picture">
+                    <%= image_tag('default.jpg', class:"picture-src", id:"wizardPicturePreview", title:"") %>
 
-                                        <center>
+                    <input type="file" id="wizard-picture" name="a_cv" />
+                </div>
+                <h6>Choose a CV</h6>
+            </div>
 
-
-          <div >
-        
-        <div class="file-container">
-                                <div class="picture">
-                                <%= image_tag('default.jpg', class:"picture-src", id:"wizardPicturePreview",title:"") %>
-
-                                <input type="file" id="wizard-picture" name="a_cv">
-                                </div>
-                                <h6>Choose a CV</h6>
-                                </div>
-         <div class="word-counter">Max file size: 1mb  (Allowed files: pdf, png, ppt ) </div>
+            <div class="word-counter">Max file size: 1mb  (Allowed files: pdf, png, ppt ) </div>
         </div>
+    </center>
 
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+        <!-- add csrf token -->
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
 
+        <!-- hiddden user's id -->
+        <input type="text" name="user_id" value="<%= @user.id %>" hidden >
+        <input type="text" name="status" value="0" hidden >
+        </div>
+    </div>   
 
-
-
-
-
-
-
-
-                                        </center>
-
-                                        <div class="row">
-                                            <div class="col-sm-10 col-sm-offset-1">
-
-                                           <!--  <div id="collaborator-content" >
-                                                <div class='row'>
-                                                    <div class='col-sm-7'>
-                                                     <div class='form-group'>
-                                                        <input type='email' class='form-control collaborator'  placeholder='email' name="name33">
-                                                    </div>
-                                                    </div>
-                                                    <div class='col-sm-3'>
-                                                        <div class="form-group">
-                                                            <select name='country' class='form-control'>
-                                                                 <option value='1'> admin </option>
-                                                                 <option value='2'> user</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class='col-sm-2'>
-                                                         <btn class='btn box-shape remove-new-collaborator' ><i class='ti-close'></i></btn>
-                                                    </div>
-                                                </div>
-
-                                                <div class='row'>
-                                                    <div class='col-sm-7'>
-                                                     <div class='form-group'>
-                                                        <input type='email' class='form-control collaborator'  placeholder='email' name="name90">
-                                                    </div>
-                                                    </div>
-                                                    <div class='col-sm-3'>
-                                                        <div class="form-group">
-                                                            <select name='country' class='form-control'>
-                                                                 <option value='1'> admin </option>
-                                                                 <option value='2'> user</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class='col-sm-2'>
-                                                         <btn class='btn box-shape remove-new-collaborator' ><i class='ti-close'></i></btn>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-
-                                            <!-- add csrf token -->
-                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-
-                                    <!-- hiddden user's id -->
-                                    <input type="text" name="user_id" value="<%= @user.id %>" hidden >
-                                    <!-- hidden stringify emails for collaboartions -->
-                                    <input type="text" id="collaborate-json" name="collaborators_list"  hidden>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
+ </div>
 
 
                                 </div>
+
                                 <div class="wizard-footer">
                                     <div class="pull-right">
 
@@ -528,6 +470,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
+
                             </form>
                         </div>
                     <!-- </div> wizard container -->
@@ -545,74 +488,19 @@
 <script>
 $('#date').datepicker({
     dateFormat:"yy-mm-dd",
-    minDate: 0
+    maxDate: 0
   });
 
-    $('#tags').tagit({
-        tagLimit: 4,
-        placeholderText: "Add tags",
-        onTagLimitExceeded : function(event, ui){
-            // $("#indicator-tags").html("Tags cannot be more than four");
-        }
-    });
+    // $('#tags').tagit({
+    //     tagLimit: 4,
+    //     placeholderText: "Add tags",
+    //     onTagLimitExceeded : function(event, ui){
+    //         // $("#indicator-tags").html("Tags cannot be more than four");
+    //     }
+    // });
 
-
-    var counter = 0;
-    $("#customize-job").click(function(){
-        $("#collaborator-content").append(addCustom("name"+counter));
-        counter++;
-    });
-
-    //  remove added collaborators
-     $("#collaborator-content").on("click", ".remove-new-collaborator", function(){
-        $(this).parents('div.row')[0].remove();
-    });
-
-
-    $("#finish").click(function(event){
-         jsonObj = [];
-         $("#collaborator-content").find(".row").each(function(index) {
-             var emailObject = $(this).find("input");
-             var email = emailObject.get(0).value ;
-             var statusObject = $(this).find("option:selected");
-             var status = statusObject.get(0).value;
-             collaborateItem = {}
-             collaborateItem["email"] = email;
-             collaborateItem["status"] = status ;
-             jsonObj.push(collaborateItem);
-
-        });
-         $("#collaborate-json").val(JSON.stringify(jsonObj))
+    $("#finish").click(function(event){   
          $("#form").submit();
     });
 
-function addCustom(name){
-    var result = "<div class='row'>"+
-                    "<div class='col-sm-7'>"+
-                     "<div class='form-group'>"+
-                        "<input type='email' class='form-control collaborator' name='"+name+"' placeholder='email'>"+
-                    "</div>"+
-                    "</div>"+
-                    "<div class='col-sm-3'>"+
-                        "<div class='form-group'>"+
-                            "<select name='country' class='form-control'>"+
-                                 "<option value='1'> admin </option>"+
-                                 "<option value='2'> user</option>"+
-                            "</select>"+
-                        "</div>"+
-                    "</div>"+
-                    "<div class='col-sm-2'>"+
-                         "<btn class='btn box-shape remove-new-collaborator' ><i class='ti-close'></i></btn>"+
-                    "</div>"+
-                "</div>" ;
-    return result;
-}
-
-
 </script>
-
-<!-- <select>
-<option>Specialization</option>
-<option>Salary Range</option>
-<option>Job Location</option>
-</select> -->

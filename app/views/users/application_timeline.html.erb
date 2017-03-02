@@ -16,8 +16,8 @@
                         </div>
                         <% if @user.submissions.length > 0 %>
                           <div class="col-md-4 col-md-offset-2">
-                              <%= link_to new_company_path do %>
-                                  <button  type="button" class="btn btn-raised btn-twitter">Apply for new</button>
+                              <%= link_to listing_path do %>
+                                  <button  type="button" class="btn btn-raised btn-twitter">Search for available interivew</button>
                               <% end %>
                           </div>
 
@@ -27,50 +27,7 @@
                         <% if @user.submissions.length > 0 %>
                        
 
-                          <div class="card col-md-8 col-md-offset-2 box-shape">
-                            <div class="content">
-                                <ul class="list-unstyled team-members">
-                                   <% @user.submissions.each do | submission | %>
-                                      <li>
-                                        <div class="row">
-                                            <div class="col-xs-3">
-                                                <div class="">
-                                                    <img src=" " height="55"  />
-                                                       
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-6">
-                                              
-                                              <br>
-                                              
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                             <span class="text-muted">
-                                                               Status: Owner  
-                                                             </span> 
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                          <span class="text-muted">
-                                                            No of collaborator(s): test %>
-                                                          </span> 
-                                                        </div>
-                                                    </div>                                           
-                                            </div>
-
-                                            <div class="col-xs-3 text-right">
-                                               <!--  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn> -->
-                                            </div>
-                                        </div>
-
-
-                                    </li>
-                                    <% end %>
-                                </ul>
-                            </div>
-                        </div>
-
-
-                        <% @user.submissions.each do | submission | %>
+                           <% @user.submissions.each do | submission | %>
                         <% if !submission.interview.nil? %>
                          <div class="col-md-8 col-md-offset-2">
                         <div class="card box-shape">
@@ -84,28 +41,41 @@
 
                                    <h4 class="title"><%= submission.interview.title %> </h4>
                                 <p class="category"><%= truncate(submission.interview.description , :length => 150) %></p>
+                                                            
+                                <hr>
+                                Progress Level:
 
-                                <!--   <div class="icon-big icon-warning text-center">
-                                           
-                                  </div> -->
-                                  <!-- <div class="numbers">
-                                      <p>Capacity</p>
-                                      105GB
-                                  </div> -->
-
+                                <% if submission.current_no == 500 %>
+                                    Completed
+                                <% elsif submission.current_no.nil?  %>                             
+                                 0 / <%= submission.interview.questions.length %>
+                                <% else %>
                                  <%= submission.current_no %> / <%= submission.interview.questions.length %>
-                             
+                                <% end %>
                              
                               <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                </div>
+
+                                
+                                   Status:  
+                                     <% if submission.current_no.nil?    %>
+                                        Not Stated
+                                     <% elsif submission.status.nil? && submission.current_no < 500   %>
+                                      <i class="fa fa-circle text-primary">Uncompleted Interview
+                                     <% elsif submission.status.nil? && submission.current_no == 500 %>
+                                        <i class="fa fa-circle text-info">  In Review
+                                     <% elsif submission.status == 'shortlist' %>
+                                        <i class="fa fa-circle text-success"></i> Shortlisted
+                                     <% elsif submission.status == 'pend' %>
+                                       <i class="fa fa-circle text-warning"></i> Pending
+                                     <% elsif submission.status == 'reject' %>
+                                        <i class="fa fa-circle text-danger"></i> Reject
+                                     <% end %>                                        
+                              </div>
 
 
                                 </div>
                                 <div class="col-md-5 col-sm-5">
-                                   <h4 class="title"><%= submission.interview.company.name %> </h4>
+                                   <h5 class="title"><%= submission.interview.company.name %> </h5>
                                    <a href="https://<%= submission.interview.company.subdomain %>.dropque.com"> <%= submission.interview.company.subdomain %>.dropque.com </a> <br>
 
                                     <% if submission.interview.company.logo.file.nil? %>
@@ -115,7 +85,15 @@
                                 <% end %>
                                 <br>
 
-                                  <input type='button' class='btn btn-finish btn-fill btn-info btn-wd box-shape' name='finish' id="finish" value='Resume' />
+                                  <input type='button' class='btn btn-finish btn-fill btn-info btn-wd box-shape' name='finish' id="finish"
+                                  <% if submission.current_no.nil? %> 
+                                    value='Start'
+                                  <% elsif submission.current_no < 500 %>
+                                    value='Resume'
+                                  <% elsif submission.current_no == 500 %>
+                                     value='View'
+                                  <% end %>
+                                   />
 
                                 </div>
                               
@@ -160,41 +138,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <% else %>
                           <div class="col-md-8 col-md-offset-2">
                             <div class="content">
-                              <%= render partial: "when_empty" %>
+                              <%= render partial: "when_empty_applications" %>
                             </div>
                           </div>
                         <% end %>
