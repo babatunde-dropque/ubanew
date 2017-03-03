@@ -32,13 +32,22 @@ class UsersController < ApplicationController
     render  :layout => 'wizard'
   end
 
+  def become_interviewer
+    @user.update_attributes(status:1)
+     redirect_to user_dashboard_path(current_user)
+  end
+
   def profile
      @user = current_user
   end
 
   def update_profile  
-        @user.update_attributes(user_params)
-        redirect_to user_timeline_path
+       @user.update_attributes(user_params)
+       if !session[:return_to].nil? 
+         redirect_to session[:return_to]
+       else
+         redirect_to user_timeline_path
+       end   
   end
 
 
@@ -88,7 +97,7 @@ class UsersController < ApplicationController
 
   # parameters to update user's details
   def user_params
-    params.permit(:a_dp, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status)
+    params.permit(:a_dp, :a_qualification, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status)
   end
 
 

@@ -27,10 +27,10 @@ class Submission < ActiveRecord::Base
   		if submission.current_no == 500
 	       single.push("Completed")
 	    elsif submission.current_no.nil?
-	       single.push("0%")
+	       single.push("0")
 	    else
 	       value = (submission.current_no + 1)/ @length
-	       single.push(value.to_s+"%")
+	       single.push(value.to_s)
 	    end 
 
 	    if submission.status.nil? 

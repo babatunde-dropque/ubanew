@@ -45,9 +45,9 @@
 					    <% if submission.current_no == 500 %>
 					      <td> Completed </td>
 					    <% elsif submission.current_no.nil? %>
-					      <td> 0% </td>
+					      <td> 0 </td>
 					    <% else %>
-					      <td> <%= (submission.current_no + 1)/ @length  %> % </td>
+					      <td> <%= (submission.current_no + 1)/ @length  %>  </td>
 					    <% end %> 
 
 

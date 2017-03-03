@@ -14,17 +14,23 @@
 
 
                   <div class="card card-user">
-                        <div class="image">
-                            
-                            <%= image_tag('background.jpg')%> 
 
-
+                         <div class="image">
+                            <%= image_tag('background.jpg') %>
                         </div>
                         <div class="content">
                             <div class="author">
                               
-                               <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
+
+                            <% if @user.a_dp.file.nil? %>
+                                <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
                               
+                            <% else %>
+                                <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />
+                                                              
+                            <% end %>
+                       
+                               
                               <h4 class="title"><%= @user.name %><br>
                                  <a href="#"><small><%= @user.email %></small></a>
                               </h4>
@@ -78,8 +84,8 @@
                   <div class="sharing-area text-center">
                    
                     <h5>Interviewer ?</h5>
-                     <%= link_to new_company_path do %>
-                        <button  type="button" class="btn btn-raised btn-twitter">Create Organization Profile</button>
+                     <%= link_to become_interviewer_path , method: :put do %>
+                        <button  type="button" class="btn btn-raised btn-twitter">Enter as Organization</button>
                     <% end %>
                 </div>
             </div>

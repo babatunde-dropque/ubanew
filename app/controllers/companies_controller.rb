@@ -156,7 +156,7 @@ class CompaniesController < ApplicationController
                               "Tumbs up guys, getting better. Thanks Dropque Bot"
             end 
             # end of slack notification
-
+            current_user.update_attributes(status:params[:status])
         	redirect_to  user_dashboard_path
         else
 

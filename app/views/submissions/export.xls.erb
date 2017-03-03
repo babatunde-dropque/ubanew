@@ -32,9 +32,9 @@
         <% if submission.current_no == 500 %>
           <Cell><Data ss:Type="String"> Completed </Data></Cell>
         <% elsif submission.current_no.nil? %>
-          <Cell><Data ss:Type="String"> 0% </Data></Cell>
+          <Cell><Data ss:Type="String"> 0 </Data></Cell>
         <% else %>
-          <Cell><Data ss:Type="String"> <%= (submission.current_no + 1)/ @length  %> % </Data></Cell>
+          <Cell><Data ss:Type="String"> <%= (submission.current_no + 1)/ @length  %>  </Data></Cell>
         <% end %>    
 
          <% if submission.status.nil? %>
