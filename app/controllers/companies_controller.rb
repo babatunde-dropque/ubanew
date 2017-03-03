@@ -169,7 +169,7 @@ class CompaniesController < ApplicationController
   private
 
   def create_company_params
-    params.permit(:name, :description, :tags, :image, :city, :address, :email, :country, :subdomain, :logo, :status)
+    params.permit(:name, :description, :tags, :image, :city, :address, :email, :country, :subdomain, :logo)
   end
 
 
