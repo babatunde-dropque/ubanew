@@ -7,12 +7,6 @@
         <nav class="navbar navbar-default dq-navbar-transparent" role="navigation">
           <!-- Brand and toggle get grouped for better mobile display -->
            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-              </button>
               <a class="navbar-brand" href="#">
                <%  if @company.logo.file.nil? %>
                  <%= image_tag('dqbeta.png', height:"40") %>
@@ -72,8 +66,8 @@
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="container">
-                  <h1 class="dq-hero-heading editableContent max-char" max="50">Hero text here</h1>
-                  <h4 class="dq-hero-subheading editableContent max-char" max="180">Sub hero text here</h4>
+                  <h1 class="dq-hero-heading editableContent max-char" max="50"><%= @company.name %> E-Interview Portal</h1>
+                  <h4 class="dq-hero-subheading editableContent max-char" max="180">Sell yourself and get the offer</h4>
                 </div>
               </div>
             </div>
@@ -81,7 +75,7 @@
           <div class="dq-bottom-overlay">
             <div class="container">
                <br>
-              <h5 class="dq-pre-cta editableContent max-char" max="60" >Pre cta text here</h5>
+              <h5 class="dq-pre-cta editableContent max-char" max="60" >Let's do this</h5>
 
           
           <% if params[:interview_token].present? %>
@@ -117,7 +111,7 @@
 
 
 
-              <h6 class="dq-company-contact editableContent max-char" max="100">Have questions? Contact us on info@dropque.com</h6>
+              <h6 class="dq-company-contact editableContent max-char" max="100">Have questions? Contact us on <%= @company.email %></h6>
             </div>
           </div>
         </div>
@@ -160,26 +154,6 @@
  
 
  <!-- Details of each interview should end here -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -233,11 +207,11 @@
         var properties = {
 
             primaryColor: '#5e337b',
-            heroText: "Hero text here",
-            subHeroText: "Sub hero text here",
-            preCtaText: "short de cta text here",
+            heroText: "<%= @company.name %> E-Interview Portal",
+            subHeroText: "Sell yourself and get the offer",
+            preCtaText: "Let's do this",
             ctaButton: "Start your interview",
-            contactInfo: "Contact us text here info@dropque.com"
+            contactInfo: "Have questions? Contact us on <%= @company.email %>"
         };
         $("#reset-values").val(JSON.stringify(properties));
      });

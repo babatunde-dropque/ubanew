@@ -1,9 +1,8 @@
 class ApplicantsController < ApplicationController
-  layout 'applicants'
-  before_action :authenticate_user!
-  before_filter :set_up_company, :except => [:validate_interview, :validate_email]
-  before_filter :set_up_interview, :except => [:index, :validate_interview, :validate_email, :submit_video]
-  before_filter :set_up_user_and_submission, :except => [:index, :validate_interview, :validate_email, :submit_video]
+  layout 'applicants' 
+  before_filter :set_up_company, :except => [:validate_interview]
+  before_filter :set_up_interview, :except => [:index, :validate_interview, :submit_video]
+  before_filter :set_up_user_and_submission, :except => [:index, :validate_interview, :submit_video]
 
 
   def index
@@ -21,32 +20,26 @@ class ApplicantsController < ApplicationController
         end
     elsif params[:page] == "details"
       @interview = Interview.find(params[:interview_id])
-      # check if user exit or not
-      # if (params[:create] == "yes")
-      #   @user = User.new(name: params[:name], email: params[:email], password: 'dropqueapp', password_confirmation: 'dropqueapp')
-      #   @user.save()
-      # elsif (params[:create] == "no")
-      #   @user = User.find_by(email: params[:email])
-      # end
-      @user = current_user
+      # check if user is signed in  or not
 
-      # create submission for user
-      if  Submission.exists?(interview_id: @interview.id, user_id: @user.id)
-        @submission =   Submission.find_by(interview_id: @interview.id, user_id: @user.id)
-        @position = @submission.current_no
+      if !user_signed_in?
+        redirect_to new_user_session_path
       else
-         # create new submission
-        @submission = Submission.new(user_id: @user.id, interview_id: @interview.id)
-        @submission.save
-        @position = 0
+          @user = current_user
+          # create submission for user
+          if  Submission.exists?(interview_id: @interview.id, user_id: @user.id)
+            @submission =   Submission.find_by(interview_id: @interview.id, user_id: @user.id)
+            @position = @submission.current_no
+          else
+             # create new submission
+            @submission = Submission.new(user_id: @user.id, interview_id: @interview.id)
+            @submission.save
+            @position = 0
+          end
+          render "details"
       end
-      render "details"
     end
-
-    # render default index.html.erb
   end
-
-
 
 
 
@@ -106,7 +99,6 @@ class ApplicantsController < ApplicationController
 
 
 
-
   def validate_interview
     if  Interview.exists?(interview_token: params[:interview_token])
       render plain: "success"
@@ -115,13 +107,6 @@ class ApplicantsController < ApplicationController
     end
   end
 
-  def validate_email
-    if  User.exists?(email: params[:email])
-      render plain: "success"
-    else
-      render plain: "error"
-    end
-  end
 
   # this is a stand alone api
   def submit_video
