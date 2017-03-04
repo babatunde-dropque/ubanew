@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
      after_create :send_welcome_mail
      def send_welcome_mail
-     #InterviewMailer.welcome_email(self).deliver
+        InterviewMailer.welcome_email(self).deliver
      end
 
     # Include default devise modules. Others available are:

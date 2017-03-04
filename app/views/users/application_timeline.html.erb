@@ -17,7 +17,7 @@
                         <% if @user.submissions.length > 0 %>
                           <div class="col-md-4 col-md-offset-2">
                               <%= link_to listing_path do %>
-                                  <button  type="button" class="btn btn-raised btn-twitter">Search for available interivew</button>
+                                  <button  type="button" class="btn btn-raised btn-twitter">Search for interivew</button>
                               <% end %>
                           </div>
 
@@ -31,16 +31,12 @@
                         <% if !submission.interview.nil? %>
                          <div class="col-md-8 col-md-offset-2">
                         <div class="card box-shape">
-                            <!-- <div class="header">
-                                <h4 class="title"><%= submission.interview.title %> </h4>
-                                <p class="category"><%= truncate(submission.interview.description , :length => 150) %></p>
-                            </div> -->
+                            
                             <div class="content">
                               <div class="row">
                                 <div class="col-md-7 col-sm-7">
-
                                    <h4 class="title"><%= submission.interview.title %> </h4>
-                                <p class="category"><%= truncate(submission.interview.description , :length => 150) %></p>
+                                <p class="category"><%= truncate(submission.interview.description , :length => 130) %></p>
                                                             
                                 <hr>
                                 Progress Level:
@@ -57,10 +53,10 @@
 
                                 
                                    Status:  
-                                     <% if submission.current_no.nil?    %>
+                                     <% if submission.current_no.nil? %>
                                         Not Stated
-                                     <% elsif submission.status.nil? && submission.current_no < 500   %>
-                                      <i class="fa fa-circle text-primary">Uncompleted Interview
+                                     <% elsif submission.status.nil? && submission.current_no < 500  %>
+                                        <i class="fa fa-circle text-primary"> Uncompleted Interview
                                      <% elsif submission.status.nil? && submission.current_no == 500 %>
                                         <i class="fa fa-circle text-info">  In Review
                                      <% elsif submission.status == 'shortlist' %>
@@ -85,15 +81,18 @@
                                 <% end %>
                                 <br>
 
-                                  <input type='button' class='btn btn-finish btn-fill btn-info btn-wd box-shape' name='finish' id="finish"
-                                  <% if submission.current_no.nil? %> 
-                                    value='Start'
+                                  
+
+                                  <a href="https://<%=  submission.interview.company.subdomain %>.dropque.com/applicants/<%= submission.interview.interview_token %>"><button class="btn btn-finish btn-fill btn-info btn-wd box-shape">
+                                      <% if submission.current_no.nil? %> 
+                                    Start
                                   <% elsif submission.current_no < 500 %>
-                                    value='Resume'
+                                    Resume 
                                   <% elsif submission.current_no == 500 %>
-                                     value='View'
-                                  <% end %>
-                                   />
+                                     View
+                                  <% end %></button>
+                                  </a>
+
 
                                 </div>
                               
