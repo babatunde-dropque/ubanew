@@ -84,13 +84,13 @@
                 <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here" value="<%= params[:interview_token] %>" name="interview_token" contenteditable="false" hidden />
                 <br><br>
                 <input type="hidden" value="register" name ="page" />
-                  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>  
+                  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
                 <% if  Interview.exists?(interview_token: params[:interview_token]) %>
                     <!-- save the current url -->
                     <% session[:return_to] = request.url %>
                     <!-- end session save -->
                    <div class="editableContent">
-                        <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> Start your interview </button>
+                        <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> </button>
                    </div>
               <%  else %>
                  <div class="editableContent">
@@ -101,11 +101,11 @@
               </form>
           <% else  %>
 
-          <form  id="form-details" method="post" action="/applicants"> 
+          <form  id="form-details" method="post" action="/applicants">
               <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here"  name="interview_token" contenteditable="false"  />
-                        
+
               <input type="hidden" value="register" name ="page" />
-                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>   
+                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
              <div class="editableContent">
                   <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> Start your interview </button>
              </div>
