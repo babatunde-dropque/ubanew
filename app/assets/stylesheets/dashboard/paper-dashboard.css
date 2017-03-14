@@ -3834,6 +3834,11 @@ div.file > span  {
 }
 
 
+.center{
+  text-align: center;
+}
+
+
 /*make footer for application timeline  inline */
 div.row.block-display{
   display: block;

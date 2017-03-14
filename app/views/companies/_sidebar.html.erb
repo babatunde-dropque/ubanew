@@ -31,45 +31,21 @@
                 <li id="step4" class="<%= (params[:c] == "3") ? "active": "" %>">
                     <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 3, status: 0, interview_id: @interview.slug) do %>
                         <i class="ti-check-box"></i>
-                        <% shotlist = @interview.submissions.where(current_no: 500, status: 0) %>
-                        <p> Shotlisted 
-                            <% if (shotlist.length > 0) %>
-                               <span class="notification-bubble" id="notification-number">
-                                    <%=shotlist.length %>
-                               </span>
-                            <% end %> 
-                            
-                        </p>   
+                        <p>Shortlisted</p>
                     <% end %>
                    
                 </li>
                 <li id="step5" class="<%= (params[:c] == "4") ? "active": "" %>">
                     <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 4, status: 1, interview_id: @interview.slug) do %>
                         <i class="ti-pencil-alt"></i>
-                        <% pend = @interview.submissions.where(current_no: 500, status: 1) %>
-                        <p> Pending 
-                            <% if (pend.length > 0) %>
-                               <span class="notification-bubble" id="notification-number">
-                                    <%= pend.length %>
-                               </span>
-                            <% end %> 
-                            
-                        </p>   
+                        <p>Pending</p>
                     <% end %>
                                      
                 </li>
                 <li id="step6" class="<%= (params[:c] == "5") ? "active": "" %> ">
                     <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: @interview.slug) do %>
                         <i class="ti-trash"></i>
-                        <% reject = @interview.submissions.where(current_no: 500, status: 2) %>
-                        <p> Declined 
-                            <% if (reject.length > 0) %>
-                               <span class="notification-bubble" id="notification-number">
-                                    <%=reject.length %>
-                               </span>
-                            <% end %> 
-                            
-                        </p>   
+                        <p>Declined</p>
                     <% end %>
                                
                 </li> 

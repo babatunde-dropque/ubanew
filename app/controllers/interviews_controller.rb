@@ -19,13 +19,13 @@ class InterviewsController < ApplicationController
 
 
   def single_interview_submissions
-     @submissions = @interview.submissions.where(current_no: 500, status: nil).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
+     @submissions = @interview.submissions.where(current_no: 500, status: nil).paginate(:page => params[:page], :per_page => 1).order('created_at DESC')
      render :layout => 'single_interview_submissions'
   end
 
   # controller function for to manages interview filtered
   def filtered_single_interview
-    @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
+    @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 1).order('created_at DESC')
     render :action => 'single_interview_submissions', :layout => 'single_interview_submissions'
   end
 
