@@ -173,5 +173,14 @@ Rails.application.routes.draw do
     get    "account" => "users/registrations#edit",   as: :edit_user_registration
   end
 
+
+
+# namespace and controller for api
+namespace :api do
+    namespace :v1 do
+      get "token", to: "api#all_interview_by"
+          
+    end
+  end
   
 end
