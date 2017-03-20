@@ -95,8 +95,7 @@ class ApplicantsController < ApplicationController
       else
         render plain: "error"
       end
- end
-
+end
 
 
   def validate_interview

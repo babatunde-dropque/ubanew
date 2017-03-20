@@ -136,6 +136,51 @@ class InterviewsController < ApplicationController
       end
   end
 
+
+  # def get_price(time_in_sec, currency)
+  #   if currency == "NGN"
+  #     if (time_in_sec < )
+
+  #     elsif (time_in_sec < )
+
+  #     else (time_in_sec < )
+
+  #   elsif currency == "USD"
+
+  #   end
+  # end
+
+
+  # def pricing 
+  #   all_submission = @interview.submissions
+  #   question_length =  all_submission.length
+  #   prices = {}
+  #   question_length.times do |i|
+  #       prices[i] = 0
+  #   end
+    
+  #   # loop through all the available videos
+  #   all_submission.each do | submission |
+  #     sum = 0
+  #     submission.answers.each do | answer |
+  #       if answer["question_type"] != nil && answer["question_type"] == 1
+  #         sum =+ 1
+  #         price = get_price((15000/1000), "NGN")
+  #         prices[1]=+
+                 
+  #       end
+
+       
+
+  #     end
+
+  #   end
+  #   NGN = {2.5: 50, 3: 75, }
+  #   USD = {}
+
+
+  # end
+
   
 
 

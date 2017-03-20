@@ -56,9 +56,9 @@
                                      <% if submission.current_no.nil? %>
                                         Not Stated
                                      <% elsif submission.status.nil? && submission.current_no < 500  %>
-                                        <i class="fa fa-circle text-primary"> Uncompleted Interview
+                                        <i class="fa fa-circle text-primary"></i> Uncompleted Interview
                                      <% elsif submission.status.nil? && submission.current_no == 500 %>
-                                        <i class="fa fa-circle text-info">  In Review
+                                        <i class="fa fa-circle text-info"></i>  In Review
                                      <% elsif submission.status == 'shortlist' %>
                                         <i class="fa fa-circle text-success"></i> Shortlisted
                                      <% elsif submission.status == 'pend' %>
