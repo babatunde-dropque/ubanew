@@ -1,13 +1,15 @@
 class ApplicationController < ActionController::Base
-   
+
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
+  # protect_from_forgery with: :null_session
+
 
   def send_notification(user_id, type, sender_id, company_name)
 
-  	  if (type == 1) 
+  	  if (type == 1)
   	  	# user submissions
   	  	message = ""
   	  elsif (type == 2)
