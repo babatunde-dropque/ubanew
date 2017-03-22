@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get "dashboard/account", to: "users#account", as: 'user_account', :format => false
   post "dashboard/account", to: "users#account", as: 'user_account_put'
   get "dashboard/check_password", to: "users#check_password", as: 'check_password'
+  get 'demo_login' , to: "users#user_demo_login", as: 'user_demo_login'
+  get 'demo_in' , to: "users#trigger_login", as: 'trigger_login'
 
 
   # post request for applicant data

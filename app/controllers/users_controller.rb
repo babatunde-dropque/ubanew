@@ -1,11 +1,12 @@
 require 'bcrypt'
 class UsersController < ApplicationController
 	layout 'user_dashboard'
-	before_action :authenticate_user!
+	before_action :authenticate_user!, :except => [:user_demo_login , :trigger_login]
+ 
 	
 	# this is used to initial user's object to that it will be available to all
 	# method without recalling it again
-	before_filter :set_up_user
+	before_filter :set_up_user, :except => [:user_demo_login, :trigger_login ]
 
     def set_up_user
         @user = current_user
@@ -51,6 +52,26 @@ class UsersController < ApplicationController
   end
 
 
+  def user_demo_login
+      render :layout => 'signin'
+  end
+
+  def trigger_login
+      if User.exists?(email: "demo_user@dropque.com")
+        sign_out current_user
+        demo_user = User.find_by(email:"demo_user@dropque.com")
+        sign_in(:user, demo_user)
+        redirect_to user_profile_path(demo_user)
+      else
+         demo_user = User.new(name: "Demo Name", email: "demo_user@dropque.com", password: 'dropqueapp', password_confirmation: 'dropqueapp')
+         demo_user.save()
+         sign_in(:user, demo_user)
+         redirect_to user_profile_path(demo_user)
+        # create the user right away
+      end
+  end
+
+  
 
   def application_timeline
 
