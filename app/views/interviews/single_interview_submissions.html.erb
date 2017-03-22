@@ -146,7 +146,9 @@
   </div>
 <% end %>
 
+<!-- Email Invitation Confirmation begins-->
 
+<!-- Email Invitation Confirmation ends-->
 
 <script>
 
@@ -300,7 +302,8 @@
     var submissionId = parent.attr('submission-id');
     var status = current.attr('status');
     console.log(submissionId);
-    // var url = 
+    // var url =
+
 
     $.ajax({
           url: '<%= company_interview_change_status_path(company_id:@company.slug, interview_id:@interview.slug)%>',
@@ -310,7 +313,7 @@
               if (data == "shortlist" ){
                  parent.children().removeClass('btn-fill');
                  current.addClass('btn-fill');
-         alert('You want to SHORTLIST this candidate?');
+                if (confirm("Are You Sure to SHORTLIST this Candidate? Email Will be sent to the Candidate") == true){
                   $.ajax({
                   url:'<%= company_interview_shortlist_path(company_id:@company.slug, interview_id:@interview.slug)%>',
                   type: 'GET',
@@ -325,15 +328,22 @@
                   }
 
                  });
-             } else if (data == "pend"){
+
+                  }
+
+                 //alert('You want to SHORTLIST this candidate?');
+
+             }
+             else if (data == "pend"){
                 parent.children().removeClass('btn-fill');
                 current.addClass('btn-fill');
-                alert('You want to PEND this candidate?');
+                //alert('You want to PEND this candidate?');
              }
              else if (data == "reject"){
                 parent.children().removeClass('btn-fill');
                 current.addClass('btn-fill');
-                alert('You want to REJECT this candidate?');
+                //alert('You want to REJECT this candidate?');
+                if (confirm("Are You Sure to REJECT this Candidate? Email Will be sent to the Candidate") == true){
                    $.ajax({
                   url:'<%= company_interview_reject_path(company_id:@company.slug, interview_id:@interview.slug)%>',
                   type: 'GET',
@@ -348,6 +358,7 @@
                   }
 
                  });
+                }
 
              }
              else if (data == "error"){
