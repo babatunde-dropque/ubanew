@@ -72,6 +72,8 @@ class InterviewsController < ApplicationController
 		@interview_all = @company.interviews
 	end
 
+
+
 	def create
 		interview = Interview.new(interview_params)
     # send_bulk_invite_mail(params[:contacts])

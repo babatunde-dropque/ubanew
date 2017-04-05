@@ -10,21 +10,24 @@
         <div class="content card-start ">
             <div class="container-fluid">
 
+
                <!-- when empty -->
             <% if @all_interview.length == 0  %>
              <%= render partial: "when_empty" %>
             <% end %>
 
                 <div class="row" >
+
                   <% @all_interview.each do |interview| %>
                   <% unfinish_submission = interview.submissions.where("current_no < ?", 500) %>
                   <% submissions_total = interview.submissions %>
                   <% submissions = interview.submissions.where(current_no: 500) %>
-                
+
                       <div class=" col-md-4">
                           <div class="img-responsive card box-shape">
                             <%= link_to company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) do %>
                               <div class="content">
+
                                       <p><%= truncate( interview.title, :length => 35) %> </p>
                                       <div class="text-center numbers-1">
                                           <%= submissions.length %>
@@ -59,3 +62,19 @@
     </div>
 </div>
 
+
+<script>
+  $("#step7").click(
+    function(event){
+  if (confirm("Are You Sure to SEND REMINDERS ? Email Will be sent to the Candidates who have  not completed interviews") == true){
+  }
+
+    else{
+    event.preventDefault();
+    }
+
+    });
+
+
+
+</script>

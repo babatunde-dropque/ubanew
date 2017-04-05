@@ -24,7 +24,7 @@ class CompaniesController < ApplicationController
     def edit_preview
         if params[:properties].present?
             @company.update_attributes(company_properties)
-        end 
+        end
          @editable = "true"
         render  :layout => 'applicants', :template => 'applicants/index'
     end
@@ -35,11 +35,23 @@ class CompaniesController < ApplicationController
 
     end
 
+    def interview_reminder
+        @interviews = @company.interviews
+        @interviews.each do|one|
+          Submission.where("interview_id = ?", one.id).where(current_no:nil).find_each do |me|
+          ReminderMailer.reminder(User.find(me.user_id).email, one).deliver
+        end
+      end
+      redirect_to company_path(id: @company.slug), notice: 'Reminders  successfully sent.'
+   end
+
+
+
     def add_collaborators
         # after this, loop through everyother user and send notification and email to them
             collaborator_list = JSON.parse(params[:collaborators_list])
             collaborator_list.each do | collborator | 
-   
+
                 email = collborator["email"]
                 status = collborator["status"]
 

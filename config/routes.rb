@@ -106,6 +106,8 @@ Rails.application.routes.draw do
 
   # Nested Company Resources
   resources :companies do
+    #post 'send_invite_mail', on: :collection
+    get "interview_reminder", to: "companies#interview_reminder"
     post "add_collaborators", to: "companies#add_collaborators"
     delete "remove_collaborator", to: "companies#remove_collaborator"
     put "transfer_ownership", to: "companies#transfer_ownership"
