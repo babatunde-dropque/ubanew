@@ -110,7 +110,14 @@ class InterviewsController < ApplicationController
      redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Invitation was successfully sent.'
   end
 
-  
+  def reminder
+          if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
+          Submission.where("interview_id = ?", @interview.id).where(current_no:nil).find_each do |me|
+          ReminderMailer.reminder(User.find(me.user_id).email, @interview).deliver
+        end
+      end
+      redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Reminder was successfully sent.'
+   end
 
 
   def unfinish_submission
@@ -183,7 +190,7 @@ class InterviewsController < ApplicationController
 
   # end
 
-  
+
 
 
 

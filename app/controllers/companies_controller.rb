@@ -35,15 +35,7 @@ class CompaniesController < ApplicationController
 
     end
 
-    def interview_reminder
-        @interviews = @company.interviews
-        @interviews.each do|one|
-          Submission.where("interview_id = ?", one.id).where(current_no:nil).find_each do |me|
-          ReminderMailer.reminder(User.find(me.user_id).email, one).deliver
-        end
-      end
-      redirect_to company_path(id: @company.slug), notice: 'Reminders  successfully sent.'
-   end
+    
 
 
 

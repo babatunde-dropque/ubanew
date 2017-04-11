@@ -107,7 +107,7 @@ Rails.application.routes.draw do
   # Nested Company Resources
   resources :companies do
     #post 'send_invite_mail', on: :collection
-    get "interview_reminder", to: "companies#interview_reminder"
+    #get "interview_reminder", to: "companies#interview_reminder"
     post "add_collaborators", to: "companies#add_collaborators"
     delete "remove_collaborator", to: "companies#remove_collaborator"
     put "transfer_ownership", to: "companies#transfer_ownership"
@@ -125,6 +125,7 @@ Rails.application.routes.draw do
 
     resources :interviews do
       post 'send_invite_mail', on: :collection
+      get "reminder", to: "interviews#reminder"
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"

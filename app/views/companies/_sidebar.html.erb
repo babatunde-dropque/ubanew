@@ -28,13 +28,7 @@
                     <% end %>
                 </li>
 
-                 <li id="step7" class="<%= (params[:c] == "7") ? "active": "" %> ">
-                    <%= link_to  company_interview_reminder_path(company_id:@company.slug, c: 7) do %>
-                        <i class="ti-bell"></i>
-                        <p>Send  reminders</p>
-                    <% end %>
-
-                </li>
+                 
                 <% if !@interview.nil? && @new_interview.nil? %>
                 <li id="step4" class="<%= (params[:c] == "3") ? "active": "" %>">
                     <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 3, status: 0, interview_id: @interview.slug) do %>
@@ -71,8 +65,16 @@
 
                 </li>
 
+                <li id="step7" class="<%= (params[:c] == "7") ? "active": "" %> ">
+                    <%= link_to  company_interview_reminder_path(company_id:@company.slug, c: 7, interview_id: @interview.slug) do %>
+                        <i class="ti-bell"></i>
+                        <p>Send  reminders</p>
+                    <% end %>
 
-                
+                </li>
+
+
+
 
 
                 <% end %>
