@@ -66,8 +66,13 @@ class UsersController < ApplicationController
          demo_user = User.new(name: "Demo Name", email: "demo_user@dropque.com", password: 'dropqueapp', password_confirmation: 'dropqueapp')
          demo_user.save()
          sign_in(:user, demo_user)
-         redirect_to user_profile_path(demo_user)
-        # create the user right away
+         if  demo_user.status == 1
+            redirect_to user_dashboard_path(demo_user)
+         elsif demo_user.status == 0
+            redirect_to user_timeline_path(demo_user)
+         elsif  demo_user.status == nil
+            redirect_to user_profile_path(demo_user)
+         end 
       end
   end
 
