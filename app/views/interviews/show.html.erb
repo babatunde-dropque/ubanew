@@ -192,8 +192,20 @@
 
 
 <script >
+$("#step7").click(
+    function(event){
+  if (confirm("Are You Sure to SEND REMINDERS ? Email Will be sent to the Candidates who have  not completed interviews") == true){
+  }
+
+  else{
+    event.preventDefault();
+    }
+
+    });
+
+
   $("#notice").fadeOut(9000);
-  
+
   var emailTagList = $('#email-list');
     emailTagList.tagit({
     placeholderText: "mail@example.com",

@@ -24,7 +24,7 @@ class CompaniesController < ApplicationController
     def edit_preview
         if params[:properties].present?
             @company.update_attributes(company_properties)
-        end 
+        end
          @editable = "true"
         render  :layout => 'applicants', :template => 'applicants/index'
     end
@@ -35,11 +35,15 @@ class CompaniesController < ApplicationController
 
     end
 
+    
+
+
+
     def add_collaborators
         # after this, loop through everyother user and send notification and email to them
             collaborator_list = JSON.parse(params[:collaborators_list])
             collaborator_list.each do | collborator | 
-   
+
                 email = collborator["email"]
                 status = collborator["status"]
 
