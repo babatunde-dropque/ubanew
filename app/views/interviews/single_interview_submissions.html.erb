@@ -97,8 +97,17 @@
                     </div>
 
                     <div class="centralize ">
+                      General:
                       <%= rating_for submission, 'response', disable_after_rate: false, cancel_hint: 'Cancel interview rating', imdb_avg: false , target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Interview rating: {score}"%>
+
+                      <br>
+                      Apperance/Composure  : <%= rating_for submission, 'apperance', disable_after_rate: false, cancel_hint: 'Cancel apperance rating', imdb_avg: false, target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Apperance rating: {score}"  %>
+                      <br>
+                      Communication : <%= rating_for submission, 'communication', disable_after_rate: false, cancel_hint: 'Cancel communication rating', imdb_avg: false, target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Communication rating: {score}" %>
+
+                     <br>
                       <div style="color: #5e337b; " id="hint<%= submission.id %>"></div>
+
                     </div>
                   </div>
 

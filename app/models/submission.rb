@@ -8,7 +8,8 @@ class Submission < ActiveRecord::Base
 
 	# allow user to be able to commend on this model
 	acts_as_commontable
-	ratyrate_rateable "response"
+	ratyrate_rateable "response", "apperance", "communication"
+	
 
   
 	def self.to_csv(questions)
