@@ -180,7 +180,8 @@ Rails.application.routes.draw do
 # namespace and controller for api
 namespace :api do
     namespace :v1 do
-      get "token", to: "api#all_interview_by"
+      get "token", to: "api#token"
+      put "send_invitation", to: "api#send_invitation"
           
     end
   end
