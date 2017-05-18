@@ -1,4 +1,4 @@
-<div class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.37), rgba(51, 51, 51, 0.51)), url(<%= (@company.image.file.nil?) ? asset_path('interviewers.jpg') : @company.image.url %>);  background-repeat: no-repeat; background-size: cover;" >
+<div class="homepage-body" style=" background: linear-gradient(rgba(51, 51, 51, 0.74), rgba(51, 51, 51, 0.51)), url(<%= (@company.image.file.nil?) ? asset_path('interviewers.jpg') : @company.image.url %>);  background-repeat: no-repeat; background-size: cover;" >
 
 
 
@@ -10,9 +10,9 @@
            <div class="navbar-header">
               <a class="navbar-brand" href="#">
                <%  if @company.logo.file.nil? %>
-                 <%= image_tag('dqbeta.png', height:"40") %>
+                 <%= image_tag('dqbeta.png', height:"60") %>
                <% else %>
-                  <img src="<%= @company.logo %>" alt="" height="40"/>
+                  <img src="<%= @company.logo %>" alt="" height="80"/>
                <% end %>
 
               </a>
