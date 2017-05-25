@@ -127,6 +127,7 @@ Rails.application.routes.draw do
     resources :interviews do
       post 'send_invite_mail', on: :collection
       get "reminder", to: "interviews#reminder"
+      get "sms_reminder", to: "interviews#sms_reminder"
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"

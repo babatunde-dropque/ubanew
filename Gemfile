@@ -111,3 +111,7 @@ gem 'slack-notifier'
 # this gem is for pagination
 gem 'will_paginate', '~> 3.1.0'
 
+#needed for twilio sms
+#gem 'sinatra', '~> 2.0'
+gem 'twilio-ruby', '~> 4.13'
+

@@ -73,6 +73,14 @@
 
                 </li>
 
+                <li id="step7" class="<%= (params[:c] == "7") ? "active": "" %> ">
+                 <%= link_to  company_interview_sms_reminder_path(company_id:@company.slug, c: 7, interview_id: @interview.slug) do %>
+                        <i class="ti-bell"></i>
+                        <p>Send  SMS reminders</p>
+                    <% end %>
+
+                </li>
+
 
 
 
