@@ -1,7 +1,7 @@
 require 'slack-notifier'
 class LandingsController < ApplicationController
 	layout 'landing'
-	
+
   def index
 		if user_signed_in? && current_user.status == 1
 			redirect_to user_dashboard_path(current_user)
@@ -18,7 +18,7 @@ class LandingsController < ApplicationController
   end
 
   def contact
-      
+
   end
 
   def request_demo

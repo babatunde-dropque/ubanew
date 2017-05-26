@@ -40,13 +40,13 @@
                             </div>
                             <div class="content">
                                 <ul class="list-unstyled team-members">
-                                        
+
                                         <% @collborators.each do | collaborator | %>
                                         <li id="collaborator-<%= collaborator.id %>">
                                             <div class="row">
                                                 <div class="col-xs-8">
-                                                    <%= collaborator.user.name %> 
-                                                  
+                                                    <%= collaborator.user.name %>
+
                                                     <span class="text-danger">
                                                         <small><%= collaborator.user.email %></small>
                                                     </span>
