@@ -231,9 +231,12 @@
     if (typeValue == "1"){
       var type = "Are you sure to SEND REMINDERS? SMS messages will be sent to Candidates who have not completed  the interview @ 4 naira/sms";
     }
-    else
+    else if(typeValue == "2")
     {
       var type = "Are you sure to SEND REMINDERS ? Email Will be sent to the Candidates who have  not completed the interview";
+    }
+    else{
+      var type = "Are you sure to SEND REMINDERS? SMS and Email messages will be sent to Candidates who have not completed  the interview @ 4 naira/SMS";
     }
     if (confirm(type) == true){
     var id_input = $("#interview_id");
@@ -244,7 +247,7 @@
     } else if (typeValue == "2")
     url = "/companies/<%= @company.slug %>/interviews/"+id+"/reminder";
     else {
-      url = "#";
+      url = "/companies/<%= @company.slug %>/interviews/"+id+"/double_reminder";
     }
      $.ajax({
        type: 'GET',
