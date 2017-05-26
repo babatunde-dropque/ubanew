@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'applicants/index'
   get 'landings/index', as: 'landing'
   get '/newhome', to: 'landings#newhome', as: 'newhome'
+  get '/pricing', to: 'landings#pricing', as: 'pricing'
   post 'landings/requestdemo', to: "landings#request_demo"
   get 'listing' => 'listings#listing_interview', as: 'listing'
   get 'listing-approval' => 'listings#listing_approval', as: 'approval_page'
