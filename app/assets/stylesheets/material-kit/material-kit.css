@@ -1765,9 +1765,11 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
     color: #3C4858;
     text-decoration: none;
 }
-a {
-    outline: none;
-  }
+.info {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 15px 0 30px;
+}
 /*pricing css ending*/
 
 footer {
