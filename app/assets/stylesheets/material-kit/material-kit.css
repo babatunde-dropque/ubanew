@@ -1742,7 +1742,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 .info-horizontal .description, .media .avatar {
     overflow: hidden;
 }
-.info .icon>i {
+.info-horizontal .icon>i {
     font-size: 2.6em;
 }
 .info .info-title {
