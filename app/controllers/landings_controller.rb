@@ -1,6 +1,6 @@
 require 'slack-notifier'
 class LandingsController < ApplicationController
-	layout 'landing', :except => [:pricing]
+	layout 'landing'
 
   def index
 		if user_signed_in? && current_user.status == 1

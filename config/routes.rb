@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get "dashboard/check_password", to: "users#check_password", as: 'check_password'
   get 'demo_login' , to: "users#user_demo_login", as: 'user_demo_login'
   get 'demo_in' , to: "users#trigger_login", as: 'trigger_login'
+  get 'contact', to: "landings#contact", as: 'contact'
 
 
   # post request for applicant data

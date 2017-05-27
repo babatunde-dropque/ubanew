@@ -1635,6 +1635,140 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 .nav-pills.nav-pills-danger > li.active > a, .nav-pills.nav-pills-danger > li.active > a:focus, .nav-pills.nav-pills-danger > li.active > a:hover {
   background-color: #f44336;
 }
+/*pricing css beginning*/
+.brand h2{
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+.pricing-2 .nav-pills {
+    display: inline-block;
+    margin-bottom: 50px;
+}
+.pricing-2 .nav-pills > li > a {
+    border-radius: 30px;
+}
+.card-pricing {
+    text-align: center;
+}
+.card2 {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    border-radius: 3px;
+    color: rgba(0,0,0, 0.87);
+    background: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    outline: none;
+}
+
+.card-pricing .card-content {
+    padding: 15px!important;
+}
+.card-content h6 {
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.card-pricing .card-title {
+    margin-top: 30px;
+}
+.card-title {
+    font-weight: 700;
+}
+.card-pricing ul {
+    list-style: none;
+    padding: 0;
+    max-width: 240px;
+    margin: 10px auto;
+}
+.card-pricing ul li {
+    color: #999;
+    text-align: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(153,153,153,.3);
+}
+.card-pricing h1 small:first-child {
+    position: relative;
+    top: -17px;
+    font-size: 26px;
+}
+.card-pricing ul li b {
+    color: #3C4858;
+}
+.card-pricing h1, .h1 {
+    font-size: 3.8em;
+}
+.card2 .header .title, .card2 [class*=header-], .card2 [class*=header-] .card-title, .card2 [class*=header-] .card-title a, .card2 [class*=header-] .icon i, .card2 [class*=content-], .card2 [class*=content-] .card-title, .card2 [class*=content-] .card-title a, .card2 [class*=content-] .icon i {
+    color: #FFF;
+}
+.card2 [class*=content-] {
+    border-radius: 6px;
+}
+.card2 .content-rose, .card2 .header-rose {
+    background: linear-gradient(60deg,#5e337b,#9c27b0);
+}
+.card-pricing ul li:last-child {
+    border: 0;
+}
+.card2 [class*=content-] h1 small, .card2 [class*=content-] h2 small, .card2 [class*=content-] h3 small {
+    color: rgba(255,255,255,.8);
+}
+.card-pricing [class*=content-] [class*=text-], .card-pricing [class*=content-] ul li b, .card-pricing.card-background [class*=text-], .card-pricing.card-background ul li b {
+    color: #FFF;
+}
+.card-pricing [class*=content-] ul li, .card-pricing.card-background ul li {
+    color: #FFF;
+    border-color: rgba(255,255,255,.3);
+}
+.btn.btn-white, .btn.btn-white:focus, .btn.btn-white:hover, .navbar .navbar-nav>li>a.btn.btn-white, .navbar .navbar-nav>li>a.btn.btn-white:focus, .navbar .navbar-nav>li>a.btn.btn-white:hover {
+    background-color: #FFF;
+    color: #999;
+}
+.btn.btn-rose, .btn.btn-rose.active, .btn.btn-rose.active:focus, .btn.btn-rose.active:hover, .btn.btn-rose:active, .btn.btn-rose:active:focus, .btn.btn-rose:active:hover, .btn.btn-rose:focus, .btn.btn-rose:hover, .navbar .navbar-nav>li>a.btn.btn-rose, .navbar .navbar-nav>li>a.btn.btn-rose.active, .navbar .navbar-nav>li>a.btn.btn-rose.active:focus, .navbar .navbar-nav>li>a.btn.btn-rose.active:hover, .navbar .navbar-nav>li>a.btn.btn-rose:active, .navbar .navbar-nav>li>a.btn.btn-rose:active:focus, .navbar .navbar-nav>li>a.btn.btn-rose:active:hover, .navbar .navbar-nav>li>a.btn.btn-rose:focus, .navbar .navbar-nav>li>a.btn.btn-rose:hover, .open>.btn.btn-rose.dropdown-toggle, .open>.btn.btn-rose.dropdown-toggle:focus, .open>.btn.btn-rose.dropdown-toggle:hover, .open>.navbar .navbar-nav>li>a.btn.btn-rose.dropdown-toggle, .open>.navbar .navbar-nav>li>a.btn.btn-rose.dropdown-toggle:focus, .open>.navbar .navbar-nav>li>a.btn.btn-rose.dropdown-toggle:hover {
+    background-color: #5e337b;
+    color: #FFF;
+}
+.info-horizontal .icon {
+    float: left;
+    margin-top: 24px;
+    margin-right: 10px;
+}
+.info-horizontal .description, .media .avatar {
+    overflow: hidden;
+}
+.info .icon>i {
+    font-size: 2.6em;
+}
+.info .info-title {
+    color: #3C4858;
+    margin: 30px 0 15px;
+}
+.card-title, .footer-big h4, .footer-big h5, .footer-brand, .info-title, .media .media-heading, .title {
+    font-weight: 700;
+}
+.icon.icon-info {
+    color: #00bcd4;
+}
+.icon.icon-success {
+    color: #4caf50;
+}
+.icon.icon-rose {
+    color: #e91e63;
+}
+.card-title, .card-title a, .footer-big h4, .footer-big h4 a, .footer-big h5, .footer-big h5 a, .footer-brand, .footer-brand a, .info-title, .info-title a, .media .media-heading, .media .media-heading a, .title, .title a {
+    color: #3C4858;
+    text-decoration: none;
+}
+a {
+    outline: none;
+  }
+/*pricing css ending*/
 
 footer {
   padding: 15px 0;
