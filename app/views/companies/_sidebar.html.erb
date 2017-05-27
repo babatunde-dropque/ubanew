@@ -65,13 +65,15 @@
 
                 </li>
 
-                <li id="step7" class="<%= (params[:c] == "7") ? "active": "" %> ">
-                    <%= link_to  company_interview_reminder_path(company_id:@company.slug, c: 7, interview_id: @interview.slug) do %>
+            
+
+                 <li id="step10" class="<%= (params[:c] == "7") ? "active": "" %> ">
+                    <%= link_to "#" do %>
                         <i class="ti-bell"></i>
                         <p>Send  reminders</p>
-                    <% end %>
-
-                </li>
+                        <!-- <button  type="button" class="button">Send Reminders</button> -->
+                        <% end %>
+                 </li>
 
 
 
@@ -79,6 +81,6 @@
 
                 <% end %>
             </ul>
-        
+
     	</div>
     </div>

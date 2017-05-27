@@ -120,6 +120,29 @@ class InterviewsController < ApplicationController
    end
 
 
+   def sms_reminder
+          if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
+            Submission.where("interview_id = ?", @interview.id).where(current_no:nil).find_each do |me|
+            Interview.sms_reminder(@company, @interview, User.find(me.user_id).telephone, User.find(me.user_id).name)
+            #ReminderMailer.reminder(User.find(me.user_id).telephone, @interview).deliver
+         end
+       end
+      redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'SMS Reminder was successfully sent.'
+   end
+
+
+   def double_reminder
+          if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
+            Submission.where("interview_id = ?", @interview.id).where(current_no:nil).find_each do |me|
+            ReminderMailer.reminder(User.find(me.user_id).email, @interview).deliver
+            Interview.sms_reminder(@company, @interview, User.find(me.user_id).telephone, User.find(me.user_id).name)
+            #ReminderMailer.reminder(User.find(me.user_id).telephone, @interview).deliver
+         end
+       end
+      redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'SMS Reminder was successfully sent.'
+   end
+
+
   def unfinish_submission
       @unfinish_submissions = @interview.submissions.where("current_no < ?", 500)
       render :layout => 'single_interview_submissions'
