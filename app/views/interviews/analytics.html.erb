@@ -1,11 +1,8 @@
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="success">
         <%= render partial: "companies/sidebar" %>
-
     <div class="main-panel">
-
      <%= render partial: "users/navbar" %>
-
         <div class="content">
             <div class="container-fluid">
              <h3> Submissions </h3>
@@ -20,9 +17,13 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
-                                        <div class="numbers" id="all" >
+                                    <%  all = @all_submissions.length %>
+                                    <% finish = @finish.length %>
+                                    <% unfinish = @unfinish.length %>
+
+                                        <div class="numbers" id="all"  current="all">
                                             <p>All </p>
-                                            <%= @all_submissions %>
+                                            <%= all %>
                                         </div>
                                     </div>
                                 </div>
@@ -42,12 +43,12 @@
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-success text-center">
                                             <i class="ti-wallet"></i>
-                                        </div>
+                                        </div>  
                                     </div>
                                     <div class="col-xs-7">
-                                        <div class="numbers" id ="finish">
+                                        <div class="numbers" id ="finish" current="finish" >
                                             <p>Finished</p>
-                                           <%= @finish%>
+                                           <%= finish%>
                                         </div>
                                     </div>
                                 </div>
@@ -70,9 +71,9 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
-                                        <div class="numbers" id="unfinish">
+                                        <div class="numbers" id="unfinish" current="unfinish">
                                             <p>Unfinished</p>
-                                            <%=  @unfinish %>
+                                            <%=  unfinish %>
                                         </div>
                                     </div>
                                 </div>
@@ -97,9 +98,9 @@
                                     <div class="col-xs-7">
                                         <div class="numbers" id = "res">
                                             <p>Response %</p>
-                                            <%  @resp = (@finish.to_f / @all_submissions.to_f) * 100 %>
-                                            <% if @resp > 0 %>
-                                             <%= @resp %>
+                                            <%  resp = (finish.to_f / all.to_f) * 100 %>
+                                            <% if resp > 0 %>
+                                             <%= resp %>
                                               <%else%>
                                               0
                                            <% end %>
@@ -194,14 +195,257 @@
 
     </div>
 </div>
+<!-- all modal-->
+<div class="modal fade" id="all-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" > Details </h5>
+          </div>
+              <div class="modal-body">
+                 <div class="table-responsive table-full-width">
+           <table class="table table-striped">
+                      <tr>
+                        <td>Name</td>
+                        <td>Email </td>
+                        <td>Progress</td>
+                        <td>Status</td>
+                        <td>Date</td>
+
+                      </tr>
+                     <!-- <input type="hidden" value="<%= @interview.id %>" id="interview_id"/> -->
+                    <% @all_submissions.each do |finish| %>
+
+                      <tr>
+                        <% if !finish.user.nil? %>
+                            <td> <%= finish.user.name %> </td>
+                            <td> <%= finish.user.email %> </td>
+                        <% else %>
+                            <td></td>
+                            <td> </td>
+                        <% end %>
+
+                        <% if finish.current_no == 500 %>
+                          <td> Completed </td>
+                        <% elsif finish.current_no.nil? %>
+                          <td> 0 </td>
+                        <% else %>
+                          <td> <%= (profile.current_no + 1)/ @length  %>  </td>
+                        <% end %>
+
+
+                        <% if finish.status.nil? %>
+                           <td> None </td>
+                        <% elsif finish.status == 'reject' %>
+                          <td> Reject </td>
+                        <% elsif finish.status == 'pend' %>
+                          <td>  Pend</td>
+                        <% elsif finish.status == 'shortlist'%>
+                          <td> Shorlist </td>
+                        <% end %>
+
+                        <td> <%= finish.created_at.strftime("%d-%m-%Y") %> </td>
+
+                      </tr>
+
+                    <% end %>
+
+                    </table>
+             </div>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn box-shape" data-dismiss="modal"> Ok </button>
+          </div>
+
+    </div>
+  </div>
+</div>
+<!-- finish modal-->
+<div class="modal fade" id="finish-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" > Details </h5>
+          </div>
+              <div class="modal-body">
+                 <div class="table-responsive table-full-width">
+           <table class="table table-striped">
+                      <tr>
+                        <td>Name</td>
+                        <td>Email </td>
+                        <td>Progress</td>
+                        <td>Status</td>
+                        <td>Date</td>
+
+                      </tr>
+                     <!-- <input type="hidden" value="<%= @interview.id %>" id="interview_id"/> -->
+                    <% @finish.each do |finish| %>
+
+                      <tr>
+                        <% if !finish.user.nil? %>
+                            <td> <%= finish.user.name %> </td>
+                            <td> <%= finish.user.email %> </td>
+                        <% else %>
+                            <td></td>
+                            <td> </td>
+                        <% end %>
+
+                        <% if finish.current_no == 500 %>
+                          <td> Completed </td>
+                        <% elsif finish.current_no.nil? %>
+                          <td> 0 </td>
+                        <% else %>
+                          <td> <%= (profile.current_no + 1)/ @length  %>  </td>
+                        <% end %>
+
+
+                        <% if finish.status.nil? %>
+                           <td> None </td>
+                        <% elsif finish.status == 'reject' %>
+                          <td> Reject </td>
+                        <% elsif finish.status == 'pend' %>
+                          <td>  Pend</td>
+                        <% elsif finish.status == 'shortlist'%>
+                          <td> Shorlist </td>
+                        <% end %>
+
+                        <td> <%= finish.created_at.strftime("%d-%m-%Y") %> </td>
+
+                      </tr>
+
+                    <% end %>
+
+                    </table>
+             </div>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn box-shape" data-dismiss="modal"> Ok </button>
+          </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- unfinish modals-->
+<div class="modal fade" id="unfinish-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" > Details </h5>
+          </div>
+              <div class="modal-body">
+                
+           <table class="table table-striped">
+                      <tr>
+                        <td>Name</td>
+                        <td>Email </td>
+                        <td>Progress</td>
+                        <td>Status</td>
+                        <td>Date</td>
+
+                      </tr>
+                     <!-- <input type="hidden" value="<%= @interview.id %>" id="interview_id"/> -->
+                    <% @unfinish.each do |finish| %>
+
+                      <tr>
+                        <% if !finish.user.nil? %>
+                            <td> <%= finish.user.name %> </td>
+                            <td> <%= finish.user.email %> </td>
+                        <% else %>
+                            <td></td>
+                            <td> </td>
+                        <% end %>
+
+                        <% if finish.current_no == 500 %>
+                          <td> Completed </td>
+                        <% elsif finish.current_no.nil? %>
+                          <td> 0 </td>
+                        <% else %>
+                          <td> <%= (profile.current_no + 1)/ @length  %>  </td>
+                        <% end %>
+
+
+                        <% if finish.status.nil? %>
+                           <td> None </td>
+                        <% elsif finish.status == 'reject' %>
+                          <td> Reject </td>
+                        <% elsif finish.status == 'pend' %>
+                          <td>  Pend</td>
+                        <% elsif finish.status == 'shortlist'%>
+                          <td> Shorlist </td>
+                        <% end %>
+
+                        <td> <%= finish.created_at.strftime("%d-%m-%Y") %> </td>
+
+                      </tr>
+
+                    <% end %>
+
+                    </table>
+           
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn box-shape" data-dismiss="modal"> Ok </button>
+          </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script>
 
-$("#finish").click(function(){
-    alert("something is about to happen!");
+
+$("#all").click(function(){
+ //var current = $(this).attr('current')
+$("#all-modal").modal();
 });
 
+$("#finish").click(function(){
+$("#finish-modal").modal();
+});
+
+$("#unfinish").click(function(){
+$("#unfinish-modal").modal();
+});
+
+
+
+// var elements = ['finish', 'unfinish', 'resp'];
+// for (i = 0; i < elements.length; i++) {
+// $("#"+elements[i]+"").click(function(){
+//     alert (elements[i]);
+//     //alert( elements[i]+" is about to happen!");
+// });
+// }
 </script>
 
 

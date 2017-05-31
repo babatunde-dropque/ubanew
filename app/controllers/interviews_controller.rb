@@ -111,10 +111,10 @@ class InterviewsController < ApplicationController
   end
 
   def analytics
-    @all_submissions = Submission.where(interview_id:@interview.id).length
-    @unfinish  = Submission.where(interview_id:@interview.id).where(current_no:nil).length
-    @finish  = Submission.where(interview_id:@interview.id).where(current_no:500).length
-   
+    @all_submissions = Submission.where(interview_id:@interview.id)
+    @unfinish  = Submission.where(interview_id:@interview.id).where(current_no:nil)
+    @finish  = Submission.where(interview_id:@interview.id).where(current_no:500)
+
   end
 
   def reminder
