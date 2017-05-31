@@ -131,6 +131,7 @@ Rails.application.routes.draw do
       get "reminder", to: "interviews#reminder"
       get "sms_reminder", to: "interviews#sms_reminder"
       get "double_reminder", to: "interviews#double_reminder"
+      get "analytics", to: "interviews#analytics"
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
