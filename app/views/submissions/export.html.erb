@@ -12,10 +12,10 @@
 
 
 	  Download:
-	  <%= link_to "CSV", company_interview_export_submissions_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: params[:interview_id], format: "csv") %> 
+	  <%= link_to "CSV", company_interview_export_submissions_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: params[:interview_id], format: "csv") %>
 	  |
-	   <%= link_to "XLS", company_interview_export_submissions_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: params[:interview_id], format: "xls") %> 
-	
+	   <%= link_to "XLS", company_interview_export_submissions_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: params[:interview_id], format: "xls") %>
+
 	<br><br>
 
      <div class="content">
@@ -27,12 +27,12 @@
 					    <td>Progress</td>
 					    <td>Status</td>
 					    <td>Date</td>
-					    
+
 					    <% @length = @interview.questions.length %>
 					  </tr>
 
 					<% @submissions.each do |submission| %>
-                   
+
 					  <tr>
 					  	<% if !submission.user.nil? %>
 					  		<td> <%= submission.user.name %> </td>
@@ -41,14 +41,14 @@
 					  		<td></td>
 					  		<td> </td>
 					  	<% end %>
-					    
+
 					    <% if submission.current_no == 500 %>
 					      <td> Completed </td>
 					    <% elsif submission.current_no.nil? %>
 					      <td> 0 </td>
 					    <% else %>
 					      <td> <%= (submission.current_no + 1)/ @length  %>  </td>
-					    <% end %> 
+					    <% end %>
 
 
 					    <% if submission.status.nil? %>
@@ -59,9 +59,9 @@
 					      <td>  Pend</td>
 					    <% elsif submission.status == 'shortlist'%>
 					      <td> Shorlist </td>
-					    <% end %> 
+					    <% end %>
 
-					    <td> <%= submission.created_at.strftime("%d-%m-%Y") %> </td>   
+					    <td> <%= submission.created_at.strftime("%d-%m-%Y") %> </td>
 
 					  </tr>
 
