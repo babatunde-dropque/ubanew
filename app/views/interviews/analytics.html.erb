@@ -52,6 +52,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <%= content_tag :div, "", id: "orders_chart", data: {orders: @all_submissions} %>
                                 <!-- <div class="footer">
                                     <hr />
                                     <div class="stats">
@@ -118,6 +119,7 @@
                     </div>
                 </div>
                 <div class="row">
+
 
                     <div class="col-md-12">
                         <div class="card">
@@ -298,9 +300,9 @@
 
                         <% if finish.status.nil? %>
                            <td> None </td>
-                        <% elsif finish.status == 'reject' %>
+                        <% elsif finish.status == 'reject'%>
                           <td> Reject </td>
-                        <% elsif finish.status == 'pend' %>
+                        <% elsif finish.status == 'pend'%>
                           <td>  Pend</td>
                         <% elsif finish.status == 'shortlist'%>
                           <td> Shorlist </td>
@@ -411,18 +413,13 @@ $("#finish-modal").modal();
 $("#unfinish").click(function(){
 $("#unfinish-modal").modal();
 });
-
-new Morris.Line({
-  element: 'chartHours',
-  data: [
-    { date: '2008', submission: 20 },
-    { date: '2009', submission: 10 },
-    { date: '2010', submission: 5 },
-    { date: '2011', submission: 5 }
-  ],
-  xkey: 'date',
-  ykeys: ['submission'],
-  labels: ['Value']
+ var line = $("#orders_chart").data('orders');
+ new Morris.Line({
+  element: 'chartHours', 
+  data: line,
+  xkey: 'updated_at',
+  ykeys: ['id'],
+  labels: ['Submission']
 });
 
 
@@ -448,6 +445,9 @@ Morris.Bar({
   ykeys: ['a', 'b'],
   labels: ['Series A', 'Series B']
 });
+
+
+
 
 </script>
 
