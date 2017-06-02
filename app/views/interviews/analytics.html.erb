@@ -52,13 +52,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <%= content_tag :div, "", id: "orders_chart", data: {orders: @all_submissions} %>
-                                <!-- <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-calendar"></i> Time:
-                                    </div>
-                                </div> -->
+
+                                <%= content_tag :div, "", id: "orders_chart", data: {orders: submission_timeline_data} %>
+                                <%= content_tag :div, "", id: "alls", data: {orders: @all_submissions.length} %>
+    
+                                <%= content_tag :div, "", id: "mobiles", data: {orders: @mobile.length} %>
+                                <%= content_tag :div, "", id: "compare", data: {orders: interview_timeline_data} %>
+
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                                             <p>Response %</p>
                                             <%  resp = (finish.to_f / all.to_f) * 100 %>
                                             <% if resp > 0 %>
-                                             <%= resp %>
+                                             <%= resp.round(2) %>
                                               <%else%>
                                               0
                                            <% end %>
@@ -415,35 +415,31 @@ $("#unfinish-modal").modal();
 });
  var line = $("#orders_chart").data('orders');
  new Morris.Line({
-  element: 'chartHours', 
+  element: 'chartHours',
   data: line,
-  xkey: 'updated_at',
-  ykeys: ['id'],
+  xkey: 'Date',
+  ykeys: ['all'],
   labels: ['Submission']
 });
 
-
+var all = $("#alls").data('orders');
+var mobile = $("#mobiles").data('orders');
+// var  mobile = 20;
 Morris.Donut({
   element: 'chartPreferences',
   data: [
-    {label: "Desktop", value: 12},
-    {label: "Tablets", value: 30},
-    {label: "Mobile Devices", value: 50}
+    {label: "Desktop", value: all},
+    {label: "Mobile Devices", value: mobile}
   ]
 });
-
+var compare = $("#compare").data('orders');
+console.log(compare);
 Morris.Bar({
   element: 'chartActivity',
-  data: [
-    { y: '2006', a: 100, b: 90 },
-    { y: '2007', a: 75,  b: 65 },
-    { y: '2008', a: 50,  b: 40 },
-    { y: '2009', a: 75,  b: 65 },
-    { y: '2010', a: 50,  b: 40 }
-  ],
-  xkey: 'y',
-  ykeys: ['a', 'b'],
-  labels: ['Series A', 'Series B']
+  data: compare,
+  xkey: 'Date',
+  ykeys: ['finish', 'unfinish'],
+  labels: ['finish', 'unfinish']
 });
 
 

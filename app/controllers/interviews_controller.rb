@@ -114,6 +114,7 @@ class InterviewsController < ApplicationController
     @all_submissions = Submission.where(interview_id:@interview.id)
     @unfinish  = Submission.where(interview_id:@interview.id).where(current_no:nil)
     @finish  = Submission.where(interview_id:@interview.id).where(current_no:500)
+    @mobile = Submission.where(interview_id:@interview.id).where(device:1)
   end
 
   def fetchLineData
