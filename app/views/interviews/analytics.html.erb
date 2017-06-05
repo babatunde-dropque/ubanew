@@ -419,7 +419,8 @@ $("#unfinish-modal").modal();
   data: line,
   xkey: 'Date',
   ykeys: ['all'],
-  labels: ['Submission']
+  labels: ['Submission'],
+  hideHover: true
 });
 
 var all = $("#alls").data('orders');
@@ -439,7 +440,8 @@ Morris.Bar({
   data: compare,
   xkey: 'Date',
   ykeys: ['finish', 'unfinish'],
-  labels: ['finish', 'unfinish']
+  labels: ['finish', 'unfinish'],
+  hideHover: true
 });
 
 

@@ -1,7 +1,7 @@
 module InterviewsHelper
 	def interview_timeline_data
 	 @interview = Interview.friendly.find(params[:interview_id] || params[:id])
-     (1.days.ago.to_date..Date.today).map do |date|
+     (3.days.ago.to_date..Date.today).map do |date|
      	{
      		Date: date,
      		finish: Submission.where(interview_id:@interview.id, current_no:500).where("updated_at > ?", date).length,
