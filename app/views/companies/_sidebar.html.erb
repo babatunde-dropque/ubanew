@@ -21,12 +21,12 @@
                         <p>QueBox</p>
                     <% end %>
                 </li>
-                <li id="step3" class="<%= (params[:c] == "2") ? "active": "" %>">
+               <!--  <li id="step3" class="<%= (params[:c] == "2") ? "active": "" %>">
                     <%= link_to company_interviews_path(params[:company_id] || params[:id], c: 2) do %>
                         <i class="ti-user"></i>
                         <p>Interviews</p>
                     <% end %>
-                </li>
+                </li> -->
 
                  
                 <% if !@interview.nil? && @new_interview.nil? %>

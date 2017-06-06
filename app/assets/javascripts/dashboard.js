@@ -14,52 +14,54 @@ $(document).ready(function(){
 		  steps: [
 		  {
 		    element: "#step1",
-		    title: "Create An Interview",
-		    content: "Create a video interview with just a click"
+		    title: "Welcome to Dropque",
+		    content: "Start by creating an Organisation"
 		  },
 		  {
-		    element: "#step2",
-		    title: "QueBox",
-		    content: "Click here to Display all videos newly submitted"
-		  },
-		  {
-		    element: "#step3",
-		    title: "Interview",
-		    content: "Click here to display and edit all the interviews you have created"
-		  },
-		  {
-		    element: "#step4",
-		    title: "shortlisted",
-		    content: "Click here to display all video applications that you have shortlisted"
-		  },
-		  {
-		    element: "#step5",
-		    title: "Pending",
-		    content: "Click here to display all video applications that you have pended"
-		  },
-		  {
-		    element: "#step6",
-		    title: "Declined",
-		    content: "Click here to display all video applications that you have Declined"
-		  },
-		  {
-		    element: "#selectThis",
-		    title: "Filter",
-		    content: "Click here to filter video submissions by interviews"
+		    // element: "#step2",
+		    // title: "QueBox",
+		    // content: "Click here to Display all videos newly submitted",
+		    // path: "/companies/new"
 		  }
+		  // ,
+		  // {
+		  //   element: "#step3",
+		  //   title: "Interview",
+		  //   content: "Click here to display and edit all the interviews you have created"
+		  // },
+		  // {
+		  //   element: "#step4",
+		  //   title: "shortlisted",
+		  //   content: "Click here to display all video applications that you have shortlisted"
+		  // },
+		  // {
+		  //   element: "#step5",
+		  //   title: "Pending",
+		  //   content: "Click here to display all video applications that you have pended"
+		  // },
+		  // {
+		  //   element: "#step6",
+		  //   title: "Declined",
+		  //   content: "Click here to display all video applications that you have Declined"
+		  // },
+		  // {
+		  //   element: "#selectThis",
+		  //   title: "Filter",
+		  //   content: "Click here to filter video submissions by interviews"
+		  // }
 		  
 		],
 
-		storage: true
+		storage: false
 	 });
 
 	// this will get the number of signin to know when to show tour
-	var signInCount = $("#number_of_signin").val();
-	if ( signInCount == "1"){
+	//var signInCount = $("#number_of_signin").val();
+	//if ( signInCount == "1"){
 		// Initialize the tour and start tour
 		tour.init();
 		tour.start();
-	} 
+	//} 
 
 	$('#selectThis').change(function(){
 		var option = $('#selectThis option:selected');

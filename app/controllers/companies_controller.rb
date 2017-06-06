@@ -161,7 +161,7 @@ class CompaniesController < ApplicationController
             end 
             # end of slack notification
             current_user.update_attributes(status:params[:status])
-        	redirect_to  user_dashboard_path
+        	redirect_to  company_path(company)
         else
 
         end
