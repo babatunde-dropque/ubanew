@@ -16,13 +16,14 @@ $(document).ready(function(){
 		    element: "#step1",
 		    title: "Welcome to Dropque",
 		    content: "Start by creating an Organisation"
-		  },
-		  {
-		    // element: "#step2",
-		    // title: "QueBox",
-		    // content: "Click here to Display all videos newly submitted",
-		    // path: "/companies/new"
 		  }
+		  // ,
+		  // {
+		  //   element: "#step2",
+		  //   title: "QueBox",
+		  //   content: "Click here to Display all videos newly submitted",
+		  //   path: "/companies/new"
+		  // }
 		  // ,
 		  // {
 		  //   element: "#step3",
