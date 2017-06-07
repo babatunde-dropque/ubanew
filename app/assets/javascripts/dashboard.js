@@ -53,15 +53,15 @@ $(document).ready(function(){
 		  
 		],
 
-		storage: false
+		storage: false	
 	 });
 
 	// this will get the number of signin to know when to show tour
 	//var signInCount = $("#number_of_signin").val();
 	//if ( signInCount == "1"){
 		// Initialize the tour and start tour
-		tour.init();
-		tour.start();
+		// tour.init();
+		// tour.start();
 	//} 
 
 	$('#selectThis').change(function(){
