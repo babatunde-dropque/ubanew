@@ -177,7 +177,7 @@ Rails.application.routes.draw do
     post   "login"   => "users/sessions#create",      as: :user_session
     delete "signout" => "users/sessions#destroy",     as: :destroy_user_session
     put    "update_notification"  => "users#update_notification"
-    
+
     get    "signup"  => "users/registrations#new",    as: :new_user_registration
     post   "signup"  => "users/registrations#create", as: :user_registration
     put    "signup"  => "users/registrations#update", as: :update_user_registration
@@ -191,8 +191,8 @@ namespace :api do
     namespace :v1 do
       get "token", to: "api#token"
       put "send_invitation", to: "api#send_invitation"
-          
+
     end
   end
-  
+
 end
