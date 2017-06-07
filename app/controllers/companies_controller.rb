@@ -20,6 +20,11 @@ class CompaniesController < ApplicationController
 	end
 
 
+    def preview
+        
+    end
+
+
 
     def edit_preview
         if params[:properties].present?
@@ -161,7 +166,7 @@ class CompaniesController < ApplicationController
             end 
             # end of slack notification
             current_user.update_attributes(status:params[:status])
-        	redirect_to  company_path(company)
+        	redirect_to  company_preview_path(company)
         else
 
         end
