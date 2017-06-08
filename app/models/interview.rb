@@ -40,6 +40,10 @@ class Interview < ActiveRecord::Base
         )
     end
 
+    def self.fetch_line_data(interview)
+
+    end
+
 
 
 

@@ -117,6 +117,7 @@ Rails.application.routes.draw do
     get "edit_preview", to: "companies#edit_preview"
     post "edit_preview", to: "companies#edit_preview"
     get "all_interview", to: "companies#all_interview"
+    get "preview", to: "companies#preview"
 
 
     resources :groups do
@@ -131,6 +132,7 @@ Rails.application.routes.draw do
       get "reminder", to: "interviews#reminder"
       get "sms_reminder", to: "interviews#sms_reminder"
       get "double_reminder", to: "interviews#double_reminder"
+      get "analytics", to: "interviews#analytics"
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"
       get "filtered_single_interview", to: "interviews#filtered_single_interview"
@@ -176,7 +178,7 @@ Rails.application.routes.draw do
     post   "login"   => "users/sessions#create",      as: :user_session
     delete "signout" => "users/sessions#destroy",     as: :destroy_user_session
     put    "update_notification"  => "users#update_notification"
-    
+
     get    "signup"  => "users/registrations#new",    as: :new_user_registration
     post   "signup"  => "users/registrations#create", as: :user_registration
     put    "signup"  => "users/registrations#update", as: :update_user_registration
@@ -190,8 +192,8 @@ namespace :api do
     namespace :v1 do
       get "token", to: "api#token"
       put "send_invitation", to: "api#send_invitation"
-          
+
     end
   end
-  
+
 end

@@ -20,13 +20,17 @@
 
                   <% @all_interview.each do |interview| %>
                   <% unfinish_submission = interview.submissions.where("current_no < ?", 500) %>
-                  <% submissions_total = interview.submissions %>
                   <% submissions = interview.submissions.where(current_no: 500) %>
 
                       <div class=" col-md-4">
                           <div class="img-responsive card box-shape">
-                            <%= link_to company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) do %>
+                            
                               <div class="content">
+                              <%= link_to 'Details', company_interview_path(id: interview.slug, company_id: @company.id) %> | 
+                                      <%= link_to 'Edit', edit_company_interview_path(id: interview.slug, company_id: @company.id) %> 
+
+                                    <hr>
+                                <a  href= "<%= company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) %>" >
 
                                       <p><%= truncate( interview.title, :length => 35) %> </p>
                                       <div class="text-center numbers-1">
@@ -35,20 +39,21 @@
                                       </div>
                                   <div class="chart-legend">
                                        <br> <i class="fa fa-circle text-danger"></i> Unfinished: <%= unfinish_submission.length %>
-                                       <br> <i class="fa fa-circle text-danger"></i> Started: <%= submissions_total.length - (unfinish_submission.length + submissions.length) %>
-                                       <br><i class="fa fa-circle text-warning"></i> Total : <%= submissions_total.length %>
+                                       
                                        <br><i class="fa fa-circle text-warning"></i> No of question : <%= interview.questions.length %>
                                     </div>
                                   <div class="footer">
                                       <hr>
                                       <div class="stats">
-                                          <!-- <i class="ti-reload"> -->
-                                          </i> Interview token: <%= interview.interview_token %>
-                                      </div>
+                                         <i class="ti-reload"> </i> Interview token: <%= interview.interview_token %>
+                                      </div>                                        
                                   </div>
+                                </a>
+
+
                               </div>
                                 
-                            <% end %>
+                  
                           </div>
                       </div>
   
@@ -63,9 +68,3 @@
 </div>
 
 
-<script>
-  
-
-
-
-</script>

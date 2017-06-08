@@ -48,18 +48,13 @@
                                                  <i class="material-icons">lock_outline</i>
                                             </span>
 
-                                            <%= f.password_field :password, autocomplete: "off", :placeholder => 'password', class: "form-control", html: {spellcheck: "false"} %>
+                                            <%= f.password_field :password, autocomplete: "off", :placeholder => 'Password', class: "form-control", html: {spellcheck: "false"} %>
                                             <% if @minimum_password_length %>
                                             <em>(<%= @minimum_password_length %> characters minimum)</em>
                                             <% end %><br />
                                           </div>
 
-                                          <div class="input-group">
-                                            <span class="input-group-addon">
-                                              <i class="material-icons">lock_outline</i>
-                                            </span> 
-                                              <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => 'Password confirmation', class: "form-control", html: {spellcheck: "false"}%>
-                                          </div>
+                                         
 
                                           <div class="text-center">
                                             <%= f.submit "Sign up", class: "btn btn-primary btn-raised"%>

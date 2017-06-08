@@ -1,3 +1,18 @@
+<style>
+
+.ui-widget-header {
+   border: 0px;
+   background: none;
+}
+
+.ui-widget-content {
+  border: none;
+  background: none;
+}
+  
+
+</style>
+
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="success">
 
@@ -58,20 +73,43 @@
 
       <div class="row">
           <div class="col-lg-12 col-md-12">
-              <div class="card box-shape">
-                      <div>
-                          <div class="header">
+              <div class="card box-shape ">
+                      
+                          <!-- <div class="header"> -->
+                          <!-- 
                             <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>
-                             <h5> Details </h5>
-                          </div>
-                      </div>
+                           -->
+                          <!-- </div> -->
+                      
 
 
-                    <div class="content">
-                        <div class="content table-responsive table-full-width">
+                      <div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Questions</a></li>
+    <li><a href="#tabs-2">Details</a></li>
+  </ul>
+  <div id="tabs-1">
+    <!-- <div class="content"> -->
+      <!--  <h5> Question(s) </h5> -->
+        <div class="typo-line">
+          <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
+            <div class="table-responsive table-full-width">
+                  <table class="table table-striped">
+                      <tbody id="question-holder">
+                          
+                      </tbody>
+                  </table>
+              </div>
+        </div>
+    <!-- </div>   -->
+  </div>
+  <div id="tabs-2">
+    
+                    <!-- <div class="content"> -->
+                        <div class=" table-responsive table-full-width">
                           <table class="table table-striped">
                             <tbody>
-                              <tr><td >Description</td><td style="white-space: pre-line;"><%= @interview.description %></td></tr>
+                              <tr><td >Description</td><td style="white-space: pre-line;" ><%= @interview.description %></td></tr>
                               <tr><td>Instruction</td><td style="white-space: pre-line;"><%= @interview.instruction %></td></tr>
                               <tr><td>Message</td><td style="white-space: pre-line;"><%= @interview.completed_message %></td></tr>
                               <tr><td>Token</td><td><%= @interview.interview_token %></td></tr>
@@ -82,25 +120,25 @@
                             </tbody>
                           </table>
                         </div>
-                    </div> 
+                    <!-- </div>  -->
+  </div>
+  
+</div>
 
-                  <div class="content">
-                     <h5> Question(s) </h5>
-                      <div class="typo-line">
-                        <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
-                          <div class="content table-responsive table-full-width">
-                                <table class="table table-striped">
-                                    <tbody id="question-holder">
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                      </div>
-                  </div>                           
+
+                 
+
+
+
+                                           
               </div>
            </div>
 
         </div>
+
+
+        
+
 
       </div>
     </div>
@@ -188,6 +226,7 @@
 
 
 </div>
+
 <!-- transfer ownership -->
 <div class="modal fade" id="reminder-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -219,9 +258,18 @@
 
 <script >
 
+
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+
+
+
  $("#step10").click(function(){
   $("#reminder-modal").modal();
  });
+
+ 
     var mev =  $("#reminder-modal").find(".modal-footer");
     mev.find("button#reminder-continue").click(function(event){
     $("#reminder-modal").modal('hide');
@@ -274,14 +322,6 @@
 
 
  });
-
-
-
-
-
-
-
-
 
 
 

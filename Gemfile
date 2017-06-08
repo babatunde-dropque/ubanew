@@ -13,7 +13,11 @@ gem "iconv", "~> 1.0.3"
 #needed for html email
 gem 'roadie'
 
+#needed for third party authentication
 
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
 #needed to protect attr_accessible
 gem 'protected_attributes'
 
@@ -114,4 +118,10 @@ gem 'will_paginate', '~> 3.1.0'
 #needed for twilio sms
 #gem 'sinatra', '~> 2.0'
 gem 'twilio-ruby', '~> 4.13'
+
+
+# for several types of authentication
+# gem 'omniauth'
+# for linked signin
+# gem 'omniauth-linkedin'
 

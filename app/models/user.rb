@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :invitable, :database_authenticatable, :registerable,
-	         :recoverable, :rememberable, :trackable, :validatable
+	       :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
     # allow user to be able to comment
     acts_as_commontator

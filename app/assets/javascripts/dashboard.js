@@ -16,13 +16,14 @@ $(document).ready(function(){
 		    element: "#step1",
 		    title: "Welcome to Dropque",
 		    content: "Start by creating an Organisation"
-		  },
-		  {
-		    element: "#step2",
-		    title: "QueBox",
-		    content: "Click here to Display all videos newly submitted",
-		    path: "/companies/new"
 		  }
+		  // ,
+		  // {
+		  //   element: "#step2",
+		  //   title: "QueBox",
+		  //   content: "Click here to Display all videos newly submitted",
+		  //   path: "/companies/new"
+		  // }
 		  // ,
 		  // {
 		  //   element: "#step3",
@@ -52,15 +53,15 @@ $(document).ready(function(){
 		  
 		],
 
-		storage: false
+		storage: false	
 	 });
 
 	// this will get the number of signin to know when to show tour
 	//var signInCount = $("#number_of_signin").val();
 	//if ( signInCount == "1"){
 		// Initialize the tour and start tour
-		tour.init();
-		tour.start();
+		// tour.init();
+		// tour.start();
 	//} 
 
 	$('#selectThis').change(function(){
