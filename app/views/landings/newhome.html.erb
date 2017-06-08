@@ -1,5 +1,6 @@
 
 <div class="wrapper">
+
     <div id="wrap" class="wrap">
 		<div class="mockup header-filter">
 			<img class="mockup__img" src="assets/mockup4.jpg" />
@@ -36,99 +37,100 @@
 		  <li><%= image_tag('printivologo.png')%></li>
 		</ul>
 	    <div class="section section-basic">
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                    	<h2 class="title">Adopt a more efficient way to find the right talent</h2>
-                    	<h4>No more expensive time-consuming and wordy interviews. <br/> Dropque simplifies interviewing and gives candidates great experience.</h4>
-                    	<a class="btn btn-primary btn-raised" href="<%= new_user_registration_path %>">
-	                       <strong>GET STARTED</strong>
+                        <h2 class="title">Adopt a more efficient way to find the right talent</h2>
+                        <h4>No more expensive time-consuming and wordy interviews. <br/> Dropque simplifies recruitment for managers and gives candidates a better and flexible experience.</h4>
+                        <a class="btn btn-primary btn-raised" onclick="openRegisterModal();" >
+                           <strong>REQUEST A DEMO</strong>
                         </a>
                     </div>
                     <div class="col-md-6">
-                    	<%= image_tag('dropquemockup.png', class: "img-responsive")%>
+                        <%= image_tag('dropquemockup.png', class: "img-responsive")%>
                     </div>
                 </div>
             </div>
         </div>
         <hr width="90%" size="8" align="center">
         <div class="section section-tabs">
-	        <div class="container text-center">
-	            <div class="row">
-	                <div class="col-md-8 col-md-offset-2 text-center">
-	                    <h2 class="title">Getting started is easy</h2>
-	                    <h4>In less than 1 minute, you'll be ready to create and send out your first interview.</h4>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	    <div class="section section-tabs">
-	        <div class="container">
-	            <div class="row">
-					<div class="col-sm-4 text-center">
-					    <div class="info">
-						    <div class="icon icon-primary">
-							   <i class="material-icons">question_answer</i>
-						    </div>
-				     	</div>
-				     	<h4><strong>Create and share interview</strong></h4>
-                        <h4>Use our intuitive interface to create video, text or file based interviews and send to your prospective candidates. Our contact import feature makes sending to a large group easy.</h4>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h2 class="title">Getting started is easy</h2>
+                        <h4>In less than 1 minute, you'll be ready to create and send out your first interview.</h4>
                     </div>
-					<div class="col-sm-4 text-center">
-						<div class="info">
-							<div class="icon icon-success">
-							   <i class="material-icons">play_circle_filled</i>
-						    </div>
-						</div>
-						<h4><strong>Get video responses</strong></h4>
-                        <h4>Your candidates respond to the interview and these responses are immediately available for assessment in your dashboard.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="section section-tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 text-center">
+                        <div class="info">
+                            <div class="icon icon-primary">
+                               <i class="material-icons">question_answer</i>
+                            </div>
+                        </div>
+                        <h4><strong>Create and share interview</strong></h4>
+                        <h4>Create your interview template consisting of video, text or file based questions using our intuitive interface. Set interview deadlines and share to potential candidates. Our contact import ability makes sharing to a larger group fun.</h4>
                     </div>
-					<div class="col-sm-4 text-center">
-					   <div class="info">
-							<div class="icon icon-danger">
-							   <i class="material-icons">contact_mail</i>
-						    </div>
-						</div>
-						<h4><strong>Review, shortlist, inform</strong></h4>
-                        <h4>Collaboratively assess, rate and shortlist candidates with other members of your recruitment team.</h4>
+                    <div class="col-sm-4 text-center">
+                        <div class="info">
+                            <div class="icon icon-success">
+                               <i class="material-icons">play_circle_filled</i>
+                            </div>
+                        </div>
+                        <h4><strong>Get video responses</strong></h4>
+                        <h4>Candidates record their responses via our app using a smartphone or webcam and upload instantly. Our video recording and uploading is designed to support slow internet speeds.</h4>
                     </div>
-	            </div>
-			</div>
-		</div> 
-		<div class="text-center">
-			<a class="btn btn-primary btn-raised" href="<%= new_user_registration_path %>" >
+                    <div class="col-sm-4 text-center">
+                       <div class="info">
+                            <div class="icon icon-danger">
+                               <i class="material-icons">contact_mail</i>
+                            </div>
+                        </div>
+                        <h4><strong>Review, shortlist, inform</strong></h4>
+                        <h4>Reviewing candidates, shortlisting and keeping candidates informed on the status of their application could not be simpler. This is built right into Dropque with team collaboration to make the process easier and faster.</h4>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="text-center">
+            <a class="btn btn-primary btn-raised" href="<%= new_user_registration_path %>" >
                <strong>Start Now</strong>
             </a>
 
-		</div>
-		 <hr width="90%" size="8" align="center">
-		<div class="section section-tabs">
+        </div>
+         <hr width="90%" size="8" align="center">
+        <div class="section section-tabs">
             <div class="container">
                 <div class="row">
-	                <div class="col-md-8 col-md-offset-2 text-center">
-	                    <h2 class="title">Why you need Dropque</h2>
-	                </div>
-	            </div>
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h2 class="title">Why you need Dropque</h2>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
-                    	<h2>Get access to more top talent</h2>
-	                    <h4>Dropque helps you discover wide pool of best-fit talents fast, making you enjoy both quailty and fast recruitment process.</h4>
+                        <h2>Get access to more top talent</h2>
+                        <h4>Increase your chances of finding best fit candidates within a large pool of talent.</h4>
                     </div>
 
                     <div class="col-md-6" align="center">
-                    	<%= image_tag('dropquee.png', class: "img-responsive")%>
+                        <%= image_tag('dropquee.png', class: "img-responsive")%>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-md-push-6">
                         <br/>
-                    	<h2>Reduce time-to-hire</h2>
-	                    <h4>Slow recruitment frustrates top talent, hence Dropque saves about 50% of recruitment time, making you attractive to top-notch candidates.</h4>
+                        <h2>Reduce time-to-hire</h2>
+                        <h4>Dropque cuts your recruitment time by 50%. The time it takes to schedule and conduct face-to-face meetings is the number one reason for delays in most hiring process. Companies with a faster recruitment process have an advantage in the competitive job market and we're happy to make this easier and fun for you.</h4>
                     </div>
                     <div class="col-md-6 col-md-pull-6" align="center">
                         <br/>
                         <br/>
-                    	<%= image_tag('time-savings.png', class: "img-responsive")%>
+                        <%= image_tag('time-savings.png', class: "img-responsive")%>
                     </div>
                 </div>
                 <div class="row">
@@ -136,13 +138,13 @@
                         <br/>
                         <br/>
                         <br/>
-                    	<h2>Give candidates a better experience</h2>
-	                    <h4>Candidate experience is becoming increasingly important and preferences are changing frequently. Video interviews allow candidates the environment and flexibility they need to be their best without compromising important cues such as articulation, personality and body language.</h4>
+                        <h2>Give candidates a better experience</h2>
+                        <h4>Candidate experience is becoming increasingly important and preferences are changing frequently. Video interviews allow candidates the environment and flexibility they need to be their best without compromising important cues such as articulation, personality and body language.</h4>
                     </div>
                     <div class="col-md-6" align="center">
                         <br/>
                         <br/>
-                    	<%= image_tag('happyw.png', class: "img-responsive")%>
+                        <%= image_tag('happyw.png', class: "img-responsive")%>
                     </div>
                 </div>
                 <div class="row">
@@ -150,29 +152,64 @@
                         <br/>
                         <br/>
                         <br/>
-                    	<h2>Secure and reliable</h2>
-	                    <h4>We understand how important recruitment is to the success of your company and how important your data is. That's why we invested months in making dropque secure and reliable. We guarantee a 99.99% availability.</h4>
+                        <h2>Secure and reliable</h2>
+                        <h4>We understand how important recruitment is to the success of your company and how important your data is. That's why we invested months in making dropque secure and reliable. We guarantee a 99.99% availability.</h4>
                     </div>
                     <div class="col-md-6 col-md-pull-6" align="center">
                         <br/>
                         <br/>
-                    	<%= image_tag('safety.png', class: "img-responsive")%>
+                        <%= image_tag('safety.png', class: "img-responsive")%>
                     </div>
                 </div>
             </div>
         </div> 
          <!-- <hr width="90%" size="8" align="center">     -->  
-		<div class="section section-tabs">
-	    	<div class="container">
-			        <div class="row"> 
-				        <div class="col-md-8 col-md-offset-2" style="text-align:center;">
-				        	 <h3>   Looking for Jobs/Interviews? </h3>
+        <div class="section section-tabs">
+            <div class="container">
+                    <div class="row"> 
+                        <div class="col-md-8 col-md-offset-2" style="text-align:center;">
+                             <h3>   Looking for Jobs/Interviews? </h3>
+
+<<<<<<< HEAD
+                        
+                             <a class="btn btn-primary btn-raised" href="/listing" >
+                                <strong>Interview Listing</strong>
+                             </a>
+
+                             <br>
+                            
+
+                        </div>    
+                    </div>
+            </div>
+        </div>
 
 
-				        	 <a class="btn btn-primary btn-raised" href="/listing" >
-	                       		<strong>Interview Listing</strong>
-                        	 </a>
-
+      
+        
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                    
+                            Contact Us (info@dropque.com)
+                        
+                    </li>
+                    <li>
+                        <a href="#">
+                           
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright pull-right">
+                &copy; 2016, Dropque
+            </div>
+        </div>
+    </footer>
+=======
                         	 <br>
 				        </div>
 			        </div>
@@ -198,6 +235,7 @@
 	        </div>
 	    </div>
 	</footer>
+>>>>>>> 81cf1de87b46efd94938d59ef7a571d425838b51
 </div>
 
 
@@ -228,30 +266,30 @@
                  <div class="form">
                     <form  data-remote="true" id="request-demo">
                     <div class="row">
-                    	<div class="col-md-6">
-                    	<input id="organization" class="form-control" type="text" placeholder="Organization Name" name="organization">
-                    	</div>
-                    	<div class="col-md-6">
-                    		<input  id="name" class="form-control" type="text" placeholder="Your Name" name="name">
-                    	</div>
+                        <div class="col-md-6">
+                        <input id="organization" class="form-control" type="text" placeholder="Organization Name" name="organization">
+                        </div>
+                        <div class="col-md-6">
+                            <input  id="name" class="form-control" type="text" placeholder="Your Name" name="name">
+                        </div>
                     </div>
 
                     <div class="row">
-                    	<div class="col-md-6">
-                    	<input id="email" class="form-control" type="text" placeholder="Business/Official Email" name="email">
-                    	</div>
-                    	<div class="col-md-6">
-                    		<input  id="telephone" class="form-control" type="text" placeholder="Phone Number" name="telephone">
-                    	</div>
+                        <div class="col-md-6">
+                        <input id="email" class="form-control" type="text" placeholder="Business/Official Email" name="email">
+                        </div>
+                        <div class="col-md-6">
+                            <input  id="telephone" class="form-control" type="text" placeholder="Phone Number" name="telephone">
+                        </div>
                     </div>
 
 
                      <input  id="role" class="form-control" type="text" placeholder="Job Title/Role Name" name="role">
                      <select  class="form-control"  name="purpose">
-                     	<option value="Recruiting" > Recruiting </option>
-                     	<option value="Talent Acquisition" > Talent Acquisition </option>
+                        <option value="Recruiting" > Recruiting </option>
+                        <option value="Talent Acquisition" > Talent Acquisition </option>
                         <option value="Receiving Feedback" > Receiving Feedback </option>
-                     	<option value="Others" > Others </option>
+                        <option value="Others" > Others </option>
                      </select>
                      </select>
                     <input id="submit" class="btn btn-default btn-register" type="submit" value="Submit Request" name="commit" onclick="submitAjax()">
@@ -263,14 +301,12 @@
         <div class="modal-footer">
             <div class="forgot login-footer">
                 <span>Looking to 
-                	 <%= link_to new_user_registration_path do %>
-                	 	create an account ?
-          			<% end %>
+                     <%= link_to new_user_registration_path do %>
+                        create an account ?
+                    <% end %>
                 </span>
             </div>
-        </div>        
+        </div>
       </div>
   </div>
 </div>
-
-

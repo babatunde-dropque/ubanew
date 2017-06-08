@@ -110,6 +110,17 @@ class InterviewsController < ApplicationController
      redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Invitation was successfully sent.'
   end
 
+  def analytics
+    @all_submissions = Submission.where(interview_id:@interview.id)
+    @unfinish  = Submission.where(interview_id:@interview.id).where(current_no:nil)
+    @finish  = Submission.where(interview_id:@interview.id).where(current_no:500)
+    @mobile = Submission.where(interview_id:@interview.id).where(device:1)
+  end
+
+  def fetchLineData
+
+  end
+
   def reminder
           if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
           Submission.where("interview_id = ?", @interview.id).where(current_no:nil).find_each do |me|
@@ -183,14 +194,14 @@ class InterviewsController < ApplicationController
   # end
 
 
-  # def pricing 
+  # def pricing
   #   all_submission = @interview.submissions
   #   question_length =  all_submission.length
   #   prices = {}
   #   question_length.times do |i|
   #       prices[i] = 0
   #   end
-    
+
   #   # loop through all the available videos
   #   all_submission.each do | submission |
   #     sum = 0

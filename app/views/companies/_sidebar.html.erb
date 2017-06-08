@@ -28,7 +28,7 @@
                     <% end %>
                 </li> -->
 
-                 
+
                 <% if !@interview.nil? && @new_interview.nil? %>
                 <li id="step4" class="<%= (params[:c] == "3") ? "active": "" %>">
                     <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 3, status: 0, interview_id: @interview.slug) do %>
@@ -65,7 +65,7 @@
 
                 </li>
 
-            
+
 
                  <li id="step10" class="<%= (params[:c] == "7") ? "active": "" %> ">
                     <%= link_to "#" do %>
@@ -74,6 +74,14 @@
                         <!-- <button  type="button" class="button">Send Reminders</button> -->
                         <% end %>
                  </li>
+
+                  <li id="step9" class="<%= (params[:c] == "6") ? "active": "" %> ">
+                    <%= link_to   company_interview_analytics_path(params[:company_id] || params[:id], c: 6, interview_id: @interview.slug) do %>
+                        <i class="ti-bar-chart"></i>
+                        <p>Analytics</p>
+                    <% end %>
+                 </li>
+
 
 
 
@@ -84,3 +92,93 @@
 
     	</div>
     </div>
+
+
+<!-- send reminder  -->
+<div class="modal fade" id="reminder-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" >  Send Reminder by: </h5>
+          </div>
+              <div class="modal-body">
+                <select id = "remoption" class='btn box-shape' name ="new_owner" >
+              <option value='1'> SMS </option>
+              <option value='2'> EMAIL </option>
+              <option value='3'> SMS&EMAIL</option>
+                </select>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn box-shape" data-dismiss="modal"> Cancel </button>
+            <button id="reminder-continue" type="submit"  class="btn box-shape"> Send </button>
+          </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script >
+
+ $("#step10").click(function(){
+  $("#reminder-modal").modal();
+ });
+    var mev =  $("#reminder-modal").find(".modal-footer");
+    mev.find("button#reminder-continue").click(function(event){
+    $("#reminder-modal").modal('hide');
+    var med = $("#reminder-modal").find(".modal-body");
+    var type = med.find("option:selected");
+    var typeValue = type.get(0).value;
+    if (typeValue == "1"){
+      var type = "Are you sure to SEND REMINDERS? SMS messages will be sent to Candidates who have not completed  the interview @ 4 naira/sms";
+    }
+    else if(typeValue == "2")
+    {
+      var type = "Are you sure to SEND REMINDERS ? Email Will be sent to the Candidates who have  not completed the interview";
+    }
+    else{
+      var type = "Are you sure to SEND REMINDERS? SMS and Email messages will be sent to Candidates who have not completed  the interview @ 4 naira/SMS";
+    }
+    if (confirm(type) == true){
+    var id_input = $("#interview_id");
+    var id = id_input.attr("value");
+    var url;
+    if (typeValue == "1"){
+      url = "/companies/<%= @company.slug %>/interviews/"+id+"/sms_reminder";
+    } else if (typeValue == "2")
+    url = "/companies/<%= @company.slug %>/interviews/"+id+"/reminder";
+    else {
+      url = "/companies/<%= @company.slug %>/interviews/"+id+"/double_reminder";
+    }
+     $.ajax({
+       type: 'GET',
+       url: url
+     });
+
+  }
+
+
+  else{
+    event.preventDefault();
+    }
+
+    });
+
+ $("#step10").click(function(){
+  ("#reminder-modal").modal();
+ });
+
+ ("#reminder-continue").click(function(){
+ ("#reminder-modal").modal('hide');
+
+ // the logic of sending the reminder
+
+ });
+
+
+</script>

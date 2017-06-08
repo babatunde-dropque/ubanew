@@ -1,0 +1,452 @@
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="success">
+        <%= render partial: "companies/sidebar" %>
+    <div class="main-panel">
+     <%= render partial: "users/navbar" %>
+        <div class="content">
+            <div class="container-fluid">
+             <h3> Submissions </h3>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-warning text-center">
+                                            <i class="ti-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                    <%  all = @all_submissions.length %>
+                                    <% finish = @finish.length %>
+                                    <% unfinish = @unfinish.length %>
+
+                                        <div class="numbers" id="all"  current="all">
+                                            <p>All </p>
+                                            <%= all %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> last submission:
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-success text-center">
+                                            <i class="ti-wallet"></i>
+                                        </div>  
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers" id ="finish" current="finish" >
+                                            <p>Finished</p>
+                                           <%= finish%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <%= content_tag :div, "", id: "orders_chart", data: {orders: submission_timeline_data} %>
+                                <%= content_tag :div, "", id: "alls", data: {orders: @all_submissions.length} %>
+    
+                                <%= content_tag :div, "", id: "mobiles", data: {orders: @mobile.length} %>
+                                <%= content_tag :div, "", id: "compare", data: {orders: interview_timeline_data} %>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-danger text-center">
+                                            <i class="ti-pulse"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers" id="unfinish" current="unfinish">
+                                            <p>Unfinished</p>
+                                            <%=  unfinish %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-timer"></i> In the last hour
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-info text-center">
+                                            <i class="ti-cloud-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers" id = "res">
+                                            <p>Response %</p>
+                                            <%  resp = (finish.to_f / all.to_f) * 100 %>
+                                            <% if resp > 0 %>
+                                             <%= resp.round(2) %>
+                                              <%else%>
+                                              0
+                                           <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Updated now
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Submission Timeline</h4>
+                                <!-- <p class="category">24 Hours performance</p> -->
+                            </div>
+                            <div class="content">
+                                <div id="chartHours" class="ct-chart"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Platforms</h4>
+                                <!-- <p class="category">Last Campaign Performance</p> -->
+                            </div>
+                            <div class="content">
+                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+
+                                <!-- <div class="footer">
+                                    <div class="chart-legend">
+                                        <i class="fa fa-circle text-info"></i> Open
+                                        <i class="fa fa-circle text-danger"></i> Bounce
+                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="ti-timer"></i> Invitation sent 2 days ago
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title">Daily Finished / Unfinished Interviews</h4>
+                                <!-- <p class="category">All products including Taxes</p> -->
+                            </div>
+                            <div class="content">
+                                <div id="chartActivity" class="ct-chart"></div>
+
+                                <!-- <div class="footer">
+                                    <div class="chart-legend">
+                                        <i class="fa fa-circle text-info"></i> Tesla Model S
+                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
+                                    </div>
+                                    <div class="stats">
+                                        <i class="ti-check"></i> Data information certified
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- all modal-->
+<div class="modal fade" id="all-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" > Details </h5>
+          </div>
+              <div class="modal-body">
+                 <div class="table-responsive table-full-width">
+           <table class="table table-striped">
+                      <tr>
+                        <td>Name</td>
+                        <td>Email </td>
+                        <td>Progress</td>
+                        <td>Status</td>
+                        <td>Date</td>
+
+                      </tr>
+                     <!-- <input type="hidden" value="<%= @interview.id %>" id="interview_id"/> -->
+                    <% @all_submissions.each do |finish| %>
+
+                      <tr>
+                        <% if !finish.user.nil? %>
+                            <td> <%= finish.user.name %> </td>
+                            <td> <%= finish.user.email %> </td>
+                        <% else %>
+                            <td></td>
+                            <td> </td>
+                        <% end %>
+
+                        <% if finish.current_no == 500 %>
+                          <td> Completed </td>
+                        <% elsif finish.current_no.nil? %>
+                          <td> 0 </td>
+                        <% else %>
+                          <td> <%= (profile.current_no + 1)/ @length  %>  </td>
+                        <% end %>
+
+
+                        <% if finish.status.nil? %>
+                           <td> None </td>
+                        <% elsif finish.status == 'reject' %>
+                          <td> Reject </td>
+                        <% elsif finish.status == 'pend' %>
+                          <td>  Pend</td>
+                        <% elsif finish.status == 'shortlist'%>
+                          <td> Shorlist </td>
+                        <% end %>
+
+                        <td> <%= finish.created_at.strftime("%d-%m-%Y") %> </td>
+
+                      </tr>
+
+                    <% end %>
+
+                    </table>
+             </div>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn box-shape" data-dismiss="modal"> Ok </button>
+          </div>
+
+    </div>
+  </div>
+</div>
+<!-- finish modal-->
+<div class="modal fade" id="finish-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" > Details </h5>
+          </div>
+              <div class="modal-body">
+                 <div class="table-responsive table-full-width">
+           <table class="table table-striped">
+                      <tr>
+                        <td>Name</td>
+                        <td>Email </td>
+                        <td>Progress</td>
+                        <td>Status</td>
+                        <td>Date</td>
+
+                      </tr>
+                     <!-- <input type="hidden" value="<%= @interview.id %>" id="interview_id"/> -->
+                    <% @finish.each do |finish| %>
+
+                      <tr>
+                        <% if !finish.user.nil? %>
+                            <td> <%= finish.user.name %> </td>
+                            <td> <%= finish.user.email %> </td>
+                        <% else %>
+                            <td></td>
+                            <td> </td>
+                        <% end %>
+
+                        <% if finish.current_no == 500 %>
+                          <td> Completed </td>
+                        <% elsif finish.current_no.nil? %>
+                          <td> 0 </td>
+                        <% else %>
+                          <td> <%= (profile.current_no + 1)/ @length  %>  </td>
+                        <% end %>
+
+
+                        <% if finish.status.nil? %>
+                           <td> None </td>
+                        <% elsif finish.status == 'reject'%>
+                          <td> Reject </td>
+                        <% elsif finish.status == 'pend'%>
+                          <td>  Pend</td>
+                        <% elsif finish.status == 'shortlist'%>
+                          <td> Shorlist </td>
+                        <% end %>
+
+                        <td> <%= finish.created_at.strftime("%d-%m-%Y") %> </td>
+
+                      </tr>
+
+                    <% end %>
+
+                    </table>
+             </div>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn box-shape" data-dismiss="modal"> Ok </button>
+          </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- unfinish modals-->
+<div class="modal fade" id="unfinish-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" > Details </h5>
+          </div>
+              <div class="modal-body">
+
+           <table class="table table-striped">
+                      <tr>
+                        <td>Name</td>
+                        <td>Email </td>
+                        <td>Progress</td>
+                        <td>Status</td>
+                        <td>Date</td>
+
+                      </tr>
+                     <!-- <input type="hidden" value="<%= @interview.id %>" id="interview_id"/> -->
+                    <% @unfinish.each do |finish| %>
+
+                      <tr>
+                        <% if !finish.user.nil? %>
+                            <td> <%= finish.user.name %> </td>
+                            <td> <%= finish.user.email %> </td>
+                        <% else %>
+                            <td></td>
+                            <td> </td>
+                        <% end %>
+
+                        <% if finish.current_no == 500 %>
+                          <td> Completed </td>
+                        <% elsif finish.current_no.nil? %>
+                          <td> 0 </td>
+                        <% else %>
+                          <td> <%= (profile.current_no + 1)/ @length  %>  </td>
+                        <% end %>
+
+
+                        <% if finish.status.nil? %>
+                           <td> None </td>
+                        <% elsif finish.status == 'reject' %>
+                          <td> Reject </td>
+                        <% elsif finish.status == 'pend' %>
+                          <td>  Pend</td>
+                        <% elsif finish.status == 'shortlist'%>
+                          <td> Shorlist </td>
+                        <% end %>
+
+                        <td> <%= finish.created_at.strftime("%d-%m-%Y") %> </td>
+
+                      </tr>
+
+                    <% end %>
+
+                    </table>
+
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn box-shape" data-dismiss="modal"> Ok </button>
+          </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+
+
+$("#all").click(function(){
+ //var current = $(this).attr('current')
+$("#all-modal").modal();
+});
+
+$("#finish").click(function(){
+$("#finish-modal").modal();
+});
+
+$("#unfinish").click(function(){
+$("#unfinish-modal").modal();
+});
+ var line = $("#orders_chart").data('orders');
+ new Morris.Line({
+  element: 'chartHours',
+  data: line,
+  xkey: 'Date',
+  ykeys: ['all'],
+  labels: ['Submission'],
+  hideHover: true
+});
+
+var all = $("#alls").data('orders');
+var mobile = $("#mobiles").data('orders');
+// var  mobile = 20;
+Morris.Donut({
+  element: 'chartPreferences',
+  data: [
+    {label: "Desktop", value: all},
+    {label: "Mobile Devices", value: mobile}
+  ]
+});
+var compare = $("#compare").data('orders');
+console.log(compare);
+Morris.Bar({
+  element: 'chartActivity',
+  data: compare,
+  xkey: 'Date',
+  ykeys: ['finish', 'unfinish'],
+  labels: ['finish', 'unfinish'],
+  hideHover: true
+});
+
+
+
+
+</script>
+
+

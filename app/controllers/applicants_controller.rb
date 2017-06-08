@@ -32,7 +32,12 @@ class ApplicantsController < ApplicationController
             @position = @submission.current_no
           else
              # create new submission
-            @submission = Submission.new(user_id: @user.id, interview_id: @interview.id)
+            if  mobile_device?
+              device = "1"
+            else
+              device = "2"
+            end
+            @submission = Submission.new(user_id: @user.id, interview_id: @interview.id, device: device)
             @submission.save
             @position = 0
           end
@@ -80,17 +85,17 @@ class ApplicantsController < ApplicationController
         end
      else
        render "complete"
-     end 
+     end
  end
 
 
  def upload_file
     position = test_for_end(@interview.questions.length, params[:pos].to_i )
     upload = FileUpload.new(file_link: params[:file], file_type: 1, user_id: @user.id, interview_id: @interview.id)
-      if upload.save 
+      if upload.save
         @submission.answers << { question_type: "3", file_text: params[:file_text], file_link: upload.file_link.url, file_id: upload.id, file_size: params[:file].size }
         @submission.current_no = position
-        @submission.save 
+        @submission.save
         render plain: "success"
       else
         render plain: "error"
@@ -103,6 +108,15 @@ end
       render plain: "success"
     else
       render plain: "error"
+    end
+  end
+
+  # for capturing users device or otherwise
+  def mobile_device?
+  if session[:mobile_param]
+    session[:mobile_param] == "1"
+    else
+      request.user_agent =~ /Mobile|webOS/
     end
   end
 
