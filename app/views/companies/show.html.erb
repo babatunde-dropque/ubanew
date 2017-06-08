@@ -24,13 +24,14 @@
 
                       <div class=" col-md-4">
                           <div class="img-responsive card box-shape">
-                            <%= link_to company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) do %>
+                            
                               <div class="content">
-
                               <%= link_to 'Details', company_interview_path(id: interview.slug, company_id: @company.id) %> | 
                                       <%= link_to 'Edit', edit_company_interview_path(id: interview.slug, company_id: @company.id) %> 
 
                                     <hr>
+                                <a  href= "<%= company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) %>" >
+
                                       <p><%= truncate( interview.title, :length => 35) %> </p>
                                       <div class="text-center numbers-1">
                                           <%= submissions.length %>
@@ -47,9 +48,12 @@
                                          <i class="ti-reload"> </i> Interview token: <%= interview.interview_token %>
                                       </div>                                        
                                   </div>
+                                </a>
+
+
                               </div>
                                 
-                            <% end %>
+                  
                           </div>
                       </div>
   
@@ -64,9 +68,3 @@
 </div>
 
 
-<script>
-  
-
-
-
-</script>
