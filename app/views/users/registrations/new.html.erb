@@ -14,7 +14,22 @@
                                       <div class="text-center" style="color:#5e337b">
                                         <h3>Sign up</h3>
                                       </div>
+
+                                            <div class="sharing-area text-center">
+                                                <!-- <a href="#pablo" class="btn btn-raised btn-facebook">
+                                                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                                    Facebook
+                                                </a> -->
+                                                <a href="#pablo" class="btn btn-raised btn-linkedin" aria-hidden="true">
+                                                  <i class="fa fa-linkedin"></i>LinkedIn
+                                                </a>
+                                                <a href="#" class="btn btn-raised btn-github">
+                                                    <i class="fa fa-github" aria-hidden="true"></i>GitHub
+                                                </a>
+                                            </div>
+
                                       <div class="content">
+                                        <div class="hr-sect">Or</div>
                                         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                                         
                                         
@@ -53,9 +68,6 @@
                                             <em>(<%= @minimum_password_length %> characters minimum)</em>
                                             <% end %><br />
                                           </div>
-
-                                         
-
                                           <div class="text-center">
                                             <%= f.submit "Sign up", class: "btn btn-primary btn-raised"%>
                                           </div>
@@ -63,19 +75,7 @@
                                         <div class="text-center"><span>Already have account?</span>
                                          <%= render "users/shared/links" %>
                                         </div>
-                                        <div class="hr-sect">Or Sign In With</div>
-                                            <div class="sharing-area text-center">
-                                                <a href="#pablo" class="btn btn-raised btn-facebook">
-                                                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
-                                                    Facebook
-                                                </a>
-                                                <a href="#pablo" class="btn btn-raised btn-linkedin" aria-hidden="true">
-                                                  <i class="fa fa-linkedin"></i>LinkedIn
-                                                </a>
-                                                <!-- <a href="#" class="btn btn-raised btn-github">
-                                                    <i class="fa fa-github" aria-hidden="true"></i>GitHub
-                                                </a> -->
-                                            </div>
+                                        
                                       </div>
                                     </div>
                                 </div>  
