@@ -85,8 +85,16 @@ transparent = true;
               return this.optional(element) || /^[0-9]+$/.test(value);
             }, "Value must be numeric "); 
 
-            $.validator.addClassRules("interview-number", {
+            $.validator.addClassRules("interview-number-file", {
               required: true,
+              max:10,
+              numberValidation: true
+
+            });
+
+            $.validator.addClassRules("interview-number-word", {
+              required: true,
+              max:2000,
               numberValidation: true
 
             });

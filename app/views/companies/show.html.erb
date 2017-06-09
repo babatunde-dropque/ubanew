@@ -26,10 +26,14 @@
                           <div class="img-responsive card box-shape">
                             
                               <div class="content">
-                              <%= link_to 'Details', company_interview_path(id: interview.slug, company_id: @company.id) %> | 
-                                      <%= link_to 'Edit', edit_company_interview_path(id: interview.slug, company_id: @company.id) %> 
-
-                                    <hr>
+                                                                  
+                                        <a href="<%= company_interview_path(id: interview.slug, company_id: @company.id) %>" rel="tooltip"  class="btn btn-info btn-simple " data-original-title="View Profile">
+                                            <i class="ti-image"></i>
+                                        </a>  | 
+                                        <a href="<%= edit_company_interview_path(id: interview.slug, company_id: @company.id) %>" rel="tooltip" class="btn btn-success btn-simple" data-original-title="Edit Interview">
+                                            <i class="ti-pencil-alt"></i>
+                                        </a>
+                                    
                                 <a  href= "<%= company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) %>" >
 
                                       <p><%= truncate( interview.title, :length => 35) %> </p>
