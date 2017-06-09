@@ -64,12 +64,20 @@ $(document).ready(function(){
 		// tour.start();
 	//} 
 
+	// initiate popover
+   $('[data-toggle="popover"]').popover();
+
 	$('#selectThis').change(function(){
 		var option = $('#selectThis option:selected');
 		var link = option.attr('link');
 		var status = option.attr('status');
 		filterAjaxRequest(link+"&status="+status);
 	});
+
+
+	
+
+    
 
 		
 	// this is the script responsible for tags
@@ -253,7 +261,7 @@ function addNewTextQuestionWithDetails(q, c, type, name1, name2){
 	          "</div>" +
 	          "<div class='col-md-3'>" +
 	              "<div class='form-group'>" +
-	                  "<input type='text' class='form-control border-input interview-number' placeholder='Max words allowed'  name='"+name2+"' value='"+c+"'>" +
+	                  "<input type='text' class='form-control border-input interview-number-word' placeholder='Max words allowed'  name='"+name2+"' value='"+c+"'>" +
 	              "</div>"+
 	          "</div>"+
 	          "<div class='col-md-1 close'>"+
@@ -272,9 +280,10 @@ function addNewFileUpload(q, s, type, name1, name2){
               "</div>" +
           "</div>" +
           "<div class='col-md-3'>"+
-              "<div class='form-group'>"+
-                  "<input type='text' class='form-control border-input interview-number'  name='"+name2+"' placeholder='Max File Size' value='"+s+"'>"+
-              "</div>"+
+           "<div class='input-group'>" +  
+                "<input type='text' class='form-control border-input interview-number-file'  name='"+name2+"' placeholder='Max File Size' value='"+s+"'>"+
+                "<span class='input-group-addon'>MB</span>"+
+            "</div>"+
           "</div>"+
           "<div class='col-md-1 close'>"+
             "<btn class='btn remove'><i class='ti-close'></i></btn>"+

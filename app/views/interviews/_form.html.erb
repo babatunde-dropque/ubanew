@@ -32,27 +32,36 @@
             <div class="row">
               <div class="form-group col-md-12">
                 <%= f.label :title %>
-                  <%= f.text_field :title,:id => 'title-interview', :placeholder => 'Role Title', class: "form-control border-input interview-details", html: {spellcheck: "false"} %>
+            <a href="#" class="btn  btn-simple btn-xs">
+              <i class="ti-info-alt"></i>
+            </a>
+            
+
+           
+                  <%= f.text_field :title,:id => 'title-interview', :placeholder => 'Role Title', class: "form-control border-input interview-details", html: {spellcheck: "false"}, title:"Role Title", data: {toggle:"popover", placement:"top", trigger:"hover", content:"Here will be some very useful information about his popover" }  %>
               </div>
             </div>
             <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :description %>
-          <%= f.text_area :description,:id => 'title-description', :placeholder => 'Role Description', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "false"} %>
+          <%= f.text_area :description,:id => 'title-description', :placeholder => 'Role Description', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "false"}, title:"Popover on top", data: {toggle:"popover", placement:"top", trigger:"hover", content:"Here will be some very useful information about his popover" } %>
+
+
+           
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :instruction %>
-          <%= f.text_area :instruction, :id => 'title-instruction', :placeholder => 'Instructions for the Candidates', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"} %>
+          <%= f.text_area :instruction, :id => 'title-instruction', :placeholder => 'Instructions for the Candidates', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"}, title:"Candidates Instruction", data: {toggle:"popover", placement:"top", trigger:"hover", content:"Here will be some very useful information about his popover" }  %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :completed_message %>
-          <%= f.text_area :completed_message, :id => 'title-completed-message', :placeholder => 'Completed Message after', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"} %>
+          <%= f.text_area :completed_message, :id => 'title-completed-message', :placeholder => 'Completed Message after', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"}, title:"Completed Message", data: {toggle:"popover", placement:"top", trigger:"hover", content:"Here will be some very useful information about his popover" }  %>
       </div>
     </div>
 
@@ -172,8 +181,9 @@
           </div>
           <div class='col-md-3'>
               <div class='form-group'>
-                  <input type='text' class='form-control border-input interview-number' placeholder='Max words allowed' name="fourth">
+                  <input type='text' class='form-control border-input interview-number-word' placeholder='Max words allowed' name="fourth">
               </div>
+
           </div>
           <div class='col-md-1 close'>
             <btn class='btn remove'><i class='ti-close'></i></btn>
