@@ -218,12 +218,22 @@ $(document).ready(function(){
 
 		});
 
+		
+		// $("#minimizeSidebar").click(
+		//   function(){
+		//     $("#minisider").addClass("expand" );
+		//  });
+
+		
+
     
 
  
 });
 
 // end of document ready function
+
+
 
 
 function addNewQuestionWithDetails(q,t, type, name1, name2){

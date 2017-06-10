@@ -87,14 +87,14 @@ transparent = true;
 
             $.validator.addClassRules("interview-number-file", {
               required: true,
-              max:10,
+              max:5,
               numberValidation: true
 
             });
 
             $.validator.addClassRules("interview-number-word", {
               required: true,
-              max:2000,
+              max:500,
               numberValidation: true
 
             });
