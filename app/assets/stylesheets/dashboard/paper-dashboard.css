@@ -265,6 +265,8 @@ button:focus {
 
 hr {
   border-color: #F1EAE0;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 .wrapper {
@@ -916,7 +918,7 @@ hr {
 
 .btn-simple {
   border: 0;
-  padding: 7px 18px;
+  padding: 1px 6px;
 }
 .btn-simple.btn-icon {
   padding: 7px;
