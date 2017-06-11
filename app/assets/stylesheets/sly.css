@@ -9,7 +9,7 @@
 
 /* Frame */
 .frame {
-	height: 90px;
+	height: 60px;
 	overflow: hidden;
 }
 .frame ul {
@@ -21,7 +21,7 @@
 }
 .frame ul li {
 	float: left;
-	width: 120px;
+	width: 100px;
 	height: 80%;
 	margin: 0 1px 0 0;
 	padding: 0;
@@ -82,15 +82,15 @@
 
  /*make modal ful screen*/
 .modal-dialog {
-  width: 85%;
+/*  width: 85%;
   height: 90%;
   padding: 0;
-
+*/
 }
 
 .modal-content {
-  height: 99%;
-  min-height: 100%;
+ /* height: 99%;
+  min-height: 100%;*/
 }
 
 .download-button{
@@ -113,38 +113,25 @@
 	
 }
 
-.full-fix{
-	overflow-y: auto;
-	/*padding: 10px;*/
-}
-
 .major-view{
-	overflow-y: auto;
+	/*overflow-y: auto;*/
 }
 
 div.card.main{
 	cursor: pointer;
 }
 
-.padding-5{
-  padding: 10px;
-
-}
 
 /* modal backdrop for boostrap*/
-.modal-backdrop
-{
+.modal-backdrop{
     opacity:0.9 !important;
 }
 
 .modal-body{
-	height: 90%;
+	/*height: 90%;*/
 }
 
 .max-height-width{
 	width: 199px;
 	height: 150px;
 }
-
-
-/*set max height and max weight*/

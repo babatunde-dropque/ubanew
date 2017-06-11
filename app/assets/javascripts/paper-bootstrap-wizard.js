@@ -10,6 +10,7 @@ transparent = true;
             $('[rel="tooltip"]').tooltip();
             // Code for the Validator
             var $validator = $('.wizard-card form').validate({
+
         		  rules: {
         		    name: {
         		      required: true,
@@ -17,7 +18,8 @@ transparent = true;
         		    },
                 email: {
                   required: true,
-                  minlength: 3
+                  minlength: 3,
+                  email : true
                 },
         		    subdomain: {
             		      required: true,
@@ -35,13 +37,13 @@ transparent = true;
                             },
                             dataFilter: function(response) {
                               if (response == "no"){
-                                $('#symbol').addClass('ti-check');
-                                $('#symbol').removeClass('ti-close');
+                                $('#symbol').addClass('glyphicon-ok green');
+                                $('#symbol').removeClass('glyphicon-remove red');
                                 $('#symbol').removeClass('fa fa-spinner fa-spin');
                                 return true;
                               } else {
-                                $('#symbol').addClass('ti-close');
-                                $('#symbol').removeClass('ti-check');
+                                $('#symbol').addClass('glyphicon-remove red');
+                                $('#symbol').removeClass('glyphicon-ok green');
                                 $('#symbol').removeClass('fa fa-spinner fa-spin');
                                 return false;
                               }
@@ -54,7 +56,29 @@ transparent = true;
                     subdomain: {
                       remote: "Subdomain already exist, use another"
                     }
-                  }
+                  },
+
+
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+
+
+
+
+
         	});
 
             $.validator.addMethod("cRequired", $.validator.methods.required,
@@ -71,7 +95,7 @@ transparent = true;
 
             // add custom validation to validate time
             $.validator.addMethod("timeValidation", function(value, element) {
-              return this.optional(element) || /^[0-9]{1,2}:[0-9]{1,2}$/.test(value);
+              return this.optional(element) || /^[0-5]{1,2}:[0-9]{1,2}$/.test(value);
             }, "Please specify the correct time format, use mm:ss ");
 
             $.validator.addClassRules("interview-time", {
@@ -87,17 +111,18 @@ transparent = true;
 
             $.validator.addClassRules("interview-number-file", {
               required: true,
-              max:10,
+              max:5,
               numberValidation: true
 
             });
 
             $.validator.addClassRules("interview-number-word", {
               required: true,
-              max:2000,
+              max:500,
               numberValidation: true
-
             });
+
+      
 
             // Wizard Initialization
           	$('.wizard-card').bootstrapWizard({

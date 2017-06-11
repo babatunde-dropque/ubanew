@@ -1,3 +1,4 @@
+
 <div class="wrapper">
      
     <div class="main-panel expand">
@@ -14,6 +15,14 @@
                 <div class="col-md-8 col-md-offset-2">
                          <br><br>
                         <div class="card wizard-card box-shape" data-color="blue" id="wizardProfile">
+                         
+
+        <div >
+           <a href="<%= user_dashboard_path(current_user) %>" rel="tooltip" class="btn  btn-simple "  title="Close"  >
+               <span  class="glyphicon glyphicon-remove"></span>
+          </a>  
+        </div>
+
                             <form id="form" method="post" enctype="multipart/form-data" action="/companies">
                                 <div class="wizard-header text-center">
                                     <h3 class="wizard-title">Create Organization</h3>
@@ -79,36 +88,42 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label> Organization Name <small>(required)</small></label>
+                                                    <label> Organization Name </label>
                                                     <input name="name" type="text" class="form-control" placeholder="Organization">
                                                 </div>
                                                 
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                        <label>Subdomain <small>(required)</small></label>  &nbsp;  &nbsp;  &nbsp;   
-                                                        <input name="subdomain" type="text" class="form-control" placeholder="Subdomain" id="company-subdomain" value="">
-                                                </div>
-                                            </div >
-                                            <div class="col-sm-2">
-                                                <div class="form-group">
-                                                        <label>&nbsp; </label> <i id="symbol" ></i><br>
-                                                        <div style="margin-top: 8px;">.dropque.com</div>
+                                            <div class="col-sm-6">
+<label> Subdomain  </label> <label> &nbsp; &nbsp; </label><span id="symbol" class="glyphicon"></span>
+ <div class="form-group">
+        <div class="input-group">
+            <input class="form-control" placeholder="subdomain" name="subdomain" type="text" id="company-subdomain" value="" />
+            <span class="input-group-addon">.dropque.com</span>
+        </div>
+    </div>
 
-                                                </div>
-                                            </div>
+                                            </div >
+                                           
                                             <div class="col-sm-6 col-sm-offset-5">
                                                 <div class="form-group">
-                                                    <label> Organization Email <small>(required)</small></label>
-                                                    <input name="email" type="text" class="form-control" placeholder="Email">
+                                                    <label> Organization Email <small></small></label>
+                                                    <input  type="text" name="email" class="form-control" placeholder="Email">
                                                 </div>
 
                                             </div>
                                             <div class="col-sm-10 col-sm-offset-1">
-                                                <div class="form-group">
-                                                    <label>Tags</label>
+                                                <div class="form-group has-error">
+                                                    <label>Tags  <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Close organization form" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Terms applicable to your organization. Enter search terms, which you feel users will use when looking for your interview.
+The terms you enter here are very important and will have an impact on your overall exposure on Dropque.
+When adding your search terms, please keep in mind the following:
+Special characters and duplicated terms will be ignored.
+It doesn’t matter if you use upper case, lower case letters, or plural forms of words." ></span></label>
+
+                                                    <label id="tag-label" class="control-label" for="tags"></label>
                                                     <input name="tags" type="text" id="tags" class="form-control" >
+                                                   
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -404,8 +419,8 @@
                                                     <div class='col-sm-3'>
                                                         <div class="form-group">
                                                             <select name='country' class='form-control'>
-                                                                 <option value='1'> admin </option>
-                                                                 <option value='2'> user</option>
+                                                                 <option value='1'> Admin </option>
+                                                                 <option value='2'> Recruiter</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -499,12 +514,65 @@
 
 <script>
 
+
+
+
+
+
     $('#tags').tagit({
         tagLimit: 4,
         placeholderText: "Add tags",
         onTagLimitExceeded : function(event, ui){
-            // $("#indicator-tags").html("Tags cannot be more than four");
-        }
+            // $("#indicator-tags").html("Tags cannot be more than four"); 
+            $("#tag-label").html("Tags cannot be more than four");
+            $("#tag-label").show();
+            $("#tag-label").fadeOut(7000);
+        },
+       availableTags: ["advertising",
+"technology",
+"animation" ,
+"distribution",
+"management",
+"automation",
+"biotechnology",
+"broadcasting",  
+"chemical", 
+"computer",
+"hardware",
+"manufacturering",
+"power",
+"construction",
+"distribution",
+"electricity",
+"energy",
+"enterprise",
+"suppliers",
+"Internet",
+"banking",
+"consulting",
+"research",
+"publishing",
+"exploration",
+"production",
+"servicing",
+"computing",
+"communication",
+"security",
+"shipping",
+"software",
+"utilities",
+"venture capital",
+"game companies",
+"media"
+],
+        showAutocompleteOnFocus: true,
+        autocomplete: {
+            delay: 0,
+            minLength: 0,
+            position: { collision: "flip" },
+         },
+        
+
     });
 
 

@@ -75,10 +75,6 @@ $(document).ready(function(){
 	});
 
 
-	
-
-    
-
 		
 	// this is the script responsible for tags
 	var emailTag = $('#emails');
@@ -217,13 +213,12 @@ $(document).ready(function(){
 
 
 		});
-
-    
-
  
 });
 
 // end of document ready function
+
+
 
 
 function addNewQuestionWithDetails(q,t, type, name1, name2){
@@ -236,7 +231,10 @@ function addNewQuestionWithDetails(q,t, type, name1, name2){
 			"<div class='row' type ='"+type+"'>" +
 		      "<div class='col-md-8'>"+
 		         "<div class='form-group'>"+
-		              "<input type='text' class='form-control border-input interview-details'  name='"+name1+"' placeholder='Video Question' value='"+q+"' >"+
+	         	  	"<div class='input-group'>"+
+	                	"<span class='input-group-addon'><i class='glyphicon glyphicon-play' ></i></span>"+
+	                  	"<input type='text' class='form-control border-input interview-details'  name='"+name1+"' placeholder='Video Question' value='"+q+"' >"+
+	                "</div>"+
 		          "</div>"+
 		      "</div>"+
 		      "<div class='col-md-3'>"+
@@ -256,7 +254,10 @@ function addNewTextQuestionWithDetails(q, c, type, name1, name2){
 		"<div class='row'  type ='"+type+"'>" +
 	          "<div class='col-md-8'>" +
 	             "<div class='form-group'>" +
-	                  "<input type='text' class='form-control border-input interview-details'  name='"+name1+"' placeholder='Text Question' value='"+q+"' >" +
+	             	"<div class='input-group'>"+
+	                	"<span class='input-group-addon'><i class='glyphicon glyphicon-text-width' ></i></span>"+
+	                  	 "<input type='text' class='form-control border-input interview-details'  name='"+name1+"' placeholder='Text Question' value='"+q+"' >" +
+	                "</div>"+
 	              "</div>" +
 	          "</div>" +
 	          "<div class='col-md-3'>" +
@@ -271,18 +272,26 @@ function addNewTextQuestionWithDetails(q, c, type, name1, name2){
 	  return result;
 }
 
+
+
+
 function addNewFileUpload(q, s, type, name1, name2){
 	var result = 
 	"<div class='row' type ='"+type+"'>" +
           "<div class='col-md-8'>" +
-             "<div class='form-group'>"+
-                  "<input type='text' class='form-control border-input interview-details' name='"+name1+"' placeholder='File Description' value='"+q+"'>"+ 
+         	"<div class='form-group'>"+
+	             "<div class='input-group'>"+
+                	"<span class='input-group-addon'><i class='glyphicon glyphicon-cloud-upload' ></i></span>"+
+                  	"<input type='text' class='form-control border-input interview-details' name='"+name1+"' placeholder='File Description' value='"+q+"'>"+ 
+                  "</div>"+  
               "</div>" +
           "</div>" +
           "<div class='col-md-3'>"+
-           "<div class='input-group'>" +  
-                "<input type='text' class='form-control border-input interview-number-file'  name='"+name2+"' placeholder='Max File Size' value='"+s+"'>"+
-                "<span class='input-group-addon'>MB</span>"+
+          "<div class='form-group'>"+
+	           "<div class='input-group'>" +  
+	                "<input type='text' class='form-control border-input interview-number-file'  name='"+name2+"' placeholder='Max File Size' value='"+s+"'>"+
+	                "<span class='input-group-addon'>MB</span>"+
+	            "</div>"+
             "</div>"+
           "</div>"+
           "<div class='col-md-1 close'>"+

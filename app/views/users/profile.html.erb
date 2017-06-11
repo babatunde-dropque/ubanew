@@ -13,57 +13,9 @@
                 <div class="col-md-8 col-md-offset-2">
 
 
-                  <div class="card card-user">
+                  
 
-                         <div class="image">
-                            <%= image_tag('background.jpg') %>
-                        </div>
-                        <div class="content">
-                            <div class="author">
-                              
-
-                            <% if @user.a_dp.file.nil? %>
-                                <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
-                              
-                            <% else %>
-                                <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />
-                                                              
-                            <% end %>
-                       
-                               
-                              <h4 class="title"><%= @user.name %><br>
-                                 <a href="#"><small><%= @user.email %></small></a>
-                              </h4>
-                            </div>
-                            <p class="description text-center">
-                                <% if @user.status  == 0 %>
-                                  Status: Applicant
-                                <% elsif @user.status  == 1 %>
-                                  Status: Interviewer
-                                <% else %>
-
-                                <% end %>
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="text-center">
-                            <div class="row">
-                                <div class="col-md-6">
-                                   <%= link_to user_timeline_path(current_user) do %>
-                                      <h5><%= @user.submissions.length %><br><small>Application(s)</small></h5>
-                                   <% end %> 
-                                </div>
-                                <div class="col-md-6">
-                                  <%= link_to user_dashboard_path(current_user) do %>
-                                      <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
-                                   <% end %> 
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
+         
 
 
 
