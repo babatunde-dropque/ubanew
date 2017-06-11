@@ -95,7 +95,7 @@ transparent = true;
 
             // add custom validation to validate time
             $.validator.addMethod("timeValidation", function(value, element) {
-              return this.optional(element) || /^[0-9]{1,2}:[0-9]{1,2}$/.test(value);
+              return this.optional(element) || /^[0-5]{1,2}:[0-9]{1,2}$/.test(value);
             }, "Please specify the correct time format, use mm:ss ");
 
             $.validator.addClassRules("interview-time", {
@@ -120,13 +120,9 @@ transparent = true;
               required: true,
               max:500,
               numberValidation: true
-
             });
 
-            // override jquery validate plugin defaults
-
-    
-
+      
 
             // Wizard Initialization
           	$('.wizard-card').bootstrapWizard({
