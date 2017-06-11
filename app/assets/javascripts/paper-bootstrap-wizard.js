@@ -10,6 +10,7 @@ transparent = true;
             $('[rel="tooltip"]').tooltip();
             // Code for the Validator
             var $validator = $('.wizard-card form').validate({
+
         		  rules: {
         		    name: {
         		      required: true,
@@ -17,7 +18,8 @@ transparent = true;
         		    },
                 email: {
                   required: true,
-                  minlength: 3
+                  minlength: 3,
+                  email : true
                 },
         		    subdomain: {
             		      required: true,
@@ -35,13 +37,13 @@ transparent = true;
                             },
                             dataFilter: function(response) {
                               if (response == "no"){
-                                $('#symbol').addClass('ti-check');
-                                $('#symbol').removeClass('ti-close');
+                                $('#symbol').addClass('glyphicon-ok green');
+                                $('#symbol').removeClass('glyphicon-remove red');
                                 $('#symbol').removeClass('fa fa-spinner fa-spin');
                                 return true;
                               } else {
-                                $('#symbol').addClass('ti-close');
-                                $('#symbol').removeClass('ti-check');
+                                $('#symbol').addClass('glyphicon-remove red');
+                                $('#symbol').removeClass('glyphicon-ok green');
                                 $('#symbol').removeClass('fa fa-spinner fa-spin');
                                 return false;
                               }
@@ -54,7 +56,29 @@ transparent = true;
                     subdomain: {
                       remote: "Subdomain already exist, use another"
                     }
-                  }
+                  },
+
+
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+
+
+
+
+
         	});
 
             $.validator.addMethod("cRequired", $.validator.methods.required,
@@ -98,6 +122,11 @@ transparent = true;
               numberValidation: true
 
             });
+
+            // override jquery validate plugin defaults
+
+    
+
 
             // Wizard Initialization
           	$('.wizard-card').bootstrapWizard({

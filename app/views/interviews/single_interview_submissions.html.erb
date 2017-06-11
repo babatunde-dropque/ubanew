@@ -67,36 +67,56 @@
       <div class="modal-content">
         <div class="modal-header">
 
-          <%= submission.user.name %> (<%= submission.user.email %>) | <%= @interview.title %> @ <%= @company.name %>
+          <%= submission.user.name %> (<%= submission.user.email %>) 
 
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-
-          <div >
-            <table height= "100%", width="100%">
-
-              <tr>
-                <td style="width: 60%; heigth:80%" class="padding-5">
+             
                   <div class="text-center major-view centralize">
                      <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
                      <div id="content-video-<%= submission.id %>-sly" class="centralize-video" >
                     </div>
                   </div>
-                </td>
 
-                <td  rowspan="2" style=" width: 40%;" class="padding-5" >
-                  <div class="rate">
+           <div class="wrap" >
+              <div class="scrollbar">
+                <div class="handle">
+                  <div class="mousearea"></div>
+                </div>
+              </div>
+
+              <div class="frame" id="video-<%= submission.id %>-sly" submission-id="<%= submission.id %>"  triggered="true">
+                <ul class="clearfix">
+                  <% submission.answers.each do |answer| %>
+                    <% if answer["question_type"] == "1" %>
+                      <li question-type="1" token="<%= answer["link"] %>" question="<%= answer["question_video"] %>"> <div class="fa fa-1x fa-video-camera dq-icon" ></div> </li>
+                    <% elsif answer["question_type"] == "2" %>
+                     <li question-type="2"> <div class="fa fa-1x fa-files-o dq-icon"></div> </li>
+                    <% elsif answer["question_type"] == "3" %>
+                     <li question-type="3"> <div class="fa fa-1x fa-file-text-o dq-icon"></div> </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+              </div>
+               
+
+               
+                  <div class="rate" >
+
+                  <% if @user_status < 2 %> 
                     <div class="centralize " submission-id="<%= submission.id %>">
                       <button class="btn btn-sm btn-danger btn-icon box-shape status <%= (submission.status == 'reject') ? "btn-fill": "" %> " status="2" title='reject' ><i class="ti-close"></i></button>
                       <button class="btn btn-sm btn-icon  box-shape status <%= (submission.status == 'pend') ? "btn-fill": "" %>" status="1" title='pending'><i class="ti-minus"></i></button>
                       <button class="btn btn-sm btn-success btn-icon  box-shape status <%= (submission.status == 'shortlist') ? "btn-fill": "" %> " status="0" title='shortlist'><i class="ti-check"></i></button>
                       <br><br>
                     </div>
+                  <% end %>
 
-                    <div class="centralize ">
+                    <div class="centralize hidden ">
                       General:
                       <%= rating_for submission, 'response', disable_after_rate: false, cancel_hint: 'Cancel interview rating', imdb_avg: false , target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Interview rating: {score}"%>
 
@@ -114,37 +134,9 @@
                  <div class="centralize full-fix ">
                   <%= commontator_thread(submission) %>
                  </div>
-              </td>
-            </tr>
-
-           <tr >
-              <td>
-                <div class="wrap" >
-                   <div class="scrollbar">
-                    <div class="handle">
-                      <div class="mousearea"></div>
-                    </div>
-                  </div>
-
-                  <div class="frame" id="video-<%= submission.id %>-sly" submission-id="<%= submission.id %>"  triggered="true">
-                    <ul class="clearfix">
-                      <% submission.answers.each do |answer| %>
-                        <% if answer["question_type"] == "1" %>
-                          <li question-type="1" token="<%= answer["link"] %>" question="<%= answer["question_video"] %>"> <div class="fa fa-2x fa-video-camera dq-icon" ></div> </li>
-                        <% elsif answer["question_type"] == "2" %>
-                         <li question-type="2"> <div class="fa fa-2x fa-files-o dq-icon"></div> </li>
-                        <% elsif answer["question_type"] == "3" %>
-                         <li question-type="3"> <div class="fa fa-2x fa-file-text-o dq-icon"></div> </li>
-                        <% end %>
-                      <% end %>
-                    </ul>
-                  </div>
-              </div>
-              </td>
-           </tr>
-
-           </table>
-          </div>
+              
+      
+       
 
 
         </div>
