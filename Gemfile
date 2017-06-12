@@ -14,9 +14,10 @@ gem "iconv", "~> 1.0.3"
 gem 'roadie'
 
 #needed for third party authentication
-gem 'omniauth-linkedin-oauth2'
+ gem 'omniauth'
+ gem 'omniauth-linkedin-oauth2'
 # gem 'omniauth-twitter'
-# gem 'omniauth-facebook'
+ gem 'omniauth-facebook'
 # gem 'omniauth-linkedin'
 #needed to protect attr_accessible
 gem 'protected_attributes'

@@ -283,6 +283,8 @@ GEM
     omniauth (1.6.1)
       hashie (>= 3.4.6, < 3.6.0)
       rack (>= 1.6.2, < 3)
+    omniauth-facebook (4.0.0)
+      omniauth-oauth2 (~> 1.2)
     omniauth-linkedin-oauth2 (0.1.5)
       omniauth (~> 1.0)
       omniauth-oauth2
@@ -437,6 +439,8 @@ DEPENDENCIES
   jquery-ui-rails
   mini_magick (~> 4.3)
   oj (~> 2.12.14)
+  omniauth
+  omniauth-facebook
   omniauth-linkedin-oauth2
   pg
   protected_attributes

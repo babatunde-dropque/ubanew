@@ -7,7 +7,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '3e81d94b90b6991d8b5f478770d4b1d17ef6c8f2f4126a9a414e21c18e10f036c1a9c520f83ad35c5da320d78a2e3d314329c4926d47e55c8cee1b7bf6966176'
-  
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -75,8 +75,8 @@ Devise.setup do |config|
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
   # config.paranoid = true
-    # config.omniauth :facebook, "1018591381617959", "cfebc2964c7cb6e9ba26c53b5f91b204"
-    # config.omniauth :twitter, "GODTPxHbTwP6gx3fQgoXKqiFa", "I80yAT36j37ols7zvPYYU3XqHweOD87e7iOJiCt7v4bXOUZcPr"
+    #config.omniauth :facebook, "1018591381617959", "cfebc2964c7cb6e9ba26c53b5f91b204"
+    #config.omniauth :twitter, "GODTPxHbTwP6gx3fQgoXKqiFa", "I80yAT36j37ols7zvPYYU3XqHweOD87e7iOJiCt7v4bXOUZcPr"
     #config.omniauth :linkedin, "77pjz5gg2tbjen", "ulyR2uhyZvvncTrK", provider_ignores_state: true
 
   # By default Devise will store the user in session. You can skip storage for
