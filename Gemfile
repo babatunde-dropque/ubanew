@@ -119,3 +119,4 @@ gem 'will_paginate', '~> 3.1.0'
 #gem 'sinatra', '~> 2.0'
 gem 'twilio-ruby', '~> 4.13'
 
+gem 'puma'
