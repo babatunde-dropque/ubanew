@@ -2,7 +2,7 @@
           <div class="container">
               <div class="logo-container">
                 <div class="text-center">
-                  <%= image_tag('dqlogo.png')%>
+                  <a href="/"><%= image_tag('dqlogo.png')%></a>
                 </div>                    
               </div>
                   <div>
@@ -14,7 +14,22 @@
                                       <div class="text-center" style="color:#5e337b">
                                         <h3>Sign up</h3>
                                       </div>
+
+                                            <div class="sharing-area text-center">
+                                                <a href="#pablo" class="btn btn-raised btn-facebook">
+                                                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                                    Facebook
+                                                </a>
+                                                <a href="#pablo" class="btn btn-raised btn-linkedin" aria-hidden="true">
+                                                  <i class="fa fa-linkedin"></i>LinkedIn
+                                                </a>
+                                               <!--  <a href="#" class="btn btn-raised btn-github">
+                                                    <i class="fa fa-github" aria-hidden="true"></i>GitHub
+                                                </a> -->
+                                            </div>
+
                                       <div class="content">
+                                        <div class="hr-sect">Or</div>
                                         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                                         
                                         
@@ -48,19 +63,11 @@
                                                  <i class="material-icons">lock_outline</i>
                                             </span>
 
-                                            <%= f.password_field :password, autocomplete: "off", :placeholder => 'password', class: "form-control", html: {spellcheck: "false"} %>
+                                            <%= f.password_field :password, autocomplete: "off", :placeholder => 'Password', class: "form-control", html: {spellcheck: "false"} %>
                                             <% if @minimum_password_length %>
                                             <em>(<%= @minimum_password_length %> characters minimum)</em>
                                             <% end %><br />
                                           </div>
-
-                                          <div class="input-group">
-                                            <span class="input-group-addon">
-                                              <i class="material-icons">lock_outline</i>
-                                            </span> 
-                                              <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => 'Password confirmation', class: "form-control", html: {spellcheck: "false"}%>
-                                          </div>
-
                                           <div class="text-center">
                                             <%= f.submit "Sign up", class: "btn btn-primary btn-raised"%>
                                           </div>
@@ -68,6 +75,7 @@
                                         <div class="text-center"><span>Already have account?</span>
                                          <%= render "users/shared/links" %>
                                         </div>
+                                        
                                       </div>
                                     </div>
                                 </div>  

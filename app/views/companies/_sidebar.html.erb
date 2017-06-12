@@ -9,24 +9,27 @@
 
              </div>
 
+                
+
             <ul class="nav">
                 <li id="step1">
                     <%= link_to new_company_interview_path(params[:company_id] || params[:id]) do %>
                    <button  type="button" class="button">Create interview</button>
+
                    <% end %>
                 </li>
                 <li id="step2" class="<%= (params[:c] == "1") ? "active": "" %>"> 
                     <%= link_to company_path(params[:company_id] || params[:id], c: 1) do %>
-                        <i class="ti-control-play"></i>
-                        <p>QueBox</p>
+                        <i class="ti-home"></i>
+                        <p>Interviews</p>
                     <% end %>
                 </li>
-                <li id="step3" class="<%= (params[:c] == "2") ? "active": "" %>">
+               <!--  <li id="step3" class="<%= (params[:c] == "2") ? "active": "" %>">
                     <%= link_to company_interviews_path(params[:company_id] || params[:id], c: 2) do %>
                         <i class="ti-user"></i>
                         <p>Interviews</p>
                     <% end %>
-                </li>
+                </li> -->
 
 
                 <% if !@interview.nil? && @new_interview.nil? %>

@@ -1,4 +1,4 @@
-  <div class="wizard-header">
+   <div class="wizard-header">
         <h3 class="wizard-title"><%= n %></h3>
         <p class="category">Kindly fill out the interview details as required </p>
     </div>
@@ -32,26 +32,42 @@
             <div class="row">
               <div class="form-group col-md-12">
                 <%= f.label :title %>
-                  <%= f.text_field :title,:id => 'title-interview', :placeholder => 'Role Title', class: "form-control border-input interview-details", html: {spellcheck: "false"} %>
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"  
+                , title="Role Title" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ></span>
+
+
+                  <%= f.text_field :title,:id => 'title-interview', :placeholder => 'Role Title', class: "form-control border-input interview-details", html: {spellcheck: "false"}  %>
               </div>
             </div>
             <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :description %>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Interview Description" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Summarize what this interview is about, and why its relevant .
+You can use maximum 100 words.
+For example: ''We are looking for a Billing Analyst to undertake billing operations in our accounting department. We’ll count on you to issue invoices with a high degree of accuracy to guarantee our revenue.
+
+Our Billing Analyst should have a keen eye for detail. You should also be comfortable working with little supervision to meet tight deadlines.
+
+Your goal ...''" style="color: #66615B;" ></span>
           <%= f.text_area :description,:id => 'title-description', :placeholder => 'Role Description', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "false"} %>
+
+
+           
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :instruction %>
-          <%= f.text_area :instruction, :id => 'title-instruction', :placeholder => 'Instructions for the Candidates', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"} %>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Interview Instruction" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ></span>
+          <%= f.text_area :instruction, :id => 'title-instruction', :placeholder => 'Instructions for the Candidates', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"}   %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :completed_message %>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Role Title" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ></span>
           <%= f.text_area :completed_message, :id => 'title-completed-message', :placeholder => 'Completed Message after', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"} %>
       </div>
     </div>
@@ -59,7 +75,8 @@
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :deadline %>
-        <%= f.text_field :deadline, class: "form-control border-input" , id: "date" , placeholder:"yyyy-mm-dd" %>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Role Title" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ></span>
+        <%= f.text_field :deadline, class: "form-control border-input datepicker" , id: "date" , placeholder:"yyyy-mm-dd" %>
       </div>
     </div>
 
@@ -148,11 +165,17 @@
      <div id ="question-tag">
         <!-- this is where all the question will be added -->
         <% if d == "Create Interview" %>
+
         <div class='row' type ='1'>
           <div class='col-md-8'>
-             <div class='form-group'>
-                  <input type='text' class='form-control border-input interview-details' placeholder='Video Question' name="first" >
-              </div>
+              
+               <div class="form-group">
+                <div class="input-group">
+                <span class="input-group-addon" title="Role Title" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ><i class="glyphicon glyphicon-play" ></i></span>
+                   <input type='text' class='form-control border-input interview-details' placeholder='Video Question' name="first" >
+                </div>
+               </div>
+
           </div>
           <div class='col-md-3'>
               <div class='form-group'>
@@ -164,21 +187,35 @@
           </div>
       </div>
 
+
+
+
+
+
+
+      
         <div class='row'  type ='2'>
           <div class='col-md-8'>
              <div class='form-group'>
-                  <input type='text' class='form-control border-input interview-details' placeholder='Text Question'  name="second" >
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-text-width" ></i></span>
+                    <input type='text' class='form-control border-input interview-details' placeholder='Text Question'  name="second" >
+                </div>
              </div>
           </div>
           <div class='col-md-3'>
               <div class='form-group'>
-                  <input type='text' class='form-control border-input interview-number' placeholder='Max words allowed' name="fourth">
+                  <input type='text' class='form-control border-input interview-number-word' placeholder='Max words allowed' name="fourth">
               </div>
           </div>
           <div class='col-md-1 close'>
             <btn class='btn remove'><i class='ti-close'></i></btn>
           </div>
       </div>
+
+
+              
+
       <% end %>
 
      </div>
@@ -206,9 +243,40 @@
 
 
 
-  $('#date').datepicker({
+  $('.datepicker').datepicker({
     dateFormat:"yy-mm-dd",
     minDate: 0 
   });
+
+  $('.interview-time').timepicker({
+      timeFormat:'mm:ss',
+      minuteMax:5,
+      showButtonPanel: false,
+      timeOnlyTitle: "Choose Duration",
+      showTime: false
+  });
+
+
+// $('div.wizard-header').on("click",".datepicker", function(){
+//     $(this).datepicker();
+//  });​
+
+  // $('body').on("focus",".timepicker", function(){
+  //     // $(this).timepicker({
+  //     //   timeFormat:'mm:ss',
+  //     //   minuteMax:5,
+  //     //   showButtonPanel: false,
+  //     //   timeOnlyTitle: "Choose Duration",
+  //     //   showTime: false
+  //     // });
+  //     $(this).timepicker({
+  //       timeFormat:'mm:ss',
+  //       minuteMax:5,
+  //       showButtonPanel: false,
+  //       timeOnlyTitle: "Choose Duration",
+  //       showTime: false
+  //     });
+  // });​
+
 
 </script>

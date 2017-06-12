@@ -310,9 +310,9 @@
     color: #333333;
 }
 
-.sharing-area{
+/*.sharing-area{
     margin-top: 80px;
-}
+}*/
 .sharing-area .btn{
     margin: 15px 4px 0;
     color: #FFFFFF;
@@ -334,6 +334,9 @@
 }
 .sharing-area .btn-github{
     background-color: #333333;
+}
+.sharing-area .btn-linkedin{
+    background-color: #007BB6;
 }
 .section-thin,
 .section-notifications{

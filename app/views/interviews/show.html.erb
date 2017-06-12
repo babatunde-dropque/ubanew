@@ -1,3 +1,19 @@
+<style>
+
+.ui-widget-header {
+   border: 0px;
+   background: none;
+}
+
+.ui-widget-content {
+  border: none;
+  background: none;
+}
+  
+
+</style>
+
+
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="success">
 
@@ -11,6 +27,8 @@
 
               <div class="row">
                     <div class="col-lg-12 col-md-12">
+
+
                         <div class="card box-shape">
                               <div class="content">
 
@@ -19,7 +37,7 @@
                                      <%= flash[:notice] %>
                                 </div>
                               <% end %>
-
+                                    
                                       <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulk Emails </button> 
 
                                       <h5> Send Invitation</h5>
@@ -58,20 +76,43 @@
 
       <div class="row">
           <div class="col-lg-12 col-md-12">
-              <div class="card box-shape">
-                      <div>
-                          <div class="header">
+              <div class="card box-shape ">
+                      
+                          <!-- <div class="header"> -->
+                          <!-- 
                             <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>
-                             <h5> Details </h5>
-                          </div>
-                      </div>
+                           -->
+                          <!-- </div> -->
+                      
 
 
-                    <div class="content">
-                        <div class="content table-responsive table-full-width">
+                      <div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Questions</a></li>
+    <li><a href="#tabs-2">Details</a></li>
+  </ul>
+  <div id="tabs-1">
+    <!-- <div class="content"> -->
+      <!--  <h5> Question(s) </h5> -->
+        <div class="typo-line">
+          <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
+            <div class="table-responsive table-full-width">
+                  <table class="table table-striped">
+                      <tbody id="question-holder">
+                          
+                      </tbody>
+                  </table>
+              </div>
+        </div>
+    <!-- </div>   -->
+  </div>
+  <div id="tabs-2">
+    
+                    <!-- <div class="content"> -->
+                        <div class=" table-responsive table-full-width">
                           <table class="table table-striped">
                             <tbody>
-                              <tr><td >Description</td><td style="white-space: pre-line;"><%= @interview.description %></td></tr>
+                              <tr><td >Description</td><td style="white-space: pre-line;" ><%= @interview.description %></td></tr>
                               <tr><td>Instruction</td><td style="white-space: pre-line;"><%= @interview.instruction %></td></tr>
                               <tr><td>Message</td><td style="white-space: pre-line;"><%= @interview.completed_message %></td></tr>
                               <tr><td>Token</td><td><%= @interview.interview_token %></td></tr>
@@ -82,25 +123,27 @@
                             </tbody>
                           </table>
                         </div>
-                    </div> 
+                    <!-- </div>  -->
+  </div>
+  
+</div>
 
-                  <div class="content">
-                     <h5> Question(s) </h5>
-                      <div class="typo-line">
-                        <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
-                          <div class="content table-responsive table-full-width">
-                                <table class="table table-striped">
-                                    <tbody id="question-holder">
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                      </div>
-                  </div>                           
+
+   
+
+                 
+
+
+
+                                           
               </div>
            </div>
 
         </div>
+
+
+        
+
 
       </div>
     </div>
@@ -189,7 +232,106 @@
 
 </div>
 
-<script>
+<!-- transfer ownership -->
+<div class="modal fade" id="reminder-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" >  Send Reminder by: </h5>
+          </div>
+              <div class="modal-body">
+                <select id = "remoption" class='btn box-shape' name ="new_owner" >
+              <option value='1'> SMS </option>
+              <option value='2'> EMAIL </option>
+              <option value='3'> SMS&EMAIL</option>
+                </select>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn box-shape" data-dismiss="modal"> Cancel </button>
+            <button id="reminder-continue" type="submit"  class="btn box-shape"> Send </button>
+          </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script >
+
+
+
+
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+
+
+
+
+ $("#step10").click(function(){
+  $("#reminder-modal").modal();
+ });
+
+ 
+    var mev =  $("#reminder-modal").find(".modal-footer");
+    mev.find("button#reminder-continue").click(function(event){
+    $("#reminder-modal").modal('hide');
+    var med = $("#reminder-modal").find(".modal-body");
+    var type = med.find("option:selected");
+    var typeValue = type.get(0).value;
+    if (typeValue == "1"){
+      var type = "Are you sure to SEND REMINDERS? SMS messages will be sent to Candidates who have not completed  the interview @ 4 naira/sms";
+    }
+    else if(typeValue == "2")
+    {
+      var type = "Are you sure to SEND REMINDERS ? Email Will be sent to the Candidates who have  not completed the interview";
+    }
+    else{
+      var type = "Are you sure to SEND REMINDERS? SMS and Email messages will be sent to Candidates who have not completed  the interview @ 4 naira/SMS";
+    }
+    if (confirm(type) == true){
+    var id_input = $("#interview_id");
+    var id = id_input.attr("value");
+    var url;
+    if (typeValue == "1"){
+      url = "/companies/<%= @company.slug %>/interviews/"+id+"/sms_reminder";
+    } else if (typeValue == "2")
+    url = "/companies/<%= @company.slug %>/interviews/"+id+"/reminder";
+    else {
+      url = "/companies/<%= @company.slug %>/interviews/"+id+"/double_reminder";
+    }
+     $.ajax({
+       type: 'GET',
+       url: url
+     });
+
+  }
+
+
+  else{
+    event.preventDefault();
+    }
+
+    });
+
+ $("#step10").click(function(){
+  ("#reminder-modal").modal();
+ });
+
+ ("#reminder-continue").click(function(){
+ ("#reminder-modal").modal('hide');
+
+ // the logic of sending the reminder
+
+
+ });
+
+
 
   $("#notice").fadeOut(9000);
 

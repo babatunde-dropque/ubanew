@@ -4,7 +4,7 @@
 
 <!-- TODO Add Sidebar Panel -->
     <%= render partial: "sidebar" %>
-    <div class="main-panel">
+    <div class="main-panel ">
 <!-- TODO Add Navbar Panel -->
     <%= render partial: "users/navbar" %>
         <div class="content card-start ">
@@ -20,35 +20,42 @@
 
                   <% @all_interview.each do |interview| %>
                   <% unfinish_submission = interview.submissions.where("current_no < ?", 500) %>
-                  <% submissions_total = interview.submissions %>
                   <% submissions = interview.submissions.where(current_no: 500) %>
 
                       <div class=" col-md-4">
                           <div class="img-responsive card box-shape">
-                            <%= link_to company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) do %>
+                            
                               <div class="content">
-
-                                      <p><%= truncate( interview.title, :length => 35) %> </p>
+                                    <div class="row">
+                                      <div class="col-xs-8">
+                                        <div class="stats">
+                                         Interview token: <%= interview.interview_token %>
+                                        </div>    
+                                      </div>   
+                                      <div class="col-xs-4">                                        
+                                        <a href="<%= company_interview_path(id: interview.slug, company_id: @company.id) %>" rel="tooltip"  class="btn btn-info btn-simple " data-original-title="View Interview">
+                                            <i class="ti-image"></i>
+                                        </a>  | 
+                                        <a href="<%= edit_company_interview_path(id: interview.slug, company_id: @company.id) %>" rel="tooltip" class="btn btn-success btn-simple" data-original-title="Edit Interview">
+                                            <i class="ti-pencil-alt"></i>
+                                        </a>
+                                      </div>
+                                    </div>
+                                        <hr>
+                                    
+                                <a  href= "<%= company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) %>" >
                                       <div class="text-center numbers-1">
+                                         <p><%= truncate( interview.title, :length => 35) %> </p>
                                           <%= submissions.length %>
                                         <br>
                                       </div>
                                   <div class="chart-legend">
                                        <br> <i class="fa fa-circle text-danger"></i> Unfinished: <%= unfinish_submission.length %>
-                                       <br> <i class="fa fa-circle text-danger"></i> Started: <%= submissions_total.length - (unfinish_submission.length + submissions.length) %>
-                                       <br><i class="fa fa-circle text-warning"></i> Total : <%= submissions_total.length %>
+                                       
                                        <br><i class="fa fa-circle text-warning"></i> No of question : <%= interview.questions.length %>
                                     </div>
-                                  <div class="footer">
-                                      <hr>
-                                      <div class="stats">
-                                          <!-- <i class="ti-reload"> -->
-                                          </i> Interview token: <%= interview.interview_token %>
-                                      </div>
-                                  </div>
-                              </div>
-                                
-                            <% end %>
+                                </a>
+                              </div>                  
                           </div>
                       </div>
   
@@ -63,9 +70,3 @@
 </div>
 
 
-<script>
-  
-
-
-
-</script>

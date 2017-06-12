@@ -1,21 +1,18 @@
 <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
                     <% if @company.nil? %>
                        <%= image_tag('dqlg.png', style:"height: 65px;" )%>
                     <% end %>
-
                 </div>
                 <div class="collapse navbar-collapse">
                   <% if !@interview.nil? %>
                     <a class="navbar-brand" href="#"> <%= truncate( @interview.title, :length => 50) %> </a>
                   <% end %>
+
+                  
+                    <button id="minimizeSidebar" class="btn btn-fill btn-icon"><i class="ti-more-alt"></i></button>
+                 
                     <ul class="nav navbar-nav navbar-right">
 
                              <li class="dropdown">
@@ -78,14 +75,18 @@
                                 <li>
                                    <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Settings <% end %>
                                 </li>
-                                <li>
+                                <!-- <li>
                                    <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ]) , target: "_blank" do %> Edit Interview page <% end %> 
-                                </li>
-                                <li><a href="https://<%= @company.subdomain %>.dropque.com"   target= "_blank"> Interview Page </a>
-                                </li>
+                                </li> -->
+                                <!-- <li><a href="https://<%= @company.subdomain %>.dropque.com"   target= "_blank"> Interview Page </a>
+                                </li> -->
                                 <li>
                                    <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %> 
                                 </li> 
+                                 <li>
+                                   <%= link_to company_preview_path(params[:company_id ] || params[:id ] ) do %> Preview page <% end %> 
+                                </li> 
+                               
                             </ul>
                         </li>
                         <% end %>
