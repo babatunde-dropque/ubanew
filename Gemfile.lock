@@ -302,6 +302,7 @@ GEM
     protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
     public_suffix (2.0.5)
+    puma (3.9.1)
     rack (1.6.8)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
@@ -449,6 +450,7 @@ DEPENDENCIES
   omniauth-twitter
   pg
   protected_attributes
+  puma
   rails (= 4.2.4)
   rails_12factor
   rails_admin
@@ -468,4 +470,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
