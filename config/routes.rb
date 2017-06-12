@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+ 
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   post '/rate' => 'rater#create', :as => 'rate'
   # rails engine for comment
@@ -147,7 +149,8 @@ Rails.application.routes.draw do
   end
 
 
-
+  get 'users/auth/linkedin/callback', to: 'oauths#callback', as: 'oauth_callback'
+  get 'users/auth/failure', to: 'oauths#failure', as: 'oauth_failure'
   # checking if the subdomain is available, if yes to to route
   # if not route back to rool url
   get '/' => 'applicants#index', :constraints => CustomDomainConstraint
@@ -158,16 +161,15 @@ Rails.application.routes.draw do
      get 'applicants/:interview_token/' => 'applicants#index'
 
   end
-  
- 
+
   # You can have the root of your site routed with "root"
     root 'landings#index'
- 
 
+  #get 'users/auth/linkedin/callback' => 'users#createt'
 
-# If you have the need for more deep customization, 
-# for instance to also allow "/sign_in" besides "/users/sign_in", 
-# all you need to do is to create your routes normally 
+# If you have the need for more deep customization,
+# for instance to also allow "/sign_in" besides "/users/sign_in",
+# all you need to do is to create your routes normally
 # and wrap them in a devise_scope block in the router:
 # This way, you tell Devise to use the scope :user when "/sign_in" is accessed. Notice devise_scope is also aliased as as in your router.
 

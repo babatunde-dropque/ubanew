@@ -13,6 +13,10 @@ class UsersController < ApplicationController
         @notification = Notification.where(user_id: @user.id, read: 0)
     end
 
+    def  createt
+        raise request.env["rack.auth"]
+    end
+
 
    def update_notification
 	     @notification = Notification.find(params[:notification_id])
