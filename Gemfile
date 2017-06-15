@@ -15,7 +15,7 @@ gem 'roadie'
 
 #needed for third party authentication
  gem 'omniauth'
- gem 'omniauth-linkedin-oauth2'
+ gem 'omniauth-linkedin'
 # gem 'omniauth-twitter'
  gem 'omniauth-facebook'
 # gem 'omniauth-linkedin'

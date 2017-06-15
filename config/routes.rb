@@ -150,7 +150,8 @@ Rails.application.routes.draw do
   end
 
 
-  get 'users/auth/linkedin/callback', to: 'oauths#callback', as: 'oauth_callback'
+  get 'users/auth/linkedin/callback', to: 'oauths#callback_linkedin', as: 'oauth_callback_linked'
+  get 'users/auth/facebook/callback', to: 'oauths#callback'
   get 'users/auth/failure', to: 'oauths#failure', as: 'oauth_failure'
   # checking if the subdomain is available, if yes to to route
   # if not route back to rool url
