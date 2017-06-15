@@ -16,11 +16,11 @@
                                       </div>
 
                                             <div class="sharing-area text-center">
-                                                <a href="#pablo" class="btn btn-raised btn-facebook">
+                                                <a href="/users/auth/facebook" class="btn btn-raised btn-facebook">
                                                   <i class="fa fa-facebook-square" aria-hidden="true"></i>
                                                     Facebook
                                                 </a>
-                                                <a href="#pablo" class="btn btn-raised btn-linkedin" aria-hidden="true">
+                                                <a href="/users/auth/linkedin" class="btn btn-raised btn-linkedin" aria-hidden="true">
                                                   <i class="fa fa-linkedin"></i>LinkedIn
                                                 </a>
                                                <!--  <a href="#" class="btn btn-raised btn-github">
@@ -31,8 +31,7 @@
                                       <div class="content">
                                         <div class="hr-sect">Or</div>
                                         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                                        
-                                        
+
                                        <% if !resource.errors.empty? %>
                                           <div class="flasher row"><div class="alert fade in alert-danger "><button type="button" class="close" data-dismiss="alert">×</button><%= devise_error_messages! %></div></div>
                                        <% end %>

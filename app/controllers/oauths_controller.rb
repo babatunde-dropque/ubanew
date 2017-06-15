@@ -10,7 +10,7 @@ class OauthsController < ApplicationController
           redirect_to landing_path(current_user)
     else
       # Log user in or sign up
-      
+
       auth_user = Identity.find_by(provider: auth_hash["provider"], uid: auth_hash["uid"])
       if auth_user
         # Create the session
@@ -30,7 +30,17 @@ class OauthsController < ApplicationController
   end
 
   def callback_linkedin
+
     auth_hash = request.env['omniauth.auth']
+     puts "*************************************"
+     puts "*************************************"
+     puts auth_hash['info']['name']
+     puts auth_hash['info']['email']
+     puts auth_hash['info']['image']
+     puts auth_hash['info']['headline']
+     puts auth_hash['info']['industry']
+     puts "*************************************"
+     puts "*************************************"
     if session[:user_id]
         redirect_to landing_path(current_user)
     else
@@ -44,11 +54,10 @@ class OauthsController < ApplicationController
         user = User.find_or_create_by(email: auth_hash['info']['email'])
         user.name = auth_hash['info']['name']
         user.a_dp = auth_hash['info']['image']
-        user.telephone = auth_hash['info']['phone']  
-        user.telephone = auth_hash['info']['location'] 
-        user.a_experience = auth_hash['info']['headline']  
-        user.a_qualification = auth_hash['info']['industry']  
-        
+        user.telephone = auth_hash['info']['phone']
+        user.country = auth_hash['info']['location']
+        user.a_experience = auth_hash['info']['headline']
+        user.a_qualification = auth_hash['info']['industry']
         user.password = "dropque2016app"
         user.save!
         created_auth_user = Identity.create(provider: auth_hash["provider"],uid: auth_hash["uid"], user_id: user.id)
@@ -75,7 +84,7 @@ class OauthsController < ApplicationController
     auth
   end
 
- 
+
   def destroy
     session[:user_id] = nil
     redirect_to root_path
@@ -86,7 +95,7 @@ class OauthsController < ApplicationController
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  
+
 
 
   def failure
