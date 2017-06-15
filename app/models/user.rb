@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+    has_many :indentities
 	has_many :notifications
 	has_many :joint_user_companies
 	has_many :companies, :through => :joint_user_companies

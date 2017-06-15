@@ -48,8 +48,7 @@ layout 'signin'
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:sign_up) << :telephone
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :telephone])
     
     if Rails.env.production?
       notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'signup'
@@ -59,20 +58,19 @@ layout 'signin'
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.for(:account_update) << :name
-    devise_parameter_sanitizer.for(:account_update) << :telephone
-    devise_parameter_sanitizer.for(:account_update) << :a_qualification
-    devise_parameter_sanitizer.for(:account_update) << :a_cv
-    devise_parameter_sanitizer.for(:account_update) << :a_experience
-    devise_parameter_sanitizer.for(:account_update) << :a_gender
-    devise_parameter_sanitizer.for(:account_update) << :a_dp
-    devise_parameter_sanitizer.for(:account_update) << :a_city
-    devise_parameter_sanitizer.for(:account_update) << :a_address
-    devise_parameter_sanitizer.for(:account_update) << :a_country
+    devise_parameter_sanitizer.permit(:account_update, keys: [
+      :name,
+      :telephone,
+      :a_qualification,
+      :a_cv,
+      :a_experience,
+      :a_gender,
+      :a_dp,
+      :a_city,
+      :a_address,
+      :a_country
+    ])
   end
- 
-
-
 
 
   # The path used after sign up.

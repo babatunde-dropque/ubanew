@@ -5,7 +5,22 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should also create an action method in this controller like this:
   # def twitter
   # end
+  #def linkedin
+    #raise request.env["omniauth.auth"]
+    # @user = User.find_for_linkedin_oauth(request.env["omniauth.auth"])
+    #   if @user.persisted?
+    #     redirect_to root_path, :event => :authentication
+    #     # sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
+    #     #  set_flash_message(:notice, :success, :kind => "LinkedIn") if is_navigational_format?
+    #     else
+    #       session["devise.linkedin_data"] = request.env["omniauth.auth"]
+    #       redirect_to root_path
+    #     end
+  #end
 
+
+
+   #raise request.env["omniauth.auth"]
   # More info at:
   # https://github.com/plataformatec/devise#omniauth
 

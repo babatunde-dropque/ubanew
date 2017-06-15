@@ -75,16 +75,16 @@ Devise.setup do |config|
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
   # config.paranoid = true
-    config.omniauth :facebook, "1018591381617959", "cfebc2964c7cb6e9ba26c53b5f91b204"
-    config.omniauth :twitter, "GODTPxHbTwP6gx3fQgoXKqiFa", "I80yAT36j37ols7zvPYYU3XqHweOD87e7iOJiCt7v4bXOUZcPr"
-    config.omniauth :linkedin, "775ut1vnw7pqos", "zAPzXUu3QJrCFW3w"
+    #config.omniauth :facebook, "1018591381617959", "cfebc2964c7cb6e9ba26c53b5f91b204"
+    #config.omniauth :twitter, "GODTPxHbTwP6gx3fQgoXKqiFa", "I80yAT36j37ols7zvPYYU3XqHweOD87e7iOJiCt7v4bXOUZcPr"
+    #config.omniauth :linkedin, "77pjz5gg2tbjen", "ulyR2uhyZvvncTrK", provider_ignores_state: true
 
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth]
+    config.skip_session_storage = [:http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX

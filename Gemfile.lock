@@ -294,14 +294,12 @@ GEM
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-    omniauth-twitter (1.4.0)
-      omniauth-oauth (~> 1.1)
-      rack
     orm_adapter (0.5.0)
     pg (0.20.0)
     protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
     public_suffix (2.0.5)
+    puma (3.9.1)
     rack (1.6.8)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
@@ -444,11 +442,12 @@ DEPENDENCIES
   jquery-ui-rails
   mini_magick (~> 4.3)
   oj (~> 2.12.14)
+  omniauth
   omniauth-facebook
   omniauth-linkedin
-  omniauth-twitter
   pg
   protected_attributes
+  puma
   rails (= 4.2.4)
   rails_12factor
   rails_admin
@@ -468,4 +467,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
