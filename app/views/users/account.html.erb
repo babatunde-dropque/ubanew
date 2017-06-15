@@ -1,102 +1,111 @@
+<style>
+#tabs .ui-tabs-nav { 
+    padding: 0em; 
+    background: transparent; 
+    border-width: 0px; 
+} 
+#tabs .ui-tabs-nav li { 
+    position: static; 
+    margin: 0px; 
+    border-bottom: 1px solid #5e337b !important; 
+    -moz-border-radius: 0px; 
+    -webkit-border-radius: 0px; 
+    border-radius: 0px; 
+} 
+#tabs .ui-tabs-nav li:first-child { 
+    -moz-border-radius: 6px 0px 0px 6px; 
+    -webkit-border-radius: 6px 0px 0px 6px; 
+    border-radius: 6px 0px 0px 6px; 
+} 
+#tabs .ui-tabs-nav li:last-child { 
+    -moz-border-radius: 0px 6px 6px 0px; 
+    -webkit-border-radius: 0px 6px 6px 0px; 
+    border-radius: 0px 6px 6px 0px; 
+} 
+#tabs .ui-tabs-nav li.ui-tabs-selected { 
+    padding-bottom: 0px; 
+    border-bottom: 1px solid #d4ccb0 !important; 
+}
+
+ .btn {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+</style>
 
 <div class="wrapper">
     <div class="main-panel expand">
        <!-- TODO Add Footer Partial -->
         <%= render partial: "navbar" %>
+         
+
         <div class="content">
             <div class="container-fluid">
-
-            <div class="col-lg-6 col-md-12">
-                          <div class="card">
-                              
-                              <div class="card-content">
-                                  <div class="nav-tabs-navigation">
-                                <div class="nav-tabs-wrapper">
-                                  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                                      <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-                                      <li><a href="#profile" data-toggle="tab">Profile</a></li>
-                                      <li><a href="#messages" data-toggle="tab">Messages</a></li>
-                                  </ul>
-                                </div>
-                            </div>
-                            <div id="my-tab-content" class="tab-content text-center">
-                                <div class="tab-pane active" id="home">
-                                   <div class="card card-user">
-
-                         <div class="image">
-                            <%= image_tag('background.jpg') %>
-                        </div>
-                        <div class="content">
-                            <div class="author">
-                              
-
-                            <% if @user.a_dp.file.nil? %>
-                                <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
-                              
-                            <% else %>
-                                <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />
-                                                              
-                            <% end %>
-                       
-                               
-                              <h4 class="title"><%= @user.name %><br>
-                                 <a href="#"><small><%= @user.email %></small></a>
-                              </h4>
-                            </div>
-                            <p class="description text-center">
-                                <% if @user.status  == 0 %>
-                                  Status: Applicant
-                                <% elsif @user.status  == 1 %>
-                                  Status: Interviewer
-                                <% else %>
-
-                                <% end %>
-                            </p>
-                        </div>
-                        <hr>
-                        
-                    </div>
-                                </div>
-                                <div class="tab-pane" id="profile">
-                                     <div class="text-center">
                 <div class="row">
-                    <div class="col-md-6">
-                       <%= link_to user_timeline_path(current_user) do %>
-                          <h5><%= @user.submissions.length %><br><small>Application(s)</small></h5>
-                       <% end %> 
-                    </div>
-                    <div class="col-md-6">
-                      <%= link_to user_dashboard_path(current_user) do %>
-                          <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
-                       <% end %> 
-                    </div>
-
-                </div>
-            </div>
-                                </div>
-                                <div class="tab-pane" id="messages">
-                                    <p>Here are your messages.</p>
-                                </div>
-                            </div>
-                              </div>
-                          </div>
-                      </div>
-
-
-              <div class="row">
-
-
-                <div class='col-md-8 col-md-offset-2'>
-                    
-                        <div class="card box-shape">
-                            <div class="header">
-                                <h4 class="title"> Account Details </h4>
+                    <div class="col-lg-4 col-md-5">
+                        <div class="card card-user">
+                            <div class="image">
+                                <%= image_tag('background.jpg') %>
                             </div>
                             <div class="content">
-                             
-                                <form id="form" method="post">
+                                <div class="author">
+                                 <% if @user.a_dp.file.nil? %>
+                                    <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
+                                  <% else %>
+                                    <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />                     
+                                  <% end %>
+                                  <h3 class="title"><%= @user.name %><br></h3>
+                                    <h4><a href="#"><%= @user.email %></a><br>
+                                    <%= @user.telephone %>
+                                  </h4>
+                                </div><br>
+                                <hr>
+                                <h4 class="text-center">Summary</h4>
+                                <p class="description text-center">
+                                    "I like the way you work it
+                                    No diggity
+                                    I wanna bag it up"
+                                    Oh so, your weak rhymeYou doubt I'll bother, reading into itI'll probably won't, left to my own devicesBut that's the difference in our opinions.
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <div class="row">
+                                    <div class="col-md-3 col-md-offset-1">
+                                        <div class="icon-big icon-info text-center">
+                                            <i class="ti-twitter-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="icon-big icon-linkedin text-center">
+                                            <i class="ti-linkedin"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="icon-big icon-github text-center">
+                                            <i class="ti-github"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div id="tabs" class="col-lg-8 col-md-7">
+                            <div class="header">
+                                <ul>
+                                  <li><a href="#tabs-1">Personal info</a></li>
+                                  <li><a href="#tabs-2">Education</a></li>
+                                  <li><a href="#tabs-3">Work Experience</a></li>
+                                   <li><a href="#tabs-4">Skills/Certifications</a></li>
+                                </ul>
+                            
+                            </div>
+                            <div id="tabs-1" class="content">
+                                <form  id="form" method="post">
                                   <input type="hidden" name="update" value="update">
-                                  <div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -113,6 +122,47 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" class="form-control border-input" placeholder="Home Address" value="Melbourne, Australia">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Postal Code</label>
+                                                <input type="number" class="form-control border-input" placeholder="ZIP Code">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>About Me</label>
+                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">Oh so, your weak rhyme
+You doubt I'll bother, reading into it
+I'll probably won't, left to my own devices
+But that's the difference in our opinions.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -122,6 +172,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                   <a href="#demo" data-toggle="collapse" style="color: #68B3C8">Click here to change password</a>
+
+                                <div id="demo" class="collapse">
 
                                      <hr>
 
@@ -141,22 +194,22 @@
                                     </div>
 
                                    <!-- add csrf token -->
-                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
 
-                                    <div class="text-center">
-                                        <button id="update"  class="btn btn-info btn-fill btn-wd">  Update </button>
-                                    </div>                               
-                                  </form>
-                                
                                     
-                               
-                            </div>
-                        </div>                       
-                    </div>           
-              </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                </form>
+                        </div>
+                              <div class="text-center">
+                                  <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                              </div>
+                    </div>
+
+
+                </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -188,7 +241,9 @@ $("#update").click(function(event){
  
 });
 
-
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
 
 
 
