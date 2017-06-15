@@ -170,6 +170,10 @@ strong {
   color: #EB5E28;
 }
 
+.icon-linkedin {
+  color: #007bb6;
+}
+
 .chart-legend .text-primary, .chart-legend .text-primary:hover {
   color: #7A9E9F;
 }
@@ -1858,8 +1862,8 @@ textarea.form-control {
   padding-left: 65px;
 }
 .card .icon-big {
-  font-size: 3em;
-  min-height: 64px;
+  font-size: 2em;
+  min-height: 45px;
 }
 .card .numbers {
   font-size: 2em;
@@ -1897,7 +1901,7 @@ textarea.form-control {
   color: #403D39;
 }
 .card-user .author .title small {
-  color: #ccc5b9;
+  color: #7A9E9F;
 }
 .card-user .avatar {
   width: 100px;

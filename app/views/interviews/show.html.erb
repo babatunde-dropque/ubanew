@@ -61,7 +61,7 @@
                                            </div>
                                         </div>
 
-                                      <button  type = "submit" class="btn btn-info btn-fill btn-wd">Send</button> 
+                                             <button  type = "submit" class="btn btn-info btn-fill btn-wd">Send</button> 
                                       </form>
                                 
                                    </div>
@@ -72,79 +72,61 @@
                 </div>
 
 
+                      
+        <div class="row">
+         <div class="col-lg-12 col-md-12">
+            <div class="card box-shape ">
+                            
+                <div class="header">
                 
-
-      <div class="row">
-          <div class="col-lg-12 col-md-12">
-              <div class="card box-shape ">
-                      
-                          <!-- <div class="header"> -->
-                          <!-- 
-                            <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>
-                           -->
-                          <!-- </div> -->
-                      
+                  <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>
+                </div>
+                            
 
 
-                      <div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">Questions</a></li>
-    <li><a href="#tabs-2">Details</a></li>
-  </ul>
-  <div id="tabs-1">
-    <!-- <div class="content"> -->
-      <!--  <h5> Question(s) </h5> -->
-        <div class="typo-line">
-          <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
-            <div class="table-responsive table-full-width">
-                  <table class="table table-striped">
-                      <tbody id="question-holder">
-                          
-                      </tbody>
-                  </table>
-              </div>
+                  <div id="tabs">
+                      <ul>
+                        <li><a href="#tabs-1">Questions</a></li>
+                        <li><a href="#tabs-2">Details</a></li>
+                      </ul>
+                      <div id="tabs-1">
+                        <!-- <div class="content"> -->
+                          <!--  <h5> Question(s) </h5> -->
+                            <div class="typo-line">
+                              <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
+                                <div class="table-responsive table-full-width">
+                                      <table class="table table-striped">
+                                          <tbody id="question-holder">
+                                              
+                                          </tbody>
+                                      </table>
+                                  </div>
+                            </div>
+                        <!-- </div>   -->
+                      </div>
+                      <div id="tabs-2">
+                
+                          <!-- <div class="content"> -->
+                          <div class=" table-responsive table-full-width">
+                            <table class="table table-striped">
+                              <tbody>
+                                <tr><td >Description</td><td style="white-space: pre-line;" ><%= @interview.description %></td></tr>
+                                <tr><td>Instruction</td><td style="white-space: pre-line;"><%= @interview.instruction %></td></tr>
+                                <tr><td>Message</td><td style="white-space: pre-line;"><%= @interview.completed_message %></td></tr>
+                                <tr><td>Token</td><td><%= @interview.interview_token %></td></tr>
+                                <tr><td>Deadline</td><td><%= @interview.deadline %></td></tr>
+                                <tr><td>Access</td>
+                                  <td><%= (@interview.status == "1") ? "Private": "Public" %></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <!-- </div>  -->
+                      </div>
+                  </div>             
+            </div>
+          </div>
         </div>
-    <!-- </div>   -->
-  </div>
-  <div id="tabs-2">
-    
-                    <!-- <div class="content"> -->
-                        <div class=" table-responsive table-full-width">
-                          <table class="table table-striped">
-                            <tbody>
-                              <tr><td >Description</td><td style="white-space: pre-line;" ><%= @interview.description %></td></tr>
-                              <tr><td>Instruction</td><td style="white-space: pre-line;"><%= @interview.instruction %></td></tr>
-                              <tr><td>Message</td><td style="white-space: pre-line;"><%= @interview.completed_message %></td></tr>
-                              <tr><td>Token</td><td><%= @interview.interview_token %></td></tr>
-                              <tr><td>Deadline</td><td><%= @interview.deadline %></td></tr>
-                              <tr><td>Access</td>
-                                <td><%= (@interview.status == "1") ? "Private": "Public" %></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                    <!-- </div>  -->
-  </div>
-  
-</div>
-
-
-   
-
-                 
-
-
-
-                                           
-              </div>
-           </div>
-
-        </div>
-
-
-        
-
-
       </div>
     </div>
   </div>
