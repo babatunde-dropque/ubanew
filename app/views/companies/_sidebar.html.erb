@@ -24,13 +24,7 @@
                         <p>Interviews</p>
                     <% end %>
                 </li>
-               <!--  <li id="step3" class="<%= (params[:c] == "2") ? "active": "" %>">
-                    <%= link_to company_interviews_path(params[:company_id] || params[:id], c: 2) do %>
-                        <i class="ti-user"></i>
-                        <p>Interviews</p>
-                    <% end %>
-                </li> -->
-
+              
 
                 <% if !@interview.nil? && @new_interview.nil? %>
                 <li id="step4" class="<%= (params[:c] == "3") ? "active": "" %>">
@@ -78,8 +72,8 @@
                         <% end %>
                  </li>
 
-                  <li id="step9" class="<%= (params[:c] == "6") ? "active": "" %> ">
-                    <%= link_to   company_interview_analytics_path(params[:company_id] || params[:id], c: 6, interview_id: @interview.slug) do %>
+                  <li id="step11" class="<%= (params[:c] == "8") ? "active": "" %> ">
+                    <%= link_to   company_interview_analytics_path(params[:company_id] || params[:id], c: 8, interview_id: @interview.slug) do %>
                         <i class="ti-bar-chart"></i>
                         <p>Analytics</p>
                     <% end %>

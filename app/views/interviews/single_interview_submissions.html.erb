@@ -15,6 +15,7 @@
         <div class="content card-start ">
           <div class="container-fluid">
 
+
             <!-- when empty -->
             <% if @submissions.length == 0  %>
              <%= render partial: "when_empty" %>
@@ -26,7 +27,6 @@
             <% @submissions.each do |submission| %>
                   <div class="col-md-3">
                         <div class="content">
-
                             <div class="card main text-center box-shape" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
                               <span class="stats"> <%= submission.user.name %></span><br>
                                 <div class="dq-center-video">
@@ -50,7 +50,6 @@
               <% end %>
             </div>
           </div>
-
           <div class="center" ><%= will_paginate @submissions %></div>
         </div>
 
@@ -147,9 +146,68 @@
   </div>
 <% end %>
 
+
+
+
+          <!-- start -->
+
+
+<form class="modal multi-step" id="demo-modal-3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title step-1" data-step="1">Step 1</h4>
+                <h4 class="modal-title step-2" data-step="2">Step 2</h4>
+                <h4 class="modal-title step-3" data-step="3">Final Step</h4>
+                <div class="m-progress">
+                    <div class="m-progress-bar-wrapper">
+                        <div class="m-progress-bar">
+                        </div>
+                    </div>
+                    <div class="m-progress-stats">
+                        <span class="m-progress-current">
+                        </span>
+                        /
+                        <span class="m-progress-total">
+                        </span>
+                    </div>
+                    <div class="m-progress-complete">
+                        Completed
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body step-1" data-step="1">
+                This is step 1.
+            </div>
+            <div class="modal-body step-2" data-step="2">
+                This is the second step.
+            </div>
+            <div class="modal-body step-3" data-step="3">
+                This is the final step.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent('#demo-modal-3', 2)">Continue</button>
+                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 1)">Back</button>
+                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 3)">Continue</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container">
+    <div class="row">
+        <h1>
+            Progress bar with back buttons
+        </h1>
+        <button class="btn btn-default" data-toggle="modal" data-target="#demo-modal-3">Show</button>
+    </div>
+</div>
+
+
+          <!-- end  -->
+
 <!-- Email Invitation Confirmation begins-->
 
-<!-- Email Invitation Confirmation ends-->
 
 <script>
 
@@ -302,9 +360,6 @@
     var parent =  $(this).parent();
     var submissionId = parent.attr('submission-id');
     var status = current.attr('status');
-    console.log(submissionId);
-    // var url =
-
 
     $.ajax({
           url: '<%= company_interview_change_status_path(company_id:@company.slug, interview_id:@interview.slug)%>',
@@ -331,9 +386,6 @@
                  });
 
                   }
-
-                 //alert('You want to SHORTLIST this candidate?');
-
              }
              else if (data == "pend"){
                 parent.children().removeClass('btn-fill');
@@ -377,6 +429,11 @@
   $("img.lazy").show().lazyload({
     effect : "fadeIn"
   });
+
+
+  sendEvent = function(sel, step) {
+    $(sel).trigger('next.m.' + step);
+  }
 
 </script>
 

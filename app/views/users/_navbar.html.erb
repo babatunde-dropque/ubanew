@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <% if @company.nil? %>
+                    <% if @company.nil? and @logo_off.nil? %>
                        <%= image_tag('dqlg.png', style:"height: 65px;" )%>
                     <% end %>
                 </div>
@@ -10,8 +10,6 @@
                     <a class="navbar-brand" href="#"> <%= truncate( @interview.title, :length => 50) %> </a>
                   <% end %>
 
-                  
-                    <button id="minimizeSidebar" class="btn btn-fill btn-icon"><i class="ti-more-alt"></i></button>
                  
                     <ul class="nav navbar-nav navbar-right">
 

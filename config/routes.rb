@@ -120,6 +120,7 @@ Rails.application.routes.draw do
     post "edit_preview", to: "companies#edit_preview"
     get "all_interview", to: "companies#all_interview"
     get "preview", to: "companies#preview"
+    get "card_preview", to: "companies#card_preview", as: 'card_preview'
 
 
     resources :groups do
