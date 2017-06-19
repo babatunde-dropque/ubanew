@@ -119,16 +119,14 @@
                           <div class="stats">
                             <i class="ti-timer"></i> Updated at <%=  submission.interview.updated_at.strftime("%d-%m-%Y") %>
                           </div>
-
-                        </div class="col-lg-4 col-md-4 col-sm-4">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
                           <% if !submission.interview.deadline.nil? %>
                             <div class="stats">
                               <i class="ti-timer"></i> Deadline: <%=  submission.interview.deadline.strftime("%d-%m-%Y") %>
                             </div>
                           <% end %>
-                        <div>
-                        </div>
-                    </div>
+                  </div>
 
 
                                 </div>
