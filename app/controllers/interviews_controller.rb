@@ -167,11 +167,9 @@ class InterviewsController < ApplicationController
 
 
   def change_status
-
       submission = Submission.find(params[:submission_id])
        # InterviewMailer.shortlist(@interview, 2).deliver
      if submission.update(status: params[:status].to_i) && submission.status == "shortlist"
-
         render plain: "shortlist"
       elsif submission.update(status: params[:status].to_i) && submission.status == "pend"
         render plain: "pend"
