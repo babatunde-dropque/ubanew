@@ -1,3 +1,7 @@
+
+
+
+
    <div class="wizard-header">
         <h3 class="wizard-title"><%= n %></h3>
         <p class="category">Kindly fill out the interview details as required </p>
@@ -22,8 +26,15 @@
     <i class="ti-pencil"></i>
   </div>
   Questions
-</a>
-</li>
+</a> </li>
+ <li>
+<a href="#preview" data-toggle="tab">
+  <div class="icon-circle">
+    <i class="ti-pencil"></i>
+  </div>
+ Preview
+</a> </li>
+
 
         </ul>
 </div>
@@ -79,9 +90,6 @@ Your goal ...''" style="color: #66615B;" ></span>
         <%= f.text_field :deadline, class: "form-control border-input datepicker" , id: "date" , placeholder:"yyyy-mm-dd" %>
       </div>
     </div>
-
-
-
 
    <br><br>
     <div class="row">
@@ -223,6 +231,19 @@ Your goal ...''" style="color: #66615B;" ></span>
                   </div>
               </div>
           </div>
+
+          <div class="tab-pane" id="preview">
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="text-center">
+                    <h5> Edit Interview Page </h5>
+                  </div>
+                 <object type="text/html" data="/companies/<%= @company.id %>/edit_preview"> </object>
+
+              </div>
+            </div>
+          </div>
+         
           
       </div>
       <div class="wizard-footer">

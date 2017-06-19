@@ -35,7 +35,10 @@
 </style>
 
 <div class="wrapper">
-    <div class="main-panel expand">
+<div class="sidebar" data-background-color="white" data-active-color="danger">
+    
+    <%= render partial: "applicant_sidebar" %>
+    <div class="main-panel">
        <!-- TODO Add Footer Partial -->
         <%= render partial: "navbar" %>
          
@@ -164,16 +167,20 @@ But that's the difference in our opinions.</textarea>
                                         </div>
                                     </div>
 
-                                    <div class="row">
+
+                                   <!-- add csrf token -->
+                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
+
+                                   <!--  <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label >Current Password</label>
                                                 <input id="current-password" type="password" class="form-control border-input"  placeholder="Current password" name="current_password" >
                                             </div>
                                         </div>
-                                    </div>
-                                   <a href="#demo" data-toggle="collapse" style="color: #68B3C8">Click here to change password</a>
-
+                                    </div> -->
+                                   <!-- <a href="#demo" data-toggle="collapse" style="color: #68B3C8">Click here to change password</a> -->
+<!-- 
                                 <div id="demo" class="collapse">
 
                                      <hr>
@@ -192,17 +199,12 @@ But that's the difference in our opinions.</textarea>
                                             </div>
                                         </div>
                                     </div>
-
-                                   <!-- add csrf token -->
-                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
-
-                                    
                                     <div class="clearfix"></div>
-                                </div>
+                                </div> -->
                                 </form>
                         </div>
                               <div class="text-center">
-                                  <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                                  <button id="update" type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
                               </div>
                     </div>
 
@@ -212,41 +214,24 @@ But that's the difference in our opinions.</textarea>
         </div>
     </div>
 </div>
+</div> 
+</div>
+
+
 
 <script>
-
-<% flash.each do |key, value| %>
-    showMessage('top','center', "<%= value %>", <%= (key == "success") ? 2: 4 %>);                   
-<% end %>
-
-$("#update").click(function(event){
-  var confirmed = true;
-  var currentPassword = $("#current-password").val();
-   if (!currentPassword){
-     showMessage('top','center', "Current Password cannot be empty", 4); 
-     event.preventDefault();
-  } else {
-    $.ajax({
-          url: '<%= check_password_path %>', 
-          type: 'GET',
-          data: {current_password: currentPassword },
-          success: function(data){
-              $("#form").submit();
-          },
-          error : function(jqXHR, textStatus, errorThrown) {
-               
-           }
-       });
-  }
- 
-});
 
   $( function() {
     $( "#tabs" ).tabs();
   } );
 
+  <% flash.each do |key, value| %>
+    showMessage('top','center', "<%= value %>", <%= (key == "success") ? 2: 4 %>);          
+  <% end %>
 
-
+$("#update").click(function(event){
+    $("#form").submit(); 
+});
 
 
 </script>

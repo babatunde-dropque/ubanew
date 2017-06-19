@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <% if @company.nil? %>
+                    <% if @company.nil? and @logo_off.nil? %>
                        <%= image_tag('dqlg.png', style:"height: 65px;" )%>
                     <% end %>
                 </div>
@@ -10,8 +10,6 @@
                     <a class="navbar-brand" href="#"> <%= truncate( @interview.title, :length => 50) %> </a>
                   <% end %>
 
-                  
-                    <button id="minimizeSidebar" class="btn btn-fill btn-icon"><i class="ti-more-alt"></i></button>
                  
                     <ul class="nav navbar-nav navbar-right">
 
@@ -92,16 +90,19 @@
                         <% end %>
 
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                 <p><%= @user.name %></p>
-                                 <i class="ti-user"></i>
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                               <li> <%= link_to "Account", user_account_path %> </li>
-                                <li> <%= link_to "Profile", user_profile_path %> </li>
-                               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-                            </ul>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+           <p><%= @user.name %></p>
+           <i class="ti-user"></i>
+          <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+      <% if @user.status == 0 %>
+          <li><%= link_to "Switch To Recruiter", user_dashboard_path %></li>
+      <% elsif @user.status == 1 %>
+          <li><%= link_to "Switch To Applicant", user_timeline_path %></li>
+      <% end %>
+         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+      </ul>
                         </li>
                     </ul>
 
