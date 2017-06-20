@@ -69,7 +69,6 @@
                                     "I like the way you work it
                                     No diggity
                                     I wanna bag it up"
-                                    Oh so, your weak rhymeYou doubt I'll bother, reading into itI'll probably won't, left to my own devicesBut that's the difference in our opinions.
                                 </p>
                             </div>
                             <hr>
@@ -92,6 +91,46 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="card">
+                         <!-- Beginning of card details -->
+
+
+                         <p class="description text-center">
+                            <% if @user.status  == 0 %>
+                            <br>
+                              Status: Applicant
+                            <% elsif @user.status  == 1 %>
+                            <br>
+                              Status: Interviewer
+                            <% end %>
+                            <br>
+                        </p>
+                      
+                        <div class="text-center">
+                            <div class="row">
+                             <% if @user.submissions.length > 1 %>
+                                <div class="col-md-12">
+                                   <%= link_to user_timeline_path(current_user) do %>
+                                      <h5><%= @user.submissions.length %><br><small>Application(s)</small></h5>
+                                   <% end %> 
+                                </div>
+                             <% end %>
+                             <% if @user.companies.length > 1 %>
+                                <div class="col-md-12">
+                                  <%= link_to user_dashboard_path(current_user) do %>
+                                      <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
+                                   <% end %> 
+                                </div>
+                             <% end %>
+
+                            </div>
+                        </div>
+                   
+                         <!-- end of card details here -->
+                        
+
                         </div>
                     </div>
                     
@@ -129,7 +168,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control border-input" placeholder="Home Address" value="Melbourne, Australia">
+                                                <input type="text" class="form-control border-input" placeholder="Address" value="<%= @user.address %>">
                                             </div>
                                         </div>
                                     </div>
@@ -138,13 +177,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
+                                                <input type="text" class="form-control border-input" placeholder="City" value="<%= @user.city %> ">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
+                                                <input type="text" class="form-control border-input" placeholder="Country" value="<%= @user.country %>">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -159,10 +198,9 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">Oh so, your weak rhyme
+                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="">Oh so, your weak rhyme
 You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.</textarea>
+I'll probably won't</textarea>
                                             </div>
                                         </div>
                                     </div>

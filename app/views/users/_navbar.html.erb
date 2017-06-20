@@ -96,10 +96,10 @@
           <b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
-      <% if @user.status == 0 %>
-          <li><%= link_to "Switch To Recruiter", user_dashboard_path %></li>
-      <% elsif @user.status == 1 %>
-          <li><%= link_to "Switch To Applicant", user_timeline_path %></li>
+     
+          <!-- <li><%= link_to "Switch To Recruiter", become_interviewer_path, method: :put  %></li> -->
+      <% if @user.status == 1 %>
+          <li><%= link_to "Acount", user_account_path %></li>
       <% end %>
          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
       </ul>

@@ -65,7 +65,7 @@
                  <li id="step10" class="<%= (params[:c] == "7") ? "active": "" %> ">
                     <%= link_to "#" do %>
                         <i class="ti-bell"></i>
-                        <p>Send  reminders</p>
+                        <p>Send reminders</p>
                         <% end %>
                  </li>
 
@@ -114,8 +114,9 @@
 <script >
 
  $("#step10").click(function(){
-  $("#reminder-modal").modal();
+    $("#reminder-modal").modal();
  });
+
     var mev =  $("#reminder-modal").find(".modal-footer");
     mev.find("button#reminder-continue").click(function(event){
     $("#reminder-modal").modal('hide');
@@ -124,12 +125,9 @@
     var typeValue = type.get(0).value;
     if (typeValue == "1"){
       var type = "Are you sure to SEND REMINDERS? SMS messages will be sent to Candidates who have not completed  the interview @ 4 naira/sms";
-    }
-    else if(typeValue == "2")
-    {
+    } else if(typeValue == "2"){
       var type = "Are you sure to SEND REMINDERS ? Email Will be sent to the Candidates who have  not completed the interview";
-    }
-    else{
+    }else{
       var type = "Are you sure to SEND REMINDERS? SMS and Email messages will be sent to Candidates who have not completed  the interview @ 4 naira/SMS";
     }
     if (confirm(type) == true){
@@ -158,12 +156,11 @@
     });
 
  $("#step10").click(function(){
-  ("#reminder-modal").modal();
+    $("#reminder-modal").modal();
  });
 
- ("#reminder-continue").click(function(){
- ("#reminder-modal").modal('hide');
-
+ $("#reminder-continue").click(function(){
+     $("#reminder-modal").modal('hide');
  // the logic of sending the reminder
 
  });
