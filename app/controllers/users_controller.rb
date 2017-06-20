@@ -37,28 +37,41 @@ class UsersController < ApplicationController
     render  :layout => 'wizard'
   end
 
+
   def become_interviewer
     @user.update_attributes(status:1)
-     redirect_to user_dashboard_path(current_user)
+    if @user.companies.length == 0
+      redirect_to new_company_path
+    else
+      redirect_to user_dashboard_path(current_user)
+    end
   end
+
+  def become_applicant
+    @user.update_attributes(status:0)
+      redirect_to user_timeline_path(current_user)
+  end
+
 
   def profile
      @user = current_user
   end
 
+
   def update_profile  
-       @user.update_attributes(user_params)
-       if !session[:return_to].nil? 
-         redirect_to session[:return_to]
-       else
-         redirect_to user_timeline_path
-       end   
+     @user.update_attributes(user_params)
+     if !session[:return_to].nil? 
+       redirect_to session[:return_to]
+     else
+       redirect_to user_timeline_path
+     end   
   end
 
 
   def user_demo_login
-      render :layout => 'signin'
+    render :layout => 'signin'
   end
+
 
   def trigger_login
       if User.exists?(email: "demo_user@dropque.com")
@@ -83,31 +96,40 @@ class UsersController < ApplicationController
   
 
   def application_timeline
+    @logo_off = false
+  end
 
+
+  def account
+    @logo_off = false
+    if params[:update].present?
+        @user.update_attributes(email: params[:email], name: params[:name], password: params[:password])
+        flash.now[:success] = "Account Updated Successfully"     
+     end
   end
   
 
-  def account
-  	if params[:update].present?
-	  	bcrypt_object = BCrypt::Password.new(@user.encrypted_password) 
-	    password_hash = ::BCrypt::Engine.hash_secret(params[:current_password], bcrypt_object.salt)
-        if password_hash == @user.encrypted_password
-          if !params[:password].blank? 
-            if (params[:password] == params[:confirm_password])
-              @user.update_attributes(email: params[:email], name: params[:name], password: params[:password])
-              flash.now[:success] = "Account Updated Successfully"
-            else 
-              flash.now[:danger] = "Password Didn't match"
-            end
-          else 
-            @user.update_attributes(email: params[:email], name: params[:name])
-             flash.now[:success] = "Account Updated Successfully"
-          end
-        else
-          flash.now[:danger] = "Current password not correct"
-        end 
-     end
-  end
+  # def account
+  # 	if params[:update].present?
+	 #  	bcrypt_object = BCrypt::Password.new(@user.encrypted_password) 
+	 #    password_hash = ::BCrypt::Engine.hash_secret(params[:current_password], bcrypt_object.salt)
+  #       if password_hash == @user.encrypted_password
+  #         if !params[:password].blank? 
+  #           if (params[:password] == params[:confirm_password])
+  #             @user.update_attributes(email: params[:email], name: params[:name], password: params[:password])
+  #             flash.now[:success] = "Account Updated Successfully"
+  #           else 
+  #             flash.now[:danger] = "Password Didn't match"
+  #           end
+  #         else 
+  #           @user.update_attributes(email: params[:email], name: params[:name])
+  #            flash.now[:success] = "Account Updated Successfully"
+  #         end
+  #       else
+  #         flash.now[:danger] = "Current password not correct"
+  #       end 
+  #    end
+  # end
 
   def check_password
   	 bcrypt_object = BCrypt::Password.new(@user.encrypted_password) 

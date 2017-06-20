@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "build_profile", to: "users#build_profile", as: 'build_profile', :format => false
   post "build_profile_update", to: "users#update_profile", as: 'update_profile', :format => false
   put "become_interviewer", to: "users#become_interviewer", as: 'become_interviewer', :format => false
+  put "become_applicant", to: "users#become_applicant", as: 'become_applicant', :format => false
   get "profile", to: "users#profile", as: 'user_profile', :format => false
   get "application_timeline", to: "users#application_timeline", as: 'user_timeline', :format => false
   get "dashboard/account", to: "users#account", as: 'user_account', :format => false
@@ -120,6 +121,7 @@ Rails.application.routes.draw do
     post "edit_preview", to: "companies#edit_preview"
     get "all_interview", to: "companies#all_interview"
     get "preview", to: "companies#preview"
+    get "card_preview", to: "companies#card_preview", as: 'card_preview'
 
 
     resources :groups do

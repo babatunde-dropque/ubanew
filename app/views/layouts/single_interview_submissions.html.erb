@@ -28,7 +28,6 @@
 <%= javascript_include_tag  'jquery.lazyload' %>
 
 
-
 </head>
 <body>
 
@@ -59,6 +58,13 @@ mixpanel.init("363747f612e5094db653b44f8ecad294");</script><!-- end Mixpanel -->
             a.appendChild(r);
         })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
     </script> 
+
+    <%= javascript_include_tag  'multi-step-modal' %>
+    <script>
+      sendEvent = function(sel, step) {
+        $(sel).trigger('next.m.' + step);
+      }
+    </script>
     
 </body>
 </html>

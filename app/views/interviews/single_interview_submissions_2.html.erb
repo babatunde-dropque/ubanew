@@ -61,7 +61,7 @@
 
   <!-- Modal -->
 <% @submissions.each do |submission| %>
-  <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" resized = "false" >
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -148,6 +148,66 @@
 
 
 
+
+          <!-- start -->
+
+
+<form class="modal multi-step" id="demo-modal-3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title step-1" data-step="1">Step 1</h4>
+                <h4 class="modal-title step-2" data-step="2">Step 2</h4>
+                <h4 class="modal-title step-3" data-step="3">Final Step</h4>
+                <div class="m-progress">
+                    <div class="m-progress-bar-wrapper">
+                        <div class="m-progress-bar">
+                        </div>
+                    </div>
+                    <div class="m-progress-stats">
+                        <span class="m-progress-current">
+                        </span>
+                        /
+                        <span class="m-progress-total">
+                        </span>
+                    </div>
+                    <div class="m-progress-complete">
+                        Completed
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body step-1" data-step="1">
+                This is step 1.
+            </div>
+            <div class="modal-body step-2" data-step="2">
+                This is the second step.
+            </div>
+            <div class="modal-body step-3" data-step="3">
+                This is the final step.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent('#demo-modal-3', 2)">Continue</button>
+                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 1)">Back</button>
+                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 3)">Continue</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container">
+    <div class="row">
+        
+            Progress bar with back buttons
+        <button class="btn btn-default" data-toggle="modal" data-target="#demo-modal-3">Show</button>
+    </div>
+</div>
+
+
+          <!-- end  -->
+
+<!-- Email Invitation Confirmation begins-->
+
+
 <script>
 
   var height ;
@@ -155,9 +215,44 @@
 
  $('.modal').on('shown.bs.modal', function (e) {
 
+
+   // $(idToTrigger).css('overflow-x', 'auto');
+   // $(idToTrigger).css('min-width', $(idToTrigger).width());
+
     var cardView = $(e.relatedTarget); // cardView that triggered the modal
     var idToTrigger = cardView.data('target');
-   
+    var resizeAttr =  $(idToTrigger).attr("resized");
+
+
+    if (resizeAttr == "false"){
+      var modalBody = $(idToTrigger).find('div.modal-body');
+      var modalMajorView = $(idToTrigger).find('div.major-view');
+      var modalWrap = $(idToTrigger).find('div.wrap');
+      var rateView = $(idToTrigger).find('div.rate');
+      var commentView = $(idToTrigger).find('div.full-fix');
+      var percent = 0.1 ;
+        while ( modalWrap.height()  > ( modalBody.height() * percent)){
+            percent = percent + 0.1 ;
+       }
+
+       $(idToTrigger).css('min-width', $(idToTrigger).width());
+       $(idToTrigger).css('max-width', $(idToTrigger).width());
+       $(idToTrigger).css('min-height', $(idToTrigger).height());
+       $(idToTrigger).css('max-height', $(idToTrigger).height());
+
+
+       modalWrap.css('height', modalBody.height() * percent );
+       modalMajorView.css('height', modalBody.height() - modalWrap.height());
+       modalMajorView.css('max-height', modalBody.height() - modalWrap.height());
+
+       height = modalMajorView.height() * 0.85 ;
+       width = height * 1.3333 ;
+
+       commentView.css('max-height', modalBody.height() - rateView.height());
+       $(idToTrigger).attr("resized", "true");
+    }
+
+
       (function () {
         var $frame = $(idToTrigger+"-sly");
         var $wrap  = $frame.parent();
@@ -196,6 +291,7 @@
            } else{
               replaceTextFile(submissionId, 0, questionType, questionId, contentId);
            }
+
            $frame.attr("triggered", false);
         }
      }());
@@ -214,6 +310,7 @@
            } else{
               replaceTextFile(submissionId, itemIndex, questionType, questionId, contentId);
            }
+
      });
 
 });
@@ -332,6 +429,10 @@
     effect : "fadeIn"
   });
 
+
+  sendEvent = function(sel, step) {
+    $(sel).trigger('next.m.' + step);
+  }
 
 </script>
 

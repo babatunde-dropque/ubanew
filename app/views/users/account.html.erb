@@ -35,7 +35,10 @@
 </style>
 
 <div class="wrapper">
-    <div class="main-panel expand">
+<div class="sidebar" data-background-color="white" data-active-color="danger">
+    
+    <%= render partial: "applicant_sidebar" %>
+    <div class="main-panel">
        <!-- TODO Add Footer Partial -->
         <%= render partial: "navbar" %>
          
@@ -66,7 +69,6 @@
                                     "I like the way you work it
                                     No diggity
                                     I wanna bag it up"
-                                    Oh so, your weak rhymeYou doubt I'll bother, reading into itI'll probably won't, left to my own devicesBut that's the difference in our opinions.
                                 </p>
                             </div>
                             <hr>
@@ -89,6 +91,46 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="card">
+                         <!-- Beginning of card details -->
+
+
+                         <p class="description text-center">
+                            <% if @user.status  == 0 %>
+                            <br>
+                              Status: Applicant
+                            <% elsif @user.status  == 1 %>
+                            <br>
+                              Status: Interviewer
+                            <% end %>
+                            <br>
+                        </p>
+                      
+                        <div class="text-center">
+                            <div class="row">
+                             <% if @user.submissions.length > 1 %>
+                                <div class="col-md-12">
+                                   <%= link_to user_timeline_path(current_user) do %>
+                                      <h5><%= @user.submissions.length %><br><small>Application(s)</small></h5>
+                                   <% end %> 
+                                </div>
+                             <% end %>
+                             <% if @user.companies.length > 1 %>
+                                <div class="col-md-12">
+                                  <%= link_to user_dashboard_path(current_user) do %>
+                                      <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
+                                   <% end %> 
+                                </div>
+                             <% end %>
+
+                            </div>
+                        </div>
+                   
+                         <!-- end of card details here -->
+                        
+
                         </div>
                     </div>
                     
@@ -126,7 +168,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control border-input" placeholder="Home Address" value="Melbourne, Australia">
+                                                <input type="text" class="form-control border-input" placeholder="Address" value="<%= @user.address %>">
                                             </div>
                                         </div>
                                     </div>
@@ -135,13 +177,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
+                                                <input type="text" class="form-control border-input" placeholder="City" value="<%= @user.city %> ">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
+                                                <input type="text" class="form-control border-input" placeholder="Country" value="<%= @user.country %>">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -156,24 +198,27 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">Oh so, your weak rhyme
+                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="">Oh so, your weak rhyme
 You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.</textarea>
+I'll probably won't</textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
+
+                                   <!-- add csrf token -->
+                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
+
+                                   <!--  <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label >Current Password</label>
                                                 <input id="current-password" type="password" class="form-control border-input"  placeholder="Current password" name="current_password" >
                                             </div>
                                         </div>
-                                    </div>
-                                   <a href="#demo" data-toggle="collapse" style="color: #68B3C8">Click here to change password</a>
-
+                                    </div> -->
+                                   <!-- <a href="#demo" data-toggle="collapse" style="color: #68B3C8">Click here to change password</a> -->
+<!-- 
                                 <div id="demo" class="collapse">
 
                                      <hr>
@@ -192,17 +237,12 @@ But that's the difference in our opinions.</textarea>
                                             </div>
                                         </div>
                                     </div>
-
-                                   <!-- add csrf token -->
-                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
-
-                                    
                                     <div class="clearfix"></div>
-                                </div>
+                                </div> -->
                                 </form>
                         </div>
                               <div class="text-center">
-                                  <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                                  <button id="update" type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
                               </div>
                     </div>
 
@@ -212,41 +252,24 @@ But that's the difference in our opinions.</textarea>
         </div>
     </div>
 </div>
+</div> 
+</div>
+
+
 
 <script>
-
-<% flash.each do |key, value| %>
-    showMessage('top','center', "<%= value %>", <%= (key == "success") ? 2: 4 %>);                   
-<% end %>
-
-$("#update").click(function(event){
-  var confirmed = true;
-  var currentPassword = $("#current-password").val();
-   if (!currentPassword){
-     showMessage('top','center', "Current Password cannot be empty", 4); 
-     event.preventDefault();
-  } else {
-    $.ajax({
-          url: '<%= check_password_path %>', 
-          type: 'GET',
-          data: {current_password: currentPassword },
-          success: function(data){
-              $("#form").submit();
-          },
-          error : function(jqXHR, textStatus, errorThrown) {
-               
-           }
-       });
-  }
- 
-});
 
   $( function() {
     $( "#tabs" ).tabs();
   } );
 
+  <% flash.each do |key, value| %>
+    showMessage('top','center', "<%= value %>", <%= (key == "success") ? 2: 4 %>);          
+  <% end %>
 
-
+$("#update").click(function(event){
+    $("#form").submit(); 
+});
 
 
 </script>

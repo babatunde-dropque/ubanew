@@ -10,8 +10,7 @@ class CompaniesController < ApplicationController
 	def show
         @user_status = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
         @sigin_in_count = current_user.sign_in_count.to_s
-        @all_interview = @company.interviews
-        # @interviews = @company.interviews.includes(:users).where(submissions: {status: nil}).paginate(:page => params[:page], :per_page => 5) 
+        @all_interview = @company.interviews 
 	end
 
 	def new
@@ -21,6 +20,10 @@ class CompaniesController < ApplicationController
 
 
     def preview
+        
+    end
+
+    def card_preview
         
     end
 
@@ -166,7 +169,7 @@ class CompaniesController < ApplicationController
             end 
             # end of slack notification
             current_user.update_attributes(status:params[:status])
-        	redirect_to  company_preview_path(company)
+        	redirect_to  company_path(company)
         else
 
         end
