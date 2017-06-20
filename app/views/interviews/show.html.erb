@@ -5,7 +5,7 @@
    background: none;
 }
 
-div.ui-widget-content {
+.ui-widget-content {
   border: none;
   background: none;
 }
@@ -40,7 +40,8 @@ div.ui-widget-content {
                                     
                                       <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulk Emails </button> 
 
-                                      <h5> Send Invitation</h5>
+                                      <h5> Send Invitation
+                                      <p style="color: #9A9A9A"><font size="3">(Enter emails of applicants to invite for interview)</font></p></h5>
                                     <div class="text-center">
                                       <div class="typo-line"> 
 
@@ -250,9 +251,16 @@ div.ui-widget-content {
 
   $( function() {
     $( "#tabs" ).tabs();
-  });
+  } );
 
 
+
+
+ $("#step10").click(function(){
+  $("#reminder-modal").modal();
+ });
+
+ 
     var mev =  $("#reminder-modal").find(".modal-footer");
     mev.find("button#reminder-continue").click(function(event){
     $("#reminder-modal").modal('hide');
@@ -261,44 +269,49 @@ div.ui-widget-content {
     var typeValue = type.get(0).value;
     if (typeValue == "1"){
       var type = "Are you sure to SEND REMINDERS? SMS messages will be sent to Candidates who have not completed  the interview @ 4 naira/sms";
-    } else if(typeValue == "2"){
+    }
+    else if(typeValue == "2")
+    {
       var type = "Are you sure to SEND REMINDERS ? Email Will be sent to the Candidates who have  not completed the interview";
-    } else{
+    }
+    else{
       var type = "Are you sure to SEND REMINDERS? SMS and Email messages will be sent to Candidates who have not completed  the interview @ 4 naira/SMS";
     }
-
     if (confirm(type) == true){
-        var id_input = $("#interview_id");
-        var id = id_input.attr("value");
-        var url;
-        if (typeValue == "1"){
-          url = "/companies/<%= @company.slug %>/interviews/"+id+"/sms_reminder";
-        } else if (typeValue == "2")
-          url = "/companies/<%= @company.slug %>/interviews/"+id+"/reminder";
-        else {
-          url = "/companies/<%= @company.slug %>/interviews/"+id+"/double_reminder";
-        }
-       $.ajax({
-         type: 'GET',
-         url: url
-       });
+    var id_input = $("#interview_id");
+    var id = id_input.attr("value");
+    var url;
+    if (typeValue == "1"){
+      url = "/companies/<%= @company.slug %>/interviews/"+id+"/sms_reminder";
+    } else if (typeValue == "2")
+    url = "/companies/<%= @company.slug %>/interviews/"+id+"/reminder";
+    else {
+      url = "/companies/<%= @company.slug %>/interviews/"+id+"/double_reminder";
     }
+     $.ajax({
+       type: 'GET',
+       url: url
+     });
+
+  }
 
 
   else{
+    event.preventDefault();
+    }
 
-     event.preventDefault();
-  }
-
-});
-
+    });
 
  $("#step10").click(function(){
   ("#reminder-modal").modal();
  });
 
- $("#reminder-continue").click(function(){
-    $("#reminder-modal").modal('hide');
+ ("#reminder-continue").click(function(){
+ ("#reminder-modal").modal('hide');
+
+ // the logic of sending the reminder
+
+
  });
 
 

@@ -55,6 +55,7 @@ class UsersController < ApplicationController
 
   def profile
      @user = current_user
+     render  :layout => 'wizard'
   end
 
 

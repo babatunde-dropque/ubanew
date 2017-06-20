@@ -14,32 +14,30 @@
 
         <div class="content">
             <div class="container-fluid">
-
             	<div class="row">
-                        <div class="header col-md-4 col-md-offset-2">
-                                <h4 class="title">Applications (<%= @user.submissions.length %>)</h4>
-                        </div>
-                        <% if @user.submissions.length > 0 %>
-                          <div class="col-md-4 col-md-offset-2">
-                              <%= link_to listing_path do %>
-                                  <button  type="button" class="btn btn-raised btn-twitter">Search for interivew</button>
-                              <% end %>
-                          </div>
-
-                         
-                        <% end %>
                         <!-- test for zero state -->
                         <% if @user.submissions.length > 0 %>
                        
 
                            <% @user.submissions.each do | submission | %>
                         <% if !submission.interview.nil? %>
-                         <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-5">
                         <div class="card box-shape">
                             
-                            <div class="content">
-                              <div class="row">
-                                <div class="col-md-7 col-sm-7">
+                    <div class="content">
+                      <div class="row">
+                        <div class="col-md-5 col-sm-5">
+                                <% if submission.interview.company.logo.file.nil? %>
+                                 <%= image_tag('placeholder-company.png', style:"height: 65px; width: 140px;") %>
+                                <% else %>
+                                  <img src="<%= submission.interview.company.logo.url %>" style="height: 65px; width: 140px;"/>
+                                <% end %>
+                                   <h5 class="title"><%= submission.interview.company.name %> </h5>
+                                   <a href="https://<%= submission.interview.company.subdomain %>.dropque.com"> <%= submission.interview.company.subdomain %>.dropque.com </a> <br>
+                                <br>
+                                 
+                        </div> 
+                        <div class="col-md-7 col-sm-7">
                                    <h4 class="title"><%= submission.interview.title %> </h4>
                                 <p class="category"><%= truncate(submission.interview.description , :length => 130) %></p>
                                                             
@@ -72,23 +70,9 @@
                                         <i class="fa fa-circle text-danger"></i> Reject
                                      <% end %>                                        
                               </div>
-
-
-                                </div>
-                                <div class="col-md-5 col-sm-5">
-                                   <h5 class="title"><%= submission.interview.company.name %> </h5>
-                                   <a href="https://<%= submission.interview.company.subdomain %>.dropque.com"> <%= submission.interview.company.subdomain %>.dropque.com </a> <br>
-
-                                    <% if submission.interview.company.logo.file.nil? %>
-                                 <%= image_tag('placeholder-company.png', style:"height: 40px; width: 60px;") %>
-                                <% else %>
-                                  <img src="<%= submission.interview.company.logo.url %>" style="height: 40px; width: 60px;"  />
-                                <% end %>
-                                <br>
-
-                                  
-
-                                  <a href="https://<%=  submission.interview.company.subdomain %>.dropque.com/applicants/<%= submission.interview.interview_token %>"><button class="btn btn-finish btn-fill btn-info btn-wd box-shape">
+                        </div>
+                        <div class="col-md-12 text-center">
+                           <a href="https://<%=  submission.interview.company.subdomain %>.dropque.com/applicants/<%= submission.interview.interview_token %>"><button class="btn btn-finish btn-fill btn-info btn-wd box-shape">
                                       <% if submission.current_no.nil? %> 
                                     Start
                                   <% elsif submission.current_no < 500 %>
@@ -97,14 +81,9 @@
                                      View
                                   <% end %></button>
                                   </a>
-
-
-                                </div>
-                              
-                                    
-                                        
-                                
-                              </div>
+                        </div>
+                       
+                      </div>
                                 <div class="footer">
                                    
                                     <hr>
@@ -112,18 +91,18 @@
                   <div class="row block-display">
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="stats">
-                              <i class="ti-timer"></i> Created at <%=  submission.interview.created_at.strftime("%d-%m-%Y") %>
+                              <i class="ti-timer"></i> Created:<br><%=  submission.interview.created_at.strftime("%d-%m-%Y") %>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                           <div class="stats">
-                            <i class="ti-timer"></i> Updated at <%=  submission.interview.updated_at.strftime("%d-%m-%Y") %>
+                            <i class="ti-timer"></i> Updated:<br><%=  submission.interview.updated_at.strftime("%d-%m-%Y") %>
                           </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                           <% if !submission.interview.deadline.nil? %>
                             <div class="stats">
-                              <i class="ti-timer"></i> Deadline: <%=  submission.interview.deadline.strftime("%d-%m-%Y") %>
+                              <i class="ti-timer"></i> Deadline:<br><%=  submission.interview.deadline.strftime("%d-%m-%Y") %>
                             </div>
                           <% end %>
                   </div>
