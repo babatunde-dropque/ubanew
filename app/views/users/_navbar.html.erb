@@ -15,7 +15,7 @@
 
 <% if !@company.nil? %>
             <li class="dropdown">
-              <% if @user.companies.length == 1 %>
+              <% if @user.companies.length == 0 %>
                 <a href="<%= new_company_path %>" style="border: 1px solid; border-radius: 24px;">
                      <p>New Organisation</p>
                      <i class="ti-plus"></i>
@@ -37,9 +37,20 @@
 
                       <% @user.companies.each do | company | %>
                        <li>
-                           <a href="<%= company_path(company) %>">
-                               <%= company.name %>
-                          </a>
+                         <!--  <div class="row"> -->
+                              <!-- <div class="col-md-6">
+                                <% if company.logo.file.nil? %>  
+                                      <%= image_tag('logo1.png', height:"55") %>
+                                    <% else %>
+                                      <img src="<%= user_company.company.logo.url %>" height="55"  />
+                                <% end %>
+                              </div> -->
+                             <!--  <div class="col-md-6"> -->
+                                <a href="<%= company_path(company) %>">
+                                   <%= company.name %>
+                                </a>
+                              <!-- </div> -->
+                       <!--  </div> -->
                       </li>
                       <% end %>
                     </ul>

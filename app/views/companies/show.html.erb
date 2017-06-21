@@ -49,11 +49,26 @@
                                           <%= submissions.length %>
                                         <br>
                                       </div>
+                                      <hr>
                                   <div class="chart-legend">
-                                       <br> <i class="fa fa-circle text-danger"></i> Unfinished: <%= unfinish_submission.length %>
-                                       
-                                       <br><i class="fa fa-circle text-warning"></i> No of question : <%= interview.questions.length %>
-                                    </div>
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                            <div class="icon-big icon-warning text-center">
+                                               <i class="ti-help"></i>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="icon-big icon-success text-center">
+                                               <i class="ti-check"></i>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="icon-big icon-danger text-center">
+                                               <i class="ti-close"></i>
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
                                 </a>
                               </div>                  
                           </div>
