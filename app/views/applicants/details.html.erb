@@ -10,19 +10,20 @@
    <div class="col-md-10" style="border: 1px solid #EEEEEE">
        <h5> Description </h5>
                 <hr>
-                 <div  style="white-space: pre-line; font-size: 1.0em;"> 
+                 <div  > 
                   <%= @interview.description %> 
                 </div>
             <hr>
        <h5>Instructions</h5>
           <hr>
             <div >
-              <p>  Be sure you have a working network connectivity, a working webcam either built-in or detachable, A working microphone and speakers or headphones (double check that they can play audio)  </p>
-               
-              <p> Close all other applications other than Dropque that use your webcam and microphone it may interfere with Dropque ability to leverage your webcam or microphone. Be aware of your lighting and background (Make sure the evironment is well lit and avoid sources of bright light directly behind you) </p>
-                <p>
-                 <%= @interview.instruction %> 
-                </p>
+                <%= @interview.instruction %>
+                <br>
+                Be sure you have a working network connectivity, a working webcam either built-in or detachable, A working microphone and speakers or headphones (double check that they can play audio)
+               <br>
+                Close all other applications other than Dropque that use your webcam and microphone it may interfere with Dropque ability to leverage your webcam or microphone. Be aware of your lighting and background (Make sure the evironment is well lit and avoid sources of bright light directly behind you) 
+                <br>
+                <br>
           </div>
     </div>
     <div class="col-md-2"  style="border: 1px solid #EEEEEE">
