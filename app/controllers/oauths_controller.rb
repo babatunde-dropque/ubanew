@@ -30,17 +30,15 @@ class OauthsController < ApplicationController
   end
 
   def callback_linkedin
+         auth_hash = request.env['omniauth.auth']
+    puts "**********************************************"
+    puts "**********************************************"
+    puts "**********************************************"
+    puts auth_hash
+    puts "**********************************************"
+    puts "**********************************************"
+    puts "**********************************************"
 
-    auth_hash = request.env['omniauth.auth']
-     puts "*************************************"
-     puts "*************************************"
-     puts auth_hash['info']['name']
-     puts auth_hash['info']['email']
-     puts auth_hash['info']['image']
-     puts auth_hash['info']['headline']
-     puts auth_hash['info']['industry']
-     puts "*************************************"
-     puts "*************************************"
     if session[:user_id]
         redirect_to landing_path(current_user)
     else
@@ -55,7 +53,7 @@ class OauthsController < ApplicationController
         user.name = auth_hash['info']['name']
         user.a_dp = auth_hash['info']['image']
         user.telephone = auth_hash['info']['phone']
-        user.country = auth_hash['info']['location']
+        #user.c = auth_hash['info']['location']
         user.a_experience = auth_hash['info']['headline']
         user.a_qualification = auth_hash['info']['industry']
         user.password = "dropque2016app"

@@ -22,7 +22,7 @@
                   <% unfinish_submission = interview.submissions.where("current_no < ?", 500) %>
                   <% submissions = interview.submissions.where(current_no: 500) %>
 
-                      <div class=" col-md-4">
+                      <div class="col-md-4">
                           <div class="img-responsive card box-shape">
                             
                               <div class="content">
@@ -37,7 +37,7 @@
                                             <i class="ti-image"></i>
                                         </a>  | 
                                         <a href="<%= edit_company_interview_path(id: interview.slug, company_id: @company.id) %>" rel="tooltip" class="btn btn-success btn-simple" data-original-title="Edit Interview">
-                                            <i class="ti-pencil-alt"></i>
+                                            <i class="ti-pencil"></i>
                                         </a>
                                       </div>
                                     </div>
@@ -49,11 +49,26 @@
                                           <%= submissions.length %>
                                         <br>
                                       </div>
+                                      <hr>
                                   <div class="chart-legend">
-                                       <br> <i class="fa fa-circle text-danger"></i> Unfinished: <%= unfinish_submission.length %>
-                                       
-                                       <br><i class="fa fa-circle text-warning"></i> No of question : <%= interview.questions.length %>
-                                    </div>
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                            <div class="icon-big icon-warning text-center">
+                                               <i class="ti-help"></i>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="icon-big icon-success text-center">
+                                               <i class="ti-check"></i>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="icon-big icon-danger text-center">
+                                               <i class="ti-close"></i>
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
                                 </a>
                               </div>                  
                           </div>
