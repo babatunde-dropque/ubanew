@@ -41,7 +41,6 @@
     <div class="main-panel">
        <!-- TODO Add Footer Partial -->
         <%= render partial: "navbar" %>
-         
 
         <div class="content">
             <div class="container-fluid">
@@ -241,6 +240,139 @@ I'll probably won't</textarea>
                                 </div> -->
                                 </form>
                         </div>
+
+                              <div id="tabs-2" class="content">
+
+
+                               <form  id="form" method="post">
+                                  <input type="hidden" name="update" value="update">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>School</label>
+                                                <input type="text" class="form-control border-input"  placeholder="School name(ex: University of Accra)" name="***" value="<%=  %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Degree</label>
+                                                <input type="email" class="form-control border-input" placeholder="(ex: Bachelor)" class="address" name="email" value="<%=  %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Field of Study</label>
+                                                <input type="text" class="form-control border-input" placeholder="Area of study(ex: Genetics)" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Grade</label>
+                                                <input type="text" class="form-control border-input" placeholder="Class or Grade of Degree(ex: Second class)" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                   <!-- add csrf token -->
+                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+
+
+                                </form>
+                               </div>
+
+
+
+                              <div id="tabs-3" class="content">
+                               <form  id="form" method="post">
+                                  <input type="hidden" name="update" value="update">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Title</label>
+                                                <input type="text" class="form-control border-input"  placeholder="Title(ex: Manager)" name="***" value="<%=  %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Company</label>
+                                                <input type="email" class="form-control border-input" placeholder="Company name(ex: Microsoft)" class="address" name="email" value="<%=  %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Location</label>
+                                                <input type="text" class="form-control border-input" placeholder="Region(ex: Accra, Ghana)" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea rows="5" class="form-control border-input" placeholder="Summary of your  resonsibilities at the above position" value=""></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                   <!-- add csrf token -->
+                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+
+
+                                </form>
+
+
+
+
+
+
+
+
+
+
+                              </div>
+                              <div id="tabs-4" class="content"> 
+
+
+
+
+                              <div class="col-sm-10 col-sm-offset-1">
+                                                <div class="form-group has-error">
+                                                    
+
+                                                    <label id="tag-label" class="control-label" for="tags"></label>
+                                                    <input name="tags" type="text" id="tags" class="form-control" >
+                                                   
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+                               </div>
+
+
+
                               <div class="text-center">
                                   <button id="update" type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
                               </div>
@@ -259,16 +391,72 @@ I'll probably won't</textarea>
 
 <script>
 
+$('#tags').tagit({
+        tagLimit: 15,
+        placeholderText: "Add skills/Certifications",
+        onTagLimitExceeded : function(event, ui){
+            // $("#indicator-tags").html("Tags cannot be more than four"); 
+            $("#tag-label").html("Tags cannot be more than four");
+            $("#tag-label").show();
+            $("#tag-label").fadeOut(7000);
+        },
+       availableTags: ["advertising",
+"programming",
+"Graphic Design" ,
+"Communication",
+"Data Analysis",
+"Copywriting",
+"Planning/Event Planning",
+"SEO/SEM Marketing",
+"chemical", 
+"computer",
+"hardware",
+"manufacturering",
+"power",
+"construction",
+"distribution",
+"electricity",
+"energy",
+"enterprise",
+"suppliers",
+"Internet",
+"banking",
+"consulting",
+"research",
+"publishing",
+"exploration",
+"production",
+"servicing",
+"computing",
+"communication",
+"security",
+"shipping",
+"software",
+"utilities",
+"venture capital",
+"game companies",
+"media"
+],
+        showAutocompleteOnFocus: true,
+        autocomplete: {
+            delay: 0,
+            minLength: 0,
+            position: { collision: "flip" },
+         },
+
+
+    });
+
   $( function() {
     $( "#tabs" ).tabs();
   } );
 
   <% flash.each do |key, value| %>
-    showMessage('top','center', "<%= value %>", <%= (key == "success") ? 2: 4 %>);          
+    showMessage('top','center', "<%= value %>", <%= (key == "success") ? 2: 4 %>);
   <% end %>
 
 $("#update").click(function(event){
-    $("#form").submit(); 
+    $("#form").submit();
 });
 
 
