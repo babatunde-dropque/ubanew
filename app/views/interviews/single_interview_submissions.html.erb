@@ -21,10 +21,17 @@
              <%= render partial: "when_empty" %>
             <% end %>
 
-
            <div class="row">
+               
 
             <% @submissions.each do |submission| %>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <button  type="button" class="btn btn-raised btn-twitter">Send Shorlist Message To Candidates</button>
+                </div>
+            </div>
+            <hr>
+
                   <div class="col-md-3">
                         <div class="content">
                             <div class="card main text-center box-shape" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
