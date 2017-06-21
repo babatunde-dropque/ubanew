@@ -1,62 +1,74 @@
 
-
 <div class="wrapper">
-
+     
     <div class="main-panel expand">
-
         <!-- TODO Add Footer Partial -->
-        <%= render partial: "navbar" %>
+        <%= render partial: "users/navbar" %>
 
 
-        <div class="content">
+        
+        <!--   Big container   -->
+        <div class="container">
             <div class="container-fluid">
-                <div class="col-md-8 col-md-offset-2">
+        
+              
+
+                         <br><br>
+                        <div class="card wizard-card" id="wizardProfile">
+                                <div class="wizard-header text-center">
+                                    <h3 class="wizard-title">Enter As</h3>
+                                </div>
+                                <div class="wizard-navigation">
+                                   
+                                    <ul>
+                                     <li>
+                                            <a href="#account" data-toggle="tab"></a>
+                                      </li>                  
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    
+                                    <div class="tab-pane" id="account">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-sm-offset-2">
+                                                <div class="col-sm-6">
+                                                    <%= link_to build_profile_path do %>
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox"  value="Code">
+                                                        <div class="card card-checkboxes card-hover-effect" style="color: #e74c3c">
+                                                            <i class="ti-id-badge"></i>
+                                                            <p>Applicant</p>
+                                                        </div>
+                                                    </div>
+                                                    <% end %>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                     <%= link_to become_interviewer_path , method: :put do %>
+                                                    <div class="choice" data-toggle="wizard-checkbox" >
+                                                        <input type="checkbox"  value="Develop">
+                                                        <div class="card card-checkboxes card-hover-effect" style="color:#9b59b6">
+                                                            <i class="ti-user"></i>
+                                                            <p>Interviewer</p>
+                                                        </div>
+                                                    </div>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                      
+                        </div>
+                    <!-- </div> wizard container -->
+              
+            <!-- end row -->
+         </div> <!-- end container fluid -->
+        </div> <!--  big container -->
 
 
-                  
 
-         
-
-
-
-         <div class="content">
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                      <div class="sharing-area text-center">
-                          
-                          <h5> Applicant ?</h5>
-
-                           <%= link_to build_profile_path do %>
-                              <button  type="button" class="btn btn-raised btn-twitter">Build Career Profile</button>
-                          <% end %>
-                      </div>
-              </div>
-
-               <div class="col-lg-6 col-md-6">
-                  <div class="sharing-area text-center">
-                   
-                    <h5>Interviewer ?</h5>
-                     <%= link_to become_interviewer_path , method: :put do %>
-                        <button  type="button" class="btn btn-raised btn-twitter">Enter as Organization</button>
-                    <% end %>
-                </div>
-            </div>
-          </div>
-      </div>
-
-
-                          </div>
 </div>
 </div>
-</div>
-</div>
 
 
-
-
-
- <script >
-    <% flash.each do |key, value| %>
-        showMessage('top','center', "<%= value %>", 2);
-    <% end %>
-</script>
