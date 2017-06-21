@@ -7,6 +7,17 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :null_session
 
 
+  def dashboard_function
+    user = current_user
+    if user.last_company.nil?
+      redirect_to  company_path(user.companies.first)
+    else
+      company = Company.friendly.find(user.last_company)
+      redirect_to company_path(company)
+    end
+  end
+
+
   def send_notification(user_id, type, sender_id, company_name)
 
   	  if (type == 1)

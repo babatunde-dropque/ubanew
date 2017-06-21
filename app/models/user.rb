@@ -22,4 +22,5 @@ class User < ActiveRecord::Base
 
    #this will allow user to be able to rate
    ratyrate_rater
+
 end

@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get 'listing-approval' => 'listings#listing_approval', as: 'approval_page'
   put 'update_approval_status' => 'listings#update_approval_status', as: 'update_approval'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
-  get "dashboard", to: "users#dashboard", as: 'user_dashboard', :format => false
   get "build_profile", to: "users#build_profile", as: 'build_profile', :format => false
   post "build_profile_update", to: "users#update_profile", as: 'update_profile', :format => false
   put "become_interviewer", to: "users#become_interviewer", as: 'become_interviewer', :format => false
