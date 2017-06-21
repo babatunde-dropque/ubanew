@@ -23,9 +23,7 @@
                                                 <a href="/users/auth/linkedin" class="btn btn-raised btn-linkedin" aria-hidden="true">
                                                   <i class="fa fa-linkedin"></i>LinkedIn
                                                 </a>
-                                               <!--  <a href="#" class="btn btn-raised btn-github">
-                                                    <i class="fa fa-github" aria-hidden="true"></i>GitHub
-                                                </a> -->
+                                            
                                             </div>
 
                                       <div class="content">
@@ -72,7 +70,7 @@
                                           </div>
                                         <% end %>
                                         <div class="text-center"><span>Already have account?</span>
-                                         <%= render "users/shared/links" %>
+                                         <%= link_to "Log In", new_session_path(resource_name, interview_token: params[:interview_token]) %><br />
                                         </div>
                                         
                                       </div>

@@ -6,7 +6,7 @@ class LandingsController < ApplicationController
 
   def index
 		if user_signed_in? && current_user.status == 1
-			redirect_to user_dashboard_path(current_user)
+			self.dashboard_function()
     elsif user_signed_in? && current_user.status == 0
       redirect_to user_timeline_path(current_user)
     elsif user_signed_in? && current_user.status == nil

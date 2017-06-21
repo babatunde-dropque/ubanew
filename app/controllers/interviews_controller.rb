@@ -256,7 +256,7 @@ class InterviewsController < ApplicationController
         @company = Company.friendly.find(params[:company_id] || params[:id])
         result = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
         if result.nil?
-           redirect_to user_dashboard_path
+           self.dashboard_function()
         end
     end
 

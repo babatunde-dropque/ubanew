@@ -23,7 +23,7 @@ class ApplicantsController < ApplicationController
       # check if user is signed in  or not
 
       if !user_signed_in?
-        redirect_to new_user_session_path
+        redirect_to new_user_session_path(interview_token: @interview.interview_token)
       else
           @user = current_user
           # create submission for user
@@ -72,7 +72,6 @@ class ApplicantsController < ApplicationController
             @question_video = @interview.questions[@position]["question_video"]
             @time_allowed  = @interview.questions[@position]["time_allowed"]
             render "video"
-
         elsif @question_type == "2"
            @question_text = @interview.questions[@position]["question_text"]
            @max_char = @interview.questions[@position]["max_char"]

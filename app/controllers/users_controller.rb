@@ -27,12 +27,7 @@ class UsersController < ApplicationController
 	    end
    end
 
-
-  def dashboard
-
-  end
-
-
+  
   def build_profile
     render  :layout => 'wizard'
   end
@@ -43,13 +38,13 @@ class UsersController < ApplicationController
     if @user.companies.length == 0
       redirect_to new_company_path
     else
-      redirect_to user_dashboard_path(current_user)
+      self.dashboard_function()
     end
   end
 
   def become_applicant
     @user.update_attributes(status:0)
-      redirect_to user_timeline_path(current_user)
+    redirect_to user_timeline_path(current_user)
   end
 
 
@@ -85,7 +80,7 @@ class UsersController < ApplicationController
          demo_user.save()
          sign_in(:user, demo_user)
          if  demo_user.status == 1
-            redirect_to user_dashboard_path(demo_user)
+            self.dashboard_function()
          elsif demo_user.status == 0
             redirect_to user_timeline_path(demo_user)
          elsif  demo_user.status == nil
