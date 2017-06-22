@@ -13,9 +13,9 @@
                  
                     <ul class="nav navbar-nav navbar-right">
 
-<% if !@company.nil? %>
+          <% if !@company.nil? %>
             <li class="dropdown">
-              <% if @user.companies.length == 0 %>
+              <% if @user.companies.length == 1 %>
                 <a href="<%= new_company_path %>" style="border: 1px solid; border-radius: 24px;">
                      <p>New Organisation</p>
                      <i class="ti-plus"></i>
@@ -57,7 +57,7 @@
                 </li>
               <% end %>
             </li>
-<% end %>
+          <% end %>
 
 
 
