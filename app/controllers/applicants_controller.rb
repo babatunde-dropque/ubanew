@@ -1,5 +1,6 @@
 class ApplicantsController < ApplicationController
   layout 'applicants' 
+  # before_action :authenticate_user!, :except[:index]
   before_filter :set_up_company, :except => [:validate_interview]
   before_filter :set_up_interview, :except => [:index, :validate_interview, :submit_video]
   before_filter :set_up_user_and_submission, :except => [:index, :validate_interview, :submit_video]

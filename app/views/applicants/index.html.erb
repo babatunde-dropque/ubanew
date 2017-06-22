@@ -80,9 +80,16 @@
 
           
           <% if params[:interview_token].present? %>
+
+          
+
               <form  id="form-details" method="post" action="/applicants"> 
                 <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here" value="<%= params[:interview_token] %>" name="interview_token" contenteditable="false" hidden />
-                <br><br>
+
+                <br>
+                <h6 style="color: white"> Ibk, add interview name here </h6> 
+                <br> 
+
                 <input type="hidden" value="register" name ="page" />
                   <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
                 <% if  Interview.exists?(interview_token: params[:interview_token]) %>
@@ -143,23 +150,11 @@
  <% @interview = Interview.find_by(interview_token: params[:interview_token]) %>
 
  <!--  Add interview details Partial -->
-          <br><br>
+
          <%= render partial: "interview_details" %>
  <!--  Add interview footer Partial -->
        
 <% end %>
-
-<% show = false %>
-<% if show %>
-    <%= render partial: "interview_footer" %>
-<% end %>
-  
-
- 
-
- <!-- Details of each interview should end here -->
-
-
 
 
 

@@ -8,6 +8,9 @@ class CompaniesController < ApplicationController
 
 
 	def show
+        if params[:from_notification] == 1
+            @user.update_attributes(last_company: @company.id)
+        end
         @user_status = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
         @sigin_in_count = current_user.sign_in_count.to_s
         @all_interview = @company.interviews 
