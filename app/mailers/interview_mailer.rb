@@ -52,4 +52,36 @@ class InterviewMailer < ApplicationMailer
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject: "#{@interview.title} Interview Outcome")
   end
+
+ def  mass_shortlist(submissionId, interview,title, body)
+    @id = submissionId
+    @submission = Submission.find_by(id:@id)
+    @candidate = User.find(@submission.user_id).name
+    @body = body
+    @company = interview.company
+    @company_email = @company.email
+    @company_img = @company.logo
+    @interview_page = @company.subdomain
+    @url = 'https://www.dropque.com'
+    @app = 'https://bit.ly/dropqueapp'
+    mail(from:"application@dropque.com",to: @email, subject:title)
+ end
+
+ def mass_reject( submissionId, interview, title, body)
+    @id = submissionId
+    @submission = Submission.find_by(id:@id)
+    @candidate = User.find(@submission.user_id).name
+    @body = body
+    @company = interview.company
+    @company_email = @company.email
+    @company_img = @company.logo
+    @interview_page = @company.subdomain
+    @url = 'https://www.dropque.com'
+    @app = 'https://bit.ly/dropqueapp'
+    mail(from:"application@dropque.com",to: @email, subject:title)
+ end
+
+
+
+
 end

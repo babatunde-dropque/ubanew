@@ -1,10 +1,10 @@
-            <div class="header-filter" style="background-image: url('assets/dq4.png'); background-size: cover; background-position: top center; min-height: 683px;">    
-            
+            <div class="header-filter" style="background-image: url('assets/dq4.png'); background-size: cover; background-position: top center; min-height: 683px;">
+
                 <div class="container">
                     <div class="logo-container">
                             <div class="text-center">
                               <a href="/"><%= image_tag('dqlogo.png')%></a>
-                            </div>                    
+                            </div>
                     </div>
 
                               <div>
@@ -35,12 +35,12 @@
                                                           <div class="hr-sect">Or</div>
                                                             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                                                                 <%= devise_error_messages! %>
-                                                                <div class="flasher row"><%= bootstrap_flash %></div>                
+                                                                <div class="flasher row"><%= bootstrap_flash %></div>
                                                                 <div class="input-group">
                                                                   <span class="input-group-addon">
                                                                      <i class="material-icons">email</i>
-                                                                  </span>                     
-                                                                  <%= f.email_field :email, :placeholder => 'E-mail', class: "form-control", html: {spellcheck: "false"} %>                     
+                                                                  </span>
+                                                                  <%= f.email_field :email, :placeholder => 'E-mail', class: "form-control", html: {spellcheck: "false"} %>
                                                                 </div>
 
                                                                  <div class="input-group">

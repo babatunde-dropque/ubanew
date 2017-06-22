@@ -31,8 +31,14 @@ class InterviewsController < ApplicationController
     @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id) 
     @user_status = @user_company.status
     @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
+    @meg =  params[:status].to_i
+    if (@meg == 0 )
+      @peg = "Shortlist"
+    elsif(@meg == 2)
+      @peg = "Reject"
+    end
     render :action => 'single_interview_submissions', :layout => 'single_interview_submissions'
-  end
+   end
 
   # api for return text or file link
   def returnTextFileApi
@@ -164,6 +170,25 @@ class InterviewsController < ApplicationController
       render :layout => 'single_interview_submissions'
   end
 
+  # def mass_notify (set, subject, body)
+  #     @intervie =   @interview
+  #     @subject = subject
+  #     @body = body
+  #     if(set == "shortlist"){
+  #      shortlists = Submission.where(interview_id:@intervie.id).where(status:0)
+  #      shortlists.each do |shortlist|
+  #      InterviewMailer.mass_shortlist(shortlist.id, @intervie, @subject, @body ).deliver
+  #      end
+  #     }
+  #   elsif(set == "reject"){
+  #     rejects = Submission.where(interview_id:@intervie.id).where(status:0)
+  #     rejects.each do |reject|
+  #     InterviewMailer.mass_reject(reject.id, @intervie, @subject, @body ).deliver
+  #   end
+  #   }
+  #   end
+  #   render :layout => 'single_interview_submissions'
+  # end
 
 
 

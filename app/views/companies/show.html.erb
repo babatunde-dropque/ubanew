@@ -26,25 +26,25 @@
                   <% rejected = Submission.where(interview_id:interview.id).where(status:1).length %>
                       <div class="col-md-4">
                           <div class="img-responsive card box-shape">
-                            
+
                               <div class="content">
                                     <div class="row">
                                       <div class="col-xs-8">
                                         <div class="stats">
                                          Interview token: <%= interview.interview_token %>
-                                        </div>    
-                                      </div>   
-                                      <div class="col-xs-4">                                        
+                                        </div>
+                                      </div>
+                                      <div class="col-xs-4">
                                         <a href="<%= company_interview_path(id: interview.slug, company_id: @company.id) %>" rel="tooltip"  class="btn btn-info btn-simple " data-original-title="View Interview">
                                             <i class="ti-image"></i>
-                                        </a>  | 
+                                        </a>  |
                                         <a href="<%= edit_company_interview_path(id: interview.slug, company_id: @company.id) %>" rel="tooltip" class="btn btn-success btn-simple" data-original-title="Edit Interview">
                                             <i class="ti-pencil"></i>
                                         </a>
                                       </div>
                                     </div>
                                         <hr>
-                                   
+
                                 <a  href= "<%= company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) %>" >
                                       <div class="text-center numbers-1">
                                          <p><%= truncate( interview.title, :length => 35) %> </p>
@@ -56,7 +56,7 @@
                                       <div class="row">
                                           <div class="col-md-4">
                                             <div class="icon-big icon-warning text-center" style="
-    font-size: 1.5em;">
+    font-size: 1em;">
                                                <i class="ti-help"></i><hr>
                                                <%= questions %>
                                             </div>
@@ -64,14 +64,14 @@
                                           <vr />
                                           <div class="col-md-4">
                                             <div class="icon-big icon-success text-center" style="
-    font-size: 1.5em;">
+    font-size: 1em;">
                                                <i class="ti-check"></i><hr>
                                                <%= shortlisted %>
                                             </div>
                                           </div>
                                           <div class="col-md-4">
                                             <div class="icon-big icon-danger text-center" style="
-    font-size: 1.5em;">
+    font-size: 1em;">
                                                <i class="ti-close"></i><hr>
                                                <%= rejected %>
                                             </div>
