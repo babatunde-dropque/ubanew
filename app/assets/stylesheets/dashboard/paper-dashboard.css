@@ -3754,7 +3754,7 @@ div.file > span  {
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+    border: 2px solid #999999; border-radius: 10px;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -3766,12 +3766,12 @@ div.file > span  {
     box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-    content: "PRIVATE";
+    content: "ON";
     padding-left: 10px;
     background-color: #34A7C1; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
-    content: "PUBLIC";
+    content: "OFF";
     padding-right: 10px;
     background-color: #EEEEEE; color: #999999;
     text-align: right;
