@@ -127,13 +127,9 @@
                                 <% else %>
                                      <% company = Company.friendly.find(@user.last_company) %>
                                       <%= link_to company_path(company) do %>
-                                      <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
+                                        <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
                                    <% end %> 
                                 <% end %>
-
-
-                                  
-
 
                                 </div>
                              <% end %>
