@@ -8,7 +8,7 @@ class CompaniesController < ApplicationController
 
 
 	def show
-        if params[:from_notification] == 1
+        if params[:from_notification].present?
             @user.update_attributes(last_company: @company.id)
         end
         @user_status = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
