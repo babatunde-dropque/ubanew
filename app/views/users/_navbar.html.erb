@@ -37,6 +37,23 @@
 
                       <% @user.companies.each do | company | %>
 
+                       <li>
+                         <!--  <div class="row"> -->
+                              <!-- <div class="col-md-6">
+                                <% if company.logo.file.nil? %>  
+                                      <%= image_tag('logo1.png', height:"55") %>
+                                    <% else %>
+                                      <img src="<%= user_company.company.logo.url %>" height="55"  />
+                                <% end %>
+                              </div> -->
+                             <!--  <div class="col-md-6"> -->
+                                <a href="<%= company_path(company, from_notification:1) %>">
+                                   <%= company.name %>
+                                </a>
+                              <!-- </div> -->
+                       <!--  </div> -->
+                      </li>
+
                       <% end %>
                     </ul>
                 </li>
@@ -132,7 +149,7 @@
                        
                             <!-- <li><%= link_to "Switch To Recruiter", become_interviewer_path, method: :put  %></li> -->
                         <% if @user.status == 1 %>
-                            <li><%= link_to "Acount", user_account_path %></li>
+                            <li><%= link_to "Applicant's view", user_account_path %></li>
                         <% end %>
                            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
                         </ul>
