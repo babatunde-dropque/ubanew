@@ -44,7 +44,7 @@
               <div class="form-group col-md-12">
                 <%= f.label :title %>
                 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"  
-                , title="Role Title" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ></span>
+                , title="Role Title" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="This is the title of the role or position you are screening for" style="color: #66615B;" ></span>
 
 
                   <%= f.text_field :title,:id => 'title-interview', :placeholder => 'Role Title', class: "form-control border-input interview-details", html: {spellcheck: "false"}  %>
@@ -70,7 +70,7 @@ Your goal ...''" style="color: #66615B;" ></span>
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :instruction %>
-        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Interview Instruction" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ></span>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Interview Instruction" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Add instructions of how you want your candidates/applicants to take the interview eg. Interviews not completed before the deadline will not be reviewed" style="color: #66615B;" ></span>
           <%= f.text_area :instruction, :id => 'title-instruction', :placeholder => 'Instructions for the Candidates', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"}   %>
       </div>
     </div>
@@ -78,7 +78,7 @@ Your goal ...''" style="color: #66615B;" ></span>
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :completed_message %>
-        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Role Title" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ></span>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Completed message" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="This message would be displayed to the candidate at the end of the interview eg. You have successfully completed your interview, we would get back to you in 5 working days." style="color: #66615B;" ></span>
           <%= f.text_area :completed_message, :id => 'title-completed-message', :placeholder => 'Completed Message after', class: "form-control border-input interview-details", rows:"4", html: {spellcheck: "true"} %>
       </div>
     </div>
@@ -86,15 +86,17 @@ Your goal ...''" style="color: #66615B;" ></span>
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :deadline %>
-        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Role Title" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ></span>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Interview deadline" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Set deadline date for the interview" style="color: #66615B;" ></span>
         <%= f.text_field :deadline, class: "form-control border-input datepicker" , id: "date" , placeholder:"yyyy-mm-dd" %>
       </div>
     </div>
 
-   <br><br>
+   <br>
     <div class="row">
         <!-- <label>Interviews Access (Available for Business and Enterprise plan) </label> -->
-        <div class=" form-group col-sm-2 col-sm-offset-5" >
+        <div class=" form-group col-sm-12" >
+               <p style="color: #9A9A9A;">Switch ON to make interview PRIVATE and OFF to make PUBLIC<br>
+               (Setting to Public would publish this interview on our interview listing page)</p>
          <!--  <label>Interviews Access (Available for Business and Enterprise plan) </label> -->
             <div class="onoffswitch file">
               <%= f.check_box :status, :id => 'myonoffswitch', class: "onoffswitch-checkbox" %>
@@ -159,7 +161,7 @@ Your goal ...''" style="color: #66615B;" ></span>
               
                <div class="form-group">
                 <div class="input-group">
-                <span class="input-group-addon" title="Role Title" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Here will be some very useful information about his popover" style="color: #66615B;" ><i class="glyphicon glyphicon-play" ></i></span>
+                <span class="input-group-addon" title="Video question" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Enter question and time allowed (Maximum time: 5 minutes)" style="color: #66615B;" ><i class="glyphicon glyphicon-play" ></i></span>
                    <input type='text' class='form-control border-input interview-details' placeholder='Video Question' name="first" >
                 </div>
                </div>
@@ -186,7 +188,7 @@ Your goal ...''" style="color: #66615B;" ></span>
           <div class='col-md-8'>
              <div class='form-group'>
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-text-width" ></i></span>
+                  <span class="input-group-addon" title="Text question" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Enter question and number of words allowed (Maximum words: 500)" style="color: #66615B;"><i class="glyphicon glyphicon-text-width" ></i></span>
                     <input type='text' class='form-control border-input interview-details' placeholder='Text Question'  name="second" >
                 </div>
              </div>
