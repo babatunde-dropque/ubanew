@@ -38,20 +38,11 @@
                       <% @user.companies.each do | company | %>
 
                        <li>
-                         <!--  <div class="row"> -->
-                              <!-- <div class="col-md-6">
-                                <% if company.logo.file.nil? %>  
-                                      <%= image_tag('logo1.png', height:"55") %>
-                                    <% else %>
-                                      <img src="<%= user_company.company.logo.url %>" height="55"  />
-                                <% end %>
-                              </div> -->
-                             <!--  <div class="col-md-6"> -->
+                         
                                 <a href="<%= company_path(company, from_notification:1) %>">
                                    <%= company.name %>
                                 </a>
-                              <!-- </div> -->
-                       <!--  </div> -->
+                         
                       </li>
 
                       <% end %>

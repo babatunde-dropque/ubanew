@@ -19,7 +19,7 @@
                 </div>
           </div>
           <%end%>
-
+      <input type="hidden" value="<%= @interview.id %>" id="interview_id" />
         <div class="content card-start ">
 
           <div class="container-fluid">
@@ -85,18 +85,18 @@
 
       <div class="modal-body" id="contact-body">
 
-       <input id="subj"  type="text" class="form-control border-input" placeholder="Subject" value=""> </input>
+       <input name = "subject" id="subj"  type="text" class="form-control" placeholder="SUBJECT" > </input>
 
           <div class="row">
           <div class="col-md-12">
-         <textarea id="body"  rows="8" class="form-control border-input" placeholder="Compose Custom email to be sent" value=""> </textarea>
+         <textarea  name="body" id="body"  rows="8" class="form-control border-input" placeholder="Compose Custom email to be sent" value=""> </textarea>
           </div>
 
         </div>
 
       <div class="modal-footer">
         <button type="button" class="btn box-shape" data-dismiss="modal"> Cancel </button>
-        <button type="button" id="buk-continue" class="btn box-shape"> Send </button>
+        <button onclick="submitBuk()"  type="button" id="buk-continue" class="btn box-shape"> Send </button>
       </div>
       <%else%>
 
@@ -107,16 +107,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
   <!-- Modal -->
 <% @submissions.each do |submission| %>
   <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -124,14 +114,13 @@
       <div class="modal-content">
         <div class="modal-header">
 
-          <%= submission.user.name %> (<%= submission.user.email %>) 
+          <%= submission.user.name %> (<%= submission.user.email %>)
 
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-             
                   <div class="text-center major-view centralize">
                      <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
                      <div id="content-video-<%= submission.id %>-sly" class="centralize-video" >
@@ -203,31 +192,38 @@
 
 
 <script>
+var warning = "Are you sure to send message? Message composed will be mailed to these candidates";
 
-
+var subj,body, set, url;
+var id_input = $("#interview_id");
+var id = id_input.attr("value");
+function submitBuk(){
+  subj = $('#subj').val()
+  body = $('#body').val()
+}
 $("#bukbut").click( function(){
  $("#buk-not").modal();
 });
- var two = $("#buk-not").find(".modal-body");
- var body = two.find("textarea");
- var five = two.find("input#subj");
- var subj = five.html("bobobobo");
- var boo = body.text();
- var set = $("#setou").data('orders');
+ var parent = $("#buk-not").find(".modal-body");
+     set = $("#setou").data('orders');
  var one = $("#buk-not").find(".modal-footer");
  var three = one.find("button#buk-continue").click(function(event){
+if (confirm(warning) == true){
  $("#buk-not").modal('hide');
- console.log(five);
-
- //collect the parameters from form
- //store dem in js variable
- //use ajax to pass them to backend
- //in the backend, a method should received the parameters
- //and mix them with other details of the candidate
- //and trigger mailer and finally return value that this
- //guy will listen to to give final ui signals
-
-
+ console.log(subj);
+ console.log(body);
+ console.log(set);
+ console.log(id);
+  url = "/companies/<%= @company.slug %>/interviews/"+id+"/mass"
+  $.ajax({
+  type: 'GET',
+  data: { set:set, subject:subj,  body:body},
+  url: url
+ });
+ }
+ else{
+event.preventDefault();
+ }
  });
 
 

@@ -10,7 +10,6 @@ class InterviewsController < ApplicationController
 
 
 	def show
-   
 
 	end
 
@@ -170,25 +169,22 @@ class InterviewsController < ApplicationController
       render :layout => 'single_interview_submissions'
   end
 
-  # def mass_notify (set, subject, body)
-  #     @intervie =   @interview
-  #     @subject = subject
-  #     @body = body
-  #     if(set == "shortlist"){
-  #      shortlists = Submission.where(interview_id:@intervie.id).where(status:0)
-  #      shortlists.each do |shortlist|
-  #      InterviewMailer.mass_shortlist(shortlist.id, @intervie, @subject, @body ).deliver
-  #      end
-  #     }
-  #   elsif(set == "reject"){
-  #     rejects = Submission.where(interview_id:@intervie.id).where(status:0)
-  #     rejects.each do |reject|
-  #     InterviewMailer.mass_reject(reject.id, @intervie, @subject, @body ).deliver
-  #   end
-  #   }
-  #   end
-  #   render :layout => 'single_interview_submissions'
-  # end
+  def mass_notify
+        set =     params[:set]
+        subject = params[:subject]
+        body =    params[:body]
+        if( set == "Shortlist")
+        Submission.where(interview_id:@interview.id).where(status:0).find_each do |me|
+        InterviewMailer.mass_shortlist(me.id, @interview, subject, body ).deliver
+        end
+       elsif(set == "Reject")
+       rejects = Submission.where(interview_id:@interview.id).where(status:2)
+       rejects.find_each do |reject|
+       InterviewMailer.mass_reject(reject.id, @interview, subject, body ).deliver!
+      end
+       end
+      render :layout => 'single_interview_submissions'
+end
 
 
 

@@ -40,6 +40,29 @@ class Interview < ActiveRecord::Base
         )
     end
 
+
+    # def self.notify(set, subject, body, interview)
+    #   @set = set
+    #   @subject = subject
+    #   @body = body
+    #   @interview = interview
+    #   if(@set == "shortlist")
+    #   shortlists = Submission.where(interview_id:@interview.id).where(status:0)
+    #   puts shortlists.length
+    #   puts body
+    #   shortlists.each do |shortlist|
+    #   #puts shortlist.id
+    #   InterviewMailer.mass_shortlist(shortlist.id, @interview, @subject, @body ).deliver!
+    #   end
+    # elsif(@set == "reject")
+    #  rejects = Submission.where(interview_id:@interview.id).where(status:0)
+    #  rejects.each do |reject|
+    #  InterviewMailer.mass_reject(reject.id, @interview, @subject, @body ).deliver!
+    # end
+
+    # end
+    # end
+
     def self.fetch_line_data(interview)
 
     end
