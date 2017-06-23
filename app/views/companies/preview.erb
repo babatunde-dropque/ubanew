@@ -2,17 +2,16 @@
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
 
-<!-- TODO Add Sidebar Panel -->
+    <!-- TODO Add Sidebar Panel -->
     <%= render partial: "sidebar" %>
     <div id="minisider" class="main-panel">
-<!-- TODO Add Navbar Panel -->
+    
+    <!-- TODO Add Navbar Panel -->
     <%= render partial: "users/navbar" %>
 
-
-               
+          
      <object type="text/html" data="/companies/<%= @company.id %>/edit_preview" style="width:100%; height:100%"> </object>
-    <!-- <embed src="/companies/1/edit_preview" style="width:100%; height:100%" /> -->
-
+   
 
     </div>
     </div>
@@ -21,12 +20,12 @@
 
 <script>
   
-swal({
-    title: "Preview Page",
-    text: "to edit preview bla bla bla",
-    buttonsStyling: false,
-    confirmButtonClass: "btn  btn-fill"
-});
+// swal({
+//     title: "Preview Page",
+//     text: "to edit preview bla bla bla",
+//     buttonsStyling: false,
+//     confirmButtonClass: "btn  btn-fill"
+// });
 
 
 

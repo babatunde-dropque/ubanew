@@ -335,8 +335,8 @@ function formatQuestion(){
     	    $("#question-holder").append(
     	    	'<tr>'+
     	    		'<td>'+typeShow+'</td>'+
-                    '<td>'+f+'</td>'+
-                    '<td>'+s+'</td>'+
+                    '<td class="edit">'+f+'</td>'+
+                    '<td class="edit">'+s+'</td>'+
                 '</tr>');
 		}
 

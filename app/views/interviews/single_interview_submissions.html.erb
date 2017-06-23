@@ -1,7 +1,19 @@
+  <style type="text/css">
+textarea.note {
+ background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
+ width: 100%;
+ height: 300px;
+ font: normal 14px verdana;
+ line-height: 25px;
+ padding: 2px 10px;
+ border: solid 1px #ddd;
+}
 
 
-<input id="current_status_stored" type="hidden" value="all" />
-<input id="number_of_signin" type="hidden" value="<%= @sigin_in_count %>" />
+</style>
+
+
+
 
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
@@ -11,6 +23,8 @@
     <div class="main-panel">
 <!-- Add Navbar Panel -->
     <%= render partial: "users/navbar" %>
+
+
          <hr>
          <% if @peg %>
          <div class="row">
@@ -217,10 +231,7 @@ $("#bukbut").click( function(){
  var three = one.find("button#buk-continue").click(function(event){
 if (confirm(warning) == true){
  $("#buk-not").modal('hide');
- console.log(subj);
- console.log(body);
- console.log(set);
- console.log(id);
+
   url = "/companies/<%= @company.slug %>/interviews/"+id+"/mass"
   $.ajax({
   type: 'GET',
@@ -324,7 +335,7 @@ event.preventDefault();
 
               } else if(questionType == 2) {
                  $(htmlContentId).html(data.answer);
-                 $(htmlQuestionId).html(data.question)
+                 $(htmlQuestionId).html( "<textarea class='note'>" + data.question + "</textarea>" ) ;
              } else if (questionType == 3){
                 $(htmlContentId).html("<div>"+
                     "File Name: "+data.answer.split('/').pop()+"<br>"+

@@ -104,6 +104,13 @@ class UsersController < ApplicationController
         flash.now[:success] = "Account Updated Successfully"     
      end
   end
+
+
+
+  def interviews
+    @logo_off = false
+    render "applicant_interview_listing"
+  end
   
 
   # def account
