@@ -114,11 +114,6 @@
                                 <li>
                                    <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Settings <% end %>
                                 </li>
-                                <!-- <li>
-                                   <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ]) , target: "_blank" do %> Edit Interview page <% end %> 
-                                </li> -->
-                                <!-- <li><a href="https://<%= @company.subdomain %>.dropque.com"   target= "_blank"> Interview Page </a>
-                                </li> -->
                                 <li>
                                    <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %> 
                                 </li> 
@@ -138,7 +133,7 @@
                         </a>
                         <ul class="dropdown-menu">
                     
-                    <% if @company.nil?  %>
+                    <% if @company.nil? and @profile_page.nil?  %>
                         <% if @user.last_company.nil? %>
                              <li> <%= link_to "Organization view", company_path(@user.companies.first) %> </li>
                               
