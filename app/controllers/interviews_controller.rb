@@ -10,7 +10,6 @@ class InterviewsController < ApplicationController
 
 
 	def show
-   
 
 	end
 
@@ -20,7 +19,7 @@ class InterviewsController < ApplicationController
 
 
   def single_interview_submissions
-     @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id) 
+     @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
      @user_status = @user_company.status
      @submissions = @interview.submissions.where(current_no: 500, status: nil).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
      render :layout => 'single_interview_submissions'
@@ -28,11 +27,21 @@ class InterviewsController < ApplicationController
 
   # controller function for to manages interview filtered
   def filtered_single_interview
-    @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id) 
+    @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
     @user_status = @user_company.status
     @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
+    @meg =  params[:status].to_i
+    if (@meg == 0 )
+      @peg = "Shortlist"
+      @prefiled_mes = "In response to the  Interview you took with our company, we  glad to inform you  have been shorlisted"
+     elsif(@meg == 2)
+      @peg = "Reject"
+      @prefiled_mes = "Thank you for taking interview with us.
+                        However, you did not make the final list
+                        We wish you   best  in future endeavors"
+    end
     render :action => 'single_interview_submissions', :layout => 'single_interview_submissions'
-  end
+   end
 
   # api for return text or file link
   def returnTextFileApi
@@ -164,6 +173,22 @@ class InterviewsController < ApplicationController
       render :layout => 'single_interview_submissions'
   end
 
+  def mass_notify
+        set =     params[:set]
+        subject = params[:subject]
+        body =    params[:body]
+        if( set == "Shortlist")
+        Submission.where(interview_id:@interview.id).where(status:0).find_each do |me|
+        InterviewMailer.mass_shortlist(me.id, @interview, subject, body ).deliver
+        end
+       elsif(set == "Reject")
+       rejects = Submission.where(interview_id:@interview.id).where(status:2)
+       rejects.find_each do |reject|
+       InterviewMailer.mass_reject(reject.id, @interview, subject, body ).deliver!
+      end
+       end
+      render :layout => 'single_interview_submissions'
+end
 
 
 

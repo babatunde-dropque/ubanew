@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def new
-
+        @profile_page = true
         render  :layout => 'wizard'
 	end
 

@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
 
   def profile
+     @profile_page = true
      @user = current_user
      render  :layout => 'wizard'
   end

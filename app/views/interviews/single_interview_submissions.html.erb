@@ -11,9 +11,19 @@
     <div class="main-panel">
 <!-- Add Navbar Panel -->
     <%= render partial: "users/navbar" %>
-
+         <hr>
+         <% if @peg %>
+         <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <button id="bukbut" type="button" class="btn btn-raised btn-twitter">Send <%= @peg %> Message To These Candidates</button>
+                </div>
+          </div>
+          <%end%>
+      <input type="hidden" value="<%= @interview.id %>" id="interview_id" />
         <div class="content card-start ">
+
           <div class="container-fluid">
+
 
 
             <!-- when empty -->
@@ -22,7 +32,7 @@
             <% end %>
 
            <div class="row">
-               
+
 
             <% @submissions.each do |submission| %>
 
@@ -59,6 +69,10 @@
     </div>
 </div>
 
+<%= content_tag :div, "", id: "setou", data: {orders:  @peg} %>
+
+
+
 
 
   <!-- Modal -->
@@ -75,7 +89,6 @@
           </button>
         </div>
         <div class="modal-body">
-             
                   <div class="text-center major-view centralize">
                      <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
                      <div id="content-video-<%= submission.id %>-sly" class="centralize-video" >
@@ -103,9 +116,7 @@
                 </ul>
               </div>
               </div>
-               
 
-               
                   <div class="rate" >
 
                   <% if @user_status < 2 %> 
@@ -135,9 +146,7 @@
                  <div class="centralize full-fix ">
                   <%= commontator_thread(submission) %>
                  </div>
-              
-      
-       
+
 
 
         </div>
@@ -149,8 +158,82 @@
 <% end %>
 
 
+<!-- Start of bulk sender modal -->
+<div class="modal fade" id="buk-not" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="myModalLabel"> Send Email To Your <%= @peg %> Candidates</h5>
+      </div>
+      <input type="text" id="contact-id" hidden >
+
+      <div class="modal-body" id="contact-body">
+
+       <input name = "subject" id="subj"  type="text" class="form-control" placeholder="SUBJECT" > </input>
+
+          <div class="row">
+          <div class="col-md-12">
+         <textarea  name="body" id="body"  rows="8" class="form-control border-input" placeholder="Compose Custom email to be sent" value="">
+          <% if @peg %>
+          <%= @prefiled_mes %>
+          <%end%>
+          </textarea>
+          </div>
+
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn box-shape" data-dismiss="modal"> Cancel </button>
+        <button onclick="submitBuk()"  type="button" id="buk-continue" class="btn box-shape"> Send </button>
+      </div>
+      <%else%>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- Start of bulk sender modal -->
+
 
 <script>
+var warning = "Are you sure to send message? Message composed will be mailed to these candidates";
+
+var subj,body, set, url;
+var id_input = $("#interview_id");
+var id = id_input.attr("value");
+function submitBuk(){
+  subj = $('#subj').val()
+  body = $('#body').val()
+}
+$("#bukbut").click( function(){
+ $("#buk-not").modal();
+});
+ var parent = $("#buk-not").find(".modal-body");
+     set = $("#setou").data('orders');
+ var one = $("#buk-not").find(".modal-footer");
+ var three = one.find("button#buk-continue").click(function(event){
+if (confirm(warning) == true){
+ $("#buk-not").modal('hide');
+ console.log(subj);
+ console.log(body);
+ console.log(set);
+ console.log(id);
+  url = "/companies/<%= @company.slug %>/interviews/"+id+"/mass"
+  $.ajax({
+  type: 'GET',
+  data: { set:set, subject:subj,  body:body},
+  url: url
+ });
+ }
+ else{
+event.preventDefault();
+ }
+ });
+
+
 
   var height ;
   var width ;
@@ -159,7 +242,7 @@
 
     var cardView = $(e.relatedTarget); // cardView that triggered the modal
     var idToTrigger = cardView.data('target');
-   
+
       (function () {
         var $frame = $(idToTrigger+"-sly");
         var $wrap  = $frame.parent();
@@ -273,7 +356,7 @@
               if (data == "shortlist" ){
                  parent.children().removeClass('btn-fill');
                  current.addClass('btn-fill');
-                if (confirm("Are You Sure to SHORTLIST this Candidate? Email Will be sent to the Candidate") == true){
+                if (confirm("Are You Sure to SHORTLIST this Candidate?") == true){
                   $.ajax({
                   url:'<%= company_interview_shortlist_path(company_id:@company.slug, interview_id:@interview.slug)%>',
                   type: 'GET',
@@ -300,7 +383,7 @@
                 parent.children().removeClass('btn-fill');
                 current.addClass('btn-fill');
                 //alert('You want to REJECT this candidate?');
-                if (confirm("Are You Sure to REJECT this Candidate? Email Will be sent to the Candidate") == true){
+                if (confirm("Are You Sure to REJECT this Candidate? ") == true){
                    $.ajax({
                   url:'<%= company_interview_reject_path(company_id:@company.slug, interview_id:@interview.slug)%>',
                   type: 'GET',

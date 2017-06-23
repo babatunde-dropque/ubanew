@@ -16,21 +16,22 @@ class SubmissionsController < ApplicationController
  	end
 
 def shortlist
-  # @id = @submission.id
-  if InterviewMailer.shortlist(@interview, @id).deliver
-    render plain:  "true"
-  else
-    render plain: "error"
-  end
+  # # @id = @submission.id
+  # if InterviewMailer.shortlist(@interview, @id).deliver
+  #   render plain:  "true"
+  # else
+  #   render plain: "error"
+  # end
 end
+
 
   def reject
    # @id = @submission.id
-   if InterviewMailer.reject(@interview, @id).deliver
-    render plain: "true"
-  else
-    render plain:"error"
-  end
+  #  if InterviewMailer.reject(@interview, @id).deliver
+  #   render plain: "true"
+  # else
+  #   render plain:"error"
+  # end
  end
 
 

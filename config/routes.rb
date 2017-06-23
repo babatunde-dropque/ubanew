@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'contact', to: "landings#contact", as: 'contact'
 
 
+
   # post request for applicant data
   post 'applicants/' => 'applicants#index'
   post 'applicants/question' => 'applicants#question'
@@ -135,6 +136,7 @@ Rails.application.routes.draw do
       get "reminder", to: "interviews#reminder"
       get "sms_reminder", to: "interviews#sms_reminder"
       get "double_reminder", to: "interviews#double_reminder"
+      get "mass", to: "interviews#mass_notify"
       get "analytics", to: "interviews#analytics"
       get "single", to: "interviews#single_interview_submissions"
       get "returnTextFileApi", to: "interviews#returnTextFileApi"

@@ -232,7 +232,7 @@ function addNewQuestionWithDetails(q,t, type, name1, name2){
 		      "<div class='col-md-8'>"+
 		         "<div class='form-group'>"+
 	         	  	"<div class='input-group'>"+
-	                	"<span class='input-group-addon'><i class='glyphicon glyphicon-play' ></i></span>"+
+	                	"<span class='input-group-addon' title='Video question' data-toggle='popover' data-placement='top' data-trigger='hover' data-content='Enter question and time allowed (Maximum time: 5 minutes)' style='color: #66615B;'><i class='glyphicon glyphicon-play' ></i></span>"+
 	                  	"<input type='text' class='form-control border-input interview-details'  name='"+name1+"' placeholder='Video Question' value='"+q+"' >"+
 	                "</div>"+
 		          "</div>"+
@@ -255,7 +255,7 @@ function addNewTextQuestionWithDetails(q, c, type, name1, name2){
 	          "<div class='col-md-8'>" +
 	             "<div class='form-group'>" +
 	             	"<div class='input-group'>"+
-	                	"<span class='input-group-addon'><i class='glyphicon glyphicon-text-width' ></i></span>"+
+	                	"<span class='input-group-addon' title='Text question' data-toggle='popover' data-placement='top' data-trigger='hover' data-content='Enter question and number of words allowed (Maximum words: 500)' style='color: #66615B;'><i class='glyphicon glyphicon-text-width' ></i></span>"+
 	                  	 "<input type='text' class='form-control border-input interview-details'  name='"+name1+"' placeholder='Text Question' value='"+q+"' >" +
 	                "</div>"+
 	              "</div>" +
@@ -281,7 +281,7 @@ function addNewFileUpload(q, s, type, name1, name2){
           "<div class='col-md-8'>" +
          	"<div class='form-group'>"+
 	             "<div class='input-group'>"+
-                	"<span class='input-group-addon'><i class='glyphicon glyphicon-cloud-upload' ></i></span>"+
+                	"<span class='input-group-addon' title='Text question' data-toggle='popover' data-placement='top' data-trigger='hover' data-content='Enter question and max file size allowed (Maximum size: 5MB)' style='color: #66615B;'><i class='glyphicon glyphicon-cloud-upload' ></i></span>"+
                   	"<input type='text' class='form-control border-input interview-details' name='"+name1+"' placeholder='File Description' value='"+q+"'>"+ 
                   "</div>"+  
               "</div>" +

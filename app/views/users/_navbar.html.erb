@@ -10,7 +10,7 @@
                     <a class="navbar-brand" href="#"> <%= truncate( @interview.title, :length => 50) %> </a>
                   <% end %>
 
-                 
+
                     <ul class="nav navbar-nav navbar-right">
 
           <% if !@company.nil? %>
@@ -32,26 +32,19 @@
                           <a href="<%= new_company_path %>" class="text-center" style="    background-color: #ccc;">
                                   Add New <i class="ti-plus"></i>
                           </a>
-                         
+
                        </li>
 
                       <% @user.companies.each do | company | %>
+
                        <li>
-                         <!--  <div class="row"> -->
-                              <!-- <div class="col-md-6">
-                                <% if company.logo.file.nil? %>  
-                                      <%= image_tag('logo1.png', height:"55") %>
-                                    <% else %>
-                                      <img src="<%= user_company.company.logo.url %>" height="55"  />
-                                <% end %>
-                              </div> -->
-                             <!--  <div class="col-md-6"> -->
+                         
                                 <a href="<%= company_path(company, from_notification:1) %>">
                                    <%= company.name %>
                                 </a>
-                              <!-- </div> -->
-                       <!--  </div> -->
+                         
                       </li>
+
                       <% end %>
                     </ul>
                 </li>
@@ -121,11 +114,6 @@
                                 <li>
                                    <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Settings <% end %>
                                 </li>
-                                <!-- <li>
-                                   <%= link_to company_edit_preview_path(params[:company_id ] || params[:id ]) , target: "_blank" do %> Edit Interview page <% end %> 
-                                </li> -->
-                                <!-- <li><a href="https://<%= @company.subdomain %>.dropque.com"   target= "_blank"> Interview Page </a>
-                                </li> -->
                                 <li>
                                    <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %> 
                                 </li> 
@@ -144,8 +132,16 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                       
-                            <!-- <li><%= link_to "Switch To Recruiter", become_interviewer_path, method: :put  %></li> -->
+                    
+                    <% if @company.nil? and @profile_page.nil?  %>
+                        <% if @user.last_company.nil? %>
+                             <li> <%= link_to "Organization view", company_path(@user.companies.first) %> </li>
+                              
+                        <% else %>
+                             <% company = Company.friendly.find(@user.last_company) %>
+                              <li><%= link_to "Organization view", company_path(company) %></li>
+                        <% end %>
+                    <% end %>
                         <% if @user.status == 1 %>
                             <li><%= link_to "Applicant's view", user_account_path %></li>
                         <% end %>

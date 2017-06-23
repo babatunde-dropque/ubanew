@@ -2,51 +2,47 @@ class ApplicantsController < ApplicationController
   layout 'applicants' 
   # before_action :authenticate_user!, :except[:index]
   before_filter :set_up_company, :except => [:validate_interview]
-  before_filter :set_up_interview, :except => [:index, :validate_interview, :submit_video]
-  before_filter :set_up_user_and_submission, :except => [:index, :validate_interview, :submit_video]
+  before_filter :set_up_interview, :except => [:index, :validate_interview, :submit_video ]
+  before_filter :set_up_user_and_submission, :except => [:index, :validate_interview, :submit_video, :demo]
 
 
   def index
 
     @editable = "false" # disable editable view
-    # check details parameter and validate interview token once again
-    if params[:page] == "register"
+    if params[:page] == "details"
       @interview = Interview.find_by(interview_token: params[:interview_token], company_id: @company.id )
-        if !@interview.nil? && !@interview.deadline.nil? && @interview.deadline.to_date.past?
-          render "expired"
-        elsif !@interview.nil? && @interview.status == "1"
-            render "register_private"
-        elsif !@interview.nil?
-            render "register"
-        end
-    elsif params[:page] == "details"
-      @interview = Interview.find(params[:interview_id])
       # check if user is signed in  or not
 
-      if !user_signed_in?
-        redirect_to new_user_session_path(interview_token: @interview.interview_token)
+      if !@interview.nil? && !@interview.deadline.nil? && @interview.deadline.to_date.past?
+          render "expired"
       else
-          @user = current_user
-          # create submission for user
-          if  Submission.exists?(interview_id: @interview.id, user_id: @user.id)
-            @submission =   Submission.find_by(interview_id: @interview.id, user_id: @user.id)
-            @position = @submission.current_no
+          if !user_signed_in?
+            redirect_to new_user_session_path(interview_token: @interview.interview_token)
           else
-             # create new submission
-            if  mobile_device?
-              device = "1"
-            else
-              device = "2"
-            end
-            @submission = Submission.new(user_id: @user.id, interview_id: @interview.id, device: device)
-            @submission.save
-            @position = 0
+              @user = current_user
+              # create submission for user
+              if  Submission.exists?(interview_id: @interview.id, user_id: @user.id)
+                @submission =   Submission.find_by(interview_id: @interview.id, user_id: @user.id)
+                @position = @submission.current_no
+              else
+                 # create new submission
+                if  mobile_device?
+                  device = "1"
+                else
+                  device = "2"
+                end
+                @submission = Submission.new(user_id: @user.id, interview_id: @interview.id, device: device)
+                @submission.save
+                @position = 0
+              end
+              render "details"
           end
-          render "details"
       end
     end
   end
 
+
+  
 
 
   def question
@@ -72,19 +68,19 @@ class ApplicantsController < ApplicationController
         if  @question_type == "1"
             @question_video = @interview.questions[@position]["question_video"]
             @time_allowed  = @interview.questions[@position]["time_allowed"]
-            render "video"
+            render "video_progress"
         elsif @question_type == "2"
            @question_text = @interview.questions[@position]["question_text"]
            @max_char = @interview.questions[@position]["max_char"]
-           render "text"
+           render "text_progress"
 
         elsif @question_type == "3"
            @file_text = @interview.questions[@position]["file_text"]
            @file_size = @interview.questions[@position]["file_size"]
-           render "file"
+           render "file_progress"
         end
      else
-       render "complete"
+       render "complete_progress"
      end
  end
 
