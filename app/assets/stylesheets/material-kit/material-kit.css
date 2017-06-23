@@ -963,7 +963,7 @@ output {
 }
 
 .info{
-  max-width: 360px;
+  max-width: 388px;
   margin: 0 auto;
 }
 
@@ -3324,7 +3324,7 @@ h2.title {
 }
 
 .description {
-  color: #999999;
+  color: #333;
 }
 
 .header-filter {

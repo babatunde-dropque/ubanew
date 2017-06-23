@@ -38,11 +38,11 @@
                                  
                         </div> 
                         <div class="col-md-7 col-sm-7">
-                                   <h4 class="title"><%= submission.interview.title %> </h4>
-                                <p class="category"><%= truncate(submission.interview.description , :length => 130) %></p>
+                                 <h4 class="title"><%= submission.interview.title %> </h4>
+                                <!--  <p class="category"><%= truncate(submission.interview.description , :length => 50) %></p> -->
                                                             
                                 <hr>
-                                Progress Level:
+                                Interview progress:
 
                                 <% if submission.current_no == 500 %>
                                     Completed
@@ -57,7 +57,7 @@
                                 
                                    Status:  
                                      <% if submission.current_no.nil? %>
-                                        Not Stated
+                                        Not Started
                                      <% elsif submission.status.nil? && submission.current_no < 500  %>
                                         <i class="fa fa-circle text-primary"></i> Uncompleted Interview
                                      <% elsif submission.status.nil? && submission.current_no == 500 %>
