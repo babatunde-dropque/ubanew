@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'contact', to: "landings#contact", as: 'contact'
 
 
+
   # post request for applicant data
   post 'applicants/' => 'applicants#index'
   post 'applicants/question' => 'applicants#question'

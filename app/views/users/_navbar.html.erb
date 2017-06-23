@@ -137,8 +137,16 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                       
-                            <!-- <li><%= link_to "Switch To Recruiter", become_interviewer_path, method: :put  %></li> -->
+                    
+                    <% if @company.nil?  %>
+                        <% if @user.last_company.nil? %>
+                             <li> <%= link_to "Organization view", company_path(@user.companies.first) %> </li>
+                              
+                        <% else %>
+                             <% company = Company.friendly.find(@user.last_company) %>
+                              <li><%= link_to "Organization view", company_path(company) %></li>
+                        <% end %>
+                    <% end %>
                         <% if @user.status == 1 %>
                             <li><%= link_to "Applicant's view", user_account_path %></li>
                         <% end %>

@@ -1,0 +1,383 @@
+
+<style>
+
+.wizard {
+    margin: 20px auto;
+    background: #fff;
+}
+
+    .wizard .nav-tabs {
+        position: relative;
+        margin: auto;
+        margin-bottom: 0;
+         border-bottom: none;
+    }
+
+    .wizard > div.wizard-inner {
+        position: relative;
+        width: 10%;
+        float: left;
+        margin-right: 30px;
+    }
+
+.connecting-line {
+    height: 80%;
+    background: #e0e0e0;
+    position: absolute;
+    width: 2px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left:  50%;
+    z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    text-align: center;
+    font-size: 25px;
+
+
+}
+span.round-tab i{
+    color:#555555;
+}
+.wizard li.active span.round-tab {
+    background: #fff;
+    border: 2px solid rgb(94, 51, 123);;
+    
+}
+.wizard li.active span.round-tab i{
+    color: rgb(94, 51, 123);;
+}
+
+span.round-tab:hover {
+    color: #333;
+    border: 2px solid #333;
+}
+
+.wizard .nav-tabs > li {
+    width: 100%;
+    /*height: 100%;*/
+
+}
+
+.wizard li:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: rgb(94, 51, 123);
+    transition: 0.1s ease-in-out;
+}
+
+.wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 15px solid transparent;
+    border-bottom-color: rgb(94, 51, 123);
+}
+
+.wizard .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+    .wizard .nav-tabs > li a:hover {
+        background: transparent;
+    }
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.wizard h3 {
+    margin-top: 0;
+}
+
+@media( max-width : 585px ) {
+
+    .wizard {
+        width: 90%;
+        height: auto !important;
+    }
+
+    span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 35%;
+    }
+}
+
+
+/* added by Muyide Ibukun*/
+ul.nav.nav-tabs>li {
+    float: inherit;
+    margin-bottom: 40%;
+}
+
+
+
+
+</style>
+
+
+ <%= render partial: "header" %>
+
+
+<div class="container">
+    <div class="row">
+        <section>
+        <h5 style="text-align: center; "> <%= @question_text %>  </h5> 
+
+<hr>
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+
+                <% @interview.questions.each_with_index do | question, index | %>
+                    <li role="presentation" class="<%= (index == @position) ? "active": "disabled" %>">
+                        <a href="#step<%= index + 1 %>" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                            <span class="round-tab">
+                                <% if question["question_type"] == "1" %>
+                                    <i class="glyphicon glyphicon-play"></i>
+                                <% elsif question["question_type"] == "2" %>
+                                    <i class="glyphicon glyphicon-text-width"></i>
+
+                                <% elsif question["question_type"] == "3" %>
+                                    <i class="glyphicon glyphicon-cloud-upload"></i>
+                                <% end %>
+                            </span>
+                        </a>
+                    </li>
+                <% end %>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+           
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+
+                       <!-- Beginning here -->
+      
+      <div class="row dq-page-container"> 
+        <textarea id="answer-box" class="form-control dq-text-question-input" placeholder="Enter your text here"></textarea>
+         <div id="word-left" class="word-counter"><%= @max_char%>  words remaining</div> 
+      </div>
+
+      <div class="row">
+        <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="progress dq-interview-progress-bar">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <%= ((@position + 1) * 100)/ @number_of_question %>%">
+              <span class="sr-only"><%= ((@position + 1) * 100)/ @number_of_question %>% Complete</span>
+            </div>
+          </div>
+          <div class="dq-interview-progress-info">
+             <h6>Question <%= @position + 1 %> of <%= @number_of_question %></h6>
+          </div>
+        </div> -->
+        <hr>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
+          
+          <form  method="post" action="/applicants/question">         
+            <input type="hidden" value="<%= @interview.id %>" name ="id" />
+            <input type="hidden" value="<%= @position + 1 %>" name="pos" />
+            <input type="hidden" value="<%= @user.id %>" name="user_id" />
+            <input type="hidden" value="<%= @submission.id %>" name="submission_id" />
+            <input type="hidden" id="answer" name="answers" />
+            <input type="hidden" value="text" name="submission" />
+              <!-- add csrf token -->
+              <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                          
+
+            <% if (@position + 1 ) == @number_of_question %>
+              <button disable id="submit" class="btn btn-md dq-color-customized"> Finish Interview </button>
+            <% else %>
+              <button disable id="submit" class="btn btn-md dq-color-customized"> Next Question </button>
+            <% end %>
+
+          </form>
+
+        </div>
+      </div>
+    
+                        
+                       <!-- end here -->
+                      
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+          
+        </div>
+    </section>
+   </div>
+</div>
+
+
+
+
+
+
+
+<script>
+
+$(document).ready(function () {
+    //Initialize tooltips
+    $('.nav-tabs > li a[title]').tooltip();
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+        var $target = $(e.target);
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });  
+});
+
+  
+
+
+
+</script>
+
+
+
+
+<script>
+
+ 
+
+$.notify.addStyle('happyblue', {
+  html: "<div><span data-notify-text/></div>",
+  classes: {
+    base: {
+      "opacity": "0.90",
+      "width": "200px",
+      "background": "#CCCCCC",
+      "padding": "5px",
+      "margin": "5px",
+      "border-radius": "10px"
+    },
+    menu: {
+      "opacity": "0.90",
+      "width": "200px",
+      "background": "#CCCCCC",
+      "padding": "5px",
+      "margin": "5px",
+      "border-radius": "10px",
+      "color":"black"
+
+    }
+  }
+});
+
+
+
+  $("#submit").click(function(){
+          //  this part will be used to update question in user_job model
+      <%  if @submission.answers.nil? %>
+       var resultArrayAnswer =  [];
+       
+      <% else %>
+       var placehod = "<%= @submission.answers.to_json %>" ;
+       var resultArrayAnswer = JSON.parse(placehod.replace(/&quot;/g,'"'));
+
+      <% end %>
+
+      var answerItem = {}
+      answerItem["question_type"] = '<%= @question_type %>' ;
+      answerItem["question_text"] = '<%= @question_text %>';
+      answerItem["answer_text"] = $("#answer-box").val();
+
+      resultArrayAnswer.push(answerItem);
+      var resultArrayAnswerString = JSON.stringify(resultArrayAnswer);
+      $("#answer").val(resultArrayAnswerString);
+
+
+  });
+
+    // this will show for the first time
+
+   $("#answer-box").on('keyup', function() {
+    var words = this.value.match(/\S+/g).length;
+    $('#word-left').html((<%= @max_char %> - words) + ' words remaining');
+    
+  });
+
+   $("#submit").click(function(event){
+      if (!$("#answer-box").val()){
+          
+          $("#answer-box").notify("Fields cannot be empty", {
+            style: 'happyblue',
+            className: 'menu',
+            position: "top center"
+          });
+
+
+          event.preventDefault();
+          return false;
+      } else {
+        var words = $("#answer-box").val().match(/\S+/g).length;
+          if (parseInt(words) > <%= @max_char %> || words == 0){
+            $("#answer-box").notify("words exceed maximum limit", {
+              style: 'happyblue',
+              className: 'menu',
+              position: "top center"
+            });
+            event.preventDefault();
+            return false;
+        }
+      } 
+   });
+
+
+
+</script>
+
