@@ -37,13 +37,13 @@
                                      <%= flash[:notice] %>
                                 </div>
                               <% end %>
-                                    
-                                      <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulk Emails </button> 
+
+                                      <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulk Emails </button>
 
                                       <h5> Send Invitation
                                       <p style="color: #9A9A9A"><font size="3">(Enter emails of applicants to invite for interview)</font></p></h5>
                                     <div class="text-center">
-                                      <div class="typo-line"> 
+                                      <div class="typo-line">
 
                                            https://<%= @company.subdomain %>.dropque.com/applicants/<%= @interview.interview_token %>
                                             <p class="category">(Invitation Link)</p> </h5>
@@ -309,7 +309,6 @@
  ("#reminder-modal").modal('hide');
 
  // the logic of sending the reminder
-
 
  });
 

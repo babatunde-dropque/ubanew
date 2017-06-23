@@ -19,7 +19,7 @@ class InterviewsController < ApplicationController
 
 
   def single_interview_submissions
-     @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id) 
+     @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
      @user_status = @user_company.status
      @submissions = @interview.submissions.where(current_no: 500, status: nil).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
      render :layout => 'single_interview_submissions'
@@ -27,14 +27,18 @@ class InterviewsController < ApplicationController
 
   # controller function for to manages interview filtered
   def filtered_single_interview
-    @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id) 
+    @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
     @user_status = @user_company.status
     @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
     @meg =  params[:status].to_i
     if (@meg == 0 )
       @peg = "Shortlist"
-    elsif(@meg == 2)
+      @prefiled_mes = "In response to the  Interview you took with our company, we  glad to inform you  have been shorlisted"
+     elsif(@meg == 2)
       @peg = "Reject"
+      @prefiled_mes = "Thank you for taking interview with us.
+                        However, you did not make the final list
+                        We wish you   best  in future endeavors"
     end
     render :action => 'single_interview_submissions', :layout => 'single_interview_submissions'
    end
