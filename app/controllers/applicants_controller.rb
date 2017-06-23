@@ -80,7 +80,7 @@ class ApplicantsController < ApplicationController
            render "file_progress"
         end
      else
-       render "complete"
+       render "complete_progress"
      end
  end
 

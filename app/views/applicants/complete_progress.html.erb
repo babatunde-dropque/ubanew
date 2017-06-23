@@ -173,16 +173,16 @@ ul.nav.nav-tabs>li {
                 <ul class="nav nav-tabs" role="tablist">
 
                 <% @interview.questions.each_with_index do | question, index | %>
-                    <li role="presentation" class="disabled" >
+                    <li role="presentation" class="disabled">
                         <a href="#step<%= index + 1 %>" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
                                 <% if question["question_type"] == "1" %>
-                                    <i class="glyphicon glyphicon-folder-open"></i>
+                                    <i class="glyphicon glyphicon-play"></i>
                                 <% elsif question["question_type"] == "2" %>
-                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    <i class="glyphicon glyphicon-text-width"></i>
 
                                 <% elsif question["question_type"] == "3" %>
-                                    <i class="glyphicon glyphicon-picture"></i>
+                                    <i class="glyphicon glyphicon-cloud-upload"></i>
                                 <% end %>
                             </span>
                         </a>
@@ -204,15 +204,16 @@ ul.nav.nav-tabs>li {
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
 
-                       <!-- Beginning here -->
-
-
-                       <div class="row dq-page-container">
-        <span class="fa fa-5x fa-thumbs-o-up dq-page-icon"></span>
+      <i class="fa fa-handshake-o" aria-hidden="true"></i>
+      
+      <hr>
+      <div class="dq-interview-question" style="white-space: pre-line; font-size: 1.5em;"> <%= (@interview.completed_message) %> 
       </div>
       <hr>
-      <div class="dq-interview-question" style="white-space: pre-line; font-size: 1.5em;"> <%= (@interview.completed_message) %> </div>
-      <hr>
+
+      <!-- <div class="dq-page-container">
+            <span class="fa fa-5x fa-handshake-o dq-page-icon"></span>
+       </div> -->
 
       
 
@@ -221,10 +222,8 @@ ul.nav.nav-tabs>li {
           <a href="/applicants" type="button" class="btn btn-md dq-color-customized"> Home </a>
         </div>
       </div>
-                        
-     
-    
-                        
+               
+                                
                        <!-- end here -->
                       
                     </div>
@@ -235,7 +234,6 @@ ul.nav.nav-tabs>li {
     </section>
    </div>
 </div>
-
 
 
 

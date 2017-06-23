@@ -5,7 +5,7 @@
    background: none;
 }
 
-.ui-widget-content {
+div.ui-widget-content {
   border: none;
   background: none;
 }
@@ -78,9 +78,9 @@
          <div class="col-lg-12 col-md-12">
             <div class="card box-shape ">
                             
-                <div class="header">
+                <div class="header" >
                 
-                  <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape" %>
+                  <%= link_to 'Edit this interview', edit_company_interview_path(id: @interview.slug), class: "btn float-right box-shape", style:"z-index:9999;" %>
                 </div>
                             
 
@@ -303,15 +303,11 @@
     });
 
  $("#step10").click(function(){
-  ("#reminder-modal").modal();
+   $("#reminder-modal").modal();
  });
 
- ("#reminder-continue").click(function(){
- ("#reminder-modal").modal('hide');
-
- // the logic of sending the reminder
-
-
+ $("#reminder-continue").click(function(){
+    $("#reminder-modal").modal('hide');
  });
 
 

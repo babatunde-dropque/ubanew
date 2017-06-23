@@ -167,6 +167,9 @@ ul.nav.nav-tabs>li {
 <div class="container">
     <div class="row">
         <section>
+        <h5 style="text-align: center; "> <%= @file_text %>  </h5> 
+
+<hr>
         <div class="wizard">
             <div class="wizard-inner">
                 <div class="connecting-line"></div>
@@ -177,12 +180,12 @@ ul.nav.nav-tabs>li {
                         <a href="#step<%= index + 1 %>" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
                                 <% if question["question_type"] == "1" %>
-                                    <i class="glyphicon glyphicon-folder-open"></i>
+                                    <i class="glyphicon glyphicon-play"></i>
                                 <% elsif question["question_type"] == "2" %>
-                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    <i class="glyphicon glyphicon-text-width"></i>
 
                                 <% elsif question["question_type"] == "3" %>
-                                    <i class="glyphicon glyphicon-picture"></i>
+                                    <i class="glyphicon glyphicon-cloud-upload"></i>
                                 <% end %>
                             </span>
                         </a>
@@ -207,8 +210,6 @@ ul.nav.nav-tabs>li {
                        <!-- Beginning here -->
                         
       
-   
-      <h5 class="dq-interview-question"> <%= @file_text %></h5>
 
       <div class="dropzone-previews">  </div>
 
