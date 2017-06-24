@@ -16,12 +16,10 @@
             <div class="container-fluid">
             	<div class="row">
                         <!-- test for zero state -->
-                        <% if @user.submissions.length > 0 %>
-                       
-
+                <% if @user.submissions.length > 0 %>
                            <% @user.submissions.each do | submission | %>
-                        <% if !submission.interview.nil? %>
-                    <div class="col-md-5">
+                <% if !submission.interview.nil? %>
+                    <div class="col-md-6">
                         <div class="card box-shape">
                             
                     <div class="content">
@@ -38,11 +36,11 @@
                                  
                         </div> 
                         <div class="col-md-7 col-sm-7">
-                                   <h4 class="title"><%= submission.interview.title %> </h4>
-                                <p class="category"><%= truncate(submission.interview.description , :length => 130) %></p>
+                                 <h4 class="title"><%= submission.interview.title %> </h4>
+                               
                                                             
                                 <hr>
-                                Progress Level:
+                                Interview progress:
 
                                 <% if submission.current_no == 500 %>
                                     Completed
@@ -57,7 +55,7 @@
                                 
                                    Status:  
                                      <% if submission.current_no.nil? %>
-                                        Not Stated
+                                        Not Started
                                      <% elsif submission.status.nil? && submission.current_no < 500  %>
                                         <i class="fa fa-circle text-primary"></i> Uncompleted Interview
                                      <% elsif submission.status.nil? && submission.current_no == 500 %>
@@ -113,8 +111,10 @@
 
                         </div>
                     </div>
+                </div>
                     <% end %>
                     <% end %>
+
 
 
 
@@ -126,8 +126,6 @@
                             </div>
                           </div>
                         <% end %>
-            	
-                    </div>
     </div>
 </div>
 
