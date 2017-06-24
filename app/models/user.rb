@@ -1,3 +1,4 @@
+require 'slack-notifier'
 class User < ActiveRecord::Base
     has_many :indentities
 	has_many :notifications
@@ -7,7 +8,7 @@ class User < ActiveRecord::Base
     mount_uploader :a_dp, ADpUploader
     mount_uploader :a_cv, ACvUploader
 
-     after_create :send_welcome_mail
+     after_create :send_welcome_mail, :send_slack_notification
      def send_welcome_mail
         InterviewMailer.welcome_email(self).deliver
      end
@@ -22,5 +23,13 @@ class User < ActiveRecord::Base
 
    #this will allow user to be able to rate
    ratyrate_rater
+
+
+   def send_slack_notification
+    if Rails.env.production?
+        notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'signup'
+        notifier.ping "New Signup by " + self.name + " with number " + self.telephone + " email: " + self.email
+    end
+   end
 
 end

@@ -1,4 +1,3 @@
-require 'slack-notifier'
 class Users::RegistrationsController < Devise::RegistrationsController
 layout 'signin'
  before_filter :configure_sign_up_params, only: [:create]
@@ -50,10 +49,7 @@ layout 'signin'
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :telephone])
     
-    if Rails.env.production?
-      notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'signup'
-      notifier.ping "New Signup by " + params[:user][:name] + " with number " + params[:user][:telephone] + " email: " + params[:user][:email]
-    end
+    
   end
 
   # If you have extra params to permit, append them to the sanitizer.
