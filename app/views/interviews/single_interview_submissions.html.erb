@@ -9,6 +9,22 @@ textarea.note {
  border: solid 1px #ddd;
 }
 
+/*div.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    text-align: center;
+    font-size: 25px;
+    color: #333;
+    border: 2px solid #333;
+}*/
+
 
 </style>
 
@@ -120,15 +136,15 @@ textarea.note {
                 <ul class="clearfix">
                   <% submission.answers.each do |answer| %>
                     <% if answer["question_type"] == "1" %>
-                      <li question-type="1" token="<%= answer["link"] %>" question="<%= answer["question_video"] %>"> <div class="fa fa-1x fa-video-camera dq-icon" ></div> </li>
+                      <li question-type="1" token="<%= answer["link"] %>" question="<%= answer["question_video"] %>"> <div class="round-tab glyphicon glyphicon-play" ></div> </li>
                     <% elsif answer["question_type"] == "2" %>
-                     <li question-type="2"> <div class="fa fa-1x fa-files-o dq-icon"></div> </li>
+                     <li question-type="2"> <div class="round-tab glyphicon glyphicon-text-width"><span></span></div> </li>
                     <% elsif answer["question_type"] == "3" %>
-                     <li question-type="3"> <div class="fa fa-1x fa-file-text-o dq-icon"></div> </li>
+                     <li question-type="3"> <div class="round-tab ßglyphicon glyphicon-cloud-upload"></div> </li>
                     <% end %>
                   <% end %>
                 </ul>
-              </div>
+              </div> 
               </div>
 
                   <div class="rate" >
@@ -142,7 +158,7 @@ textarea.note {
                     </div>
                   <% end %>
 
-                    <div class="centralize hidden ">
+                    <div class="centralize">
                       General:
                       <%= rating_for submission, 'response', disable_after_rate: false, cancel_hint: 'Cancel interview rating', imdb_avg: false , target: '#hint'+submission.id.to_s, targetType: "score" ,targetFormat: "Interview rating: {score}"%>
 
@@ -335,7 +351,7 @@ event.preventDefault();
 
               } else if(questionType == 2) {
                  $(htmlContentId).html(data.answer);
-                 $(htmlQuestionId).html( "<textarea class='note'>" + data.question + "</textarea>" ) ;
+                 $(htmlQuestionId).html( "<textarea class='note' readonly>" + data.question + "</textarea>" ) ;
              } else if (questionType == 3){
                 $(htmlContentId).html("<div>"+
                     "File Name: "+data.answer.split('/').pop()+"<br>"+

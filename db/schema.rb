@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620201330) do
+ActiveRecord::Schema.define(version: 20170624122908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,14 +136,12 @@ ActiveRecord::Schema.define(version: 20170620201330) do
   add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
 
   create_table "identities", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "interviews", force: :cascade do |t|
     t.string   "title"
@@ -279,7 +277,6 @@ ActiveRecord::Schema.define(version: 20170620201330) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
-    t.string   "package"
     t.string   "telephone"
     t.string   "a_qualification"
     t.integer  "a_experience"
@@ -300,6 +297,5 @@ ActiveRecord::Schema.define(version: 20170620201330) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "identities", "users"
   add_foreign_key "oauth_accounts", "users"
 end
