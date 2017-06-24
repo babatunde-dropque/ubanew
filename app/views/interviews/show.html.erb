@@ -38,6 +38,8 @@ div.ui-widget-content {
                                 </div>
                               <% end %>
 
+
+
                                       <button id="add-bulk-contact" class="btn float-right box-shape"> Import Bulk Emails </button>
 
                                       <h5> Send Invitation
@@ -91,8 +93,6 @@ div.ui-widget-content {
                         <li><a href="#tabs-2">Details</a></li>
                       </ul>
                       <div id="tabs-1">
-                        <!-- <div class="content"> -->
-                          <!--  <h5> Question(s) </h5> -->
                             <div class="typo-line">
                               <input type="hidden" id="question-returned" value="<%= @interview.questions.to_json %>" />
                                 <div class="table-responsive table-full-width">
@@ -103,7 +103,6 @@ div.ui-widget-content {
                                       </table>
                                   </div>
                             </div>
-                        <!-- </div>   -->
                       </div>
                       <div id="tabs-2">
                 
@@ -257,7 +256,7 @@ div.ui-widget-content {
 
 
  $("#step10").click(function(){
-  $("#reminder-modal").modal();
+    $("#reminder-modal").modal();
  });
 
     var mev =  $("#reminder-modal").find(".modal-footer");
@@ -269,8 +268,7 @@ div.ui-widget-content {
     if (typeValue == "1"){
       var type = "Are you sure to SEND REMINDERS? SMS messages will be sent to Candidates who have not completed  the interview @ 4 naira/sms";
     }
-    else if(typeValue == "2")
-    {
+    else if(typeValue == "2"){
       var type = "Are you sure to SEND REMINDERS ? Email Will be sent to the Candidates who have  not completed the interview";
     }
     else{
@@ -388,4 +386,6 @@ div.ui-widget-content {
   }
 
 
+
 </script>
+

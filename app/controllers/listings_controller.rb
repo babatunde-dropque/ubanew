@@ -24,6 +24,26 @@ class ListingsController < ApplicationController
 
 	end
 
+	def listing_inner
+		if params[:search] && request.subdomain.present? && request.subdomain != 'www'
+
+		   @company = Company.find_by(subdomain:request.subdomain )
+		   interviews_all = @company.interviews.where(approve:1)
+		   @interviews = interviews_all.where("lower(title) LIKE ?", "%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+
+		elsif  request.subdomain.present? && request.subdomain != 'www'
+    		 @company = Company.find_by(subdomain: request.subdomain)
+    		 @interviews = @company.interviews.where(approve:1).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+
+		elsif params[:search]
+			 @interviews = Interview.search(params[:search]).where(approve:1).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+
+		else
+		  @interviews = Interview.where(approve:1).paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+		end
+
+	end
+
 
 	def listing_approval
 		@interviews_approval = Interview.where.not(company_id: nil).paginate(:page => params[:page], :per_page => 5).order('created_at DESC')

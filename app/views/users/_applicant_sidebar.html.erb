@@ -20,8 +20,8 @@
                    </a>
                 </li>
 
-                <li  class="">
-                    <a href="/listing">
+                <li  class="<%= (params[:c] == "3") ? "active": "" %>" >
+                    <a href="<%= user_interviews_path(c:"3") %>">
                         <i class="ti-search"></i>
                         <p>Interviews</p>
                    </a>
