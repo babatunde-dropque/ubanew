@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
 	layout 'listing'
 	# before_action :authenticate_user!
-	before_action :validate_user, :except => [:listing_interview]
+	before_action :validate_user, :except => [:listing_interview, :listing_inner]
 
 	# this code only gets
 	def listing_interview

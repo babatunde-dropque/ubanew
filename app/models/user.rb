@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     mount_uploader :a_dp, ADpUploader
     mount_uploader :a_cv, ACvUploader
 
-     after_create :send_welcome_mail, :send_slack_notification
+     after_create  :send_slack_notification
      def send_welcome_mail
         InterviewMailer.welcome_email(self).deliver
      end

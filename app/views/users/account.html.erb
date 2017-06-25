@@ -63,15 +63,13 @@
                                   </h4>
                                 </div><br>
                                 <hr>
-                                <h4 class="text-center">Summary</h4>
+                                <h4 class="text-center">About me</h4>
                                 <p class="description text-center">
-                                    "I like the way you work it
-                                    No diggity
-                                    I wanna bag it up"
+                                    <%= @user.about_me %>
                                 </p>
                             </div>
                             <hr>
-                            <div class="text-center">
+                            <!-- <div class="text-center">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
                                         <div class="icon-big icon-info text-center">
@@ -89,7 +87,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
             <div class="card">
@@ -144,18 +142,18 @@
                     </div>
                     
                     <div class="card">
+                     <form  id="form" method="post">
                         <div id="tabs" class="col-lg-8 col-md-7">
                             <div class="header">
                                 <ul>
                                   <li><a href="#tabs-1">Personal info</a></li>
                                   <li><a href="#tabs-2">Education</a></li>
-                                  <li><a href="#tabs-3">Work Experience</a></li>
+                                  <!-- <li><a href="#tabs-3">Work Experience</a></li> -->
                                    <li><a href="#tabs-4">Skills/Certifications</a></li>
                                 </ul>
-                            
                             </div>
                             <div id="tabs-1" class="content">
-                                <form  id="form" method="post">
+                               
                                   <input type="hidden" name="update" value="update">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -177,28 +175,22 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control border-input" placeholder="Address" value="<%= @user.address %>">
+                                                <input type="text" class="form-control border-input" placeholder="Address" value="<%= @user.address %>" name="address">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input type="text" class="form-control border-input" placeholder="City" value="<%= @user.city %> ">
+                                                <input type="text" class="form-control border-input" placeholder="City" value="<%= @user.city %>" name="city">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" class="form-control border-input" placeholder="Country" value="<%= @user.country %>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" class="form-control border-input" placeholder="ZIP Code">
+                                                <input type="text" class="form-control border-input" placeholder="Country" value="<%= @user.country %>" name="country">
                                             </div>
                                         </div>
                                     </div>
@@ -207,9 +199,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="">Oh so, your weak rhyme
-You doubt I'll bother, reading into it
-I'll probably won't</textarea>
+                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="<%= @user.about_me %>" name="about_me"> <%= @user.about_me %> </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -248,19 +238,15 @@ I'll probably won't</textarea>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div> -->
-                                </form>
                         </div>
 
                               <div id="tabs-2" class="content">
-
-
-                               <form  id="form" method="post">
                                   <input type="hidden" name="update" value="update">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>School</label>
-                                                <input type="text" class="form-control border-input"  placeholder="School name(ex: University of Accra)" name="***" value="<%=  %>">
+                                                <input type="text" class="form-control border-input"  placeholder="School name(ex: University of Accra)" name="school" value="<%= @user.school %>">
                                             </div>
                                         </div>
                                     </div>
@@ -268,7 +254,7 @@ I'll probably won't</textarea>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Degree</label>
-                                                <input type="email" class="form-control border-input" placeholder="(ex: Bachelor)" class="address" name="email" value="<%=  %>">
+                                                <input type="email" class="form-control border-input" placeholder="(ex: Bachelor)" class="address" name="a_qualification" value="<%= @user.a_qualification %>">
                                             </div>
                                         </div>
                                     </div>
@@ -276,7 +262,7 @@ I'll probably won't</textarea>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Field of Study</label>
-                                                <input type="text" class="form-control border-input" placeholder="Area of study(ex: Genetics)" value="">
+                                                <input type="text" class="form-control border-input" placeholder="Area of study(ex: Genetics)" name="field_of_study" value="<%= @user.field_of_study %>">
                                             </div>
                                         </div>
                                     </div>
@@ -285,23 +271,15 @@ I'll probably won't</textarea>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Grade</label>
-                                                <input type="text" class="form-control border-input" placeholder="Class or Grade of Degree(ex: Second class)" value="">
+                                                <input type="text" class="form-control border-input" placeholder="Class or Grade of Degree(ex: Second class)" value="<%= @user.grade %>" name="grade">
                                             </div>
                                         </div>
                                     </div>
-
-
-                                   <!-- add csrf token -->
-                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-
-
-                                </form>
                                </div>
 
 
 
-                              <div id="tabs-3" class="content">
-                               <form  id="form" method="post">
+                             <!--  <div id="tabs-3" class="content">
                                   <input type="hidden" name="update" value="update">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -337,38 +315,18 @@ I'll probably won't</textarea>
                                         </div>
                                     </div>
 
-
-                                   <!-- add csrf token -->
-                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-
-
-                                </form>
-
-
-
-
-
-
-
-
-
-
-                              </div>
+                              </div> -->
                               <div id="tabs-4" class="content"> 
 
 
 
 
                               <div class="col-sm-10 col-sm-offset-1">
-                                                <div class="form-group has-error">
-                                                    
-
-                                                    <label id="tag-label" class="control-label" for="tags"></label>
-                                                    <input name="tags" type="text" id="tags" class="form-control" >
-                                                   
-                                                </div>
-
-                                            </div>
+                                    <div class="form-group has-error">
+                                        <label id="tag-label" class="control-label" for="tags"></label>
+                                        <input name="skill" type="text" value="<%= @user.skill %>" id="tags" class="form-control" >          
+                                    </div>
+                                </div>
 
 
 
@@ -387,7 +345,7 @@ I'll probably won't</textarea>
                                   <button id="update" type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
                               </div>
                     </div>
-
+                    </form>
 
                 </div>
             </div>
@@ -403,14 +361,13 @@ I'll probably won't</textarea>
 
 $('#tags').tagit({
         tagLimit: 15,
-        placeholderText: "Add skills/Certifications",
+        placeholderText: "Skills",
         onTagLimitExceeded : function(event, ui){
-            // $("#indicator-tags").html("Tags cannot be more than four"); 
-            $("#tag-label").html("Tags cannot be more than four");
+            $("#tag-label").html("Tags cannot be more than fifteen");
             $("#tag-label").show();
             $("#tag-label").fadeOut(7000);
         },
-       availableTags: ["advertising",
+       availableTags: ["Advertising",
 "programming",
 "Graphic Design" ,
 "Communication",
@@ -418,34 +375,34 @@ $('#tags').tagit({
 "Copywriting",
 "Planning/Event Planning",
 "SEO/SEM Marketing",
-"chemical", 
-"computer",
-"hardware",
-"manufacturering",
-"power",
-"construction",
-"distribution",
-"electricity",
-"energy",
-"enterprise",
-"suppliers",
+"Chemical", 
+"Computer",
+"Hardware",
+"Manufacturering",
+"Power",
+"Construction",
+"Distribution",
+"Electricity",
+"Energy",
+"Enterprise",
+"Suppliers",
 "Internet",
-"banking",
-"consulting",
-"research",
-"publishing",
-"exploration",
-"production",
-"servicing",
-"computing",
-"communication",
-"security",
-"shipping",
-"software",
-"utilities",
-"venture capital",
-"game companies",
-"media"
+"Banking",
+"Consulting",
+"Research",
+"Publishing",
+"Exploration",
+"Production",
+"Servicing",
+"Computing",
+"Communication",
+"Security",
+"Shipping",
+"Software",
+"Stilities",
+"Venture capital",
+"Game companies",
+"Media"
 ],
         showAutocompleteOnFocus: true,
         autocomplete: {

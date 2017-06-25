@@ -350,8 +350,8 @@ event.preventDefault();
               if (data == "error" ){
 
               } else if(questionType == 2) {
-                 $(htmlContentId).html(data.answer);
-                 $(htmlQuestionId).html( "<textarea class='note' readonly>" + data.question + "</textarea>" ) ;
+                 $(htmlContentId).html( "<textarea class='note' readonly>" +data.answer+ "</textarea>" );
+                 $(htmlQuestionId).html(data.question) ;
              } else if (questionType == 3){
                 $(htmlContentId).html("<div>"+
                     "File Name: "+data.answer.split('/').pop()+"<br>"+

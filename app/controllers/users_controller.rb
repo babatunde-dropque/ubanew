@@ -100,7 +100,7 @@ class UsersController < ApplicationController
   def account
     @logo_off = false
     if params[:update].present?
-        @user.update_attributes(email: params[:email], name: params[:name], password: params[:password])
+        @user.update_attributes(user_params)
         flash.now[:success] = "Account Updated Successfully"     
      end
   end
@@ -153,7 +153,7 @@ class UsersController < ApplicationController
 
   # parameters to update user's details
   def user_params
-    params.permit(:a_dp, :a_qualification, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status)
+    params.permit(:a_dp, :a_qualification, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status, :skill, :school, :grade, :field_of_study, :about_me)
   end
 
 
