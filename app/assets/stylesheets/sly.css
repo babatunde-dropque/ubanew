@@ -32,13 +32,17 @@
 }
 .frame ul li.active {
 	color: #fff;
-	background: #5e337b;
+	background: #1DA1F2;
 }
 
 /* for inner element*/
 .dq-icon{
   text-align: center;
   margin: 6% auto; 
+}
+
+.glyphicon {
+    top: 13px;
 }
 
  /*Scrollbar */
