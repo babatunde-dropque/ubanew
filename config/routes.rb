@@ -8,14 +8,14 @@ Rails.application.routes.draw do
   # rails engine for comment
   mount Commontator::Engine => '/commontator'
 
+  get 'listing' => 'listings#listing_interview', as: 'listing'
+  get 'listing-inner' => 'listings#listing_inner', as: 'listing_inner'
+  get 'listing-approval' => 'listings#listing_approval', as: 'approval_page'
   get 'applicants/index'
   get 'landings/index', as: 'landing'
   get '/newhome', to: 'landings#newhome', as: 'newhome'
   get '/pricing', to: 'landings#pricing', as: 'pricing'
   post 'landings/requestdemo', to: "landings#request_demo"
-  get 'listing' => 'listings#listing_interview', as: 'listing'
-  get 'listing-inner' => 'listings#listing_inner', as: 'listing_inner'
-  get 'listing-approval' => 'listings#listing_approval', as: 'approval_page'
   put 'update_approval_status' => 'listings#update_approval_status', as: 'update_approval'
   get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "build_profile", to: "users#build_profile", as: 'build_profile', :format => false
