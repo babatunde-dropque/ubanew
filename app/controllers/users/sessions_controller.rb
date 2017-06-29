@@ -34,9 +34,11 @@ layout 'signin'
     user = current_user
     if user.last_company.nil?
       company_path(user.companies.first)
-    else
+    elsif
       company = Company.friendly.find(user.last_company)
       company_path(company)
+    else
+     new_company_path
     end
   end
 
