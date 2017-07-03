@@ -41,16 +41,17 @@ textarea.note {
     <%= render partial: "users/navbar" %>
 
 
-         <hr>
-         <% if @peg %>
-         <div class="row">
+  <div class="content">
+         <% if @peg && @submissions.length != 0 %>
+         <div class="row text-center">
                 <div class="col-md-4 col-md-offset-4">
                     <button id="bukbut" type="button" class="btn btn-raised btn-twitter">Send <%= @peg %> Message To These Candidates</button>
                 </div>
           </div>
           <%end%>
+          <br>
       <input type="hidden" value="<%= @interview.id %>" id="interview_id" />
-        <div class="content card-start ">
+        <div class="card-start ">
 
           <div class="container-fluid">
 
@@ -94,7 +95,7 @@ textarea.note {
           </div>
           <div class="center" ><%= will_paginate @submissions %></div>
         </div>
-
+  </div>
     </div>
     </div>
 </div>
