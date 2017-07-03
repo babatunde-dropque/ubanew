@@ -33,7 +33,6 @@
                                    <h5 class="title"><%= submission.interview.company.name %> </h5>
                                    <a href="https://<%= submission.interview.company.subdomain %>.dropque.com"> <%= submission.interview.company.subdomain %>.dropque.com </a> <br>
                                 <br>
-                                 
                         </div> 
                         <div class="col-md-7 col-sm-7">
                                  <h4 class="title"><%= submission.interview.title %> </h4>
@@ -87,17 +86,17 @@
                                     <hr>
 
                   <div class="row block-display">
-                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="stats">
                               <i class="ti-timer"></i> Created:<br><%=  submission.interview.created_at.strftime("%d-%m-%Y") %>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                           <div class="stats">
                             <i class="ti-timer"></i> Updated:<br><%=  submission.interview.updated_at.strftime("%d-%m-%Y") %>
                           </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                           <% if !submission.interview.deadline.nil? %>
                             <div class="stats">
                               <i class="ti-timer"></i> Deadline:<br><%=  submission.interview.deadline.strftime("%d-%m-%Y") %>
