@@ -14,9 +14,9 @@ class InterviewMailer < ApplicationMailer
     @token = @interview.interview_token
     @company = interview.company
     @company_email = @company.email
-    @interview_page = "https://#{@company.subdomain}.dropque.com/applicants/#{@token}"
+    @interview_page = "https://#{@company.subdomain}.#{request.host_with_port}/applicants/#{@token}"
     @company_img = @company.logo
-    @url = 'https://www.dropque.com'
+    @url = request.protocol + request.host_with_port 
     @app = 'https://bit.ly/dropqueapp'
    mail(from:"Invite@dropque.com", to: email, subject: "#{@interview.title} Interview Invitation")
   end
@@ -32,7 +32,7 @@ class InterviewMailer < ApplicationMailer
     @company_email = @company.email
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'https://www.dropque.com'
+    @url = request.protocol + request.host_with_port 
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject: "#{@interview.title} Interview Outcome")
   end
@@ -48,7 +48,7 @@ class InterviewMailer < ApplicationMailer
     @company_email = @company.email
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'https://www.dropque.com'
+    @url = request.protocol + request.host_with_port 
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject: "#{@interview.title} Interview Outcome")
   end
@@ -63,7 +63,7 @@ class InterviewMailer < ApplicationMailer
     @company_email = @company.email
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'https://www.dropque.com'
+    @url = request.protocol + request.host_with_port 
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject:title)
  end
@@ -78,7 +78,7 @@ class InterviewMailer < ApplicationMailer
     @company_email = @company.email
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'https://www.dropque.com'
+    @url = request.protocol + request.host_with_port 
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject:title)
  end
