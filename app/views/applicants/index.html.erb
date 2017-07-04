@@ -80,15 +80,10 @@
 
           
           <% if params[:interview_token].present? %>
-
-          
-
               <form  id="form-details" method="post" action="/applicants"> 
                 <input type="text" class="dq-input-interview-token" id="interview-token-box" placeholder="Enter your interview code here" value="<%= params[:interview_token] %>" name="interview_token" contenteditable="false" hidden />
 
-                <br>
-                <!-- <h6 style="color: white"> place holder</h6>  -->
-                <br> 
+                <br><br> 
 
                 <input type="hidden" value="details" name ="page" />
                   <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
@@ -97,7 +92,7 @@
                     <% session[:return_to] = request.url %>
                     <!-- end session save -->
                    <div class="editableContent">
-                        <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> </button>
+              <button id = "take-interview" class="btn btn-large dq-btn-start-interview dq-color-customized"> Start your interview </button>
                    </div>
               <%  else %>
                  <div class="editableContent">
@@ -140,24 +135,6 @@
     </div>
 
 </div>
-
-
-<!-- Details for single interviews should be show here -->
-
-
-
- <% if  Interview.exists?(interview_token: params[:interview_token]) %>
- <% @interview = Interview.find_by(interview_token: params[:interview_token]) %>
-
- <!--  Add interview details Partial -->
-
-         <%= render partial: "interview_details" %>
- <!--  Add interview footer Partial -->
-       
-<% end %>
-
-
-
 
 
 <script>
@@ -204,7 +181,6 @@
      $("#reset-button").click(function(event){
 
         var properties = {
-
             primaryColor: '#5e337b',
             heroText: "<%= @company.name %> E-Interview Portal",
             subHeroText: "Sell yourself and get the offer",
@@ -226,7 +202,6 @@
 
    
     $(".max-char").on('keyup', function(event) {
-
          var max = $(this).attr("max");
          var length = $(this).text().length ;
          if ( length > max ){
