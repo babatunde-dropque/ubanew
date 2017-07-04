@@ -116,7 +116,7 @@ class InterviewsController < ApplicationController
      mail_list = params[:mail_list]
      list = mail_list.split(",")
      list.map do |item|
-        InterviewMailer.interview_invite(@interview, item).deliver
+        InterviewMailer.interview_invite(@interview, item, request.domain ).deliver
      end
      redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Invitation was successfully sent.'
   end
