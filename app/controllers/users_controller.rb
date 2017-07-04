@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   def become_applicant
+
     @user.update_attributes(status:0)
     redirect_to user_timeline_path(current_user)
   end
@@ -94,11 +95,13 @@ class UsersController < ApplicationController
   
 
   def application_timeline
+    @profile_page = true
     @logo_off = false
   end
 
 
   def account
+    @profile_page = true
     @logo_off = false
     if params[:update].present?
         @user.update_attributes(user_params)
@@ -109,6 +112,7 @@ class UsersController < ApplicationController
 
 
   def interviews
+    @profile_page = true
     @logo_off = false
     render "applicant_interview_listing"
   end
