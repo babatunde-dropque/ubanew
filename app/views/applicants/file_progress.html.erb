@@ -211,11 +211,11 @@ ul.nav.nav-tabs>li {
                         
       
 
-      <div class="dropzone-previews">  </div>
+    
 
        <div class="row dq-page-container">
         
-        <div >
+        
         <form  method="post" action="/applicants/upload_file" enctype="multipart/form-data" class="dropzone dq-dropzone" id="file_question"> 
             <input type="hidden" value="<%= @interview.id %>" name ="id" />
             <input type="hidden" value="<%= @position + 1 %>" name="pos" />
@@ -224,21 +224,12 @@ ul.nav.nav-tabs>li {
             <input type="hidden" value="file" name="submission" />
             <input type="hidden" name="file_text" value="<%= @file_text %>" />
               <!-- add csrf token -->
-              <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
         </form>
-         <div class="word-counter">Max file size: <%= @file_size %>mb  (Allowed files: pdf, png, ppt ) </div> 
-        </div>
 
-      </div>
-
-      <div class="row">
+    <div class="word-counter">Max file size: <%= @file_size %>mb  (Allowed files: pdf, png, ppt ) </div> 
         
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
-          
-                 
-
-            <form  method="post" action="/applicants/question">         
+<form  method="post" action="/applicants/question">         
                 <input type="hidden" value="<%= @interview.id %>" name ="id" />
                 <input type="hidden" value="<%= @position + 1 %>" name="pos" />
                 <input type="hidden" value="<%= @user.id %>" name="user_id" />
@@ -254,19 +245,13 @@ ul.nav.nav-tabs>li {
                 <% end %>
             </form>  
 
-            <button id="add"  class="btn btn-md dq-color-customized"> Upload File </button>   
+            <button id="add"  class="btn btn-md dq-color-customized"> Upload File </button> 
 
-        </div>
+       
+
       </div>
-  
-
-
-
-
 
     
-                        
-                       <!-- end here -->
                       
                     </div>
                     <div class="clearfix"></div>
