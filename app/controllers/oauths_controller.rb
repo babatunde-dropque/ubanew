@@ -31,13 +31,6 @@ class OauthsController < ApplicationController
 
   def callback_linkedin
          auth_hash = request.env['omniauth.auth']
-    puts "**********************************************"
-    puts "**********************************************"
-    puts "**********************************************"
-    puts auth_hash
-    puts "**********************************************"
-    puts "**********************************************"
-    puts "**********************************************"
 
     if session[:user_id]
         redirect_to landing_path(current_user)
