@@ -19,7 +19,7 @@ RailsAdmin.config do |config|
     if current_user.nil?
       redirect_to main_app.root_path
     else
-      redirect_to main_app.root_path unless (current_user.email == "admin@dropque.com" || current_user.email == "ibukun@dropque.com" )
+      redirect_to main_app.root_path unless (current_user.email == "admin@dropque.com" || current_user.email == "ibukun@dropque.com" || current_user.email == "opeyemi@dropque.com"   )
     end
   end
 
