@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
    def send_slack_notification
     if Rails.env.production?
         notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'signup'
-        notifier.ping "New Signup by " + self.name + " with number " + self.telephone + " email: " + self.email
+        notifier.ping "New Signup by " + self.name + " email: " + self.email
     end
    end
 
