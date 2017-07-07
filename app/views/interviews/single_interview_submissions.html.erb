@@ -51,7 +51,7 @@ textarea.note {
 
             <% @submissions.each do |submission| %>
               <!--  test if answer is nil -->
-              <% if !submission.answer.nil?  %>
+              <% if !submission.answers.nil?  %>
                   <div class="col-md-3">
                         <div class="content">
                             <div class="card main text-center box-shape" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
