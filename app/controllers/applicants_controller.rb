@@ -81,6 +81,8 @@ class ApplicantsController < ApplicationController
         end
      else
        render "complete_progress"
+       #trigger confirmation email
+       InterviewMailer.finish_interview(@submission).deliver!
      end
  end
 
@@ -137,6 +139,7 @@ end
   def test_for_end(length, position)
     if position >= length
       return 500
+      
     elsif length > position
       return position
     end
@@ -156,7 +159,7 @@ end
   private
 
 
-  def set_up_company 
+  def set_up_company
     # get subdomain
     subdomain = request.subdomain
     @company = Company.find_by(subdomain: subdomain)
@@ -167,7 +170,7 @@ end
 
   def set_up_interview
     @interview = Interview.find(params[:id])
-  end 
+  end
 
   def set_up_user_and_submission
     @user = User.find(params[:user_id])
