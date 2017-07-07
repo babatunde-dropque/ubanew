@@ -68,7 +68,7 @@ textarea.note {
                                 <div >
                                    <span class="stats"> <%= truncate( submission.user.name , :length => 25) %>  </span><br>
                                   <span class="text-info">
-                                    <small> <%= submission.user.email %> </small>
+                                    <small> <%= truncate( submission.user.email , :length => 25) %>  </small>
                                   </span>
 
                                 </div>

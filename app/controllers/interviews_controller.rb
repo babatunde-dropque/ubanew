@@ -21,7 +21,7 @@ class InterviewsController < ApplicationController
   def single_interview_submissions
      @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
      @user_status = @user_company.status
-     @submissions = @interview.submissions.where(current_no: 500, status: nil).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
+     @submissions = @interview.submissions.where(current_no: 500, status: nil).paginate(:page => params[:page], :per_page => 24).order('created_at DESC')
      render :layout => 'single_interview_submissions'
   end
 
@@ -29,7 +29,7 @@ class InterviewsController < ApplicationController
   def filtered_single_interview
     @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
     @user_status = @user_company.status
-    @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
+    @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 24).order('created_at DESC')
     @meg =  params[:status].to_i
     if (@meg == 0 )
       @peg = "Shortlist"
