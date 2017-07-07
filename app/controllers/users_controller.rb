@@ -158,7 +158,7 @@ class UsersController < ApplicationController
 
   # parameters to update user's details
   def user_params
-    params.permit(:a_dp, :a_qualification, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status, :skill, :school, :grade, :field_of_study, :about_me)
+    params.permit(:name, :a_dp, :a_qualification, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status, :skill, :school, :grade, :field_of_study, :about_me)
   end
 
 

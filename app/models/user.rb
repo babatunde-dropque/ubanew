@@ -1,5 +1,6 @@
 require 'slack-notifier'
 class User < ActiveRecord::Base
+    # before_save :capitalize_first_character
     has_many :indentities
 	has_many :notifications
 	has_many :joint_user_companies
@@ -23,6 +24,17 @@ class User < ActiveRecord::Base
 
    #this will allow user to be able to rate
    ratyrate_rater
+
+    
+
+   
+
+   # def capitalize_first_character
+   #    self.name.split.map(&:capitalize).join(' ')
+   # end
+
+
+
 
 
    def send_slack_notification
