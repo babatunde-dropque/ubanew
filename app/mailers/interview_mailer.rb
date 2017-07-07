@@ -29,6 +29,16 @@ class InterviewMailer < ApplicationMailer
    mail(from:"Invite@dropque.com", to: email, subject: "#{@interview.title} Interview Invitation")
   end
 
+  def finish_interview (submission)
+    @submission = submission
+    @user_email = @submission.user.email
+    @interview  = @submission.interview
+    @company = @interview.company
+    @company_email = @company.email
+    @dashboard = "https://www.dropque.com/dashboard/account"
+    mail(from:"application@dropque.com", to:@user_email, subject:"#{@interview.title} Interview completion")
+  end 
+
 
   def shortlist(interview, submissionId)
     @id = submissionId
