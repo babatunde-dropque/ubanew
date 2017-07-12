@@ -23,7 +23,7 @@
                   <% submissions = interview.submissions.where(current_no: 500) %>
                   <% questions = interview.questions.length%>
                   <% shortlisted = Submission.where(interview_id:interview.id).where(status:0).length %>
-                  <% rejected = Submission.where(interview_id:interview.id).where(status:1).length %>
+                  <% rejected = Submission.where(interview_id:interview.id).where(status:2).length %>
                       <div class="col-md-4">
                           <div class="img-responsive card box-shape">
 
