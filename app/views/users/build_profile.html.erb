@@ -145,7 +145,7 @@
                                                          <option selected value="<%= @user.country %>"><%= @user.country %>
                                                          </option>
                                                         <% end %>
-
+                                                        <option value="nil">None</option>
                                                         <option value="Afghanistan">Afghanistan</option>
 <option value="Åland Islands">Åland Islands</option>
 <option value="Albania">Albania</option>
@@ -472,6 +472,8 @@
 
                                     <div class="pull-left">
                                         <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Previous' />
+
+                                        <input type='button' id='skip' class='btn  btn-default btn-wd' value='Do this Later' />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -496,15 +498,13 @@ $('#date').datepicker({
     maxDate: 0
   });
 
-    // $('#tags').tagit({
-    //     tagLimit: 4,
-    //     placeholderText: "Add tags",
-    //     onTagLimitExceeded : function(event, ui){
-    //         // $("#indicator-tags").html("Tags cannot be more than four");
-    //     }
-    // });
 
     $("#finish").click(function(event){   
+         $("#form").submit();
+    });
+
+
+    $("#skip").click(function(event){   
          $("#form").submit();
     });
 

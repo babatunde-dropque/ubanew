@@ -3,7 +3,7 @@ class InterviewMailerPreview < ActionMailer::Preview
 
   # Preview this email at http://localhost:3000/rails/mailers/interview_mailer/interview_invite
   def interview_invite
-    InterviewMailer.interview_invite(Interview.first, "mustaphaalade@gmail.com")
+    InterviewMailer.interview_invite(Interview.first, "mustaphaalade@gmail.com", "dropque.com")
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/interview_mailer/shortlist

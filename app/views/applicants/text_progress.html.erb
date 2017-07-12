@@ -211,24 +211,10 @@ ul.nav.nav-tabs>li {
       
       <div class="row dq-page-container"> 
         <textarea id="answer-box" class="form-control dq-text-question-input" placeholder="Enter your text here"></textarea>
-         <div id="word-left" class="word-counter"><%= @max_char%>  words remaining</div> 
-      </div>
 
-      <div class="row">
-        <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="progress dq-interview-progress-bar">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <%= ((@position + 1) * 100)/ @number_of_question %>%">
-              <span class="sr-only"><%= ((@position + 1) * 100)/ @number_of_question %>% Complete</span>
-            </div>
-          </div>
-          <div class="dq-interview-progress-info">
-             <h6>Question <%= @position + 1 %> of <%= @number_of_question %></h6>
-          </div>
-        </div> -->
-        <hr>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
-          
-          <form  method="post" action="/applicants/question">         
+         <div id="word-left" class="word-counter"> <%= @max_char %>  words remaining </div> 
+
+         <form  method="post" action="/applicants/question">         
             <input type="hidden" value="<%= @interview.id %>" name ="id" />
             <input type="hidden" value="<%= @position + 1 %>" name="pos" />
             <input type="hidden" value="<%= @user.id %>" name="user_id" />
@@ -243,13 +229,11 @@ ul.nav.nav-tabs>li {
             <% else %>
               <button disable id="submit" class="btn btn-md dq-color-customized"> Next Question </button>
             <% end %>
-
           </form>
 
-        </div>
       </div>
-    
-                        
+
+                          
                        <!-- end here -->
                       
                     </div>

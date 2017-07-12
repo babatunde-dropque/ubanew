@@ -210,15 +210,12 @@ ul.nav.nav-tabs>li {
 
                        <!-- Beginning here -->
                         
-      <!-- <h5 class="dq-interview-question">  <%= @question_video %>  </h5> -->
 
     <div class="row dq-page-container">
         <div id="video-container" class="dq-inner-video"> </div>
-        <div id="duration" class="word-counter"></div>         
-     </div>
-
-      <div class="row">
-        
+        <div id="duration" class="word-counter"></div> 
+        <!-- ------------------------------------------------------- -->
+        <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dq-interview-bottom-toolbar">
           <form  method="post" action="/applicants/question">         
             <input type="hidden" value="<%= @interview.id %>" name ="id" />
@@ -237,10 +234,10 @@ ul.nav.nav-tabs>li {
 
           </form>
         </div>
-      </div>
-  
-    
-       
+      </div>      
+    </div>
+
+      
                        <!-- end here -->
                       
                     </div>

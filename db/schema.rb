@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(version: 20170625125439) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
+    t.string   "package"
     t.string   "telephone"
     t.string   "a_qualification"
     t.integer  "a_experience"

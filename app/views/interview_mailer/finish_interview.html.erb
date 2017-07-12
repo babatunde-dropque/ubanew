@@ -4,7 +4,7 @@
   <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title> Collaborator </title>
+    <title> Dropque Notification </title>
     <style>
       /* -------------------------------------
           GLOBAL RESETS
@@ -290,9 +290,9 @@
                       <td>
                             
                         <p>Hello,</p>
-                        
-                         <p><strong><%=@company.name%> </strong> has invited you to take <strong><%=@interview.title.capitalize!%></strong> Interview with their company.</p>
-                        <p>Your interview token is <strong><%=@token%></strong> </p>
+
+                         <p> You have successfully completed  <strong><%=@interview.title.capitalize!%></strong> Interview of <strong><%=@company.name%> </strong></p>
+                        <p>Use the link below to monitor the progress of your application </p>
 
                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
@@ -301,10 +301,9 @@
                                 <table border="0" cellpadding="0" cellspacing="0">
                                   <tbody >
                                     <tr>
-                                      <td> 
+                                      <td>
 
-                                      <a href="<%=@interview_page%>" class="" target="_blank" data-saferedirecturl="">Accept Invitation Button</a> 
-
+                                      <a href="<%=@dashboard%>" class="" target="_blank" data-saferedirecturl=""> Monitor Application</a>
 
                                       </td>
                                     </tr>
@@ -316,7 +315,7 @@
                           </tbody>
                         </table>
                         <br>
-                        <p>If you face any technical difficulty while taking the interview kindly click on the smiley text icon at the bottom right part of your screen to talk to one of our support reps. </p>
+                        <p>If you have any questions, kindly click on the smiley text icon at the bottom right part of your screen to talk to one of our support reps. </p>
 
                         <p>Warm Regards , <strong><%=@company.name%></strong> (<%= @company_email %>)</p>
                       </td>

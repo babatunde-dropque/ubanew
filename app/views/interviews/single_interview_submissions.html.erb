@@ -9,22 +9,6 @@ textarea.note {
  border: solid 1px #ddd;
 }
 
-/*div.round-tab {
-    width: 70px;
-    height: 70px;
-    line-height: 70px;
-    display: inline-block;
-    border-radius: 100px;
-    background: #fff;
-    border: 2px solid #e0e0e0;
-    z-index: 2;
-    position: absolute;
-    text-align: center;
-    font-size: 25px;
-    color: #333;
-    border: 2px solid #333;
-}*/
-
 
 </style>
 
@@ -66,7 +50,8 @@ textarea.note {
 
 
             <% @submissions.each do |submission| %>
-
+              <!--  test if answer is nil -->
+              <% if !submission.answers.nil?  %>
                   <div class="col-md-3">
                         <div class="content">
                             <div class="card main text-center box-shape" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
@@ -81,15 +66,17 @@ textarea.note {
 
                                 </div>
                                 <div >
-                                   <span class="stats"> <%= submission.user.name %></span><br>
+                                   <span class="stats"> <%= truncate( submission.user.name , :length => 23) %>  </span><br>
                                   <span class="text-info">
-                                    <small> <%= submission.user.email %> </small>
+                                    <small> <%= truncate( submission.user.email , :length => 23) %>  </small>
                                   </span>
 
                                 </div>
                                </div>
                         </div>
                   </div>
+               <% end %>
+
               <% end %>
             </div>
           </div>
@@ -108,6 +95,8 @@ textarea.note {
 
   <!-- Modal -->
 <% @submissions.each do |submission| %>
+
+  <% if !submission.answers.nil? %>
   <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -186,6 +175,9 @@ textarea.note {
       </div>
     </div>
   </div>
+
+
+  <% end %>
 <% end %>
 
 

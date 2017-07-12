@@ -9,17 +9,35 @@ class InterviewMailer < ApplicationMailer
     mail(from: 'Dropque', to: @user.email , subject: 'Welcome to Dropque')
   end
 
-  def interview_invite(interview, email)
+  # I have not implemented this yet
+  def welcome_email_applicant(user)
+    @user = user
+    @name = @user.name
+    @dashboard  = 'http://www.dropque.com/dashboard'
+    @dropque = "Dropque Inc"
+    mail(from: 'Dropque', to: @user.email , subject: 'Welcome to Dropque')
+  end
+
+  def interview_invite(interview, email, domain)
     @interview = interview
     @token = @interview.interview_token
     @company = interview.company
     @company_email = @company.email
-    @interview_page = "https://#{@company.subdomain}.dropque.com/applicants/#{@token}"
+    @interview_page = "https://#{@company.subdomain}.#{domain}/applicants/#{@token}"
     @company_img = @company.logo
-    @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
    mail(from:"Invite@dropque.com", to: email, subject: "#{@interview.title} Interview Invitation")
   end
+
+  def finish_interview (submission)
+    @submission = submission
+    @user_email = @submission.user.email
+    @interview  = @submission.interview
+    @company = @interview.company
+    @company_email = @company.email
+    @dashboard = "https://www.dropque.com/dashboard/account"
+    mail(from:"application@dropque.com", to:@user_email, subject:"#{@interview.title} Interview completion")
+  end 
 
 
   def shortlist(interview, submissionId)
@@ -32,7 +50,6 @@ class InterviewMailer < ApplicationMailer
     @company_email = @company.email
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject: "#{@interview.title} Interview Outcome")
   end
@@ -48,7 +65,6 @@ class InterviewMailer < ApplicationMailer
     @company_email = @company.email
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject: "#{@interview.title} Interview Outcome")
   end
@@ -63,7 +79,6 @@ class InterviewMailer < ApplicationMailer
     @company_email = @company.email
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject:title)
  end
@@ -78,7 +93,6 @@ class InterviewMailer < ApplicationMailer
     @company_email = @company.email
     @company_img = @company.logo
     @interview_page = @company.subdomain
-    @url = 'https://www.dropque.com'
     @app = 'https://bit.ly/dropqueapp'
     mail(from:"application@dropque.com",to: @email, subject:title)
  end

@@ -21,7 +21,7 @@ class InterviewsController < ApplicationController
   def single_interview_submissions
      @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
      @user_status = @user_company.status
-     @submissions = @interview.submissions.where(current_no: 500, status: nil).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
+     @submissions = @interview.submissions.where(current_no: 500, status: nil).paginate(:page => params[:page], :per_page => 24).order('created_at DESC')
      render :layout => 'single_interview_submissions'
   end
 
@@ -29,7 +29,7 @@ class InterviewsController < ApplicationController
   def filtered_single_interview
     @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
     @user_status = @user_company.status
-    @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 25).order('created_at DESC')
+    @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 24).order('created_at DESC')
     @meg =  params[:status].to_i
     if (@meg == 0 )
       @peg = "Shortlist"
@@ -116,7 +116,7 @@ class InterviewsController < ApplicationController
      mail_list = params[:mail_list]
      list = mail_list.split(",")
      list.map do |item|
-        InterviewMailer.interview_invite(@interview, item).deliver
+        InterviewMailer.interview_invite(@interview, item, request.domain ).deliver
      end
      redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Invitation was successfully sent.'
   end
@@ -132,10 +132,11 @@ class InterviewsController < ApplicationController
 
   end
 
+
   def reminder
-          if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
-          Submission.where("interview_id = ?", @interview.id).where(current_no:nil).find_each do |me|
-          ReminderMailer.reminder(User.find(me.user_id).email, @interview).deliver
+      if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
+          Submission.where("interview_id = ?", @interview.id).where.not(current_no:500).find_each do |me|
+          ReminderMailer.reminder(me.email, me.name, @interview).deliver
         end
       end
       redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Reminder was successfully sent.'

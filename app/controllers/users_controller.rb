@@ -29,6 +29,7 @@ class UsersController < ApplicationController
 
   
   def build_profile
+    @profile_page = true
     render  :layout => 'wizard'
   end
 
@@ -43,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   def become_applicant
+
     @user.update_attributes(status:0)
     redirect_to user_timeline_path(current_user)
   end
@@ -93,11 +95,13 @@ class UsersController < ApplicationController
   
 
   def application_timeline
+    @profile_page = true
     @logo_off = false
   end
 
 
   def account
+    @profile_page = true
     @logo_off = false
     if params[:update].present?
         @user.update_attributes(user_params)
@@ -108,6 +112,7 @@ class UsersController < ApplicationController
 
 
   def interviews
+    @profile_page = true
     @logo_off = false
     render "applicant_interview_listing"
   end
@@ -153,7 +158,7 @@ class UsersController < ApplicationController
 
   # parameters to update user's details
   def user_params
-    params.permit(:a_dp, :a_qualification, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status, :skill, :school, :grade, :field_of_study, :about_me)
+    params.permit(:name, :a_dp, :a_qualification, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status, :skill, :school, :grade, :field_of_study, :about_me)
   end
 
 

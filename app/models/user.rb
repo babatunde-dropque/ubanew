@@ -1,5 +1,6 @@
 require 'slack-notifier'
 class User < ActiveRecord::Base
+    # before_save :capitalize_first_character
     has_many :indentities
 	has_many :notifications
 	has_many :joint_user_companies
@@ -24,11 +25,22 @@ class User < ActiveRecord::Base
    #this will allow user to be able to rate
    ratyrate_rater
 
+    
+
+   
+
+   # def capitalize_first_character
+   #    self.name.split.map(&:capitalize).join(' ')
+   # end
+
+
+
+
 
    def send_slack_notification
     if Rails.env.production?
         notifier = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#notification', username: 'signup'
-        notifier.ping "New Signup by " + self.name + " with number " + self.telephone + " email: " + self.email
+        notifier.ping "New Signup by " + self.name + " email: " + self.email
     end
    end
 
