@@ -136,7 +136,7 @@ class InterviewsController < ApplicationController
   def reminder
       if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
           Submission.where("interview_id = ?", @interview.id).where.not(current_no:500).find_each do |me|
-          ReminderMailer.reminder(me.email, me.name, @interview).deliver
+          ReminderMailer.reminder(me.user.email, me.user.name, @interview).deliver
         end
       end
       redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Reminder was successfully sent.'
