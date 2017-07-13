@@ -135,8 +135,8 @@ class InterviewsController < ApplicationController
 
   def reminder
       if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
-          Submission.where("interview_id = ?", @interview.id).where.not(current_no:500).find_each do |me|
-          ReminderMailer.reminder(me.email, me.name, @interview).deliver
+          Submission.where(interview_id:@interview.id).where("current_no < ? or current_no is NULL", 500).each do |me|
+          ReminderMailer.reminder(me.user.email, me.user.name, @interview).deliver
         end
       end
       redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Reminder was successfully sent.'
@@ -145,7 +145,7 @@ class InterviewsController < ApplicationController
 
    def sms_reminder
           if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
-            Submission.where("interview_id = ?", @interview.id).where(current_no:nil).find_each do |me|
+            Submission.where("interview_id = ?", @interview.id).where("current_no < ?", 500).find_each do |me|
             Interview.sms_reminder(@company, @interview, User.find(me.user_id).telephone, User.find(me.user_id).name)
             #ReminderMailer.reminder(User.find(me.user_id).telephone, @interview).deliver
          end
