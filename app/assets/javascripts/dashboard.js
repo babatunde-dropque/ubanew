@@ -262,7 +262,8 @@ function addNewTextQuestionWithDetails(q, c, type, name1, name2){
 	          "</div>" +
 	          "<div class='col-md-3'>" +
 	              "<div class='form-group'>" +
-	                  "<input type='text' class='form-control border-input interview-number-word' placeholder='Max words allowed'  name='"+name2+"' value='"+c+"'>" +
+	                  "<input type='text' class='form-control bo
+	                  rder-input interview-number-word' placeholder='Max words allowed'  name='"+name2+"' value='"+c+"'>" +
 	              "</div>"+
 	          "</div>"+
 	          "<div class='col-md-1 close'>"+
