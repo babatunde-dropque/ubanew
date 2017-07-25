@@ -50,10 +50,10 @@ $(document).ready(function(){
 		  //   title: "Filter",
 		  //   content: "Click here to filter video submissions by interviews"
 		  // }
-		  
+
 		],
 
-		storage: false	
+		storage: false
 	 });
 
 	// this will get the number of signin to know when to show tour
@@ -62,7 +62,7 @@ $(document).ready(function(){
 		// Initialize the tour and start tour
 		// tour.init();
 		// tour.start();
-	//} 
+	//}
 
 	// initiate popover
    $('[data-toggle="popover"]').popover();
@@ -75,7 +75,7 @@ $(document).ready(function(){
 	});
 
 
-		
+
 	// this is the script responsible for tags
 	var emailTag = $('#emails');
 	emailTag.tagit({
@@ -95,7 +95,7 @@ $(document).ready(function(){
     formatQuestion();
 
     var counter = 0;
-	// check if the there is questions and parse the json 
+	// check if the there is questions and parse the json
 	var questionString = $("#questions-json").val() ;
 	if (questionString && questionString != null ) {
 		var resultArray = JSON.parse(questionString);
@@ -105,16 +105,16 @@ $(document).ready(function(){
 				if (resultArray[i]["question_type"] == 1){
 		    		 var q = resultArray[i]["question_video"];
 		    		 var t = resultArray[i]["time_allowed"] ;
-		    		$("#question-tag").append(addNewQuestionWithDetails(q,t, 1, 'name'+counter++, 'name'+counter++));   
+		    		$("#question-tag").append(addNewQuestionWithDetails(q,t, 1, 'name'+counter++, 'name'+counter++));
 	    		} else if (resultArray[i]["question_type"] == 2){
 	    			 var q = resultArray[i]["question_text"];
 		    		 var t = resultArray[i]["max_char"] ;
-		    		$("#question-tag").append(addNewTextQuestionWithDetails(q,t, 2, 'name'+counter++, 'name'+counter++));   
+		    		$("#question-tag").append(addNewTextQuestionWithDetails(q,t, 2, 'name'+counter++, 'name'+counter++));
 
 	    		} else if (resultArray[i]["question_type"] == 3){
 	    			 var q = resultArray[i]["file_text"];
 		    		 var t = resultArray[i]["file_size"] ;
-		    		$("#question-tag").append(addNewFileUpload(q,t, 3,'name'+counter++, 'name'+counter++));   
+		    		$("#question-tag").append(addNewFileUpload(q,t, 3,'name'+counter++, 'name'+counter++));
 
 	    		}
 			}
@@ -124,7 +124,7 @@ $(document).ready(function(){
 
 
     $("#add-new").click(function(){
-    	  var checkType = $("#question-type").val(); 
+    	  var checkType = $("#question-type").val();
     	if(checkType == 1){
     	  var newQuestion = addNewQuestionWithDetails("",null, checkType, 'name'+counter++, 'name'+counter++);
         } else if(checkType == 2){
@@ -142,11 +142,11 @@ $(document).ready(function(){
     });
 
 
- 
+
 
 
      $("#interview-submit").click(function(event){
-    	    	
+
        jsonObj = [];
 
      	 $("#question-tag").find(".row").each(function(index) {
@@ -162,7 +162,7 @@ $(document).ready(function(){
 			         	jsonObj.push(questionItem);
 
 	       		} else if (type == 2){
-	       			
+
 	       				questionItem = {}
 		       		 	questionItem["question_type"] = type ;
 			         	questionItem["question_text"] = firstField;
@@ -176,8 +176,8 @@ $(document).ready(function(){
 			         	questionItem["file_size"] = secondField;
 			         	jsonObj.push(questionItem);
 	       		}
-		     
-		     
+
+
 		});
 			if (jsonObj.length == 0){
 				showMessage('top','center', "You cannot create interview without any question ", 4);
@@ -200,20 +200,20 @@ $(document).ready(function(){
 		      success: function(data){
 		      	console.log(data);
 		          if (data == "success"){
-		          	$('#notification-number').text(parseInt($('#notification-number').text()) - 1 );	
+		          	$('#notification-number').text(parseInt($('#notification-number').text()) - 1 );
 		          }
 		      },
 		      error : function(jqXHR, textStatus, errorThrown) {
 		      	  showMessage('top','right', "An error occur, please try again", 4);
 		       }
 		   });
-			
+
 			event.preventDefault();
 			return false;
 
 
 		});
- 
+
 });
 
 // end of document ready function
@@ -226,8 +226,8 @@ function addNewQuestionWithDetails(q,t, type, name1, name2){
 	if (t != null){
 		fomattedTime = milisecondsToMinsFormat2(t);
 	}
-	
-	var result = 
+
+	var result =
 			"<div class='row' type ='"+type+"'>" +
 		      "<div class='col-md-8'>"+
 		         "<div class='form-group'>"+
@@ -244,13 +244,13 @@ function addNewQuestionWithDetails(q,t, type, name1, name2){
 		      "</div>"+
 		      "<div class='col-md-1 close'>"+
 		        "<btn class='btn remove'><i class='ti-close'></i></btn>"+
-		      "</div>"+ 
+		      "</div>"+
 		  "</div>";
 	return result;
 }
 
 function addNewTextQuestionWithDetails(q, c, type, name1, name2){
-	var result = 
+	var result =
 		"<div class='row'  type ='"+type+"'>" +
 	          "<div class='col-md-8'>" +
 	             "<div class='form-group'>" +
@@ -262,8 +262,7 @@ function addNewTextQuestionWithDetails(q, c, type, name1, name2){
 	          "</div>" +
 	          "<div class='col-md-3'>" +
 	              "<div class='form-group'>" +
-	                  "<input type='text' class='form-control bo
-	                  rder-input interview-number-word' placeholder='Max words allowed'  name='"+name2+"' value='"+c+"'>" +
+	                  "<input type='text' class='form-control border-input interview-number-word' placeholder='Max words allowed'  name='"+name2+"' value='"+c+"'>" +
 	              "</div>"+
 	          "</div>"+
 	          "<div class='col-md-1 close'>"+
@@ -277,19 +276,19 @@ function addNewTextQuestionWithDetails(q, c, type, name1, name2){
 
 
 function addNewFileUpload(q, s, type, name1, name2){
-	var result = 
+	var result =
 	"<div class='row' type ='"+type+"'>" +
           "<div class='col-md-8'>" +
          	"<div class='form-group'>"+
 	             "<div class='input-group'>"+
                 	"<span class='input-group-addon' title='Text question' data-toggle='popover' data-placement='top' data-trigger='hover' data-content='Enter question and max file size allowed (Maximum size: 5MB)' style='color: #66615B;'><i class='glyphicon glyphicon-cloud-upload' ></i></span>"+
-                  	"<input type='text' class='form-control border-input interview-details' name='"+name1+"' placeholder='File Description' value='"+q+"'>"+ 
-                  "</div>"+  
+                  	"<input type='text' class='form-control border-input interview-details' name='"+name1+"' placeholder='File Description' value='"+q+"'>"+
+                  "</div>"+
               "</div>" +
           "</div>" +
           "<div class='col-md-3'>"+
           "<div class='form-group'>"+
-	           "<div class='input-group'>" +  
+	           "<div class='input-group'>" +
 	                "<input type='text' class='form-control border-input interview-number-file'  name='"+name2+"' placeholder='Max File Size' value='"+s+"'>"+
 	                "<span class='input-group-addon'>MB</span>"+
 	            "</div>"+
@@ -307,7 +306,7 @@ function addNewFileUpload(q, s, type, name1, name2){
 
 function formatQuestion(){
 	var resultQuestion = $('#question-returned').val();
-	
+
 	 if (resultQuestion) {
 		var resultArrayQuestion = JSON.parse(resultQuestion);
 
@@ -332,7 +331,7 @@ function formatQuestion(){
     		 	var typeShow = "File Upload"
 			 }
 
-    		
+
     	    $("#question-holder").append(
     	    	'<tr>'+
     	    		'<td>'+typeShow+'</td>'+
@@ -341,14 +340,14 @@ function formatQuestion(){
                 '</tr>');
 		}
 
-	}		
+	}
 }
 
 
 
 function milisecondsToMins(milliseconds){
   //Get hours from milliseconds
-  
+
   var minutes = milliseconds / (1000 * 60)
   var absoluteMinutes = Math.floor(minutes);
   var m = absoluteMinutes > 9 ? absoluteMinutes : '0' +  absoluteMinutes;
