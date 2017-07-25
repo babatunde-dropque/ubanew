@@ -26,7 +26,7 @@ class InterviewsController < ApplicationController
   end
 
   # controller function for to manages interview filtered
-  def filtered_single_interview
+def filtered_single_interview
     @user_company = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
     @user_status = @user_company.status
     @submissions = @interview.submissions.where(current_no: 500, status: params[:status].to_i).paginate(:page => params[:page], :per_page => 24).order('created_at DESC')
@@ -41,7 +41,7 @@ class InterviewsController < ApplicationController
                         We wish you   best  in future endeavors"
     end
     render :action => 'single_interview_submissions', :layout => 'single_interview_submissions'
-   end
+end
 
   # api for return text or file link
   def returnTextFileApi
@@ -51,7 +51,12 @@ class InterviewsController < ApplicationController
     submission = Submission.find(submission_id)
     if !submission.nil? && submission.answers[question_number]["question_type"] == question_type
       if question_type == "2"
+          if submission.answers[question_number]["answer_id"].nil?  
          render :json => {:answer => submission.answers[question_number]["answer_text"],:question => submission.answers[question_number]["question_text"] }
+          else
+         text_result = TextUpload.find(submission.answers[question_number]["answer_id"])
+         render :json => {:answer => text_result.text , :question => submission.answers[question_number]["question_text"] }
+          end
       elsif question_type == "3"
          render :json =>{:answer => submission.answers[question_number]["file_link"], :question => submission.answers[question_number]["file_text"], :file_size => submission.answers[question_number]["file_size"] } 
       end
@@ -133,18 +138,18 @@ class InterviewsController < ApplicationController
   end
 
 
-  def reminder
+def reminder
       if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
           Submission.where(interview_id:@interview.id).where("current_no < ? or current_no is NULL", 500).each do |me|
           ReminderMailer.reminder(me.user.email, me.user.name, @interview).deliver
         end
       end
       redirect_to  company_interview_path(company_id:@company.slug, id:@interview.id), notice: 'Reminder was successfully sent.'
-   end
+end
 
 
    def sms_reminder
-          if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
+       if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
             Submission.where("interview_id = ?", @interview.id).where("current_no < ?", 500).find_each do |me|
             Interview.sms_reminder(@company, @interview, User.find(me.user_id).telephone, User.find(me.user_id).name)
             #ReminderMailer.reminder(User.find(me.user_id).telephone, @interview).deliver
@@ -155,7 +160,7 @@ class InterviewsController < ApplicationController
 
 
    def double_reminder
-          if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
+       if !@interview.deadline.nil? && !@interview.deadline.to_date.past?
             Submission.where("interview_id = ?", @interview.id).where(current_no:nil).find_each do |me|
             ReminderMailer.reminder(User.find(me.user_id).email, @interview).deliver
             Interview.sms_reminder(@company, @interview, User.find(me.user_id).telephone, User.find(me.user_id).name)
@@ -171,21 +176,21 @@ class InterviewsController < ApplicationController
       render :layout => 'single_interview_submissions'
   end
 
-  def mass_notify
-        set =     params[:set]
-        subject = params[:subject]
-        body =    params[:body]
-        if( set == "Shortlist")
-        Submission.where(interview_id:@interview.id).where(status:0).find_each do |me|
-        InterviewMailer.mass_shortlist(me.id, @interview, subject, body ).deliver
+def mass_notify
+      set =     params[:set]
+      subject = params[:subject]
+      body =    params[:body]
+   if( set == "Shortlist")
+          Submission.where(interview_id:@interview.id).where(status:0).find_each do |me|
+          InterviewMailer.mass_shortlist(me.id, @interview, subject, body ).deliver
+          end
+         elsif(set == "Reject")
+         rejects = Submission.where(interview_id:@interview.id).where(status:2)
+         rejects.find_each do |reject|
+         InterviewMailer.mass_reject(reject.id, @interview, subject, body ).deliver!
         end
-       elsif(set == "Reject")
-       rejects = Submission.where(interview_id:@interview.id).where(status:2)
-       rejects.find_each do |reject|
-       InterviewMailer.mass_reject(reject.id, @interview, subject, body ).deliver!
-      end
-       end
-      render :layout => 'single_interview_submissions'
+   end
+  render :layout => 'single_interview_submissions'
 end
 
 
@@ -195,14 +200,14 @@ end
        # InterviewMailer.shortlist(@interview, 2).deliver
      if submission.update(status: params[:status].to_i) && submission.status == "shortlist"
         render plain: "shortlist"
-      elsif submission.update(status: params[:status].to_i) && submission.status == "pend"
+     elsif submission.update(status: params[:status].to_i) && submission.status == "pend"
         render plain: "pend"
-      elsif submission.update(status: params[:status].to_i) && submission.status ==  "reject"
+     elsif submission.update(status: params[:status].to_i) && submission.status ==  "reject"
         # InterviewMailer.reject(@interview, 1).deliver
         render plain: "reject"
-      else
+     else
         render plain: "error"
-      end
+     end
   end
 
 
@@ -256,7 +261,7 @@ end
 
 	private
 
-	def set_up_user
+  def set_up_user
       @user = current_user
       @notification = Notification.where(user_id: @user.id, read: 0)
   end

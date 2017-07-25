@@ -45,7 +45,7 @@ class ApplicantsController < ApplicationController
   
 
 
-  def question
+ def question
      current_position = ( @submission.current_no.nil? ) ? 0 : @submission.current_no
      @position =  test_for_end(@interview.questions.length, params[:pos].to_i)
      if current_position > @position
@@ -53,7 +53,23 @@ class ApplicantsController < ApplicationController
      end
 
      if (params[:submission] == "text")
-        @submission.update_attributes(current_no: @position, answers: params[:answers])
+        # create an answer text row here
+        text_answer = TextUpload.new
+        text_answer.text = params[:answer] 
+        text_answer.user_id = @user.id
+        text_answer.submission_id = @submission.id 
+        text_answer.interview_id = @interview.id 
+        if text_answer.save
+            if @submission.answers.nil?
+                @submission.answers = []
+            end    
+            @submission.answers<< { question_type: "2", question_text: params[:question]  , answer_id: text_answer.id } 
+            @submission.current_no = @position
+            @submission.save
+        else
+            # don't know what will be here yet
+        end
+
      end
      render_question_view(@position)
  end 
@@ -80,17 +96,20 @@ class ApplicantsController < ApplicationController
            render "file_progress"
         end
      else
-       render "complete_progress"
        #trigger confirmation email
        InterviewMailer.finish_interview(@submission).deliver!
+       render "complete_progress"
      end
  end
 
 
- def upload_file
+def upload_file
     position = test_for_end(@interview.questions.length, params[:pos].to_i )
     upload = FileUpload.new(file_link: params[:file], file_type: 1, user_id: @user.id, interview_id: @interview.id)
       if upload.save
+        if @submission.answers.nil?
+            @submission.answers = []
+        end 
         @submission.answers << { question_type: "3", file_text: params[:file_text], file_link: upload.file_link.url, file_id: upload.id, file_size: params[:file].size }
         @submission.current_no = position
         @submission.save
@@ -111,11 +130,11 @@ end
 
   # for capturing users device or otherwise
   def mobile_device?
-  if session[:mobile_param]
-    session[:mobile_param] == "1"
-    else
-      request.user_agent =~ /Mobile|webOS/
-    end
+      if session[:mobile_param]
+        session[:mobile_param] == "1"
+      else
+          request.user_agent =~ /Mobile|webOS/
+      end
   end
 
 

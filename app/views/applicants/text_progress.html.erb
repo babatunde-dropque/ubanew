@@ -219,8 +219,10 @@ ul.nav.nav-tabs>li {
             <input type="hidden" value="<%= @position + 1 %>" name="pos" />
             <input type="hidden" value="<%= @user.id %>" name="user_id" />
             <input type="hidden" value="<%= @submission.id %>" name="submission_id" />
-            <input type="hidden" id="answer" name="answers" />
+            <input type="hidden" id="answer" name="answer" />
             <input type="hidden" value="text" name="submission" />
+            <input type="hidden" value="<%= @question_text %>" name = "question"  />
+            <input type="hidden" value="<%= @question_type %>" name = "question_type" />
               <!-- add csrf token -->
               <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                          
 
@@ -304,29 +306,6 @@ $.notify.addStyle('happyblue', {
 
 
 
-  $("#submit").click(function(){
-          //  this part will be used to update question in user_job model
-      <%  if @submission.answers.nil? %>
-       var resultArrayAnswer =  [];
-       
-      <% else %>
-       var placehod = "<%= @submission.answers.to_json %>" ;
-       var resultArrayAnswer = JSON.parse(placehod.replace(/&quot;/g,'"'));
-
-      <% end %>
-
-      var answerItem = {}
-      answerItem["question_type"] = '<%= @question_type %>' ;
-      answerItem["question_text"] = '<%= @question_text %>';
-      answerItem["answer_text"] = $("#answer-box").val();
-
-      resultArrayAnswer.push(answerItem);
-      var resultArrayAnswerString = JSON.stringify(resultArrayAnswer);
-      $("#answer").val(resultArrayAnswerString);
-
-
-  });
-
     // this will show for the first time
 
    $("#answer-box").on('keyup', function() {
@@ -348,6 +327,9 @@ $.notify.addStyle('happyblue', {
           event.preventDefault();
           return false;
       } else {
+        answerValue = $("#answer-box").val();
+       $("#answer").val(answerValue);
+
         var words = $("#answer-box").val().match(/\S+/g).length;
           if (parseInt(words) > <%= @max_char %> || words == 0){
             $("#answer-box").notify("words exceed maximum limit", {

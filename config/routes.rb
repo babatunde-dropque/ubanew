@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'demo_login' , to: "users#user_demo_login", as: 'user_demo_login'
   get 'demo_in' , to: "users#trigger_login", as: 'trigger_login'
   get 'contact', to: "landings#contact", as: 'contact'
+  get 'payment_test', to: "payment#payment_test", as: 'payment_test'
 
 
 
