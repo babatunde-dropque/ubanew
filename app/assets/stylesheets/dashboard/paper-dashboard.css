@@ -1800,7 +1800,7 @@ textarea.form-control {
   height: 50px;
   overflow: hidden;
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: -36px;
 }
 .card .footer {
   padding: 0;
