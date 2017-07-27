@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     get "all_interview", to: "companies#all_interview"
     get "preview", to: "companies#preview"
     get "card_preview", to: "companies#card_preview", as: 'card_preview'
+    get "talent", to: "companies#search_talent", as: "talent"
 
 
     resources :groups do

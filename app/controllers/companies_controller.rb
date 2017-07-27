@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
         end
         @user_status = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
         @sigin_in_count = current_user.sign_in_count.to_s
-        @all_interview = @company.interviews 
+        @all_interview = @company.interviews
 	end
 
 	def new
@@ -23,11 +23,22 @@ class CompaniesController < ApplicationController
 
 
     def preview
-        
+
     end
 
     def card_preview
-        
+
+    end
+
+    def search_talent
+        if params[:search].present?
+            @query = params[:search]
+            @sure_applicants = User.where(status:0)
+            @unsure_applicants = User.where(status:nil)
+            @applicants = @sure_applicants.merge(@unsure_applicants)
+            #@applicants = User.where(status:nil)
+            @talent = @applicants.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
+       end
     end
 
 
@@ -46,14 +57,14 @@ class CompaniesController < ApplicationController
 
     end
 
-    
+
 
 
 
     def add_collaborators
         # after this, loop through everyother user and send notification and email to them
             collaborator_list = JSON.parse(params[:collaborators_list])
-            collaborator_list.each do | collborator | 
+            collaborator_list.each do | collborator |
 
                 email = collborator["email"]
                 status = collborator["status"]
@@ -65,12 +76,12 @@ class CompaniesController < ApplicationController
                 result = JointUserCompany.find_by(user_id: user.id, company_id: @company.id)
 
                 if result.nil?
-                    # send notification 
+                    # send notification
                     self.send_notification(user.id, 2 , params[:user_id], @company.name)
 
                     # add user to joint_user_company model
                     one_collaborator = JointUserCompany.new(status: status, user_id: user.id, company_id: @company.id)
-                    one_collaborator.save 
+                    one_collaborator.save
 
                 end
             end
