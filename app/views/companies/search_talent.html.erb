@@ -37,14 +37,79 @@
 
    <div class="formatting">
 	    	<form class="navbar-form center" role="search" method="GET" action="/companies/<%= @company.slug %>/talent" >
-					<div class="form-group  is-empty">
+
+                    <div class="row" col-xs-12 col-sm-12 col-md-12 col-lg-12>
+					<div class="form-group  is-empty" col-xs-3 col-sm-3 col-md-3 col-lg-3 >
+					<select name='category'>
+					<option>Any</option>>
+						<% @post_cat = ""%>
+	                   <% if params[:category].present? %>
+	                   <% @post_cat = params[:category]%>
+	                   <%end%>
+	                   <% @search_category.each do |cat|%>
+	                   <% if cat == @post_cat %>
+	                    <option selected='selected' ><%=  cat %></option>
+	                    <%else%>
+	                   <option><%=  cat %></option>
+                      <%end%>
+                      <%end%>
+				   </select>
 						<input type="text" class="form-control" name="search" placeholder="What Talent do you need?">
 						<span class="material-input"></span>
+
 					</div>
+
+					<div class="form-group  is-empty" col-xs-3 col-sm-3 col-md-3 col-lg-3 >
+					<select name='category'>
+					<option>Any</option>>
+						<% @post_cat = ""%>
+	                   <% if params[:category].present? %>
+	                   <% @post_cat = params[:category]%>
+	                   <%end%>
+	                   <% @search_category.each do |cat|%>
+	                   <% if cat == @post_cat %>
+	                    <option selected='selected' ><%=  cat %></option>
+	                    <%else%>
+	                   <option><%=  cat %></option>
+                      <%end%>
+                      <%end%>
+				   </select>
+						<input type="text" class="form-control" name="search" placeholder="What Talent do you need?">
+						<span class="material-input"></span>
+
+					</div>
+
+					<div class="form-group  is-empty" col-xs-3 col-sm-3 col-md-3 col-lg-3 >
+					<select name='category'>
+					<option>Any</option>>
+						<% @post_cat = ""%>
+	                   <% if params[:category].present? %>
+	                   <% @post_cat = params[:category]%>
+	                   <%end%>
+	                   <% @search_category.each do |cat|%>
+	                   <% if cat == @post_cat %>
+	                    <option selected='selected' ><%=  cat %></option>
+	                    <%else%>
+	                   <option><%=  cat %></option>
+                      <%end%>
+                      <%end%>
+				   </select>
+						<input type="text" class="form-control" name="search" placeholder="What Talent do you need?">
+						<span class="material-input"></span>
+
+					</div>
+
+
+
+
+
+
+
 					<button type="submit" class="btn btn-white">
 						Search
 						<i class="material-icons"></i><div class="ripple-container"></div>
 					</button>
+					</div>
 			</form>
 	</div>
 

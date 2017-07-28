@@ -38,6 +38,7 @@ class CompaniesController < ApplicationController
             @applicants = @sure_applicants.merge(@unsure_applicants)
             #@applicants = User.where(status:nil)
             @talent = @applicants.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
+            @search_category = ['Age', 'Field', 'Grade', 'Location', 'Experience']
        end
     end
 
