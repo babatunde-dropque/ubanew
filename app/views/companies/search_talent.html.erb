@@ -62,15 +62,15 @@
 					<div class="form-group  is-empty" col-xs-3 col-sm-3 col-md-3 col-lg-3 >
 					<select name='category2' value='<%= params[:category2]%>'>
 					<option>Any</option>>
-						<% @cand_cat = ""%>
-	                   <% if params[:category].present? %>
-	                   <% @cand_cat = params[:category]%>
+						<% @cand_cat2 = ""%>
+	                   <% if params[:category2].present? %>
+	                   <% @cand_cat2 = params[:category2]%>
 	                   <%end%>
-	                   <% @search_category.each do |cat|%>
-	                   <% if cat == @cand_cat %>
-	                    <option selected='selected' ><%=  cat %></option>
+	                   <% @search_category.each do |cat2|%>
+	                   <% if cat2 == @cand_cat2 %>
+	                    <option selected='selected' ><%=  cat2 %></option>
 	                    <%else%>
-	                   <option><%=  cat %></option>
+	                   <option><%=  cat2 %></option>
                       <%end%>
                       <%end%>
 				   </select>
@@ -82,15 +82,15 @@
 					<div class="form-group  is-empty" col-xs-3 col-sm-3 col-md-3 col-lg-3 >
 					<select name='category3' value='<%= params[:category3]%>'>
 					<option>Any</option>>
-						<% @cand_cat = ""%>
-	                   <% if params[:category].present? %>
-	                   <% @cand_cat = params[:category]%>
+						<% @cand_cat3 = ""%>
+	                   <% if params[:category3].present? %>
+	                   <% @cand_cat3 = params[:category3]%>
 	                   <%end%>
-	                   <% @search_category.each do |cat|%>
-	                   <% if cat == @cand_cat %>
-	                    <option selected='selected' ><%=  cat %></option>
+	                   <% @search_category.each do |cat3|%>
+	                   <% if cat3 == @cand_cat3 %>
+	                    <option selected='selected' ><%=  cat3 %></option>
 	                    <%else%>
-	                   <option><%=  cat %></option>
+	                   <option><%=  cat3 %></option>
                       <%end%>
                       <%end%>
 				   </select>
