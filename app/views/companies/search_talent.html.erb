@@ -1,0 +1,96 @@
+<style>
+
+.form-control {
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #444444;
+    height: 38px;
+    padding: 6px 16px;
+}
+.form-search .form-control-search {
+    background-color: rgba(121,121,121,0.55);
+    box-shadow: none;
+    border: medium none;
+    border-radius: 30px;
+    box-shadow: 0 0 0;
+    color: #FFFFFF;
+    display: block;
+    font-size: 20px;
+    font-weight: 300;
+    height: 50px;
+    line-height: 1.42857;
+    padding: 6px 20px;
+    vertical-align: middle;
+    transition: background-color .2s;
+}
+</style>
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="success">
+
+<!-- TODO Add Sidebar Panel -->
+     <%= render partial: "companies/sidebar" %>
+    <div class="main-panel">
+<!-- TODO Add Navbar Panel -->
+    <%= render partial: "users/navbar" %>
+
+   <div class="formatting">
+	    	<form class="navbar-form center" role="search" method="GET" action="/companies/<%= @company.slug %>/talent" >
+					<div class="form-group  is-empty">
+						<input type="text" class="form-control" name="search" placeholder="What Talent do you need?">
+						<span class="material-input"></span>
+					</div>
+					<button type="submit" class="btn btn-white">
+						Search
+						<i class="material-icons"></i><div class="ripple-container"></div>
+					</button>
+			</form>
+	</div>
+
+	<% if !@talent.nil?%>
+
+	<div class="row">
+
+
+            <% @talent.each do |talent| %>
+                  <div class="col-md-3">
+                        <div class="content">
+                            <div class="card main text-center box-shape" data-toggle="modal"  data-backdrop="static" >
+                             <br>
+                                <div class="dq-center-video">
+                                  <% if !talent.a_dp.nil? %>
+                                    <% dp = talent.a_dp %>
+                                  <img class="lazy max-height-width"  src="<%= asset_path('avatar.png', style: "border-radius: 50%;") %>" data-original="<%= dp.url %>">
+                                  <% else %>
+                                    <%= image_tag('avatar.png', style: "border-radius: 50%;") %>
+                                  <% end %>
+
+                                </div>
+                                <div >
+                                   <span class="stats"> <%= truncate( talent.name , :length => 23) %>  </span><br>
+                                  <span class="text-info">
+                                    <small> <%= truncate( talent.email , :length => 23) %>  </small>
+                                  </span>
+
+                                </div>
+                               </div>
+                        </div>
+                  </div>
+              <% end %>
+            </div>
+            <div class="center" ><%= will_paginate @talent %></div>
+          </div>
+          
+
+
+
+	<%end%>
+
+
+ </div>
+</div>
+</div>
+
+
+
