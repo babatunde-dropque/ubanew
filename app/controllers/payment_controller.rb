@@ -4,5 +4,13 @@ class PaymentController < ApplicationController
 
        
    end
+
+   def payment_test_callback
+
+   end 
+
+   def payment_test_submit
+
+   end 
 end
 

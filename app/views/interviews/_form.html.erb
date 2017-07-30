@@ -83,6 +83,32 @@ Your goal ...''" style="color: #66615B;" ></span>
       </div>
     </div>
 
+<div class="row">
+  <div class="form-group col-md-4">
+  <%= f.label :city %>
+  <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="City" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="City of role " style="color: #66615B;" ></span>
+  <%= f.text_field :city,  :placeholder => 'City', class: "form-control border-input interview-details", html: {spellcheck: "true"} %>
+  </div>
+  
+<div class="form-group col-md-4">
+        <%= f.label :state %>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="State" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="State of role " style="color: #66615B;" ></span>
+          <%= f.text_field :state,  :placeholder => 'State', class: "form-control border-input interview-details", html: {spellcheck: "true"} %>
+</div>
+
+
+<div class="form-group col-md-4">
+        <%= f.label :country %>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="Country" data-toggle="popover" data-placement="right" data-trigger="hover" data-content="Country of role" style="color: #6615B;" ></span>
+          <%= f.text_field :country,  :placeholder => 'Country', class: "form-control border-input interview-details", html: {spellcheck: "true"} %>
+      </div>
+    </div>
+
+
+
+    
+    
+
     <div class="row">
       <div class="form-group col-md-12">
         <%= f.label :deadline %>
