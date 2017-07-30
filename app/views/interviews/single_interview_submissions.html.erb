@@ -54,10 +54,7 @@ textarea.note {
               <% if !submission.answers.nil?  %>
                   <div class="col-md-3">
                         <div class="content">
-                            <div class="card card-user main text-center box-shape" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
-                                <div class="image">
-                                <%= image_tag('background.jpg') %>
-                                </div>
+                            <div class="card card-user text-center" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
                              <br>
                                 <div class="dq-center-video">
 
@@ -68,15 +65,12 @@ textarea.note {
                                         <% first_video = submission.first_video - 1 %>
                                       <img class="lazy max-height-width"  src="<%= asset_path('avatar.png', style: "border-radius: 50%;") %>" data-original="https://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
                                       <% else %>
-                                        <%= image_tag('avatar.png', style: "border-radius: 50%;") %>
+                                        <%= image_tag('avatar.png', class:"avatar border-white", style: "margin-right: 0; margin-bottom: 0px;", alt:"...") %>
                                       <% end %>
                                   <% end %>
-
-
-
                                 </div>
                                 <div >
-                                   <span class="stats"> <%= truncate( submission.user.name , :length => 23) %>  </span><br>
+                                   <span class="statss"> <%= truncate( submission.user.name , :length => 23) %>  </span><br>
                                   <span class="text-info">
                                     <small> <%= truncate( submission.user.email , :length => 23) %>  </small>
                                   </span>
