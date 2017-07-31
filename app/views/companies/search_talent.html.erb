@@ -101,10 +101,6 @@
 
 
 
-
-
-
-
 					<button type="submit" class="btn btn-white">
 						Search
 						<i class="material-icons"></i><div class="ripple-container"></div>
@@ -120,6 +116,7 @@
 
             <% @talent.each do |talent| %>
                   <div class="col-md-3">
+                  <%= link_to company_show_talent_path(company_id:@company.slug, id:talent.id) do %>
                         <div class="content">
                             <div class="card main text-center box-shape" data-toggle="modal"  data-backdrop="static" >
                              <br>
@@ -141,7 +138,9 @@
                                 </div>
                                </div>
                         </div>
+
                   </div>
+                  <%end%>
               <% end %>
             </div>
             <div class="center" ><%= will_paginate @talent %></div>

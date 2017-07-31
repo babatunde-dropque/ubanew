@@ -68,6 +68,9 @@ class CompaniesController < ApplicationController
      end
     end
 
+
+
+
     def assign_field (val)
         if val == "Skill"
             return "skill"
@@ -80,6 +83,11 @@ class CompaniesController < ApplicationController
                 elsif val == "School"
                     return "school"
         end
+    end
+
+    def show_talent
+        @profile_page = true
+        @logo_off = false
     end
 
 

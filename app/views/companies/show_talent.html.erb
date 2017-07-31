@@ -36,11 +36,11 @@
 
 <div class="wrapper">
 <div class="sidebar" data-background-color="white" data-active-color="danger">
-    
-    <%= render partial: "applicant_sidebar" %>
+    <% @user = User.find(params[:id])%>
+    <%= render partial: "users/applicant_sidebar" %>
     <div class="main-panel">
        <!-- TODO Add Footer Partial -->
-        <%= render partial: "navbar" %>
+        <%= render partial: "users/navbar" %>
 
         <div class="content">
             <div class="container-fluid">
