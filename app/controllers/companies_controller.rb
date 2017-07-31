@@ -38,32 +38,34 @@ class CompaniesController < ApplicationController
         if  params[:search].present? && params[:category].present? && !params[:search2].present? && !params[:search3].present?
             @query = params[:search]
             #@field = assign_field(params[:category])
-            @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
+            @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 12)
             elsif params[:search2].present? && params[:category2].present? && !params[:search].present? && !params[:search3].present?
                 @query = params[:search2]
                 #@field = assign_field(params[:category])
-                @talent = @applicants.where("lower(#{params[:category2]}) LIKE ?", "%#{params[:search2].downcase}%").paginate(:page => params[:page], :per_page => 10)
+                @talent = @applicants.where("lower(#{params[:category2]}) LIKE ?", "%#{params[:search2].downcase}%").paginate(:page => params[:page], :per_page => 12)
             elsif params[:search3].present? && params[:category3].present? && !params[:search].present? && !params[:search2].present?
                 @query = params[:search3]
                 #@field = assign_field(params[:category])
-                @talent = @applicants.where("lower(#{params[:category3]}) LIKE ?", "%#{params[:search3].downcase}%").paginate(:page => params[:page], :per_page => 10)
+                @talent = @applicants.where("lower(#{params[:category3]}) LIKE ?", "%#{params[:search3].downcase}%").paginate(:page => params[:page], :per_page => 12)
             elsif params[:search].present? && params[:category].present? && params[:search2].present? && params[:category2].present? && !params[:search3].present?
                 @query = params[:search3]
                 #@field = assign_field(params[:category])
-                @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").where("lower(#{params[:category2]}) LIKE ?", "%#{params[:search2].downcase}%").paginate(:page => params[:page], :per_page => 10)
+                @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").where("lower(#{params[:category2]}) LIKE ?", "%#{params[:search2].downcase}%").paginate(:page => params[:page], :per_page => 12)
             elsif params[:search].present? && params[:category].present? && params[:search3].present? && params[:category3].present? && !params[:search2].present?
                 @query = params[:search3]
                 #@field = assign_field(params[:category])
-                @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").where("lower(#{params[:category3]}) LIKE ?", "%#{params[:search3].downcase}%").paginate(:page => params[:page], :per_page => 10)
+                @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").where("lower(#{params[:category3]}) LIKE ?", "%#{params[:search3].downcase}%").paginate(:page => params[:page], :per_page => 12)
 
            elsif params[:search2].present? && params[:category2].present? && params[:search3].present? && params[:category3].present? && !params[:search].present?
                 @query = params[:search3]
                 #@field = assign_field(params[:category])
-                @talent = @applicants.where("lower(#{params[:category2]}) LIKE ?", "%#{params[:search2].downcase}%").where("lower(#{params[:category3]}) LIKE ?", "%#{params[:search3].downcase}%").paginate(:page => params[:page], :per_page => 10)
+                @talent = @applicants.where("lower(#{params[:category2]}) LIKE ?", "%#{params[:search2].downcase}%").where("lower(#{params[:category3]}) LIKE ?", "%#{params[:search3].downcase}%").paginate(:page => params[:page], :per_page => 12)
           elsif params[:search].present? && params[:category].present? && params[:search2].present? && params[:category2].present? && params[:search3].present? && params[:category3].present?
                 @query = params[:search3]
                 #@field = assign_field(params[:category])
-                @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").where("lower(#{params[:category2]}) LIKE ?", "%#{params[:search2].downcase}%").where("lower(#{params[:category3]}) LIKE ?", "%#{params[:search3].downcase}%").paginate(:page => params[:page], :per_page => 10)
+                @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").where("lower(#{params[:category2]}) LIKE ?", "%#{params[:search2].downcase}%").where("lower(#{params[:category3]}) LIKE ?", "%#{params[:search3].downcase}%").paginate(:page => params[:page], :per_page => 12)
+         elsif  !params[:search].present? && !params[:search2].present? && !params[:search3].present?
+                @talent = @applicants.order("RANDOM()").paginate(:page => params[:page], :per_page => 12)
 
      end
     end
