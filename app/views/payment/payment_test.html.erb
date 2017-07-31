@@ -1,1 +1,29 @@
+<script src="https://api.paymentwall.com/brick/brick.1.4.js"> </script>
+
+payment url 
+          action: '<%= payment_test_path %>',
+
+Dropque Payment Portal 
+<div id="payment-form-container"> </div>
+    <script>
+  var brick = new Brick({
+          public_key: 't_3e28af4c6cfb07b74e22aaaf439ae1',
+          amount: 9.99,
+          currency: 'USD',
+          container: 'payment-form-container',
+          action: '<%= payment_test_submit_path %>',
+          form: {
+                    merchant: 'Dropque',
+                    product: 'Dropque Basic Plan',
+                    pay_button: 'Pay',
+                    zip: true
+                  }
+        });
+
+  brick.showPaymentForm(function(data) {
+          // handle success
+        }, function(errors) {
+                // handle errors
+              });
+    </script>
 

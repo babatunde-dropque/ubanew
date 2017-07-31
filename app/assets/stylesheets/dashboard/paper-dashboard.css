@@ -1817,6 +1817,11 @@ textarea.form-control {
   color: #777777;
   font-weight: 300;
 }
+.card .statss {
+  color: #333;
+  font-weight: 600;
+  font-size: 15px;
+}
 .card .stats i {
   margin-right: 2px;
   min-width: 15px;
@@ -1904,8 +1909,8 @@ textarea.form-control {
   color: #7A9E9F;
 }
 .card-user .avatar {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   position: relative;
   margin-bottom: 15px;

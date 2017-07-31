@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'demo_in' , to: "users#trigger_login", as: 'trigger_login'
   get 'contact', to: "landings#contact", as: 'contact'
   get 'payment_test', to: "payment#payment_test", as: 'payment_test'
+  get 'payment_test_url', to: "payment#payment_test_callback",  as: 'payment_test_callbadk'
+  get 'payment_test_submit', to: "payment#payment_test_submit", as: 'payment_test_submit'
 
 
 

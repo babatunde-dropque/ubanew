@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170728174722) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +165,9 @@ ActiveRecord::Schema.define(version: 20170728174722) do
     t.string   "completed_message"
     t.string   "status"
     t.integer  "approve",           default: 0
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
   end
 
   add_index "interviews", ["slug"], name: "index_interviews_on_slug", unique: true, using: :btree
@@ -286,7 +291,6 @@ ActiveRecord::Schema.define(version: 20170728174722) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
-    t.string   "package"
     t.string   "telephone"
     t.string   "a_qualification"
     t.integer  "a_experience"

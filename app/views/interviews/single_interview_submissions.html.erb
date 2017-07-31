@@ -1,4 +1,4 @@
-  <style type="text/css">
+<style type="text/css">
 textarea.note {
  background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
  width: 100%;
@@ -54,19 +54,23 @@ textarea.note {
               <% if !submission.answers.nil?  %>
                   <div class="col-md-3">
                         <div class="content">
-                            <div class="card main text-center box-shape" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
+                            <div class="card card-user text-center" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
                              <br>
                                 <div class="dq-center-video">
-                                  <% if !submission.first_video.nil? %>
-                                    <% first_video = submission.first_video - 1 %>
-                                  <img class="lazy max-height-width"  src="<%= asset_path('avatar.png', style: "border-radius: 50%;") %>" data-original="https://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
-                                  <% else %>
-                                    <%= image_tag('avatar.png', style: "border-radius: 50%;") %>
-                                  <% end %>
 
+                                 <% if  !@user.a_dp.file.nil? %>
+                                    <img src="<%=@user.a_dp.url %>"  style = "border-radius: 50%;" />                     
+                                  <% else %>
+                                      <% if !submission.first_video.nil? %>
+                                        <% first_video = submission.first_video - 1 %>
+                                      <img class="lazy max-height-width"  src="<%= asset_path('avatar.png', style: "border-radius: 50%;") %>" data-original="https://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
+                                      <% else %>
+                                        <%= image_tag('avatar.png', class:"avatar border-white", style: "margin-right: 0; margin-bottom: 0px;", alt:"...") %>
+                                      <% end %>
+                                  <% end %>
                                 </div>
                                 <div >
-                                   <span class="stats"> <%= truncate( submission.user.name , :length => 23) %>  </span><br>
+                                   <span class="statss"> <%= truncate( submission.user.name , :length => 23) %>  </span><br>
                                   <span class="text-info">
                                     <small> <%= truncate( submission.user.email , :length => 23) %>  </small>
                                   </span>
@@ -97,7 +101,17 @@ textarea.note {
 <% @submissions.each do |submission| %>
 
   <% if !submission.answers.nil? %>
-  <div class="modal fade" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal fade answer" id="video-<%= submission.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+<!--  side button for modal -->
+       <!-- Controls -->
+         <a class="left carousel-control btn-prev" href="#" >
+             <span class="glyphicon glyphicon-chevron-left"></span>
+         </a>
+         <a class="right carousel-control btn-next " href="#" >
+             <span class="glyphicon glyphicon-chevron-right"></span>
+         </a>
+
+
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -166,14 +180,24 @@ textarea.note {
                  <div class="centralize full-fix ">
                   <%= commontator_thread(submission) %>
                  </div>
+        </div>
 
-
-
+               
+        <div class="modal-footer">
+            <ul class="pager">
+                  <li class="previous"><button type="button" class="btn btn-default btn-prev">Prev</button></li>
+                    <li class="next"><button type="button" class="btn btn-default btn-next">Next</button></li>
+            </ul>
         </div>
 
 
       </div>
+      
+
+
+
     </div>
+
   </div>
 
 
@@ -201,8 +225,8 @@ textarea.note {
           <div class="col-md-12">
          <textarea  name="body" id="body"  rows="8" class="form-control border-input" placeholder="Compose Custom email to be sent" value="">
           <% if @peg %>
-          <%= @prefiled_mes %>
-          <%end%>
+            <%= @prefiled_mes %>
+          <% end %>
           </textarea>
           </div>
 
@@ -212,7 +236,7 @@ textarea.note {
         <button type="button" class="btn box-shape" data-dismiss="modal"> Cancel </button>
         <button onclick="submitBuk()"  type="button" id="buk-continue" class="btn box-shape"> Send </button>
       </div>
-      <%else%>
+      <% else %>
 
       </div>
 
@@ -259,10 +283,15 @@ event.preventDefault();
   var width ;
 
  $('.modal').on('shown.bs.modal', function (e) {
-
-    var cardView = $(e.relatedTarget); // cardView that triggered the modal
-    var idToTrigger = cardView.data('target');
-
+     // check if target is undefine or null
+     if (e.relatedTarget){ 
+        var cardView = $(e.relatedTarget); // cardView that triggered the modal
+        var idToTrigger = cardView.data('target');
+     } else {
+        var idToTrigger = "#" +  e.target.id;
+        console.log(" print the one from next");
+        console.log(idToTrigger);
+     }
       (function () {
         var $frame = $(idToTrigger+"-sly");
         var $wrap  = $frame.parent();
@@ -437,6 +466,26 @@ event.preventDefault();
     effect : "fadeIn"
   });
 
+
+$(".btn-next").click(function(){
+    var currentModal = $(this).parents("div.modal.answer");
+    var next = currentModal.next();
+    if (next){
+        currentModal.modal('hide');
+        next.modal('show');
+    }
+});
+
+$(".btn-prev").click(function(){
+    var currentModal = $(this).parents("div.modal.answer");
+    var prev = currentModal.prev();
+    console.log(prev);
+    if (prev){
+        currentModal.modal('hide');
+        prev.modal('show'); 
+    }
+    
+});
 
 </script>
 
