@@ -32,6 +32,23 @@
     margin-bottom: 15px;
 }
 
+h4 {
+      margin: 8px 0 0px;
+}
+.card-user hr {
+    margin: 20px 20px;
+}
+
+.nav-util{
+  display: inline-block;
+}
+
+.nav-utility::before {
+  content:'\2022';
+  margin: 0 5px;
+  padding-right: 2px;
+}
+
 </style>
 
 <div class="wrapper">
@@ -60,14 +77,12 @@
                                   <% else %>
                                     <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />                     
                                   <% end %>
-                                  <h3 class="title"><%= @user.name %><br></h3>
-                                    <h4><a href="#"><%= @user.email %></a><br>
-                                    <%= @user.telephone %>
-                                    <%= @user.address %>
-                                <div class="row">
-                                    <div class="col-md-12"><%= @user.city %>, <%= @user.country %> </div>
-                                </div>
-                                  </h4>
+                                  <h3 class="title"><%= @user.name %></h3>
+                                  <h4 class="nav-util"><span class="fa fa-envelope" aria-hidden="true"></span>  <%= @user.email %></h4>
+                                  <h4 class="nav-util nav-utility"><span class="fa fa-phone" aria-hidden="true"></span>  <%= @user.telephone %></h4>
+                                  <h4><span class="fa fa-map-marker" aria-hidden="true"></span>  <%= @user.address %></h4>
+                                  <h4 class="nav-util"><%= @user.city %></h4>
+                                  <h4 class="nav-util nav-utility"><%= @user.country %></h4>
                                 </div>
                                 <hr>
                                 <h5 class="text-center">About me</h5>
