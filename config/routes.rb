@@ -74,6 +74,8 @@ Rails.application.routes.draw do
     get "preview", to: "companies#preview"
     get "card_preview", to: "companies#card_preview", as: 'card_preview'
     get "talent", to: "companies#search_talent", as: "talent"
+    get "talent/:id", to: "companies#show_talent", as: "show_talent"
+
 
 
     resources :groups do

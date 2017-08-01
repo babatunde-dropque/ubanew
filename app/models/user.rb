@@ -25,13 +25,16 @@ class User < ActiveRecord::Base
    #this will allow user to be able to rate
    ratyrate_rater
 
-    
 
-   
+
+
 
    # def capitalize_first_character
    #    self.name.split.map(&:capitalize).join(' ')
    # end
+   def self.search_category
+
+   end
 
 
 

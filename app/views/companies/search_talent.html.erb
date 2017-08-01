@@ -37,14 +37,75 @@
 
    <div class="formatting">
 	    	<form class="navbar-form center" role="search" method="GET" action="/companies/<%= @company.slug %>/talent" >
-					<div class="form-group  is-empty">
-						<input type="text" class="form-control" name="search" placeholder="What Talent do you need?">
+
+                    <div class="row" col-xs-12 col-sm-12 col-md-12 col-lg-12>
+					<div class="form-group  is-empty" col-xs-3 col-sm-3 col-md-3 col-lg-3 >
+					<select name='category' value='<%= params[:category]%>'>
+					<option>Any</option>>
+						<% @cand_cat = ""%>
+	                   <% if params[:category].present? %>
+	                   <% @cand_cat = params[:category]%>
+	                   <%end%>
+	                   <% @search_category.each do |cat|%>
+	                   <% if cat == @cand_cat %>
+	                    <option selected='selected' ><%=  cat %></option>
+	                    <%else%>
+	                   <option><%=  cat %></option>
+                      <%end%>
+                      <%end%>
+				   </select>
+						<input type="text" class="form-control" name="search" placeholder="Enter a key word" value="<%= params[:search]%>">
 						<span class="material-input"></span>
+
 					</div>
+
+					<div class="form-group  is-empty" col-xs-3 col-sm-3 col-md-3 col-lg-3 >
+					<select name='category2' value='<%= params[:category2]%>'>
+					<option>Any</option>>
+						<% @cand_cat2 = ""%>
+	                   <% if params[:category2].present? %>
+	                   <% @cand_cat2 = params[:category2]%>
+	                   <%end%>
+	                   <% @search_category.each do |cat2|%>
+	                   <% if cat2 == @cand_cat2 %>
+	                    <option selected='selected' ><%=  cat2 %></option>
+	                    <%else%>
+	                   <option><%=  cat2 %></option>
+                      <%end%>
+                      <%end%>
+				   </select>
+						<input type="text" class="form-control" name="search2" placeholder="Enter a key word" value="<%=params[:search2]%>" >
+						<span class="material-input"></span>
+
+					</div>
+
+					<div class="form-group  is-empty" col-xs-3 col-sm-3 col-md-3 col-lg-3 >
+					<select name='category3' value='<%= params[:category3]%>'>
+					<option>Any</option>>
+						<% @cand_cat3 = ""%>
+	                   <% if params[:category3].present? %>
+	                   <% @cand_cat3 = params[:category3]%>
+	                   <%end%>
+	                   <% @search_category.each do |cat3|%>
+	                   <% if cat3 == @cand_cat3 %>
+	                    <option selected='selected' ><%=  cat3 %></option>
+	                    <%else%>
+	                   <option><%=  cat3 %></option>
+                      <%end%>
+                      <%end%>
+				   </select>
+						<input type="text" class="form-control" name="search3" placeholder="Enter a key word" value="<%=params[:search3]%>">
+						<span class="material-input"></span>
+
+					</div>
+
+
+
 					<button type="submit" class="btn btn-white">
 						Search
 						<i class="material-icons"></i><div class="ripple-container"></div>
 					</button>
+					</div>
 			</form>
 	</div>
 
@@ -55,6 +116,7 @@
 
             <% @talent.each do |talent| %>
                   <div class="col-md-3">
+                  <%= link_to company_show_talent_path(company_id:@company.slug, id:talent.id) do %>
                         <div class="content">
                             <div class="card main text-center box-shape" data-toggle="modal"  data-backdrop="static" >
                              <br>
@@ -76,15 +138,13 @@
                                 </div>
                                </div>
                         </div>
+
                   </div>
+                  <%end%>
               <% end %>
             </div>
             <div class="center" ><%= will_paginate @talent %></div>
           </div>
-          
-
-
-
 	<%end%>
 
 
