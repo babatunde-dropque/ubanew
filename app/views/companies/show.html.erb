@@ -20,7 +20,7 @@
 
                   <% @all_interview.each do |interview| %>
                   <% unfinish_submission = interview.submissions.where("current_no < ?", 500) %>
-                  <% submissions = interview.submissions.where(current_no: 500) %>
+                  <% submissions = interview.submissions.where(current_no: 500, status:nil) %>
                   <% questions = interview.questions.length%>
                   <% shortlisted = Submission.where(interview_id:interview.id).where(status:0).length %>
                   <% rejected = Submission.where(interview_id:interview.id).where(status:2).length %>
@@ -45,11 +45,13 @@
                                     </div>
                                         <hr>
 
-                                <a  href= "<%= company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) %>" >
                                       <div class="text-center numbers-1">
+
+                                <a  href= "<%= company_interview_single_path(company_id: @company.slug, interview_id: interview.slug ) %>" >
                                          <p><%= truncate( interview.title, :length => 35) %> </p>
                                           <%= submissions.length %>
                                         <br>
+                                </a>
                                       </div>
                                       <hr>
                                   <div class="chart-legend">
@@ -65,20 +67,28 @@
                                           <div class="col-md-4 col-xs-4">
                                             <div class="icon-big icon-success text-center" style="
     font-size: 1em;">
+<%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 3, status: 0, interview_id: interview.slug) do %>
+
                                                Shortlisted<i class="ti-check"></i><hr>
                                                <h4><%= shortlisted %></h4>
+                                            <% end %>
+
+
                                             </div>
                                           </div>
                                           <div class="col-md-4 col-xs-4">
                                             <div class="icon-big icon-danger text-center" style="
     font-size: 1em;">
+
+                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: interview.slug) do %>
+                       
                                                Declined<i class="ti-close"></i><hr>
                                                <h4><%= rejected %><h4>
+                    <% end %>
                                             </div>
                                           </div>
                                       </div>
                                   </div>
-                                </a>
                               </div>                  
                           </div>
                       </div>
