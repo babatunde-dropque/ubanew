@@ -19,7 +19,8 @@ class OauthsController < ApplicationController
       else
         user = User.find_or_create_by(email: auth_hash['info']['email'])
         user.name = auth_hash['info']['name']
-        user.a_dp = auth_hash['info']['image']
+        image_url =  auth_hash['info']['image']
+        user.remote_a_dp_url = image_url
         user.password = "dropque2016app"
         user.save!
         created_auth_user = Identity.create(provider: auth_hash["provider"],uid: auth_hash["uid"], user_id: user.id)
@@ -44,7 +45,8 @@ class OauthsController < ApplicationController
       else
         user = User.find_or_create_by(email: auth_hash['info']['email'])
         user.name = auth_hash['info']['name']
-        user.a_dp = auth_hash['info']['image']
+        image_url =  auth_hash['info']['image']
+        user.remote_a_dp_url = image_url
         user.telephone = auth_hash['info']['phone']
         user.a_experience = auth_hash['info']['headline']
         user.a_qualification = auth_hash['info']['industry']

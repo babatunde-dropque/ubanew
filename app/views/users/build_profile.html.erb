@@ -70,33 +70,30 @@
                                                 <div class="picture-container">
                                                     <div class="picture">
                                                         <%= image_tag('default.jpg', class:"picture-src", id:"wizardPicturePreview",title:"") %>
-
                                                         <input type="file" id="wizard-picture" name="a_dp">
                                                     </div>
                                                     <h6>Choose profile picture</h6>
                                                     <small> Transparent 330 X 80 </small>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label> Highest Qualifcation <small>(required)</small></label>
-                                                    <select name="a_qualification" class="form-control">
-                                                        <option <%= @user.a_qualification == "phd" ? "selected": "" %> value="phd">PhD</option>
-                                                        <option <%= @user.a_qualification == "master" ? "selected": "" %> value="master">Master</option>
-                                                        <option <%= @user.a_qualification == "degree" ? "selected": "" %> value="degree">Degree</option>
-                                                        <option <%= @user.a_qualification == "hnd" ? "selected": "" %> value="hnd">HND</option>
-                                                        <option <%= @user.a_qualification == "ond" ? "selected": "" %> value="ond">OND</option>
-                                                        <option <%= @user.a_qualification == "ssce" ? "selected": "" %> value="ssce">SSCE</option>
-                                                    </select>
-                                                </div>
+                                            <%# <div class="col-sm-6"> %>
+                                            <%#     <div class="form-group"> %>
+                                            <%#         <label> Highest Qualifcation <small>(required)</small></label> %>
+                                            <%#         <select name="a_qualification" class="form-control"> %>
+                                            <%#             <option <%= @user.a_qualification == "phd" ? "selected": "" %1> value="phd">PhD</option> %>
+                                            <%#             <option <%= @user.a_qualification == "master" ? "selected": "" %1> value="master">Master</option> %>
+                                            <%#             <option <%= @user.a_qualification == "degree" ? "selected": "" %1> value="degree">Degree</option> %>
+                                            <%#             <option <%= @user.a_qualification == "hnd" ? "selected": "" %1> value="hnd">HND</option> %>
+                                            <%#             <option <%= @user.a_qualification == "ond" ? "selected": "" %1> value="ond">OND</option> %>
+                                            <%#             <option <%= @user.a_qualification == "ssce" ? "selected": "" %1> value="ssce">SSCE</option> %>
+                                            <%#         </select> %>
+                                            <%#     </div> %>
 
-                                            </div>
+                                            <%# </div> %>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                         <label>Date of birth <small>(required)</small></label>  &nbsp;  &nbsp;  &nbsp;
-                                                        <input name="a_dob" type="text" class="form-control border-input" placeholder="yyyy-mm-dd" id = "date" value="<%= @user.a_dob %>" >
-
-
+                                                        <input name="a_dob" type="text" class="form-control border-input build-profile" placeholder="yyyy-mm-dd" id = "date" value="<%= @user.a_dob %>" >
                                                 </div>
                                             </div >
                                             <div class="col-sm-2">
@@ -110,10 +107,9 @@
                                             </div>
                                             <div class="col-sm-6 col-sm-offset-5">
                                                 <div class="form-group">
-                                                    <label> Years of Experience <small>(required)</small></label>
-                                                    <input name="a_experience" type="text" class="form-control" placeholder="e.g 3" value="<%= @user.a_experience %>" >
+                                                    <label> Proffession/Occupation <small>(required)</small></label>
+                                                    <input name="a_experience" type="text" class="form-control build-profile" placeholder="e.g Acoountant" value="<%= @user.occupation %>" >
                                                 </div>
-
                                             </div>
                                             
                                         </div>
@@ -127,17 +123,23 @@
 
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <input type="text" name="address" class="form-control" placeholder=" Address" value="<%= @user.address %>" >
+                                                    <input type="text" name="address" class="form-control build-profile" placeholder=" Address" value="<%= @user.address %>" >
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-5 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>City</label>
-                                                    <input type="text" name="city" class="form-control" placeholder="City" value="<%= @user.city %>" >
+                                                    <input type="text" name="city" class="form-control build-profile" placeholder="City" value="<%= @user.city %>" >
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label>State</label>
+                                                    <input type="text" name="state" class="form-control build-profile" placeholder="City" value="<%= @user.state %>" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>Country</label><br>
                                                     <select name="country" class="form-control">

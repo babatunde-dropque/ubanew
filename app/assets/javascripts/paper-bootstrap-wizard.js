@@ -49,7 +49,7 @@ transparent = true;
                               }
                             }
                           }
-                         
+
         		    }
                 },
                 messages: {
@@ -93,6 +93,12 @@ transparent = true;
               minlength: 2,
             });
 
+           $.validator.addClassRules("build-profile", {
+              required: true,
+              minlength: 2,
+            });
+
+
             // add custom validation to validate time
             $.validator.addMethod("timeValidation", function(value, element) {
               return this.optional(element) || /^[0-5]{1,2}:[0-9]{1,2}$/.test(value);
@@ -107,7 +113,7 @@ transparent = true;
             // add custom validation to validate time
             $.validator.addMethod("numberValidation", function(value, element) {
               return this.optional(element) || /^[0-9]+$/.test(value);
-            }, "Value must be numeric "); 
+            }, "Value must be numeric ");
 
             $.validator.addClassRules("interview-number-file", {
               required: true,
@@ -122,7 +128,7 @@ transparent = true;
               numberValidation: true
             });
 
-      
+
 
             // Wizard Initialization
           	$('.wizard-card').bootstrapWizard({
@@ -131,7 +137,7 @@ transparent = true;
                 'previousSelector': '.btn-previous',
 
                 onNext: function(tab, navigation, index) {
-        
+
                 	var $valid = $('.wizard-card form').valid();
                 	if(!$valid) {
                 		$validator.focusInvalid();
@@ -235,17 +241,17 @@ transparent = true;
 
         function validateSubdomain(word){
             $.ajax({
-              url: '/check_subdomain', 
+              url: '/check_subdomain',
               type: 'GET',
               data: {subdomain: word },
               success: function(data){
                   if (data == "yes")
-                    { return true; }  
-                else 
+                    { return true; }
+                else
                     {return false; }
               },
               error : function(jqXHR, textStatus, errorThrown) {
-                   
+
                }
            });
         }
