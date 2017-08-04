@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170801085555) do
-=======
-ActiveRecord::Schema.define(version: 20170728174722) do
->>>>>>> d3db5ac80d40a8d685a8388c9f468c55c9676471
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -293,7 +289,6 @@ ActiveRecord::Schema.define(version: 20170728174722) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
-    t.string   "package"
     t.string   "telephone"
     t.string   "a_qualification"
     t.integer  "a_experience"
@@ -309,17 +304,12 @@ ActiveRecord::Schema.define(version: 20170728174722) do
     t.string   "about_me"
     t.string   "skill"
     t.string   "school"
-<<<<<<< HEAD
-    t.string   "field_of_study"
+    t.string   "descipline"
     t.string   "occupation"
     t.integer  "profile_access"
     t.integer  "marital_status"
     t.string   "state"
     t.string   "nationality"
-=======
-    t.string   "grade"
-    t.string   "descipline"
->>>>>>> d3db5ac80d40a8d685a8388c9f468c55c9676471
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

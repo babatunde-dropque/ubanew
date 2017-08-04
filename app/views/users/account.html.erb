@@ -348,11 +348,12 @@ h4 {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-     Content will be here for the Experience 
+       Head content should be here
       </div>
       <input type="text" id="remove-id" hidden >
       <div class="modal-body" id="remove-body">
          
+     Content will be here for the Experience 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
@@ -392,21 +393,14 @@ h4 {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Field of Study</label>
-                                                <input type="text" class="form-control border-input" placeholder="Area of study(ex: Genetics)" name="field_of_study" value="<%= @user.descipline %>">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
                                     
                                </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
-        <button type="button" id="remove-yes" class="btn box-shape"> Yes </button>
+        <button type="button" class="btn box-shape"> Yes </button>
       </div>
     </div>
   </div>
@@ -528,6 +522,10 @@ $("#update").click(function(event){
     $("#form").submit();
 });
 
+$("#save-education").click(function(){
+  
+
+});
 
 </script>
 

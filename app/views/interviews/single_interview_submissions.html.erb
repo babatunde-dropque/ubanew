@@ -9,6 +9,24 @@ textarea.note {
  border: solid 1px #ddd;
 }
 
+.loading{
+    width: 100%;
+    height: 70%;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    opacity: .9;
+    background-color: #fff;
+    z-index: 99;
+    text-align: center;
+}
+
+#symbol{
+    position: absolute;
+    top: 50%;
+}
+
+
 
 </style>
 
@@ -25,7 +43,7 @@ textarea.note {
     <%= render partial: "users/navbar" %>
 
 
-  <div class="content">
+  <div class="content" >
          <% if @peg && @submissions.length != 0 %>
          <div class="row text-center">
                 <div class="col-md-4 col-md-offset-4">
@@ -37,7 +55,7 @@ textarea.note {
       <input type="hidden" value="<%= @interview.id %>" id="interview_id" />
         <div class="card-start ">
 
-          <div class="container-fluid">
+          <div class="container-fluid" >
 
 
 
@@ -57,7 +75,6 @@ textarea.note {
                             <div class="card card-user text-center" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
                              <br>
                                 <div class="dq-center-video">
-
                                  <% if  !@user.a_dp.file.nil? %>
                                     <img src="<%=@user.a_dp.url %>"  style = "border-radius: 50%;" />                     
                                   <% else %>
@@ -111,19 +128,20 @@ textarea.note {
              <span class="glyphicon glyphicon-chevron-right"></span>
          </a>
 
-
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-
           <%= submission.user.name %> (<%= submission.user.email %>) 
-
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
+            
                   <div class="text-center major-view centralize">
+                        <div id ="loading">
+                          <i id ="symbol"  ></i>
+                        </div>
                      <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
                      <div id="content-video-<%= submission.id %>-sly" class="centralize-video" >
                     </div>
@@ -242,7 +260,7 @@ textarea.note {
 
     </div>
   </div>
-  <!-- Start of bulk sender modal -->
+  <!--  end of of bulk sender modal -->
 
 
 <script>
@@ -255,29 +273,27 @@ function submitBuk(){
   subj = $('#subj').val()
   body = $('#body').val()
 }
+
 $("#bukbut").click( function(){
- $("#buk-not").modal();
+     $("#buk-not").modal();
 });
+
  var parent = $("#buk-not").find(".modal-body");
-     set = $("#setou").data('orders');
+ set = $("#setou").data('orders');
  var one = $("#buk-not").find(".modal-footer");
  var three = one.find("button#buk-continue").click(function(event){
-if (confirm(warning) == true){
- $("#buk-not").modal('hide');
-
-  url = "/companies/<%= @company.slug %>/interviews/"+id+"/mass"
-  $.ajax({
-  type: 'GET',
-  data: { set:set, subject:subj,  body:body},
-  url: url
+     if (confirm(warning) == true){
+     $("#buk-not").modal('hide');
+          url = "/companies/<%= @company.slug %>/interviews/"+id+"/mass"
+          $.ajax({
+              type: 'GET',
+              data: { set:set, subject:subj,  body:body},
+              url: url
+          });
+     } else{
+          event.preventDefault();
+     }
  });
- }
- else{
-event.preventDefault();
- }
- });
-
-
 
   var height ;
   var width ;
@@ -364,6 +380,8 @@ event.preventDefault();
   }
 
   function replaceTextFile(submissionId, questionNumber, questionType, htmlQuestionId, htmlContentId ){
+    $("#symbol").addClass('fa fa-spinner  fa-pulse fa-5x fa-fw');
+    $("#loading").addClass('loading');
     $.ajax({
           url: '<%= company_interview_returnTextFileApi_path(company_id:@company.slug, interview_id:@interview.slug)%>',
           type: 'GET',
@@ -371,7 +389,7 @@ event.preventDefault();
           success: function(data){
               if (data == "error" ){
 
-              } else if(questionType == 2) {
+             } else if(questionType == 2) {
                  $(htmlContentId).html( "<textarea class='note' readonly>" +data.answer+ "</textarea>" );
                  $(htmlQuestionId).html(data.question) ;
              } else if (questionType == 3){
@@ -383,7 +401,11 @@ event.preventDefault();
                  " </div> ");
                 $(htmlQuestionId).text(data.question);
              }
+              
+           $("#symbol").removeClass('fa fa-spinner fa-pulse');
+           $("#loading").removeClass('loading');
           },
+        
           error : function(jqXHR, textStatus, errorThrown) {
 
            }
