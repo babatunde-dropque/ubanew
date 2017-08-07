@@ -118,19 +118,19 @@
                   <div class="col-md-3">
                   <%= link_to company_show_talent_path(company_id:@company.slug, id:talent.id) do %>
                         <div class="content">
-                            <div class="card main text-center box-shape" data-toggle="modal"  data-backdrop="static" >
+                            <div class="card card-user text-center" data-toggle="modal" data-target="#video-<%= talent.id %>" data-backdrop="static" >
                              <br>
                                 <div class="dq-center-video">
-                                  <% if !talent.a_dp.nil? %>
-                                    <% dp = talent.a_dp %>
-                                  <img class="lazy max-height-width"  src="<%= asset_path('avatar.png', style: "border-radius: 50%;") %>" data-original="<%= dp.url %>">
+                                 <% if  !@user.a_dp.file.nil? %>
+                                    <img src="<%=@user.a_dp.url %>"  style = "border-radius: 50%;" />                     
                                   <% else %>
-                                    <%= image_tag('avatar.png', style: "border-radius: 50%;") %>
-                                  <% end %>
 
+                                        <%= image_tag('avatar.png', class:"avatar border-white", style: "margin-right: 0; margin-bottom: 0px;", alt:"...") %>
+
+                                  <% end %>
                                 </div>
                                 <div >
-                                   <span class="stats"> <%= truncate( talent.name , :length => 23) %>  </span><br>
+                                   <span class="statss"> <%= truncate( talent.name , :length => 23) %>  </span><br>
                                   <span class="text-info">
                                     <small> <%= truncate( talent.email , :length => 23) %>  </small>
                                   </span>
