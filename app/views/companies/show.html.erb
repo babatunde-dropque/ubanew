@@ -67,12 +67,11 @@
                                           <div class="col-md-4 col-xs-4">
                                             <div class="icon-big icon-success text-center" style="
     font-size: 1em;">
-<%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 3, status: 0, interview_id: interview.slug) do %>
+<%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 3, status: 0, interview_id: interview.slug), class:"icon-success" do %>
 
                                                Shortlisted<i class="ti-check"></i><hr>
                                                <h4><%= shortlisted %></h4>
                                             <% end %>
-
 
                                             </div>
                                           </div>
@@ -80,7 +79,7 @@
                                             <div class="icon-big icon-danger text-center" style="
     font-size: 1em;">
 
-                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: interview.slug) do %>
+                    <%= link_to company_interview_filtered_single_interview_path(params[:company_id] || params[:id], c: 5, status: 2, interview_id: interview.slug), class:"icon-danger" do %>
                        
                                                Declined<i class="ti-close"></i><hr>
                                                <h4><%= rejected %><h4>
