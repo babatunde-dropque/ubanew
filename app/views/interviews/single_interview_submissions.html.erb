@@ -10,15 +10,15 @@ textarea.note {
 }
 
 .loading{
-    width: 100%;
-    height: 70%;
-    top: 0px;
-    left: 0px;
-    position: absolute;
-    opacity: .9;
-    background-color: #fff;
-    z-index: 99;
-    text-align: center;
+   width: 100%;
+   height: 70%;
+   top: 0px;
+   left: 0px;
+   position: absolute;
+   opacity: .9;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
 }
 
 #symbol{
@@ -393,12 +393,14 @@ $("#bukbut").click( function(){
                  $(htmlContentId).html( "<textarea class='note' readonly>" +data.answer+ "</textarea>" );
                  $(htmlQuestionId).html(data.question) ;
              } else if (questionType == 3){
-                $(htmlContentId).html("<div>"+
-                    "File Name: "+data.answer.split('/').pop()+"<br>"+
-                    "File Type: "+data.answer.split('/').pop().split('.').pop()+" <br>"+
-                    "File size: "+(data.file_size / 1000)+" kb <br><br><br>"+
-                    "<a class='btn box-shape download-button' href='"+data.answer+"' target='_blank'>Download file </a>"+
-                 " </div> ");
+                <%# $(htmlContentId).html("<div>"+ %>
+                <%#     "File Name: "+data.answer.split('/').pop()+"<br>"+ %>
+                <%#     "File Type: "+data.answer.split('/').pop().split('.').pop()+" <br>"+ %>
+                <%#     "File size: "+(data.file_size / 1000)+" kb <br><br><br>"+ %>
+                <%#     "<a class='btn box-shape download-button' href='"+data.answer+"' target='_blank'>Download file </a>"+ %>
+                <%#  " </div> "); %>
+                <%# $(htmlContentId).html('<embed src="'+ data.answer +'" width="100%" height="300px" />'); %>
+             $(htmlContentId).html('<iframe  src="https://docs.google.com/gview?url='+ data.answer + '&embedded=true"  width="100%" height="300px"></iframe>');
                 $(htmlQuestionId).text(data.question);
              }
               
