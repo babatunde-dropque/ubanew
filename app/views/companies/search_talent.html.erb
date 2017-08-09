@@ -25,6 +25,33 @@
     vertical-align: middle;
     transition: background-color .2s;
 }
+
+textarea.note {
+ background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
+ width: 100%;
+ height: 300px;
+ font: normal 14px verdana;
+ line-height: 25px;
+ padding: 2px 10px;
+ border: solid 1px #ddd;
+}
+
+.loading{
+   width: 100%;
+   height: 70%;
+   top: 0px;
+   left: 0px;
+   position: absolute;
+   opacity: .9;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
+}
+
+#symbol{
+    position: absolute;
+    top: 50%;
+}
 </style>
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="success">
@@ -115,14 +142,14 @@
 
 
             <% @talent.each do |talent| %>
-                  <div class="col-md-3">
-                  <%= link_to company_show_talent_path(company_id:@company.slug, id:talent.id) do %>
+                  <div class="col-md-3 " id="<%=talent.id%>"  >
+
                         <div class="content">
-                            <div class="card card-user text-center" data-toggle="modal" data-target="#video-<%= talent.id %>" data-backdrop="static" >
+                            <div class="card card-user text-center" data-toggle="modal" data-target="#video-<%= talent.id %>" data-backdrop="static"  data-id="<%= talent.id %>">
                              <br>
                                 <div class="dq-center-video">
                                  <% if  !@user.a_dp.file.nil? %>
-                                    <img src="<%=@user.a_dp.url %>"  style = "border-radius: 50%;" />                     
+                                    <img src="<%=@user.a_dp.url %>"  style = "border-radius: 50%;" />
                                   <% else %>
 
                                         <%= image_tag('avatar.png', class:"avatar border-white", style: "margin-right: 0; margin-bottom: 0px;", alt:"...") %>
@@ -141,7 +168,7 @@
 
                   </div>
                   <%end%>
-              <% end %>
+              
             </div>
             <div class="center" ><%= will_paginate @talent %></div>
           </div>
@@ -151,6 +178,219 @@
  </div>
 </div>
 </div>
+
+
+<!-- Modals begin -->
+
+<% @talent.each do|talent|%>
+<div class="modal fade answer" id="video-<%= talent.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+<!--  side button for modal -->
+       <!-- Controls -->
+         <a class="left carousel-control btn-prev" href="#" >
+             <span class="glyphicon glyphicon-chevron-left"></span>
+         </a>
+         <a class="right carousel-control btn-next " href="#" >
+             <span class="glyphicon glyphicon-chevron-right"></span>
+         </a>
+         <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+           <div class="modal-header">
+           <%= talent.name %>(<%= talent.email%>)
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+           </div>
+           <div class="modal-body">
+            <div class="txt-center major-view centralize" >
+            <div id="loading">
+            <i id="symbol"></i>
+           </div>
+           <strong><h5 id="question-video-<%=talent.id %>-sly">
+
+           </h5>
+           </strong>
+           <div id="<%= talent.id%>" class="centralize-video">
+           Hello world
+           </div>
+           </div>
+           <div class="wrap" >
+              <div class="scrollbar">
+                <div class="handle">
+                  <div class="mousearea"></div>
+                </div>
+             </div>
+            <div class="frame" id="video-<%= talent.id%>-sly" submission-id="<%= talent.id%>" triggered="true">
+              <ul class="clearfix">
+               <li question-type="2"> <div class="round-tab glyphicon glyphicon-cloud-upload"><span></span></div> </li>
+              </ul>
+           </div>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+            <ul class="pager">
+                  <li class="previous"><button type="button" class="btn btn-default btn-prev">Prev</button></li>
+                    <li class="next"><button type="button" class="btn btn-default btn-next">Next</button></li>
+            </ul>
+        </div>
+
+</div>
+</div>
+</div>
+
+
+<%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+ var height ;
+  var width ;
+
+ $('.modal').on('shown.bs.modal', function (e) {
+     // check if target is undefine or null
+     if (e.relatedTarget){
+        var cardView = $(e.relatedTarget); // cardView that triggered the modal
+        var idToTrigger = cardView.data('target');
+        //var idToTrigger2 = cardView.data('id');
+     } else {
+        var idToTrigger = "#" +  e.target.id;
+        //var idToTrigger2 = e.target.id;
+        //console.log(" print the one from next");
+        //console.log(idToTrigger);
+     }
+      (function () {
+        var $frame = $(idToTrigger+"-sly");
+        var $wrap  = $frame.parent();
+        var $slidee = $frame.children('ul').eq(0);
+
+        // Call Sly on frame
+        $frame.sly({
+          horizontal: 1,
+          itemNav: 'basic',
+          smart: 1,
+          activateMiddle: 1,
+          activateOn: 'click',
+          mouseDragging: 1,
+          touchDragging: 1,
+          releaseSwing: 1,
+          startAt: 0,
+          scrollBar: $wrap.find('.scrollbar'),
+          scrollBy: 1,
+          speed: 300,
+          elasticBounds: 1,
+          easing: 'easeOutExpo',
+          dragHandle: 1,
+          dynamicHandle: 1,
+          clickBar: 1
+        });
+
+      // this will trigger at first before anything is being clicked
+        if ($frame.attr("triggered") == "true"){
+           var submissionId = $frame.attr("submission-id");
+           var contentId = "#content-"+$frame.attr('id');
+           //var Id = idToTrigger;
+           var questionId = "#question-"+$frame.attr('id');
+           var liObject = $frame.find('li')[0];
+           var questionType = liObject.getAttribute("question-type");
+           if (questionType){
+            //idToTrigger.html("Mr"+idToTrigger);
+            console.log(idToTrigger);
+           }
+           $frame.attr("triggered", false);
+        }
+     }());
+
+
+
+    $('.frame').sly('on', 'active', function(eventName, itemIndex){
+           var thisFrame = $(this)[0].frame ;
+           var submissionId = thisFrame.getAttribute("submission-id");
+           var contentId = "#content-"+thisFrame.id;
+           var questionId = "#question-"+thisFrame.id;
+           var questionType = thisFrame.children[0].children[itemIndex].getAttribute("question-type");
+           if (questionType == "1"){
+              replaceVideo(thisFrame.children[0].children[itemIndex].getAttribute("token"),thisFrame.children[0].children[itemIndex].getAttribute("question"), questionId ,contentId);
+
+           } else{
+              replaceTextFile(submissionId, itemIndex, questionType, questionId, contentId);
+           }
+     });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $(document).ready(function(){
+
+//   $(".sulphur").click(function(e){
+//   e.preventDefault();
+//   var current = $(this);
+//   var id = current.attr('id');
+//   alert("Your Id is "+id);
+//   });
+
+
+
+// });
+
+ // lazy load images
+  $("img.lazy").show().lazyload({
+    effect : "fadeIn"
+  });
+
+
+$(".btn-next").click(function(){
+    var currentModal = $(this).parents("div.modal.answer");
+    var next = currentModal.next();
+    if (next){
+        currentModal.modal('hide');
+        next.modal('show');
+    }
+});
+
+$(".btn-prev").click(function(){
+    var currentModal = $(this).parents("div.modal.answer");
+    var prev = currentModal.prev();
+    //console.log(prev);
+    if (prev){
+        currentModal.modal('hide');
+        prev.modal('show');
+    }
+
+});
+
+
+
+</script>
 
 
 
