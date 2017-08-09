@@ -374,36 +374,51 @@ h4 {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> 
-        Education heading will be here
+        Add Education
       </div>
       <input type="text" id="remove-id" hidden >
       <div class="modal-body" id="remove-body">
-         <div  class="content">
-                                  <input type="hidden" name="update" value="update">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>School</label>
-                                                <input type="text" class="form-control border-input"  placeholder="School name(ex: University of Accra)" name="school" value="<%= @user.school %>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Degree</label>
-                                                <input type="email" class="form-control border-input" placeholder="(ex: Bachelor)" class="address" name="a_qualification" value="<%= @user.a_qualification %>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-
-                                    
-                               </div>
+     <div class="content">
+         <form id="form-education" >
+          <input type="hidden" name="update" value="update">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>School</label>
+                        <input type="text" class="form-control border-input"  placeholder="School name(ex: University of Accra)">
+                    </div>
+                </div>
+               <div class="col-md-12">
+                    <div class="form-group">
+                       <label> Degree </label>
+                       <select name="a_gender" class="form-control border-input">
+                             <option value="B.sc">B.sc</option>
+                             <option value="Phd">Phd</option>
+                       </select>
+                     </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Field Of Study</label>
+                        <input type="email" class="form-control border-input" placeholder="(ex: Computer Science)"  >
+                    </div>
+                </div>
+<div class="col-md-12">
+                    <div class="form-group">
+                        <label>Grade</label>
+                        <input type="email" class="form-control border-input" placeholder="(ex: 1st class honor)" " name="a_qualification" ">
+                    </div>
+<div class="form-group">
+                        <label>Year</label>
+                        <input type="email" class="form-control border-input" placeholder="(ex: 2003 - 2007)"  name="a_qualification">
+                    </div>
+                </div>
+            </div>
+            </form>         
+     </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
-        <button type="button" class="btn box-shape"> Yes </button>
+        <button type="button" id="save-education" class="btn box-shape"> Save </button>
       </div>
     </div>
   </div>
@@ -442,6 +457,13 @@ h4 {
     </div>
   </div>
 </div>
+
+<!-- object of modal element -->
+
+
+
+
+<!-- end of modal object -->
 <script>
 
 $("#experience-btn").click(function(){
@@ -514,7 +536,7 @@ $('#tags').tagit({
     });
 
   $( function() {
-    $( "#tabs" ).tabs();
+    $("#tabs").tabs();
   } );
 
   <% flash.each do |key, value| %>
@@ -526,8 +548,19 @@ $("#update").click(function(event){
 });
 
 $("#save-education").click(function(){
-  
-
+    var data =  JSON.stringify($("#form-education").serializeArray());
+    console.log( JSON.stringify($("#form-education").serializeArray()));
+    $.ajax({
+        url: '/update_education', 
+        type: 'PUT',
+        data: {data: data},
+        success: function(data){
+            alert(data);
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+             
+         }
+     });
 });
 
 </script>

@@ -35,6 +35,11 @@ Rails.application.routes.draw do
   get 'payment_test_url', to: "payment#payment_test_callback",  as: 'payment_test_callbadk'
   get 'payment_test_submit', to: "payment#payment_test_submit", as: 'payment_test_submit'
 
+  put 'update_education', to: "users#update_education", as: 'update_education'
+  put 'update_experience', to: "users#update_experience", as: 'update_experience'
+  put 'update_skills', to: "users#update_skills", as: 'update_skills'
+  put 'update_user_details', to: "users#update_user_details", as: 'update_user_details'
+  
 
 
   # post request for applicant data

@@ -44,7 +44,6 @@ class UsersController < ApplicationController
   end
 
   def become_applicant
-
     @user.update_attributes(status:0)
     redirect_to user_timeline_path(current_user)
   end
@@ -92,8 +91,6 @@ class UsersController < ApplicationController
       end
   end
 
-  
-
   def application_timeline
     @profile_page = true
     @logo_off = false
@@ -106,7 +103,7 @@ class UsersController < ApplicationController
     if params[:update].present?
         @user.update_attributes(user_params)
         flash.now[:success] = "Account Updated Successfully"     
-     end
+    end
   end
 
 
@@ -150,6 +147,9 @@ class UsersController < ApplicationController
 	    end   
   end
 
+  def update_education
+      render plain: "successful"
+  end
 
     # parameters used to update the notification
   def update_notification_params
