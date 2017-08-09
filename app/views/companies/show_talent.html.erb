@@ -32,15 +32,32 @@
     margin-bottom: 15px;
 }
 
+h4 {
+      margin: 8px 0 0px;
+}
+.card-user hr {
+    margin: 20px 20px;
+}
+
+.nav-util{
+  display: inline-block;
+}
+
+.nav-utility::before {
+  content:'\2022';
+  margin: 0 5px;
+  padding-right: 2px;
+}
+
 </style>
 
 <div class="wrapper">
 <div class="sidebar" data-background-color="white" data-active-color="danger">
-    <% @user = User.find(params[:id])%>
-    <%= render partial: "users/applicant_sidebar" %>
+    
+    <%= render partial: "users/talent_sidebar" %>
     <div class="main-panel">
        <!-- TODO Add Footer Partial -->
-        <%= render partial: "users/navbar" %>
+        <%= render partial: "users/talent_navbar" %>
 
         <div class="content">
             <div class="container-fluid">
@@ -51,23 +68,21 @@
                                 <%= image_tag('background.jpg') %>
                             </div>
                              <div class="content">
-                                <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
+                                <!-- <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                     <i id="profile-btn" class="ti-pencil"></i>
-                                 </a>
+                                 </a> -->
                                 <div class="author">
                                  <% if @user.a_dp.file.nil? %>
                                     <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
                                   <% else %>
-                                    <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />                     
+                                    <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />
                                   <% end %>
-                                  <h3 class="title"><%= @user.name %><br></h3>
-                                    <h4><a href="#"><%= @user.email %></a><br>
-                                    <%= @user.telephone %>
-                                    <%= @user.address %>
-                                <div class="row">
-                                    <div class="col-md-12"><%= @user.city %>, <%= @user.country %> </div>
-                                </div>
-                                  </h4>
+                                  <h3 class="title"><%= @user.name %></h3>
+                                  <h4 class="nav-util"><span class="fa fa-envelope" aria-hidden="true"></span>  <%= @user.email %></h4>
+                                  <h4 class="nav-util nav-utility"><span class="fa fa-phone" aria-hidden="true"></span>  <%= @user.telephone %></h4>
+                                  <h4><span class="fa fa-map-marker" aria-hidden="true"></span>  <%= @user.address %></h4>
+                                  <h4 class="nav-util"><%= @user.city %></h4>
+                                  <h4 class="nav-util nav-utility"><%= @user.country %></h4>
                                 </div>
                                 <hr>
                                 <h5 class="text-center">About me</h5>
@@ -77,7 +92,7 @@
                                 
                             </div>
                             <hr>
-                            <!-- <div class="text-center">
+                            <div class="text-center">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
                                         <div class="icon-big icon-info text-center">
@@ -95,7 +110,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
 
             <div class="card">
@@ -333,11 +348,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-     Content will be here for the Experience 
+       Head content should be here
       </div>
       <input type="text" id="remove-id" hidden >
       <div class="modal-body" id="remove-body">
-         
+
+          <div class="row"> 
+          
+          
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
@@ -377,21 +396,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Field of Study</label>
-                                                <input type="text" class="form-control border-input" placeholder="Area of study(ex: Genetics)" name="field_of_study" value="<%= @user.descipline %>">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
                                     
                                </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
-        <button type="button" id="remove-yes" class="btn box-shape"> Yes </button>
+        <button type="button" class="btn box-shape"> Yes </button>
       </div>
     </div>
   </div>
@@ -513,6 +525,10 @@ $("#update").click(function(event){
     $("#form").submit();
 });
 
+$("#save-education").click(function(){
+  
+
+});
 
 </script>
 
