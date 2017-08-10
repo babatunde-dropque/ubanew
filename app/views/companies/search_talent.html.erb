@@ -1,5 +1,56 @@
 <style>
 
+#tabs .ui-tabs-nav { 
+    padding: 0em; 
+    background: transparent; 
+    border-width: 0px; 
+} 
+#tabs .ui-tabs-nav li { 
+    position: static; 
+    margin: 0px; 
+    border-bottom: 1px solid #5e337b !important; 
+    -moz-border-radius: 0px; 
+    -webkit-border-radius: 0px; 
+    border-radius: 0px; 
+} 
+#tabs .ui-tabs-nav li:first-child { 
+    -moz-border-radius: 6px 0px 0px 6px; 
+    -webkit-border-radius: 6px 0px 0px 6px; 
+    border-radius: 6px 0px 0px 6px; 
+} 
+#tabs .ui-tabs-nav li:last-child { 
+    -moz-border-radius: 0px 6px 6px 0px; 
+    -webkit-border-radius: 0px 6px 6px 0px; 
+    border-radius: 0px 6px 6px 0px; 
+} 
+#tabs .ui-tabs-nav li.ui-tabs-selected { 
+    padding-bottom: 0px; 
+    border-bottom: 1px solid #d4ccb0 !important; 
+}
+
+ .btn {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+h4 {
+      margin: 8px 0 0px;
+}
+.card-user hr {
+    margin: 20px 20px;
+}
+
+.nav-util{
+  display: inline-block;
+}
+
+.nav-utility::before {
+  content:'\2022';
+  margin: 0 5px;
+  padding-right: 2px;
+}
+
+
 .form-control {
     background-color: #FFFFFF;
     border: 1px solid #E3E3E3;
@@ -148,8 +199,8 @@ textarea.note {
                             <div class="card card-user text-center" data-toggle="modal" data-target="#video-<%= talent.id %>" data-backdrop="static"  data-id="<%= talent.id %>">
                              <br>
                                 <div class="dq-center-video">
-                                 <% if  !@user.a_dp.file.nil? %>
-                                    <img src="<%=@user.a_dp.url %>"  style = "border-radius: 50%;" />
+                                 <% if  !talent.a_dp.file.nil? %>
+                                    <img src="<%=@talent.a_dp.url %>"  style = "border-radius: 50%;" />
                                   <% else %>
 
                                         <%= image_tag('avatar.png', class:"avatar border-white", style: "margin-right: 0; margin-bottom: 0px;", alt:"...") %>
@@ -168,7 +219,7 @@ textarea.note {
 
                   </div>
                   <%end%>
-              
+
             </div>
             <div class="center" ><%= will_paginate @talent %></div>
           </div>
@@ -210,10 +261,116 @@ textarea.note {
            </h5>
            </strong>
            <div id="<%= talent.id%>" class="centralize-video">
-           Hello world
+           <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12">
+                        <div class="card card-user">
+                            <div class="image">
+                                <%= image_tag('background.jpg') %>
+                            </div>
+                             <div class="content">
+
+                                <div class="author">
+                                 <% if talent.a_dp.file.nil? %>
+                                    <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
+                                  <% else %>
+                                    <img src="<%=@talent.a_dp.url %>"  class="avatar border-white" alt="..." />
+                                  <% end %>
+                                  <h3 class="title"><%= talent.name %></h3>
+                                  <h4 class="nav-util"><span class="fa fa-envelope" aria-hidden="true"></span>  <%= talent.email %></h4>
+                                  <h4 class="nav-util nav-utility"><span class="fa fa-phone" aria-hidden="true"></span>  <%= talent.telephone %></h4>
+                                  <h4><span class="fa fa-map-marker" aria-hidden="true"></span>  <%= talent.address %></h4>
+                                  <h4 class="nav-util"><%= talent.city %></h4>
+                                  <h4 class="nav-util nav-utility"><%= talent.country %></h4>
+                                </div>
+
+
+                                <p class="description text-center">
+                                    <%= talent.about_me %>
+                                </p>
+
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <div class="row">
+                                    <div class="col-md-3 col-md-offset-1">
+                                        <div class="icon-big icon-info text-center">
+                                            <i class="ti-twitter-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="icon-big icon-linkedin text-center">
+                                            <i class="ti-linkedin"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="icon-big icon-github text-center">
+                                            <i class="ti-github"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            <div class="card">
+                         <!-- Beginning of card details -->
+
+                         <p class="description text-center">
+                            <% if talent.status  == 0 %>
+                            <br>
+                              Status: Applicant
+                            <% elsif talent.status  == 1 %>
+                            <br>
+                              Status: Interviewer
+                            <% end %>
+                            <br>
+                        </p>
+
+                        <div class="text-center">
+                            <div class="row">
+                             <% if talent.submissions.length > 0 %>
+                                <div class="col-md-6 col-xs-6">
+                                   <%= link_to user_timeline_path(current_user) do %>
+                                      <h5><%= talent.submissions.length %><br><small>Application(s)</small></h5>
+                                   <% end %>
+                                </div>
+                             <% end %>
+                             <% if talent.companies.length > 0 %>
+                                <div class="col-md-6 col-xs-6">
+
+
+                                <% if talent.last_company.nil? %>
+                                      <%= link_to company_path(talent.companies.first) do %>
+                                      <h5><%= talent.companies.length %><br><small> Organization(s)</small></h5>
+                                   <% end %>
+                                <% else %>
+                                     <% company = Company.friendly.find(talent.last_company) %>
+                                      <%= link_to company_path(company) do %>
+                                        <h5><%= talent.companies.length %><br><small> Organization(s)</small></h5>
+                                   <% end %>
+                                <% end %>
+
+                                </div>
+                             <% end %>
+
+                            </div>
+                        </div>
+
+                         <!-- end of card details here -->
+            </div>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
            </div>
            </div>
-           <div class="wrap" >
+           <!-- <div class="wrap" >
               <div class="scrollbar">
                 <div class="handle">
                   <div class="mousearea"></div>
@@ -224,15 +381,15 @@ textarea.note {
                <li question-type="2"> <div class="round-tab glyphicon glyphicon-cloud-upload"><span></span></div> </li>
               </ul>
            </div>
-          </div>
+          </div> -->
       </div>
 
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
             <ul class="pager">
                   <li class="previous"><button type="button" class="btn btn-default btn-prev">Prev</button></li>
                     <li class="next"><button type="button" class="btn btn-default btn-next">Next</button></li>
             </ul>
-        </div>
+        </div> -->
 
 </div>
 </div>
