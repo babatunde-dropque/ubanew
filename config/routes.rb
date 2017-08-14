@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   put 'update_experience', to: "users#update_experience", as: 'update_experience'
   put 'update_skills', to: "users#update_skills", as: 'update_skills'
   put 'update_user_details', to: "users#update_user_details", as: 'update_user_details'
+  get 'retrieve_education', to: "users#retrieve_education", as: 'retrieve_education'
   
 
 

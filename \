@@ -148,29 +148,11 @@ class UsersController < ApplicationController
   end
 
   def update_education
-      if @user.educations.nil? 
-          @user.educations= []
-      end
-      if params[:status] == "new"
-          @user.educations << params[:data]
-          puts "*****************"
-          puts params[:data]["status"] 
-          puts "*****************"
-      elsif param[:status] == "update"
-          @user.educations[params[:pos]] = params[:data]
-      end
-      if @user.save
-          render plain: "successful"
-      else
-          render plain: "error"
-      end
+       @user.school = params[:datat]
+      render plain: "successful"
   end
 
-  def retrieve_education
-      render :json => {:message => "success", :data=> @user.educations[params[:pos].to_i]}, status: 200
-  end
-
-  # parameters used to update the notification
+    # parameters used to update the notification
   def update_notification_params
     params.permit(:read)
   end

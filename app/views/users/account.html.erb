@@ -69,7 +69,7 @@ h4 {
                             </div>
                              <div class="content">
                                 <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
-                                    <i id="profile-btn" class="ti-pencil"></i>
+                                    <i id="profile-btn" class="ti-pencil" ></i>
                                  </a>
                                 <div class="author">
                                  <% if @user.a_dp.file.nil? %>
@@ -192,7 +192,24 @@ h4 {
                                    </a>
                               </div>
                            </div>
-                           
+                           <% @user.educations.each_with_index do | education, index | %>
+                               <div class="row">
+                                  <div class="col-md-10 col-xs-10"> 
+                                  <h5> <%= education["university"] %>  </h5> 
+                                  </div> 
+                                   <div class="col-md-10 col-xs-10"> 
+                                      <%= education["degree"] %>, <%= education["field_of_study"]  %>
+                                  </div> 
+                                  <div class="col-md-10 col-xs-10"> 
+                                      <%= education["years"] %>
+                                  </div> 
+                                  <div class="col-md-2 col-xs-2">
+                                      <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
+                                        <i id="profile-btn" class="ti-pencil update-education"  edu-id="<%= index  %>"></i>
+                                      </a>
+                                  </div>
+                               </div>
+                          <% end %>
                         </div>
                          <!-- end of card details here -->
             </div>
@@ -352,9 +369,7 @@ h4 {
       </div>
       <input type="text" id="remove-id" hidden >
       <div class="modal-body" id="remove-body">
-
           <div class="row"> 
-          
           
           </div>
       </div>
@@ -382,16 +397,20 @@ h4 {
          <form id="form-education" >
           <input type="hidden" name="update" value="update">
             <div class="row">
-                <div class="col-md-12">
+               <div class="col-md-12">
                     <div class="form-group">
                         <label>School</label>
-                        <input type="text" class="form-control border-input"  placeholder="School name(ex: University of Accra)">
+                        <input type="text" class="form-control border-input" name="university"  placeholder="School name(ex: University of Accra)">
                     </div>
-                </div>
+               </div>
                <div class="col-md-12">
                     <div class="form-group">
                        <label> Degree </label>
-                       <select name="a_gender" class="form-control border-input">
+                       <select name="degree" class="form-control border-input">
+                             <option value="B.sc">B.sc</option>
+                             <option value="Phd">Phd</option>
+                             <option value="B.sc">B.sc</option>
+                             <option value="Phd">Phd</option>
                              <option value="B.sc">B.sc</option>
                              <option value="Phd">Phd</option>
                        </select>
@@ -400,17 +419,17 @@ h4 {
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Field Of Study</label>
-                        <input type="email" class="form-control border-input" placeholder="(ex: Computer Science)"  >
+                        <input type="email" class="form-control border-input" name="field_of_study"  placeholder="(ex: Computer Science)"  >
                     </div>
                 </div>
 <div class="col-md-12">
                     <div class="form-group">
                         <label>Grade</label>
-                        <input type="email" class="form-control border-input" placeholder="(ex: 1st class honor)" " name="a_qualification" ">
+                        <input type="email" class="form-control border-input" placeholder="(ex: 1st class honor)"  name="grade" >
                     </div>
 <div class="form-group">
                         <label>Year</label>
-                        <input type="email" class="form-control border-input" placeholder="(ex: 2003 - 2007)"  name="a_qualification">
+                        <input type="email" class="form-control border-input" placeholder="(ex: 2003 - 2007)"  name="years">
                     </div>
                 </div>
             </div>
@@ -437,18 +456,15 @@ h4 {
       <input type="text" id="remove-id" hidden >
       <div class="modal-body" id="remove-body">
          <div  class="content"> 
+           <div id="tabs-4" class="content"> 
+             <div class="col-sm-10 col-sm-offset-1">
 
-
-                              <div id="tabs-4" class="content"> 
-                                <div class="col-sm-10 col-sm-offset-1">
-
-                                    <div class="form-group has-error">
-                                        <label id="tag-label" class="control-label" for="tags"></label>
-                                        <input name="skill" type="text" value="<%= @user.skill %>" id="tags" class="form-control" >          
-                                    </div>
-                                </div>
-
-                               </div>
+                 <div class="form-group has-error">
+                     <label id="tag-label" class="control-label" for="tags"></label>
+                     <input name="skill" type="text" value="<%= @user.skill %>" id="tags" class="form-control" >          
+                 </div>
+             </div>
+            </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
@@ -548,12 +564,11 @@ $("#update").click(function(event){
 });
 
 $("#save-education").click(function(){
-    var data =  JSON.stringify($("#form-education").serializeArray());
-    console.log( JSON.stringify($("#form-education").serializeArray()));
+    var data = $("#form-education").serializeJSON();
     $.ajax({
         url: '/update_education', 
         type: 'PUT',
-        data: {data: data},
+        data: {data: data, status: "new"},
         success: function(data){
             alert(data);
         },
@@ -563,6 +578,20 @@ $("#save-education").click(function(){
      });
 });
 
+$(".update-education").click(function(){
+    var pos = $(this).attr("edu-id");
+    $.ajax({
+        url: '/retrieve_education', 
+        type: 'GET',
+        data: { status: "update", pos: pos },
+        success: function(data){
+            console.log(data);
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+             
+         }
+     });
+});
 </script>
 
 
