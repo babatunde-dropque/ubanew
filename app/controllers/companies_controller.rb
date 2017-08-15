@@ -34,7 +34,7 @@ class CompaniesController < ApplicationController
             @sure_applicants = User.where(status:0)
             @unsure_applicants = User.where(status:nil)
             @applicants = @sure_applicants.merge(@unsure_applicants)
-            @search_category = ['Skill', 'Descipline', 'Grade', 'City', 'School']
+            @search_category = ['Skill', 'Discipline', 'Grade', 'City', 'School', 'Qualification']
         if  params[:search].present? && params[:category].present? && !params[:search2].present? && !params[:search3].present?
             @query = params[:search]
             #@field = assign_field(params[:category])

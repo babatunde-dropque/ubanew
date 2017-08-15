@@ -127,7 +127,7 @@ h4 {
                             <% end %>
                             <br>
                         </p>
-                      
+
                         <div class="text-center">
                             <div class="row">
                              <% if @user.submissions.length > 0 %>
@@ -174,7 +174,7 @@ h4 {
                                    </a>
                               </div>
                            </div>
-                           
+
                         </div>
                          <!-- end of card details here -->
             </div>
@@ -193,22 +193,22 @@ h4 {
                               </div>
                            </div>
                            <% @user.educations.each_with_index do | education, index | %>
-                               <div class="row">
-                                  <div class="col-md-10 col-xs-10"> 
-                                  <h5> <%= education["university"] %>  </h5> 
-                                  </div> 
-                                   <div class="col-md-10 col-xs-10"> 
-                                      <%= education["degree"] %>, <%= education["field_of_study"]  %>
-                                  </div> 
-                                  <div class="col-md-10 col-xs-10"> 
+                                <div class="row">
+                                  <div class="col-md-10 col-xs-10">
+                                  <h5> <%= education["School"] %>  </h5>
+                                  </div>
+                                   <div class="col-md-10 col-xs-10">
+                                      <%= education["Qualification"] %>  %>
+                                  </div>
+                                  <div class="col-md-10 col-xs-10">
                                       <%= education["years"] %>
-                                  </div> 
+                                  </div>
                                   <div class="col-md-2 col-xs-2">
                                       <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                         <i id="profile-btn" class="ti-pencil update-education"  edu-id="<%= index  %>"></i>
                                       </a>
                                   </div>
-                               </div>
+                              </div>
                           <% end %>
                         </div>
                          <!-- end of card details here -->
@@ -400,7 +400,7 @@ h4 {
                <div class="col-md-12">
                     <div class="form-group">
                         <label>School</label>
-                        <input type="text" class="form-control border-input" name="university"  placeholder="School name(ex: University of Accra)">
+                        <input type="text" class="form-control border-input" name="School"  placeholder="School name(ex: University of Accra)">
                     </div>
                </div>
                <div class="col-md-12">
@@ -419,13 +419,13 @@ h4 {
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Field Of Study</label>
-                        <input type="email" class="form-control border-input" name="field_of_study"  placeholder="(ex: Computer Science)"  >
+                        <input type="email" class="form-control border-input" name="Discipline"  placeholder="(ex: Computer Science)"  >
                     </div>
                 </div>
 <div class="col-md-12">
                     <div class="form-group">
                         <label>Grade</label>
-                        <input type="email" class="form-control border-input" placeholder="(ex: 1st class honor)"  name="grade" >
+                        <input type="email" class="form-control border-input" placeholder="(ex: 1st class honor)"  name="Qualification" >
                     </div>
 <div class="form-group">
                         <label>Year</label>
@@ -433,7 +433,7 @@ h4 {
                     </div>
                 </div>
             </div>
-            </form>         
+            </form>
      </div>
       </div>
       <div class="modal-footer">
@@ -484,10 +484,10 @@ h4 {
 
 $("#experience-btn").click(function(){
     $("#modal-experience").modal();
- }); 
+ });
 $("#education-btn").click(function(){
     $("#modal-education").modal();
- }); 
+ });
 $("#skills-btn").click(function(){
     $("#modal-skills").modal();
 });
@@ -566,14 +566,14 @@ $("#update").click(function(event){
 $("#save-education").click(function(){
     var data = $("#form-education").serializeJSON();
     $.ajax({
-        url: '/update_education', 
+        url: '/update_education',
         type: 'PUT',
         data: {data: data, status: "new"},
         success: function(data){
             alert(data);
         },
         error : function(jqXHR, textStatus, errorThrown) {
-             
+
          }
      });
 });
@@ -581,14 +581,14 @@ $("#save-education").click(function(){
 $(".update-education").click(function(){
     var pos = $(this).attr("edu-id");
     $.ajax({
-        url: '/retrieve_education', 
+        url: '/retrieve_education',
         type: 'GET',
         data: { status: "update", pos: pos },
         success: function(data){
             console.log(data);
         },
         error : function(jqXHR, textStatus, errorThrown) {
-             
+
          }
      });
 });
