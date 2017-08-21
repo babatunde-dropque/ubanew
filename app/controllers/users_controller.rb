@@ -2,8 +2,7 @@ require 'bcrypt'
 class UsersController < ApplicationController
 	layout 'user_dashboard'
 	before_action :authenticate_user!, :except => [:user_demo_login , :trigger_login]
- 
-	
+
 	# this is used to initial user's object to that it will be available to all
 	# method without recalling it again
 	before_filter :set_up_user, :except => [:user_demo_login, :trigger_login ]
@@ -144,17 +143,21 @@ class UsersController < ApplicationController
 	    	render plain: "correct"
 	    else
 	    	render plain: "wrong"
-	    end   
+	    end
   end
 
+
+
+
+
   def update_education
-      if @user.educations.nil? 
-          @user.educations= []
+      if @user.educations.nil?
+         @user.educations= []
       end
       if params[:status] == "new"
           @user.educations << params[:data]
           puts "*****************"
-          puts params[:data]["status"] 
+          puts params[:data]["status"]
           puts "*****************"
       elsif param[:status] == "update"
           @user.educations[params[:pos]] = params[:data]
