@@ -188,7 +188,7 @@ h4 {
                               <div class="col-md-2 col-xs-2">
                                   <a href="#" class="btn btn-info btn-simple" style=" float: right;
     font-size: 1.5em;">
-                                     <i id="education-btn" class="ti-plus"></i>
+                                     <i data-target="add" class="ti-plus education-btn"></i>
                                    </a>
                               </div>
                            </div>
@@ -485,8 +485,14 @@ h4 {
 $("#experience-btn").click(function(){
     $("#modal-experience").modal();
  }); 
-$("#education-btn").click(function(){
+
+$(".education-btn").click(function(e){
+    var target = $(this).attr("data-target");
+    if (target == "update"){
+    
+    } 
     $("#modal-education").modal();
+    
  }); 
 $("#skills-btn").click(function(){
     $("#modal-skills").modal();
@@ -570,11 +576,12 @@ $("#save-education").click(function(){
         type: 'PUT',
         data: {data: data, status: "new"},
         success: function(data){
+        
             alert(data);
         },
         error : function(jqXHR, textStatus, errorThrown) {
              
-         }
+        }
      });
 });
 
@@ -585,7 +592,12 @@ $(".update-education").click(function(){
         type: 'GET',
         data: { status: "update", pos: pos },
         success: function(data){
-            console.log(data);
+           $('input[name=university]').val(data.data["university"]);
+           $('input[name=degree]').val(data.data["degree"]);
+           $('input[name=field_of_study]').val(data.data["field_of_study"]);
+           $('input[name=grade]').val(data.data["grade"]);
+           $('input[name=years]').val(data.data["years"]);
+           $("#modal-education").modal();
         },
         error : function(jqXHR, textStatus, errorThrown) {
              
