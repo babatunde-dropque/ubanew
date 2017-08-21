@@ -592,9 +592,9 @@ $(".update-education").click(function(){
         type: 'GET',
         data: { status: "update", pos: pos },
         success: function(data){
-           $('input[name=university]').val(data.data["university"]);
-           $('input[name=degree]').val(data.data["degree"]);
-           $('input[name=field_of_study]').val(data.data["field_of_study"]);
+           $('input[name=school]').val(data.data["school"]);
+           $('input[name=qualification]').val(data.data["qualification"]);
+           $('input[name=discipline]').val(data.data["discipline"]);
            $('input[name=grade]').val(data.data["grade"]);
            $('input[name=years]').val(data.data["years"]);
            $("#modal-education").modal();
