@@ -1,31 +1,4 @@
 <style>
-#tabs .ui-tabs-nav { 
-    padding: 0em; 
-    background: transparent; 
-    border-width: 0px; 
-} 
-#tabs .ui-tabs-nav li { 
-    position: static; 
-    margin: 0px; 
-    border-bottom: 1px solid #5e337b !important; 
-    -moz-border-radius: 0px; 
-    -webkit-border-radius: 0px; 
-    border-radius: 0px; 
-} 
-#tabs .ui-tabs-nav li:first-child { 
-    -moz-border-radius: 6px 0px 0px 6px; 
-    -webkit-border-radius: 6px 0px 0px 6px; 
-    border-radius: 6px 0px 0px 6px; 
-} 
-#tabs .ui-tabs-nav li:last-child { 
-    -moz-border-radius: 0px 6px 6px 0px; 
-    -webkit-border-radius: 0px 6px 6px 0px; 
-    border-radius: 0px 6px 6px 0px; 
-} 
-#tabs .ui-tabs-nav li.ui-tabs-selected { 
-    padding-bottom: 0px; 
-    border-bottom: 1px solid #d4ccb0 !important; 
-}
 
  .btn {
     display: inline-block;
@@ -68,6 +41,9 @@ h4 {
                                 <%= image_tag('background.jpg') %>
                             </div>
                              <div class="content">
+
+
+
                                 <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                     <i id="profile-btn" class="ti-pencil" ></i>
                                  </a>
@@ -81,7 +57,7 @@ h4 {
                                   <h4 class="nav-util"><span class="fa fa-envelope" aria-hidden="true"></span>  <%= @user.email %></h4>
                                   <h4 class="nav-util nav-utility"><span class="fa fa-phone" aria-hidden="true"></span>  <%= @user.telephone %></h4>
                                   <h4><span class="fa fa-map-marker" aria-hidden="true"></span>  <%= @user.address %></h4>
-                                  <h4 class="nav-util"><%= @user.city %></h4>
+                                  <h4 class="nav-util"><%= @user.city %>, <%= @user.state %></h4>
                                   <h4 class="nav-util nav-utility"><%= @user.country %></h4>
                                 </div>
                                 <hr>
@@ -89,104 +65,63 @@ h4 {
                                 <p class="description text-center">
                                     <%= @user.about_me %>
                                 </p>
-                                
                             </div>
                             <hr>
                             <div class="text-center">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
-                                        <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
-                                        </div>
+                                        <a href="<%= @user.social["twitter"] %>" >
+                                            <div class="icon-big icon-info text-center">
+                                                <i class="ti-twitter-alt"></i>
+                                            </div>
+                                        </a>
                                     </div>
                                     <div class="col-md-4">
+                                        <a href="<%= @user.social["linkedin"] %>" >
                                         <div class="icon-big icon-linkedin text-center">
                                             <i class="ti-linkedin"></i>
                                         </div>
+                                        </a>
                                     </div>
                                     <div class="col-md-3">
+                                        <a href="<%= @user.social["github"] %>">
                                         <div class="icon-big icon-github text-center">
                                             <i class="ti-github"></i>
                                         </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+            
+            <%# <div class="card"> %>
+            <%#              <!-- Beginning of card details --> %>
+            <%#             <div class="content"> %>
+            <%#                <div class="row"> %>
+            <%#                   <div class="col-md-10 col-xs-10"> %>
+            <%#                       <h4>Experience</h4> %>
+            <%#                   </div> %>
+            <%#                   <div class="col-md-2 col-xs-2"> %>
+            <%#                       <a href="#" class="btn btn-info btn-simple" style=" float: right; %>
+    <%# font-size: 1.5em;"> %>
+            <%#                          <i id="experience-btn"class="ti-plus"></i> %>
+            <%#                        </a> %>
+            <%#                   </div> %>
+            <%#                </div> %>
+
+            <%#             </div> %>
+            <%#              <!-- end of card details here --> %>
+            <%# </div> %>
             <div class="card">
                          <!-- Beginning of card details -->
-
-
-                         <p class="description text-center">
-                            <% if @user.status  == 0 %>
-                            <br>
-                              Status: Applicant
-                            <% elsif @user.status  == 1 %>
-                            <br>
-                              Status: Interviewer
-                            <% end %>
-                            <br>
-                        </p>
-
-                        <div class="text-center">
-                            <div class="row">
-                             <% if @user.submissions.length > 0 %>
-                                <div class="col-md-6 col-xs-6">
-                                   <%= link_to user_timeline_path(current_user) do %>
-                                      <h5><%= @user.submissions.length %><br><small>Application(s)</small></h5>
-                                   <% end %> 
-                                </div>
-                             <% end %>
-                             <% if @user.companies.length > 0 %>
-                                <div class="col-md-6 col-xs-6">
-
-                             
-                                <% if @user.last_company.nil? %>
-                                      <%= link_to company_path(@user.companies.first) do %>
-                                      <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
-                                   <% end %> 
-                                <% else %>
-                                     <% company = Company.friendly.find(@user.last_company) %>
-                                      <%= link_to company_path(company) do %>
-                                        <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
-                                   <% end %> 
-                                <% end %>
-
-                                </div>
-                             <% end %>
-
-                            </div>
-                        </div>
-                   
-                         <!-- end of card details here -->
-            </div>
-            <div class="card">
-                         <!-- Beginning of card details -->
-                        <div class="content">
-                           <div class="row">
-                              <div class="col-md-10 col-xs-10">
-                                  <h4>Experience</h4>
-                              </div>
-                              <div class="col-md-2 col-xs-2">
-                                  <a href="#" class="btn btn-info btn-simple" style=" float: right;
-    font-size: 1.5em;">
-                                     <i id="experience-btn"class="ti-plus"></i>
-                                   </a>
-                              </div>
-                           </div>
-
-                        </div>
-                         <!-- end of card details here -->
-            </div>
-            <div class="card">
-                         <!-- Beginning of card details -->
-                        <div class="content">
+                        <div class="content" id="education-container">
                            <div class="row">
                               <div class="col-md-10 col-xs-10">
                                   <h4>Education</h4>
                               </div>
                               <div class="col-md-2 col-xs-2">
-                                  <a href="#" class="btn btn-info btn-simple" style=" float: right;
+                    <a href="#" class="btn btn-info btn-simple" style=" float: right;
     font-size: 1.5em;">
                                      <i data-target="add" class="ti-plus education-btn"></i>
                                    </a>
@@ -204,10 +139,14 @@ h4 {
                                       <%= education["years"] %>
                                   </div>
                                   <div class="col-md-2 col-xs-2">
+                                       <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
+                                         <i id="profile-btn" class="ti-pencil update-education"  edu-id="<%= index  %>"></i>
+                                       </a>
+                                  
                                       <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
-                                        <i id="profile-btn" class="ti-pencil update-education"  edu-id="<%= index  %>"></i>
+                                        <i id="profile-btn" class="ti-close delete-education"  edu-id="<%= index  %>"></i>
                                       </a>
-                                  </div>
+                                   </div>
                               </div>
                           <% end %>
                         </div>
@@ -216,26 +155,31 @@ h4 {
              <div class="card">
                          <!-- Beginning of card details -->
                         <div class="content">
+                            <form action="<%= update_account_skill_path %>" method="POST" >
                            <div class="row">
                               <div class="col-md-10 col-xs-10">
                                   <h4>Skills</h4>
                               </div>
-                              <div class="col-md-2 col-xs-2">
-                                  <a href="#" class="btn btn-info btn-simple" style=" float: right;
-    font-size: 1.5em;">
-                                     <i id="skills-btn" class="ti-plus"></i>
-                                   </a>
+
+                    <div class="col-md-2 col-xs-2">
+                    <button href="#" class="btn btn-info btn-simple" style="float: right; font-size: 1.5em;">
+                             <i data-target="add" class="ti-save skill-btn"></i>
+                    </button>
                               </div>
                            </div>
+                           <div>
+                 <div class="form-group has-error">
+                     <label id="tag-label" class="control-label" for="tags"></label>
+                     <input name="skill" type="text" value="<%= @user.skill %>" id="tags" class="form-control" >          
+                 </div>
+                           </div>
                            
+                            </form>
                         </div>
                          <!-- end of card details here -->
             </div>
 
                     </div>
-
-                     
-
                 </div>
             </div>
         </div>
@@ -248,15 +192,15 @@ h4 {
 <div class="modal fade" id="modal-profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+        <form action="<%= update_account_profile_path %>" method="POST" >
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>  
+        Profile
       </div>
-      <input type="text" id="remove-id" hidden >
-      <div class="modal-body" id="remove-body">
+      <div class="modal-body" >
          <div  class="content">
-                               
                                   <input type="hidden" name="update" value="update">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -274,7 +218,7 @@ h4 {
                                             </div>
                                         <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="email" class="form-control border-input" placeholder="Email Address" class="address" name="email" value="<%= @user.telephone %>">
+                                                <input type="text" class="form-control border-input" placeholder="Email Address" class="address" name="telephone" value="<%= @user.telephone %>">
                                             </div>
                                         </div>
                                     </div>
@@ -288,13 +232,20 @@ h4 {
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>City</label>
                                                 <input type="text" class="form-control border-input" placeholder="City" value="<%= @user.city %>" name="city">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>State</label>
+                                                <input type="text" class="form-control border-input" placeholder="City" value="<%= @user.state %>" name="state">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Country</label>
                                                 <input type="text" class="form-control border-input" placeholder="Country" value="<%= @user.country %>" name="country">
@@ -309,50 +260,38 @@ h4 {
                                                 <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="<%= @user.about_me %>" name="about_me"> <%= @user.about_me %> </textarea>
                                             </div>
                                         </div>
-                                    </div>
+     <div class="col-md-4">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="ti-twitter-alt"></i></span>
+            <input class="form-control " placeholder="twitter link" name="social[twitter]" type="text"  value="" />
+        </div>
+   </div>
+<div class="col-md-4">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="ti-linkedin"></i></span>
+            <input class="form-control " placeholder="linkedin link" name="social[linkedin]" type="text"  value="" />
 
-
-                                   <!-- add csrf token -->
-                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
-
-                                   <!--  <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label >Current Password</label>
-                                                <input id="current-password" type="password" class="form-control border-input"  placeholder="Current password" name="current_password" >
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                   <!-- <a href="#demo" data-toggle="collapse" style="color: #68B3C8">Click here to change password</a> -->
-<!-- 
-                                <div id="demo" class="collapse">
-
-                                     <hr>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                <input type="password" class="form-control border-input" placeholder="Password" name="password">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Confirm Password</label>
-                                                <input type="password" id="confirm-password" class="form-control border-input" placeholder="Confirm Password" name="confirm_password"  >
-                                            </div>
+        </div>
+</div>
+<div class="col-md-4">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="ti-github"></i></span>
+            <input class="form-control" placeholder="github link" name="social[github]"  value="" />
+        </div>
+</div>
+                                            
                                         </div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </div> -->
+
+           <!-- add csrf token -->
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
+
+           
                         </div>
-
-
-      </div>
       <div class="modal-footer">
-        <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
-        <button type="button" id="remove-yes" class="btn box-shape"> Yes </button>
+        <button type="submit"  class="btn box-shape">Update</button>
       </div>
+        </form>
     </div>
   </div>
 </div>
@@ -374,8 +313,7 @@ h4 {
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
-        <button type="button" id="remove-yes" class="btn box-shape"> Yes </button>
+        <button type="button"  class="btn box-shape">Yes</button>
       </div>
     </div>
   </div>
@@ -443,41 +381,6 @@ h4 {
   </div>
 </div>
 
-<!-- Here is the modal for applicant skills-->
-<div class="modal fade" id="modal-skills" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        Head Title will be here 
-      </div>
-      <input type="text" id="remove-id" hidden >
-      <div class="modal-body" id="remove-body">
-         <div  class="content"> 
-           <div id="tabs-4" class="content"> 
-             <div class="col-sm-10 col-sm-offset-1">
-
-                 <div class="form-group has-error">
-                     <label id="tag-label" class="control-label" for="tags"></label>
-                     <input name="skill" type="text" value="<%= @user.skill %>" id="tags" class="form-control" >          
-                 </div>
-             </div>
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
-        <button type="button" id="remove-yes" class="btn box-shape"> Yes </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- object of modal element -->
-
-
-
 
 <!-- end of modal object -->
 <script>
@@ -487,19 +390,17 @@ $("#experience-btn").click(function(){
 }); 
 
 $(".education-btn").click(function(e){
-    var target = $(this).attr("data-target");
-    if (target == "update"){
-    
-    } 
-    $("#modal-education").modal();
+     var target = $(this).attr("data-target");
+    $("#form-education").trigger("reset");
+    $('#save-education').html("Save");
+    $('#save-education').attr("which", "new");
+     $("#modal-education").modal();
     
 }); 
 
 
 
-$("#skills-btn").click(function(){
-    $("#modal-skills").modal();
-});
+
 
 $("#profile-btn").click(function(){
   $("#modal-profile").modal();
@@ -507,7 +408,7 @@ $("#profile-btn").click(function(){
 
 $('#tags').tagit({
         tagLimit: 15,
-        placeholderText: "Skills",
+        placeholderText: "Add skills ",
         onTagLimitExceeded : function(event, ui){
             $("#tag-label").html("Tags cannot be more than fifteen");
             $("#tag-label").show();
@@ -558,10 +459,6 @@ $('#tags').tagit({
          },
     });
 
-  $( function() {
-    $("#tabs").tabs();
-  } );
-
   <% flash.each do |key, value| %>
     showMessage('top','center', "<%= value %>", <%= (key == "success") ? 2: 4 %>);
   <% end %>
@@ -571,19 +468,44 @@ $("#update").click(function(event){
 });
 
 $("#save-education").click(function(){
+    var type = $(this).attr("which");
     var data = $("#form-education").serializeJSON();
+    var pos = 0 ;
+    if (type == "update"){
+        pos =  $('#save-education').attr("pos");
+    } 
+    console.log(pos);
+    console.log(type);
+
     $.ajax({
         url: '/update_education',
         type: 'PUT',
-        data: {data: data, status: "new"},
+        data: {data: data, status: type, pos: pos},
         success: function(data){
-            alert(data);
+               location.reload(); 
         },
         error : function(jqXHR, textStatus, errorThrown) {
              
         }
     });
 });
+
+<%# $(".save-skills").click( function(){ %>
+<%#     $.ajax({ %>
+<%#         url: '/update_skill', %>
+<%#         type: 'PUT', %>
+<%#         data: {data: pos}, %>
+<%#         success: function(data){ %>
+<%#             if (data == "successful"){ %>
+<%#                swal("Removed!", "You can always re-add it", "success"); %>
+<%#             } %>
+<%#         }, %>
+<%#         error : function(jqXHR, textStatus, errorThrown) { %>
+
+<%#          } %>
+<%#      }); %>
+<%# }); %>
+
 
 $(".update-education").click(function(){
     var pos = $(this).attr("edu-id");
@@ -597,6 +519,9 @@ $(".update-education").click(function(){
            $('input[name=discipline]').val(data.data["discipline"]);
            $('input[name=grade]').val(data.data["grade"]);
            $('input[name=years]').val(data.data["years"]);
+           $('#save-education').html("Update");
+           $('#save-education').attr("which", "update");
+           $('#save-education').attr("pos", pos);
            $("#modal-education").modal();
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -604,6 +529,24 @@ $(".update-education").click(function(){
          }
      });
 });
+
+$(".delete-education").click(function(){
+   var pos = $(this).attr("edu-id");
+    $.ajax({
+        url: '/delete_education',
+        type: 'DELETE',
+        data: {pos: pos},
+        success: function(data){
+            if (data == "successful"){
+               swal("Removed!", "You can always re-add it", "success");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+
+         }
+     });
+ });
+
 </script>
 
 

@@ -146,9 +146,17 @@ class UsersController < ApplicationController
 	    end
   end
 
+  def update_account_profile
+     @user.update_attributes(user_profile_params)
+     flash.now[:success] = "Profile Updated Successfully"     
+     redirect_to user_account_path
+  end
 
-
-
+  def update_account_skill
+      @user.update_attributes(skill: params[:skill])
+     flash.now[:success] = "Skills Updated Successfully"     
+      redirect_to user_account_path
+  end
 
   def update_education
       if @user.educations.nil?
@@ -156,16 +164,22 @@ class UsersController < ApplicationController
       end
       if params[:status] == "new"
           @user.educations << params[:data]
-          puts "*****************"
-          puts params[:data]["status"]
-          puts "*****************"
-      elsif param[:status] == "update"
-          @user.educations[params[:pos]] = params[:data]
+      elsif params[:status] == "update"
+          @user.educations[params[:pos].to_i] = params[:data]
       end
       if @user.save
           render plain: "successful"
       else
           render plain: "error"
+      end
+  end
+
+  def delete_education
+      @user.educations.delete_at(params[:pos].to_i)    
+      if  @user.save
+        render plain: "successful"
+      else
+        render plain: "error"
       end
   end
 
@@ -183,7 +197,8 @@ class UsersController < ApplicationController
     params.permit(:name, :a_dp, :a_qualification, :a_experience, :a_dob, :a_gender, :address, :address, :city, :country, :a_cv, :logo, :status, :skill, :school, :grade, :field_of_study, :about_me)
   end
 
-
-
+  def user_profile_params
+    params.permit(:name, :email, :address, :city, :state,  :country , :about_me, :telephone, social: [:twitter, :linkedin, :github])
+  end
 
 end

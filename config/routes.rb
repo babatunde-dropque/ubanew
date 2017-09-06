@@ -40,7 +40,10 @@ Rails.application.routes.draw do
   put 'update_skills', to: "users#update_skills", as: 'update_skills'
   put 'update_user_details', to: "users#update_user_details", as: 'update_user_details'
   get 'retrieve_education', to: "users#retrieve_education", as: 'retrieve_education'
-  
+  delete 'delete_education', to: "users#delete_education", as: 'delete_education'
+
+  post "update_account_profile", to: "users#update_account_profile", as: "update_account_profile"
+  post "update_account_skill", to: "users#update_account_skill", as: "update_account_skill"  
 
 
   # post request for applicant data
