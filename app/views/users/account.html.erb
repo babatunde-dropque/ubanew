@@ -41,9 +41,6 @@ h4 {
                                 <%= image_tag('background.jpg') %>
                             </div>
                              <div class="content">
-
-
-
                                 <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                     <i id="profile-btn" class="ti-pencil" ></i>
                                  </a>
@@ -56,9 +53,10 @@ h4 {
                                   <h3 class="title"><%= @user.name %></h3>
                                   <h4 class="nav-util"><span class="fa fa-envelope" aria-hidden="true"></span>  <%= @user.email %></h4>
                                   <h4 class="nav-util nav-utility"><span class="fa fa-phone" aria-hidden="true"></span>  <%= @user.telephone %></h4>
-                                  <h4><span class="fa fa-map-marker" aria-hidden="true"></span>  <%= @user.address %></h4>
-                                  <h4 class="nav-util"><%= @user.city %>, <%= @user.state %></h4>
-                                  <h4 class="nav-util nav-utility"><%= @user.country %></h4>
+                                  <h4><span class="fa fa-map-marker" aria-hidden="true"></span>  <%= (!@user.address.nil?) ? @user.address: "Address" %></h4>
+                                  <h4 class="nav-util"> <%= (!@user.city.nil?) ? @user.city: "City" %>, <%= (!@user.state.nil?) ? @user.state: " State" %></h4>
+                                  <h4 class="nav-util nav-utility"> <%= (!@user.country.nil?) ? @user.country: "Enter Country" %></h4>
+
                                 </div>
                                 <hr>
                                 <h5 class="text-center">About me</h5>
@@ -241,7 +239,7 @@ h4 {
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>State</label>
-                                                <input type="text" class="form-control border-input" placeholder="City" value="<%= @user.state %>" name="state">
+                                                <input type="text" class="form-control border-input" placeholder="State" value="<%= @user.state %>" name="state">
                                             </div>
                                         </div>
                                         
@@ -345,12 +343,11 @@ h4 {
                     <div class="form-group">
                        <label> Degree </label>
                        <select name="qualification" class="form-control border-input">
+                             <option value="B.sc">Ond</option>
+                             <option value="Phd">Hnd</option>
                              <option value="B.sc">B.sc</option>
-                             <option value="Phd">Phd</option>
-                             <option value="B.sc">B.sc</option>
-                             <option value="Phd">Phd</option>
-                             <option value="B.sc">B.sc</option>
-                             <option value="Phd">Phd</option>
+                             <option value="Phd">M.sc</option>
+                             <option value="B.sc">Phd</option>
                        </select>
                      </div>
                 </div>
@@ -538,7 +535,18 @@ $(".delete-education").click(function(){
         data: {pos: pos},
         success: function(data){
             if (data == "successful"){
-               swal("Removed!", "You can always re-add it", "success");
+
+             swal({
+                    title: 'Deleted Successfully',
+                    text: "You can always re-add the same details",
+                    type: 'success',
+                    confirmButtonClass: 'btn btn-success btn-fill',
+                    confirmButtonText: 'Okay',
+                    buttonsStyling: false
+                }).then(function() {
+                   location.reload();   
+                });
+
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
