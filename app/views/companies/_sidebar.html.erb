@@ -26,12 +26,12 @@
                     <% end %>
                 </li>
 
-                <li id="step2" class="<%= (params[:c] == "2") ? "active": "" %>">
-                    <%= link_to company_talent_path(params[:company_id] || params[:id], c: 2) do %>
-                        <i class="ti-search"></i>
-                        <p>Discover Talent</p>
-                    <% end %>
-                </li>
+                <%# <li id="step2" class="<%= (params[:c] == "2") ? "active": "" %1>"> %>
+                <%#     <%= link_to company_talent_path(params[:company_id] || params[:id], c: 2) do %1> %>
+                <%#         <i class="ti-search"></i> %>
+                <%#         <p>Discover Talent</p> %>
+                <%#     <% end %1> %>
+                <%# </li> %>
 
 
                 <% if !@interview.nil? && @new_interview.nil? %>
