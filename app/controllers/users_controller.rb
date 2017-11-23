@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 	    end
    end
 
-  
+
   def build_profile
     @profile_page = true
     render  :layout => 'wizard'
@@ -231,7 +231,7 @@ class UsersController < ApplicationController
   end
 
   def user_profile_params
-    params.permit(:name, :email, :address, :city, :state,  :country , :about_me, :telephone, social: [:twitter, :linkedin, :github])
+    params.permit(:a_dp, :name, :email, :address, :city, :state,  :country , :about_me, :telephone, social: [:twitter, :linkedin, :github])
   end
 
 end

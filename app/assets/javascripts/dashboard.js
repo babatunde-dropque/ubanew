@@ -216,11 +216,6 @@ $(document).ready(function(){
 
 });
 
-// end of document ready function
-
-
-
-
 function addNewQuestionWithDetails(q,t, type, name1, name2){
 	var fomattedTime = "";
 	if (t != null){

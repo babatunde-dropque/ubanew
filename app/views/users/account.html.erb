@@ -46,7 +46,7 @@ h4 {
                                  </a>
                                 <div class="author">
                                  <% if @user.a_dp.file.nil? %>
-                                    <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
+                                    <%= image_tag('avatar.png', class:"avatar border-white", alt:"...") %>
                                   <% else %>
                                     <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />                     
                                   <% end %>
@@ -125,7 +125,8 @@ h4 {
                                    </a>
                               </div>
                            </div>
-                           <% @user.educations.each_with_index do | education, index | %>
+                         <%if !@user.educations.nil? %>
+                         <% @user.educations.each_with_index do | education, index | %>
                                 <div class="row">
                                   <div class="col-md-10 col-xs-10">
                                   <h5> <%= education["school"] %>  </h5>
@@ -139,13 +140,13 @@ h4 {
                                   <div class="col-md-2 col-xs-2">
                                        <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                          <i id="profile-btn" class="ti-pencil update-education"  edu-id="<%= index  %>"></i>
-                                       </a>
-                                  
+                                       </a> 
                                       <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                         <i id="profile-btn" class="ti-close delete-education"  edu-id="<%= index  %>"></i>
                                       </a>
                                    </div>
                               </div>
+                          <% end %>
                           <% end %>
                         </div>
                          <!-- end of card details here -->
@@ -190,7 +191,7 @@ h4 {
 <div class="modal fade" id="modal-profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-        <form action="<%= update_account_profile_path %>" method="POST" >
+        <form action="<%= update_account_profile_path %>" method="POST" enctype="multipart/form-data" >
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -201,12 +202,25 @@ h4 {
          <div  class="content">
                                   <input type="hidden" name="update" value="update">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>Name</label>
                                                 <input type="text" class="form-control border-input"  placeholder="Firstname Lastname" name="name" value="<%= @user.name %>">
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                                <div class="picture-container">
+                                                    <div class="picture">
+                                                     <% if !@user.a_dp.file.nil? %>
+                                                     <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />
+                                                        <% else %>
+                                                            <%= image_tag('default.jpg', class:"picture-src", id:"wizardPicturePreview",title:"") %>
+                                                        <%end%>
+                                                        <input type="file" id="wizard-picture" name="a_dp">
+                                                    </div>
+                                                </div>
+                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -382,9 +396,31 @@ h4 {
 <!-- end of modal object -->
 <script>
 
+
+ // Prepare the preview for profile picture
+  $("#wizard-picture").change(function(){
+      readURL(this);
+  });
+
+   // end of document ready function
+
+     //Function to show image before upload
+
+   function readURL(input) {
+            if (input.files && input.files[0]) {
+              console.log("something good");
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
 $("#experience-btn").click(function(){
     $("#modal-experience").modal();
-}); 
+});
 
 $(".education-btn").click(function(e){
      var target = $(this).attr("data-target");
