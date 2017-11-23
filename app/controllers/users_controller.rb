@@ -1,11 +1,11 @@
 require 'bcrypt'
 class UsersController < ApplicationController
 	layout 'user_dashboard'
-	before_action :authenticate_user!, :except => [:user_demo_login , :trigger_login]
+	before_action :authenticate_user!, :except => [:user_demo_login , :trigger_login, :check_if_user_exist, :login_sign_up]
 
 	# this is used to initial user's object to that it will be available to all
 	# method without recalling it again
-	before_filter :set_up_user, :except => [:user_demo_login, :trigger_login ]
+	before_filter :set_up_user, :except => [:user_demo_login, :trigger_login, :check_if_user_exist, :login_sign_up]
 
     def set_up_user
         @user = current_user
@@ -114,6 +114,28 @@ class UsersController < ApplicationController
   end
   
 
+  def check_if_user_exist
+      user_email = params[:email]
+      result = User.find_by(email:user_email)
+      if result
+          # render json: {status: "success", email: result.email, name: result.name}
+          render plain: result.name
+      else
+          render plain: "error"
+          # render json: {status: "error"}
+      end
+  end
+
+  def login_sign_up
+      result = User.find_by(email:user_email)
+      if result
+
+      else
+          
+      end
+  end
+
+
   # def account
   # 	if params[:update].present?
 	 #  	bcrypt_object = BCrypt::Password.new(@user.encrypted_password) 
@@ -198,7 +220,7 @@ class UsersController < ApplicationController
   end
 
   def user_profile_params
-    params.permit(:name, :email, :address, :city, :state,  :country , :about_me, :telephone, social: [:twitter, :linkedin, :github])
+    params.permit(:a_dp, :name, :email, :address, :city, :state,  :country , :about_me, :telephone, social: [:twitter, :linkedin, :github])
   end
 
 end

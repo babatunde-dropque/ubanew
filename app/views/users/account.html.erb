@@ -46,7 +46,7 @@ h4 {
                                  </a>
                                 <div class="author">
                                  <% if @user.a_dp.file.nil? %>
-                                    <%= image_tag('default-avatar.png', class:"avatar border-white", alt:"...") %>
+                                    <%= image_tag('avatar.png', class:"avatar border-white", alt:"...") %>
                                   <% else %>
                                     <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />                     
                                   <% end %>
@@ -125,7 +125,8 @@ h4 {
                                    </a>
                               </div>
                            </div>
-                           <% @user.educations.each_with_index do | education, index | %>
+                         <%if !@user.educations.nil? %>
+                         <% @user.educations.each_with_index do | education, index | %>
                                 <div class="row">
                                   <div class="col-md-10 col-xs-10">
                                   <h5> <%= education["school"] %>  </h5>
@@ -139,13 +140,13 @@ h4 {
                                   <div class="col-md-2 col-xs-2">
                                        <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                          <i id="profile-btn" class="ti-pencil update-education"  edu-id="<%= index  %>"></i>
-                                       </a>
-                                  
+                                       </a> 
                                       <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                         <i id="profile-btn" class="ti-close delete-education"  edu-id="<%= index  %>"></i>
                                       </a>
                                    </div>
                               </div>
+                          <% end %>
                           <% end %>
                         </div>
                          <!-- end of card details here -->
@@ -201,12 +202,25 @@ h4 {
          <div  class="content">
                                   <input type="hidden" name="update" value="update">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>Name</label>
                                                 <input type="text" class="form-control border-input"  placeholder="Firstname Lastname" name="name" value="<%= @user.name %>">
                                             </div>
                                         </div>
+                                        <div class="col-md-3 col-sm-offset-1">
+                                                <div class="picture-container">
+                                                    <div class="picture">
+                                                     <% if !@user.a_dp.file.nil? %>
+                                                     <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />
+                                                        <% else %>
+                                                            <%= image_tag('default.jpg', class:"picture-src", id:"wizardPicturePreview",title:"") %>
+                                                        <%end%>
+                                                        <input type="file" id="wizard-picture" name="a_dp">
+                                                    </div>
+                                                </div>
+                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">

@@ -1,0 +1,136 @@
+<style>
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form input[type=button]{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #5e337b;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form input[type=button]:hover,.form input[type=button]:active,.form input[type=button]:focus {
+    /* background: rgb(94, 51, 123); */ 
+  background: #000000;
+}
+
+
+
+</style>
+ <!-- TODO Add header Partial -->
+     <%= render partial: "header" %>
+
+       
+<div class="login-page">
+  <div class="form">
+    <form class="login-form" action="/login_sign_up">
+        <p id="user-name">Enter Your Email </p>  
+        <i id="loading" class="fa fa-spinner " style="font-size:24px"></i>
+      <input type="email" id="email"  placeholder="Email"/>
+      <input type="text" id="name"  placeholder="FirstName LastName"/>
+      <input type="password" id="password" placeholder="password"/>
+      <input type="button" value="proceed" id="continue" />
+      <input type="hidden"  id="status" />
+    </form>
+  </div>
+</div>
+     
+
+<script>
+
+$("#name").hide();
+$("#password").hide();
+$("#loading").hide();
+
+$("#continue").click(function(){
+
+  $("#loading").addClass("fa-spin");
+   var email = $("#email").val();
+
+if ($("#status").val() == ""){
+  $("#loading").show();
+    $.ajax({
+      url: '/check_if_user_exist',
+      type: 'GET',
+      data :{ email: email },
+      success: function(data){
+          if (data != "error"){
+            $("#user-name").text(data);
+            $("#email").prop('disabled', true);
+            $("#password").show();
+            $("#continue").val("Login");
+            $("#status").val("login");
+          } else {
+            $("#user-name").text(email);
+            $("#email").hide();
+            $("#name").show();
+            $("#password").show();
+            $("#continue").val("Sign Up");
+            $("#status").val("signup");
+          }
+        $("#loading").hide();
+      },
+      error : function(jqXHR, textStatus, errorThrown) {
+          console.log("error from the server");
+       }
+   });
+
+} else { 
+    console.log("working");
+    $.ajax({
+      url: '/login_sign_up',
+      type: 'POST',
+      data :{ email: email, password: $("#password").val(), name: $("#name").val() },
+      success: function(data){
+          console.log(data);
+          if (data != "error"){
+              
+
+            
+          } else {
+
+          }
+        $("#loading").hide();
+      },
+      error : function(jqXHR, textStatus, errorThrown) {
+          console.log("error from the server");
+       }
+   });
+ }
+});
+
+</script>
+
+      

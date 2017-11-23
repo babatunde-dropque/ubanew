@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
- 
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   post '/rate' => 'rater#create', :as => 'rate'
   # rails engine for comment
@@ -45,6 +42,8 @@ Rails.application.routes.draw do
   post "update_account_profile", to: "users#update_account_profile", as: "update_account_profile"
   post "update_account_skill", to: "users#update_account_skill", as: "update_account_skill"  
 
+  get "check_if_user_exist", to: "users#check_if_user_exist", as: "check_if_user_exist"
+  post "login_sign_up", to: "users#login_sign_up", as: "login_sign_up"
 
   # post request for applicant data
   post 'applicants/' => 'applicants#index'

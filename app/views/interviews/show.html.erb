@@ -47,7 +47,7 @@ div.ui-widget-content {
                                     <div class="text-center">
                                       <div class="typo-line">
 
-                                          <%= @company.subdomain %>.<%= request.domain %>/applicants/<%= @interview.interview_token %>
+                                        https://  <%= @company.subdomain %>.<%= request.domain %>/applicants/<%= @interview.interview_token %>
                                             <p class="category">(Invitation Link)</p> </h5>
                                        </div>
                                       <form  method="POST" action="<%= send_invite_mail_company_interviews_path %>" >

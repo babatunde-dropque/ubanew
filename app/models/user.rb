@@ -27,16 +27,12 @@ class User < ActiveRecord::Base
 
 
 
-
-
    # def capitalize_first_character
    #    self.name.split.map(&:capitalize).join(' ')
    # end
    def self.search_category
 
    end
-
-
 
 
 

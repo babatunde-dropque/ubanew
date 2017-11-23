@@ -15,8 +15,6 @@
                   <% if !@interview.nil? %>
                     <a class="navbar-brand" href="#"> <%= truncate( @interview.title, :length => 50) %> </a>
                   <% end %>
-
-
                     <ul class="nav navbar-nav navbar-right">
 
           <% if !@company.nil? %>
@@ -40,25 +38,18 @@
                           </a>
 
                        </li>
-
                       <% @user.companies.each do | company | %>
-
                        <li>
-                         
                                 <a href="<%= company_path(company, from_notification:1) %>">
                                    <%= company.name %>
                                 </a>
-                         
                       </li>
-
                       <% end %>
                     </ul>
                 </li>
               <% end %>
             </li>
           <% end %>
-
-
 
                              <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -70,8 +61,6 @@
                                        </span>
                                     <% end %>                                
                               </a>
-
-          
                               <ul class="dropdown-menu">
                                <% @notification.each do |noti| %>
                                   <li> 
@@ -138,19 +127,20 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                    
-                    <% if @company.nil? and @profile_page.nil?  %>
-                        <% if @user.last_company.nil? %>
-                             <li> <%= link_to "Organization view", company_path(@user.companies.first) %> </li>
-                              
-                        <% else %>
-                             <% company = Company.friendly.find(@user.last_company) %>
-                              <li><%= link_to "Organization view", company_path(company) %></li>
-                        <% end %>
-                    <% end %>
-                        <% if @user.status == 1 %>
-                            <li><%= link_to "Applicant's view", user_account_path %></li>
-                        <% end %>
+
+                            <% if @company.nil? and @profile_page.nil?  %>
+                                <% if @user.last_company.nil? %>
+                                     <li> <%= link_to "Organization view", company_path(@user.companies.first) %> </li>
+                                <% else %>
+                                     <% company = Company.friendly.find(@user.last_company) %>
+                                      <li><%= link_to "Organization view", company_path(company) %></li>
+                                <% end %>
+                            <% end %>
+
+                            <% if @user.status == 1 %>
+                                <li><%= link_to "Applicant's view", user_account_path %></li>
+                            <% end %>
+
                            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
                         </ul>
                         </li>
