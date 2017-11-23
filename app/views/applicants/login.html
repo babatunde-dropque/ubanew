@@ -55,7 +55,7 @@
        
 <div class="login-page">
   <div class="form">
-    <form class="login-form" action="/login_sign_up">
+    <form class="login-form" action="">
         <p id="user-name">Enter Your Email </p>  
         <i id="loading" class="fa fa-spinner " style="font-size:24px"></i>
       <input type="email" id="email"  placeholder="Email"/>
@@ -64,10 +64,20 @@
       <input type="button" value="proceed" id="continue" />
       <input type="hidden"  id="status" />
     </form>
+    <%= link_to "Forgot your password?", new_user_password_path %>
+    <h6 id="incorrect">  </h6>
   </div>
+
 </div>
      
-
+<form method="POST" action="" id="form-submit">
+    <input type="hidden" value="register" name ="page" />
+    <input type="hidden" name="page" value="details" />
+    <input type="hidden" name="interview_token" value="<%= params[:interview_token] %>" />
+    <input type="hidden" name="company_id" value="<%= params[:company_id] %>" />
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+</form>
+   
 <script>
 
 $("#name").hide();
@@ -108,20 +118,17 @@ if ($("#status").val() == ""){
    });
 
 } else { 
-    console.log("working");
     $.ajax({
       url: '/login_sign_up',
       type: 'POST',
       data :{ email: email, password: $("#password").val(), name: $("#name").val() },
       success: function(data){
           console.log(data);
-          if (data != "error"){
-              
-
-            
-          } else {
-
-          }
+          if (data == "success"){
+            $("#form-submit").submit();                 
+          } else if ( data == "error"){
+              $("#incorrect").text("Incorrect Password, kindly try again");
+          } 
         $("#loading").hide();
       },
       error : function(jqXHR, textStatus, errorThrown) {

@@ -127,12 +127,23 @@ class UsersController < ApplicationController
   end
 
   def login_sign_up
-      result = User.find_by(email:user_email)
-      if result
-
+      if User.exists?(email: params[:email])
+      user_applicant = User.find_by(email:params[:email])
+       bcrypt_object = BCrypt::Password.new(user_applicant.encrypted_password) 
+       password_hash = ::BCrypt::Engine.hash_secret(params[:password], bcrypt_object.salt)
+            if password_hash == user_applicant.encrypted_password
+                sign_in(:user, user_applicant)
+                render plain: "success"
+            else
+                render plain: "error"
+            end
       else
-          
+         user_applicant = User.new(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password])
+         user_applicant.save()
+         sign_in(:user, user_applicant)
+         render plain: "success"
       end
+      puts "sign in successfully"
   end
 
 
