@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
             @unsure_applicants = User.where(status:nil)
             @applicants = @sure_applicants.merge(@unsure_applicants)
             @search_category = ['Skill', 'Discipline', 'Grade', 'City', 'School', 'Qualification']
-        if  params[:search].present? && params[:category].present? && !params[:search2].present? && !params[:search3].present?
+     if  params[:search].present? && params[:category].present? && !params[:search2].present? && !params[:search3].present?
             @query = params[:search]
             #@field = assign_field(params[:category])
             @talent = @applicants.where("lower(#{params[:category]}) LIKE ?", "%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 12)
@@ -106,7 +106,6 @@ class CompaniesController < ApplicationController
 
     def all_interview
         @all_interview = @company.interviews
-
     end
 
 
@@ -121,6 +120,14 @@ class CompaniesController < ApplicationController
                 email = collborator["email"]
                 status = collborator["status"]
 
+                # check if user exist,  this will be used for 
+                if User.exists?(email: email)
+                    send_mail = true 
+                else
+                    send_mail = false 
+                end
+
+                
                 # invite user with device
                 user = User.invite!({:email => email }, current_user)
 
@@ -129,7 +136,9 @@ class CompaniesController < ApplicationController
 
                 if result.nil?
                     # send notification
-                    self.send_notification(user.id, 2 , params[:user_id], @company.name)
+                    if send_mail
+                        self.send_notification(user.id, 2 , params[:user_id], @company.name)
+                    end
 
                     # add user to joint_user_company model
                     one_collaborator = JointUserCompany.new(status: status, user_id: user.id, company_id: @company.id)
