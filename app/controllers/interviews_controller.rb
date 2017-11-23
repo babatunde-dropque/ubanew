@@ -304,6 +304,9 @@ end
                                   :invite_message,
                                   :status,
                                   :completed_message,
+                                  :city,
+                                  :state,
+                                  :country
                                   )
     end
 end

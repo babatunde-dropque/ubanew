@@ -7,17 +7,17 @@ class ApplicantsController < ApplicationController
 
 
   def index
-
     @editable = "false" # disable editable view
     if params[:page] == "details"
       @interview = Interview.find_by(interview_token: params[:interview_token], company_id: @company.id )
       # check if user is signed in  or not
-
       if !@interview.nil? && !@interview.deadline.nil? && @interview.deadline.to_date.past?
           render "expired"
       else
           if !user_signed_in?
-            redirect_to new_user_session_path(interview_token: @interview.interview_token)
+              render "login"
+
+            # redirect_to new_user_session_path(interview_token: @interview.interview_token)
           else
               @user = current_user
               # create submission for user
