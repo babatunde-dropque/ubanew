@@ -59,11 +59,11 @@
                                        <span class="notification-bubble" id="notification-number">
                                             <%= @notification.length %>
                                        </span>
-                                    <% end %>                                
+                                    <% end %>
                               </a>
                               <ul class="dropdown-menu">
                                <% @notification.each do |noti| %>
-                                  <li> 
+                                  <li>
                                        <a class="notificationa">
                                         <div class="card notification" >
                                             <div class="content">
@@ -110,12 +110,11 @@
                                    <%= link_to edit_company_path(params[:company_id ] || params[:id ] ) do %> Settings <% end %>
                                 </li>
                                 <li>
-                                   <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %> 
-                                </li> 
+                                   <%= link_to company_groups_path(params[:company_id ] || params[:id ] ) do %> Contact Groups <% end %>
+                                </li>
                                  <li>
-                                   <%= link_to company_preview_path(params[:company_id ] || params[:id ] ) do %> Preview page <% end %> 
-                                </li> 
-                               
+                                   <%= link_to company_preview_path(params[:company_id ] || params[:id ] ) do %> Preview page <% end %>
+                                </li>
                             </ul>
                         </li>
                         <% end %>
@@ -127,18 +126,17 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-
-                            <% if @company.nil? and @profile_page.nil?  %>
-                                <% if @user.last_company.nil? %>
-                                     <li> <%= link_to "Organization view", company_path(@user.companies.first) %> </li>
-                                <% else %>
-                                     <% company = Company.friendly.find(@user.last_company) %>
-                                      <li><%= link_to "Organization view", company_path(company) %></li>
-                                <% end %>
-                            <% end %>
-
-                            <% if @user.status == 1 %>
+                            <% if @user.status == 1  and @profile_page != true%>
                                 <li><%= link_to "Applicant's view", user_account_path %></li>
+                                <% else %>
+                                <% if @user.companies.nil?  ||  @unique_to_p == false %>
+                                <li><%= link_to "Organization view", new_company_path %></li>
+                                <% elsif !@user.companies.nil? and @user.last_company.nil?
+                                  %>
+                               <li><%= link_to "Organization view", company_path(Company.friendly.find(@user.companies.first)) %></li>
+                                  <% else %>
+                                <li><%= link_to "Organization view", company_path(Company.friendly.find(@user.last_company)) %></li>
+                                <% end %>
                             <% end %>
 
                            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>

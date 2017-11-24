@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 
 
   def build_profile
+    @unique_to_p = false
     @profile_page = true
     render  :layout => 'wizard'
   end
@@ -49,13 +50,14 @@ class UsersController < ApplicationController
 
 
   def profile
+     @unique_to_p = false
      @profile_page = true
      @user = current_user
      render  :layout => 'wizard'
   end
 
 
-  def update_profile  
+  def update_profile
      @user.update_attributes(user_params)
      if !session[:return_to].nil? 
        redirect_to session[:return_to]
