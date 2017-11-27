@@ -75,16 +75,12 @@ textarea.note {
                             <div class="card card-user text-center" data-toggle="modal" data-target="#video-<%= submission.id %>" data-backdrop="static" >
                              <br>
                                 <div class="dq-center-video">
-                                 <% if  !@user.a_dp.file.nil? %>
-                                    <%= image_tag('avatar.png', class:"avatar border-white", alt:"...") %>
-                                  <% else %>
                                       <% if !submission.first_video.nil? %>
                                         <% first_video = submission.first_video - 1 %>
                                       <img class="lazy max-height-width"  src="<%= asset_path('avatar.png', style: "border-radius: 50%;") %>" data-original="https://embed-cdn.ziggeo.com/v1/applications/8e270db9f0949e961323040b7f8e2cf1/videos/<%= submission.answers[first_video]["link"] %>/image">
                                       <% else %>
                                         <%= image_tag('avatar.png', class:"avatar border-white", style: "margin-right: 0; margin-bottom: 0px;", alt:"...") %>
                                       <% end %>
-                                  <% end %>
                                 </div>
                                 <div >
                                    <span class="statss"> <%= truncate( submission.user.name , :length => 23) %>  </span><br>
