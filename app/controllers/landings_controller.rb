@@ -5,18 +5,19 @@ class LandingsController < ApplicationController
 
 
   def index
-		if user_signed_in? && current_user.status == 1
-			self.dashboard_function()
+    if user_signed_in? && current_user.status == 1
+	    self.dashboard_function()
     elsif user_signed_in? && current_user.status == 0
-      redirect_to user_timeline_path(current_user)
+        redirect_to user_timeline_path(current_user)
     elsif user_signed_in? && current_user.status == nil
-      redirect_to user_profile_path(current_user)
-		end
-		@minimum_password_length = 6
+        redirect_to user_profile_path(current_user)
+	end
+	@minimum_password_length = 6
   end
 
 
   def newhome
+
   end
 
   def pricing
@@ -57,11 +58,7 @@ class LandingsController < ApplicationController
   	 render status_code.to_s, :status => status_code, :layout => 'signin'
   end
 
-  def letsencrypt
-    # use your code here, not mine
-    render text: "JJb5NafWAfbIbsyeUhvCzd4NQGgEZK9Mz0izsS9A9UY.CriSZxM1w6GS2r0o8SJiBR7VSo94RaaZqvdmZgVH7eI"
-  end
- 
+  
 
 protected
  

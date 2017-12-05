@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get '/pricing', to: 'landings#pricing', as: 'pricing'
   post 'landings/requestdemo', to: "landings#request_demo"
   put 'update_approval_status' => 'listings#update_approval_status', as: 'update_approval'
-  get '/.well-known/acme-challenge/:id' => 'landings#letsencrypt'
   get "build_profile", to: "users#build_profile", as: 'build_profile', :format => false
   post "build_profile_update", to: "users#update_profile", as: 'update_profile', :format => false
   put "become_interviewer", to: "users#become_interviewer", as: 'become_interviewer', :format => false
