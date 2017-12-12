@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
 
   def dashboard_function
     user = current_user
-    if user.last_company.nil?
+    if user.companies.length == 0
+      redirect_to  new_company_path
+    elsif user.last_company.nil?
       redirect_to  company_path(user.companies.first)
     else
       company = Company.friendly.find(user.last_company)
