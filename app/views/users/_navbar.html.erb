@@ -126,9 +126,9 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <% if @user.status == 1  and @profile_page != true%>
+                            <% if @user.status == 1  and @profile_page != true %>
                                 <li><%= link_to "Applicant's view", user_account_path %></li>
-                                <% else %>
+                            <% else %>
                                 <% if @user.companies.nil?  ||  @unique_to_p == false %>
                                 <li><%= link_to "Organization view", new_company_path %></li>
                                 <% elsif !@user.companies.nil? and @user.last_company.nil?

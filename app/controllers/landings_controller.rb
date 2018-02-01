@@ -11,7 +11,7 @@ class LandingsController < ApplicationController
         redirect_to user_timeline_path(current_user)
     elsif user_signed_in? && current_user.status == nil
         redirect_to user_profile_path(current_user)
-	end
+    end
 	@minimum_password_length = 6
   end
 

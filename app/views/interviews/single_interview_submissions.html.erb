@@ -140,6 +140,7 @@ textarea.note {
                         </div>
                      <strong><h5 id="question-video-<%= submission.id %>-sly"></h5></strong>
                      <div id="content-video-<%= submission.id %>-sly" class="centralize-video" >
+
                     </div>
                   </div>
 
@@ -261,7 +262,6 @@ textarea.note {
 
 <script>
 var warning = "Are you sure to send message? Message composed will be mailed to these candidates";
-
 var subj,body, set, url;
 var id_input = $("#interview_id");
 var id = id_input.attr("value");
@@ -418,7 +418,7 @@ $("#bukbut").click( function(){
     $.ajax({
           url: '<%= company_interview_change_status_path(company_id:@company.slug, interview_id:@interview.slug)%>',
           type: 'PUT',
-          data: { submission_id: submissionId, status: status},
+          data: { submission_id: submissionId, status: status },
           success: function(data){
               if (data == "shortlist" ){
                  parent.children().removeClass('btn-fill');
