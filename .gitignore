@@ -18,6 +18,7 @@
 
 # Ignore application configuration
 /config/application.yml
+/config/setup-params.yml
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
