@@ -130,11 +130,10 @@
                                 <li><%= link_to "Applicant's view", user_account_path %></li>
                             <% else %>
                                 <% if @user.companies.nil?  ||  @unique_to_p == false %>
-                                <li><%= link_to "Organization view", new_company_path %></li>
-                                <% elsif !@user.companies.nil? and @user.last_company.nil?
-                                  %>
+                                    <li><%= link_to "Organization view", new_company_path %></li>
+                                <% elsif !@user.companies.nil? and @user.last_company.nil? %>
                                <li><%= link_to "Organization view", company_path(Company.friendly.find(@user.companies.first)) %></li>
-                                  <% else %>
+                                 <% else !@user.companies.nil? and !@user.last_company.nil? %>
                                 <li><%= link_to "Organization view", company_path(Company.friendly.find(@user.last_company)) %></li>
                                 <% end %>
                             <% end %>
