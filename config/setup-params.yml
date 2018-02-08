@@ -1,0 +1,40 @@
+# This is where all setup parameter will live for application wide settings
+
+# config/setup-params.yml
+production:
+    app_name: "Dropque" 
+    project_name : "newdropque"
+    subdomain_support: true 
+    dropque_app : false
+
+
+development:
+    app_name: "Dropque" 
+    project_name : "newdropque"
+    subdomain_support: true 
+    dropque_app : false
+
+test:
+    app_name: "Dropque-test" 
+    project_name : "newdropque"
+    subdomain_support: true 
+    dropque_app : false
+
+
+# development:
+#    foo:
+#      bar: "blah blah"
+#      baz: "blah blah"
+#      qux: "blah blah"
+
+# production:
+#    foo:
+#      bar: "blah blah"
+#      baz: "blah blah"
+#      qux: "blah blah"
+
+# test:
+#    foo:
+#      bar: "blah blah"
+#      baz: "blah blah"
+#      qux: "blah blah"
