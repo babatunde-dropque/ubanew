@@ -234,7 +234,7 @@ function addNewQuestionWithDetails(q,t, type, name1, name2){
 		      "</div>"+
 		      "<div class='col-md-3'>"+
 		          "<div class='form-group'>"+
-		              "<input type='text' class='form-control border-input interview-time'  name='"+name2+"' placeholder='mm:ss Time allow' value='"+fomattedTime+"'>"+
+		              "<input type='text' class='form-control border-input interview-time'  name='"+name2+"' placeholder='m:ss Time allow' value='"+fomattedTime+"'>"+
 		          "</div>"+
 		      "</div>"+
 		      "<div class='col-md-1 close'>"+

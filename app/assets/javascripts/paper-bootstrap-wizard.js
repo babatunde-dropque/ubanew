@@ -101,8 +101,8 @@ transparent = true;
 
             // add custom validation to validate time
             $.validator.addMethod("timeValidation", function(value, element) {
-              return this.optional(element) || /^[0-5]{1,2}:[0-9]{1,2}$/.test(value);
-            }, "Please specify the correct time format, use mm:ss , ");
+              return this.optional(element) || /^[0-5]:[0-9]{1,2}$/.test(value);
+            }, "Please specify the correct time format, must not be greater than 5, use m:ss , ");
 
             $.validator.addClassRules("interview-time", {
               required: true,
