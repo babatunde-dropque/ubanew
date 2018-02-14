@@ -121,3 +121,6 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'twilio-ruby', '~> 4.13'
 
 gem 'puma'
+
+#add whenever gem for cron job schedulers
+gem 'whenever', require: false
