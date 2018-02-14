@@ -204,13 +204,7 @@ textarea.note {
                     <li class="next"><button type="button" class="btn btn-default btn-next">Next</button></li>
             </ul>
         </div>
-
-
       </div>
-      
-
-
-
     </div>
 
   </div>
@@ -336,6 +330,9 @@ $("#bukbut").click( function(){
            var liObject = $frame.find('li')[0]; 
            var questionType = liObject.getAttribute("question-type");
            if (questionType == "1"){
+              $("#symbol").addClass('fa fa-spinner  fa-pulse fa-5x fa-fw');
+              $("#loading").addClass('loading');
+              observe(contentId);
               replaceVideo(liObject.getAttribute("token"),liObject.getAttribute("question"), questionId ,contentId);
            } else{
               replaceTextFile(submissionId, 0, questionType, questionId, contentId);
@@ -353,6 +350,9 @@ $("#bukbut").click( function(){
            var questionId = "#question-"+thisFrame.id;
            var questionType = thisFrame.children[0].children[itemIndex].getAttribute("question-type");
            if (questionType == "1"){
+            $("#symbol").addClass('fa fa-spinner  fa-pulse fa-5x fa-fw');
+            $("#loading").addClass('loading');
+              observe(contentId);
               replaceVideo(thisFrame.children[0].children[itemIndex].getAttribute("token"),thisFrame.children[0].children[itemIndex].getAttribute("question"), questionId ,contentId);
   
            } else{
@@ -368,7 +368,7 @@ $("#bukbut").click( function(){
           htmlContentId, {
             width: width,
             height : height,
-            video: token
+            video: token,
       });
     $(htmlQuestionId).text(question);
   }
@@ -387,21 +387,12 @@ $("#bukbut").click( function(){
                  $(htmlContentId).html( "<textarea class='note' readonly>" +data.answer+ "</textarea>" );
                  $(htmlQuestionId).html(data.question) ;
              } else if (questionType == 3){
-                <%# $(htmlContentId).html("<div>"+ %>
-                <%#     "File Name: "+data.answer.split('/').pop()+"<br>"+ %>
-                <%#     "File Type: "+data.answer.split('/').pop().split('.').pop()+" <br>"+ %>
-                <%#     "File size: "+(data.file_size / 1000)+" kb <br><br><br>"+ %>
-                <%#     "<a class='btn box-shape download-button' href='"+data.answer+"' target='_blank'>Download file </a>"+ %>
-                <%#  " </div> "); %>
-                <%# $(htmlContentId).html('<embed src="'+ data.answer +'" width="100%" height="300px" />'); %>
-             $(htmlContentId).html('<iframe  src="https://docs.google.com/gview?url='+ data.answer + '&embedded=true"  width="100%" height="300px"></iframe>');
+                $(htmlContentId).html('<iframe  src="https://docs.google.com/gview?url='+ data.answer + '&embedded=true"  width="100%" height="300px"></iframe>');
                 $(htmlQuestionId).text(data.question);
              }
-              
            $("#symbol").removeClass('fa fa-spinner fa-pulse');
            $("#loading").removeClass('loading');
           },
-        
           error : function(jqXHR, textStatus, errorThrown) {
 
            }
@@ -505,6 +496,33 @@ $(".btn-prev").click(function(){
     
 });
 
+function observe(htmlContentId){
+    // The node to be monitored
+    var target = $(htmlContentId)[0]; 
+    // Create an observer instance
+    var observer = new MutationObserver(function( mutations ) {
+        var object_content = $(htmlContentId).children();
+        var length = object_content.length;
+        if (length == 2){
+            var first_child  =  object_content[0];
+            var second_child =  object_content[1];
+            $(first_child).css("display","none");
+            $(second_child).show();
+         }
+       $("#symbol").removeClass('fa fa-spinner fa-pulse');
+       $("#loading").removeClass('loading');
+    });
+
+    // Configuration of the observer:
+    var config = { 
+        childList: true, 
+    };
+     
+    // Pass in the target node, as well as the observer options
+    observer.observe(target, config);
+    // Later, you can stop observing
+    // observer.disconnect();
+}
 </script>
 
 
