@@ -5,4 +5,13 @@ namespace :daily do
       # ... set options if any
       puts "working like charms"
     end
+
+    desc 'send reminder email to applicant that are yet to complete interview'
+    task send_completion_reminder: :environment do
+      # ... set options if any
+      puts "working like charms"
+    end
 end
+
+
+
