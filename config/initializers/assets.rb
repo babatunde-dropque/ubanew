@@ -51,11 +51,13 @@ Rails.application.config.assets.precompile += %w( landings.css )
 Rails.application.config.assets.precompile += %w( landings.js )
 
 
-
-# landing page demo
+# listing  page demo
 Rails.application.config.assets.precompile += %w( listing.css )
 Rails.application.config.assets.precompile += %w( listing.js )
 
+#jquery tags for new form
+Rails.application.config.assets.precompile += %w( jquery.inputpicker.css )
+Rails.application.config.assets.precompile += %w( jquery.inputpicker.js )
 
 
 

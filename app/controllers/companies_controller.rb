@@ -1,9 +1,9 @@
 require 'slack-notifier'
 class CompaniesController < ApplicationController
 	layout 'user_dashboard'
-	before_action :authenticate_user!
-    before_filter :set_up_user
-    before_filter :set_up_company, :except => [:new, :create, :check_subdomain ]
+	before_action :authenticate_user!, :except => [:organization_members]
+    before_filter :set_up_user, :except => [:organization_members]
+    before_filter :set_up_company, :except => [:new, :create, :check_subdomain, :organization_members]
 
 
 
@@ -78,14 +78,14 @@ class CompaniesController < ApplicationController
     def assign_field (val)
         if val == "Skill"
             return "skill"
-               elsif val == "Field"
-                    return "field_of_study"
-                elsif val == "Grade"
-                    return "grade"
-                elsif val == "Location"
-                    return "city"
-                elsif val == "School"
-                    return "school"
+        elsif val == "Field"
+             return "field_of_study"
+         elsif val == "Grade"
+             return "grade"
+         elsif val == "Location"
+             return "city"
+         elsif val == "School"
+             return "school"
         end
     end
 
@@ -94,6 +94,10 @@ class CompaniesController < ApplicationController
         @logo_off = false
     end
 
+    def organization_members
+        company = Company.friendly.find(params[:company_id] || params[:id])
+        render :json => {msg: "" , data: JSON.parse(company.users.to_json(:only => [:email, :name ])) }
+    end
 
 
     def edit_preview

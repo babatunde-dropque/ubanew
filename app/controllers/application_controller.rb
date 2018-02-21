@@ -59,9 +59,20 @@ class ApplicationController < ActionController::Base
         NotifierMailer.user_notification(User.find(user_id), company_name, message_email).deliver
         
       end
-      
-
   end
+
+
+  def send_interview_access_notification(user_id, sender_id, interview_name)
+      # send notification 
+      sender = User.find(sender_id)
+      message = sender.name + ' (' + sender.email + ') ' + 'assigned ' + interview_name + ' to you '
+      message_email = sender.name + ' (' + sender.email + ') ' + 'assigned ' + interview_name + ' to you '
+
+  	  notification =  Notification.new(read: 0, type_notification: type, message: message , user_id: user_id )
+      notification.save!
+      NotifierMailer.user_notification(User.find(user_id), company_name, message_email).deliver
+  end
+
 
 
    
