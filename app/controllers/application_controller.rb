@@ -56,8 +56,11 @@ class ApplicationController < ActionController::Base
       
       if (type == 2 || type == 5)
 
-        NotifierMailer.user_notification(User.find(user_id), company_name, message_email).deliver
-        
+        # send email notification only when user have accepted their invitation
+        actual_user = User.find(user_id)
+        if !actual_user.name.nil?
+            NotifierMailer.user_notification(actual_user, company_name, message_email).deliver
+        end
       end
   end
 
@@ -70,7 +73,13 @@ class ApplicationController < ActionController::Base
 
   	  notification =  Notification.new(read: 0, type_notification: type, message: message , user_id: user_id )
       notification.save!
-      NotifierMailer.user_notification(User.find(user_id), company_name, message_email).deliver
+      # send email notification only when user have accepted their invitation
+      
+        # send email notification only when user have accepted their invitation
+        actual_user = User.find(user_id)
+        if !actual_user.name.nil?
+            NotifierMailer.user_notification(User.find(user_id), interview_name, message_email).deliver
+        end
   end
 
 
