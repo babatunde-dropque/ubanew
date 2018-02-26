@@ -36,7 +36,7 @@ class InterviewMailer < ApplicationMailer
     @company = @interview.company
     @company_email = @company.email
     @dashboard = "https://www.dropque.com/dashboard/account"
-    mail(from:"application@dropque.com", to:@user_email, subject:"#{@interview.title} Interview completion")
+    mail(from:"interviews@dropque.com", to:@user_email, subject:"#{@interview.title} Interview completion")
   end 
 
 
