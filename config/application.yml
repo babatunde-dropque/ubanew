@@ -1,0 +1,8 @@
+# Add configuration values here, as shown below.
+
+AWS_ACCESS_KEY: "AKIAJ2XWXLB4HMCZHP5Q"
+AWS_SECRET_KEY: "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"
+AWS_BUCKET: "dropque-staging"
+
+SENDGRID_USERNAME: app59659234@heroku.com 
+SENDGRID_PASSWORD: 2pschp8o7050 
