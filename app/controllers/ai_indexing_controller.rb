@@ -6,7 +6,7 @@ class AiIndexingController < ApplicationController
 
     def receive
 
-       hash_result = JSON.parse(params)
+       hash_result = params
        video_data  = hash_result["data"]["video"]
        video_token = video_data["token"]
        # video_key =  video_data["key"]
