@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   # rails engine for comment
   mount Commontator::Engine => '/commontator'
 
+  # ai-indexing part 
+  post 'ai_index', to: "ai_indexing#receive"
+  get 'show_result', to: "ai_indexing#show_result"
+
+
   get 'listing' => 'listings#listing_interview', as: 'listing'
   get 'listing-inner' => 'listings#listing_inner', as: 'listing_inner'
   get 'listing-approval' => 'listings#listing_approval', as: 'approval_page'

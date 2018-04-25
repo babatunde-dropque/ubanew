@@ -1,0 +1,49 @@
+
+<div class="wrapper">
+     
+    <div class="main-panel expand">
+        <!-- TODO Add Footer Partial -->
+        <%= render partial: "users/navbar" %>
+
+
+<div class="image-container set-full-height" >
+        
+        <!--   Big container   -->
+        <div class="container">
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <% @all_result.each do | video | %>
+                        <div class="" data-color="blue">
+                                <div class="wizard-header text-center">
+                                    <h4 class="wizard-title">Create Organization</h4>
+                                </div>
+
+                                <div class ="row" >
+                                    <div class="col-md-6" > 
+
+                                        <iframe width="560" height="315" src="https://www.videoindexer.ai/embed/player/<%= video.token %>" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <div class="col-md-6">
+ <iframe width="580" height="780" src="https://www.videoindexer.ai/embed/insights/<%= video.token %>" frameborder="0" allowfullscreen></iframe>
+                                     </div>
+                                </div>
+
+                                
+                                
+                        </div>
+
+                    <% end %> 
+                    <!-- </div> wizard container -->
+                </div>
+            </div><!-- end row -->
+         </div> <!-- end container fluid -->
+        </div> <!--  big container -->
+
+    </div>
+
+</div>
+</div>
+
+    
+
