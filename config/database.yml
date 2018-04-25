@@ -25,13 +25,13 @@ test:
 
 production:
   <<: *default
-  # database: newdropque_production
-  # username: newdropque
-  # password: <%= ENV['NEWDROPQUE_DATABASE_PASSWORD'] %>
+  database: newdropque_production
+  username: newdropque
+  password: <%= ENV['NEWDROPQUE_DATABASE_PASSWORD'] %>
 
   # remember to change this settings back when pushing to heroku production
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  # database: <%= ENV['RDS_DB_NAME'] %>
+  # username: <%= ENV['RDS_USERNAME'] %>
+  # password: <%= ENV['RDS_PASSWORD'] %>
+  # host: <%= ENV['RDS_HOSTNAME'] %>
+  # port: <%= ENV['RDS_PORT'] %>
