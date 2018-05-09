@@ -1,276 +1,396 @@
+	<!-- header -->
 
-<div class="wrapper">
-        <div id="wrap" class="wrap">
-            <div class="mockup header-filter">
-                <img class="mockup__img" src="assets/mockup4.jpg" />
-                <div class="mobile">
-                    <ul id="slideshow-1" class="slideshow">
-                        <li class="slideshow__item"><img src="assets/01.png"/></li>
-                        <li class="slideshow__item"><img src="assets/2.jpg"/></li>
-                        <li class="slideshow__item"><img src="assets/3.jpg"/></li>
-                        <li class="slideshow__item"><img src="assets/4.jpg"/></li>
+    	<header role="header" class="header-top" id="headere-top">
+
+        
+
+        	<div class="header-fixed-wrapper" role="header-fixed">
+
+                <div class="container">
+
+                    <!-- hgroup -->
+
+                    <hgroup class="row">
+
+                        <!-- logo -->
+
+                        <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+
+                            <h1>
+
+                                <a href="#headere-top" title="Rooky"><%= image_tag('logo.png', alt:"Rooky", title: "Rooky" )%>
+                                    </a>
+
+                            </h1>
+
+                        </div>
+
+                        <!-- logo -->
+
+                        <!-- nav -->
+
+                        <nav role="navigation" class="col-xs-12 col-sm-10 col-md-10 col-lg-10 navbar navbar-default">
+
+                            <div class="navbar-header">
+
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+
+                                    <span class="sr-only">Toggle navigation</span>
+
+                                    <span class="icon-bar"></span>
+
+                                    <span class="icon-bar"></span>
+
+                                    <span class="icon-bar"></span>
+
+                                </button>
+
+                            </div>
+
+                            <div id="navbar" class="navbar-collapse collapse">            
+
+                                <ul class="nav navbar-nav">			          
+
+                                    <li class="active"><a href="#headere-top" title="Home">Support</a></li>
+                                </ul>
+
+                            </div>
+
+                        </nav>
+
+                        <!-- nav -->
+
+                    </hgroup>
+
+                    <!-- hgroup -->
+
+                  </div>
+
+            </div>
+
+            <!-- banner Text --> 
+
+                 <section class="text-center">
+
+                    <h2>UBA Recruit</h2>
+
+                    <p>Converting Idea's into reality</p>
+
+                     
+
+                    <a class="popup-vimeo video-button" href="<%= asset_path('ubavideo.mp4') %>"><i class="fa fa-caret-right" aria-hidden="true"></i></a>
+
+                     <a  href="#" class="button-header">Login </a>
+
+                </section>
+
+                
+
+            <!-- banner Text -->   
+
+                
+
+            <!-- banner image -->
+
+        	<figure>
+
+                <div class="parallax-window item tp-banner-container" data-parallax="scroll" data-image-src="<%= image_path('ubarecruit3.jpg') %>"></div>
+
+            </figure>
+
+            <!-- banner image -->
+
+        </header>
+
+    <!-- header -->
+
+	
+
+    <!-- main -->
+
+    	<main role="main" id=" main-wrapper">
+
+        	
+
+            <!-- top pan -->
+
+            <section role="loges" class="top-pan">
+
+            	<div class="container">
+
+                	<ul class="row">
+
+                    	<li class="col-xs-12 col-sm-3 col-md-2 col-lg-2 ">Trusted by</li>
+
+                        <li class="col-xs-4 col-sm-3 col-md-2 col-lg-2 ">
+
+                            <a href="#">
+                                <%= image_tag('logoes/logoes-1.png', alt:"", class:"img-responsive" )%>
+                                </a>
+
+                        </li>
+
+                        <li class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+
+
+                            <a href="#">
+                                <%= image_tag('logoes/logoes-2.png', class:"img-responsive" )%>
+                            </a>
+
+                        </li>
+
+                        <li class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+
+                            <a href="#">
+                                <%= image_tag('logoes/logoes-3.png', class:"img-responsive" )%>
+                                </a>
+
+                        </li>
+
+                        <li class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+
+                            <a href="#"><%= image_tag('logoes/logoes-4.png', class:"img-responsive" )%></a>
+
+                        </li>
+
+                        <li class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+
+                            <a href="#"><%= image_tag('logoes/logoes-5.png', class:"img-responsive" )%></a>
+
+                        </li>
+
                     </ul>
-                </div>
-                <div class="screen">
-                    <ul id="slideshow-2" class="slideshow">
-                        <li class="slideshow__item current"><img src="assets/cp2.jpg"/></li>
-                        <li class="slideshow__item current"><img src="assets/cp3.jpg"/></li>
-                    </ul>
-                </div>
-                <header class="codrops-header">
-                    <h1>Interview candidates anywhere, anytime <i>Dropque is the fastest way companies find the right talent at a lower cost with secure video interviews</i></h1>
-                    <div class="wrapp">
-                        <a onclick="openRegisterModal();" class="button2"  ><strong>SEE IT IN ACTION!</strong></a>
-                     </div>
-                    </div>
-                </header>
-            </div>
-        </div>
 
-    <div class="main">
-        <ul class="bxslider">
-          <li><%= image_tag('mest.png')%></li>
-          <li><%= image_tag('agrivi.png')%></li>
-          <li><%= image_tag('rock.jpg')%></li>
-          <li><%= image_tag('ats.png')%></li>
-          <li><%= image_tag('printivologo.png')%></li>
-        </ul>
-        <div class="section section-basic">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>Adopt a more efficient way to find the right talent</h2>
-                        <h4>No more expensive time-consuming and wordy interviews. <br/> Dropque simplifies interviewing and gives candidates a better and flexible experience.</h4>
-                        <a class="btn btn-primary btn-raised" href="<%= new_user_registration_path %>">
-                           <strong>GET STARTED</strong>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <%= image_tag('dropquemockup.png', class: "img-responsive")%>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <hr width="90%" size="8" align="center">
-        <div class="section section-tabs">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-                        <h2>Getting started is easy</h2>
-                        <h4>In less than 1 minute, you'll be ready to create and send out your first interview.</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section section-tabs">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4 text-center">
-                        <div class="info">
-                            <div class="icon icon-primary">
-                               <i class="material-icons">question_answer</i>
-                            </div>
+
+            </section>
+
+        	<!-- top pan -->
+
+            
+
+            <!-- section-one -->
+
+            <section class="section-one text-center" id="section-one">
+
+            	<div class="container">
+
+                	<header role="title-page">
+
+                        <h4>What we do</h4>
+
+                        <h2>We make your business gain more<br/>revenue at a glance.</h2>
+
+                    </header>
+
+                    <article>
+
+                    	<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, ves<br/>
+
+                        tibulum at eros. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue.<br/>
+
+                        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas mollis interdum!</p>
+
+                    </article>
+
+                    
+
+                    <!-- four boxes  -->
+
+                    	<div class="row four-box-pan" role="four-box">
+
+                        	
+
+                            <section class="col-xs-12 col-sm-6 col-md-3">
+
+                            	<figure><i class="fa fa-rocket" aria-hidden="true"></i></figure>
+
+                            	<h5>STARTUP FEATURE</h5>
+
+                                <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.</p>
+
+                            </section>
+
+                            <section class="col-xs-12 col-sm-6 col-md-3">
+
+                            	<figure><i class="fa fa-magic" aria-hidden="true"></i></figure>
+
+                            	<h5>Higly customizable</h5>
+
+                                <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.</p>
+
+                            </section>
+
+                            <section class="col-xs-12 col-sm-6 col-md-3">
+
+                            	<figure><i class="fa fa-paper-plane" aria-hidden="true"></i></figure>
+
+                            	<h5>Simplified workflow</h5>
+
+                                <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.</p>
+
+                            </section>
+
+                            <section class="col-xs-12 col-sm-6 col-md-3">
+
+                            	<figure><i class="fa fa-television" aria-hidden="true"></i></figure>
+
+                            	<h5>Cross platform</h5>
+
+                                <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.</p>
+
+                            </section>
+
+                            
+
                         </div>
-                        <h4><strong>Create and share interview</strong></h4>
-                        <h4>Use our intuitive interface to create video, text or file based interviews and send to your prospective candidates. Our contact import feature makes sending to a large group easy.</h4>
-                    </div>
-                    <div class="col-sm-4 text-center">
-                        <div class="info">
-                            <div class="icon icon-success">
-                               <i class="material-icons">play_circle_filled</i>
-                            </div>
-                        </div>
-                        <h4><strong>Get video responses</strong></h4>
-                        <h4>Your candidates respond to the interview and these responses are immediately available for assessment on your dashboard. Our video recording and uploading is designed to support slow internet speeds.</h4>
-                    </div>
-                    <div class="col-sm-4 text-center">
-                       <div class="info">
-                            <div class="icon icon-danger">
-                               <i class="material-icons">contact_mail</i>
-                            </div>
-                        </div>
-                        <h4><strong>Review, shortlist, inform</strong></h4>
-                        <h4>Collaboratively assess, rate and shortlist candidates with other members of your recruitment team.</h4>
-                    </div>
+
+                    <!-- four boxes -->
+
+                    
+
                 </div>
-            </div>
-        </div> 
-        <div class="text-center">
-            <a class="btn btn-primary btn-raised" href="<%= new_user_registration_path %>" >
-               <strong>Start Now</strong>
-            </a>
 
-        </div>
-         <hr width="90%" size="8" align="center">
-        <div class="section section-tabs">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-                        <h2>Why you need Dropque</h2>
+            </section>
+
+            <!-- section-one -->
+
+            
+
+            <!-- section-two -->
+
+            <section class="section-two" id="section-two">
+
+            	
+
+                <!-- image-content -->
+
+                <section>
+
+                	<div class="col-xs-12 col-sm-6 col-md-6">
+
+                    	<article>
+
+                        	<h2>Get Maxium benifites by working with our experts.</h2>
+
+                            <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.</p>
+
+                            <ul>
+
+                                <li>Maecenas sed diam eget risus varius </li>
+
+                                <li>orta felis euismod semper.Maecenas sed diam </li>
+
+                                <li>amet non magna. Morbi leo orta semper.</li>
+
+                                <li>Maecenas sed diam eget risus</li>
+
+                            </ul>
+
+                        </article>
+
                     </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+
+                        <figure class="row" style="background-image:url('<%= image_path('uba5.jpg') %>') ; background-size: 95%;
+ "></figure>
+
+                    </div>
+
+                 </section>
+
+                <!-- image-content -->
+
+                <div class="clearfix"></div>
+
+                 <!-- image-content -->
+
+                 <section>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+
+                    	<figure class="row" style="background-image:url('<%= image_path('uba1.jpg') %>') ; background-size: 95%;
+ "></figure>
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+
+                    	<article>
+
+                    		<h2>We even give you more than your expectation</h2>
+
+                            <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.Maecenas sed diam eget risus varius blandit sit amet non magna. </p>
+
+                            <p>Morbi leo orta felis euismod semper.Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo orta felis euismod semper.Morbi leo orta felis euismod semper.Maecenas sed diam eget risus varius.</p>
+
+                        </article>
+
+                    </div>
+
+                 </section>
+
+                <!-- image-content -->
+
+                <div class="clearfix"></div>
+
+
+            </section>
+
+            <!-- section-two -->
+
+            
+
+           <!-- footer -->
+
+           <footer role="footer" class="footer text-center">
+
+           		<div class="container">
+
+                	<!-- socil-icons -->
+
+                	<section role="socil-icons" class="socil-icons">
+
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+
+                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+
+                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+
+
+
+                    </section>
+
+                    <!-- socil-icons -->
+
+                    <!-- nav -->
+
+                    <nav role="footer-nav">
+
+                        <a href="#">Terms of Use </a> 
+
+                        <a href="#">Privacy Policy</a>
+
+                    </nav>
+
+                    <!-- nav -->
+
+                    <p class="copy">&copy; 2018 UBA Recruit. All rights reserved.</p>
+
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>Get access to more top talent</h2>
 
-                        <h4>Increase your chances of finding best fit candidates within a large pool of talent.</h4>
+           </footer>
 
-                    </div>
+           <!-- footer -->
 
-                    <div class="col-md-6" align="center">
-                        <%= image_tag('dropquee.png', class: "img-responsive")%>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-md-push-6">
-                        <br/>
-                        <br/>
-                        <h2>Reduce time-to-hire</h2>
-                        <h4>Dropque cuts your recruitment time by 50%. The time it takes to schedule and conduct face-to-face meetings is the number one reason for delays in most hiring process. Companies with a faster recruitment process have an advantage in the competitive job market and we're happy to make this easier and fun for you.</h4>
-                    </div>
-                    <div class="col-md-6 col-md-pull-6" align="center">
-                        <br/>
-                        <br/>
-                        <%= image_tag('time-savings.png', class: "img-responsive")%>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <br/>
-                        <br/>
-                        <br/>
-                        <h2>Give candidates a better experience</h2>
-                        <h4>Candidate experience is becoming increasingly important and preferences are changing frequently. Video interviews allow candidates the environment and flexibility they need to be their best without compromising important cues such as articulation, personality and body language.</h4>
-                    </div>
-                    <div class="col-md-6" align="center">
-                        <br/>
-                        <br/>
-                        <%= image_tag('happyw.png', class: "img-responsive")%>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-md-push-6">
-                        <br/>
-                        <br/>
-                        <br/>
-                        <h2>Secure and reliable</h2>
-                        <h4>We understand how important recruitment is to the success of your company and how important your data is. That's why we invested months in making dropque secure and reliable. We guarantee a 99.99% availability.</h4>
-                    </div>
-                    <div class="col-md-6 col-md-pull-6" align="center">
-                        <br/>
-                        <br/>
-                        <%= image_tag('safety.png', class: "img-responsive")%>
-                    </div>
-                </div>
-            </div>
-        </div> 
-         <!-- <hr width="90%" size="8" align="center">     -->  
-        <%# <div class="section section-tabs"> %>
-        <%#     <div class="container"> %>
-        <%#             <div class="row"> %> 
-        <%#                 <div class="col-md-8 col-md-offset-2" style="text-align:center;"> %>
-        <%#                      <h3>   Looking for Jobs/Interviews? </h3> %>
+            
 
+        </main>
 
-        <%#                      <a class="btn btn-primary btn-raised" href="/listing" > %>
-        <%#                         <strong>Interview Listing</strong> %>
-        <%#                      </a> %>
+    <!-- main -->
 
-        <%#                      <br> %>
-
-
-        <%#                 </div> %>
-        <%#             </div> %>
-        <%#     </div> %>
-        <%# </div> %>
-    </div>
-    <footer class="footer">
-        <div class="container">
-            <nav class="pull-left">
-                <ul>
-                    <li>
-                        Contact Us (info@dropque.com)
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright pull-right">
-                &copy; 2017, Dropque
-            </div>
-        </div>
-    </footer>
-</div>
-
-
-
-
-<!-- modal hidden over here -->
-
-<div class="modal fade login" id="loginModal">
-  <div class="modal-dialog login animated">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Request A Demo</h4>
-        </div>
-        <div class="modal-body">  
-            <div class="box">
-                 <div class="content">
-                    <div class="division">
-                        <div class="line l"></div>
-                          <span> Enter Details </span> <span id="loading"></span>
-                        <div class="line r"></div>
-                    </div>
-                    <div class="error"></div>
-                 </div>
-            </div>
-            <div class="box">
-                <div class="content registerBox">
-                 <div class="form">
-                    <form  data-remote="true" id="request-demo">
-                    <div class="row">
-                        <div class="col-md-6">
-                        <input id="organization" class="form-control" type="text" placeholder="Organization Name" name="organization">
-                        </div>
-                        <div class="col-md-6">
-                            <input  id="name" class="form-control" type="text" placeholder="Your Name" name="name">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                        <input id="email" class="form-control" type="text" placeholder="Business/Official Email" name="email">
-                        </div>
-                        <div class="col-md-6">
-                            <input  id="telephone" class="form-control" type="text" placeholder="Phone Number" name="telephone">
-                        </div>
-                    </div>
-
-
-                     <input  id="role" class="form-control" type="text" placeholder="Job Title/Role Name" name="role">
-                     <select  class="form-control"  name="purpose">
-                        <option value="Recruiting" > Recruiting </option>
-                        <option value="Talent Acquisition" > Talent Acquisition </option>
-                        <option value="Receiving Feedback" > Receiving Feedback </option>
-                        <option value="Others" > Others </option>
-                     </select>
-                     </select>
-                    <input id="submit" class="btn btn-default btn-register" type="submit" value="Submit Request" name="commit" onclick="submitAjax()">
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <div class="forgot login-footer">
-                <span>Looking to 
-                     <%= link_to new_user_registration_path do %>
-                        create an account ?
-                    <% end %>
-                </span>
-            </div>
-        </div>        
-      </div>
-  </div>
-</div>
-
+    
 
