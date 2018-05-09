@@ -1,87 +1,213 @@
-            <div class="header-filter" style="background-image: url('assets/dq4.png'); background-size: cover; background-position: top center; min-height: 683px;">
+	<!-- header -->
+
+    	<header role="header" class="header-top" id="headere-top">
+
+        
+
+        	<div class="header-fixed-wrapper" role="header-fixed">
 
                 <div class="container">
-                    <div class="logo-container">
-                            <div class="text-center">
-                              <a href="/"><%= image_tag('dqlogo.png')%></a>
-                            </div>
-                    </div>
 
-                              <div>
-                                <div class="container">
+                    <!-- hgroup -->
+
+                    <hgroup class="row">
+
+                        <!-- logo -->
+
+                        <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+
+                            <h1>
+
+                                <a href="#headere-top" title="Rooky"><%= image_tag('logo.png', alt:"Rooky", title: "Rooky" )%>
+                                    </a>
+
+                            </h1>
+
+                        </div>
+
+                        <!-- logo -->
+
+                        <!-- nav -->
+
+                        <nav role="navigation" class="col-xs-12 col-sm-10 col-md-10 col-lg-10 navbar navbar-default">
+
+                            <div class="navbar-header">
+
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+
+                                    <span class="sr-only">Toggle navigation</span>
+
+                                    <span class="icon-bar"></span>
+
+                                    <span class="icon-bar"></span>
+
+                                    <span class="icon-bar"></span>
+
+                                </button>
+
+                            </div>
+
+                            
+
+                        </nav>
+
+                        <!-- nav -->
+
+                    </hgroup>
+
+                    <!-- hgroup -->
+
+                  </div>
+
+            </div>
+
+
+                
+
+
+        </header>
+
+    <!-- header -->
+
+	
+
+    <!-- main -->
+
+    	<main role="main" id=" main-wrapper">
+
+
+            <section class="section-six" id="section-six">
+
+            	<div class="container">
+
+                	 <header role="title-page" class="text-center">
+
+                        <h4>Login </h4>
+
+
+                    </header>
+<div class="header-filter" style="background-image: url('assets/dq4.png'); background-size: cover; background-position: top center; min-height: 683px;">
+
                                     <div class="row">
                                         <div class="col-md-4 col-md-offset-4">         
-                                                <div class="card card-signup">
-                                                  <div class="form">'
+                                                  <div class="form">
+                                                      <br/>
+                                                      <br/>
+                                                      <br/>
+                                                      <br/>
+                                                      <br/>
+                                                      <br/>
+                                                      <div  style="background-color: rgba(20,20,20, .5); padding: 40px; ">
 
-                                                      <div class="text-center" style="color:#da2417">
-
-                                                        <% if request.subdomain != "www" %>
-                                                           <h3>  Log in</h3>
-                                                        <% else %>
-                                                          <h3>  Log in</h3>
-                                                        <% end %>
-                                                      </div>
-                                                        <div class="sharing-area text-center">
-                                                             <a hidden  href="/users/auth/facebook" class="btn btn-raised btn-facebook">
-                                                              <i class="fa fa-facebook-square" aria-hidden="true"></i>
-                                                                Facebook
-                                                           </a>
-                                                            <a href="/users/auth/linkedin" class="btn btn-raised btn-linkedin" aria-hidden="true">
-                                                              <i class="fa fa-linkedin"></i>LinkedIn
-                                                            </a>
-                                                          </div>
-                                                        <div class="content">
-                                                          <div class="hr-sect">Or</div>
+                                                      <hr>
                                                             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                                                                 <%= devise_error_messages! %>
                                                                 <div class="flasher row"><%= bootstrap_flash %></div>
                                                                 <div class="input-group">
                                                                   <span class="input-group-addon">
-                                                                     <i class="material-icons">email</i>
+                                                                      <i class="fa fa-envelope"></i>
                                                                   </span>
                                                                   <%= f.email_field :email, :placeholder => 'E-mail', class: "form-control", html: {spellcheck: "false"} %>
                                                                 </div>
 
+
+                                                                
                                                                  <div class="input-group">
                                                                    <span class="input-group-addon">
-                                                                       <i class="material-icons">lock_outline</i>
+                                                                       <i class="fa fa-unlock"></i>
                                                                    </span>
                                                          
                                                                    <%= f.password_field :password, autocomplete: "off", :placeholder => 'password', class: "form-control", html: {spellcheck: "false"} %>
                                                                  </div>
-                                                                <div class="row">
-                                                                   <div class="col-md-6">
-                                                                  <% if devise_mapping.rememberable? -%>
-                                                                    <div class="checkbox">
-                                                                      <label>
-                                                                      <%= f.check_box :remember_me %>
-                                                                      <%= f.label :remember_me %>
-                                                                      </label>
-                                                                    </div>
-                                                                  <% end -%>
-                                                                  </div>
-                                                                  <div class="col-md-6">
-                                                                  <%= link_to "Forgot your password?", new_password_path(resource_name) %>
-                                                                  </div>
-                                                                  </div>
-
+                                                                
+                                                                 <br>
                                                                   <div class="text-center">
+
                                                                     <%= f.submit "Log in", class: "btn btn-primary btn-raised"%>
+                                                                    <br>
+                                                                  <%= link_to "Forgot your password?", new_password_path(resource_name), style:"color: white" %>
+                                                                  </div>
+                                                                    <div class="row">
+                                                                       <div class="col-md-12">
+                                                                  <% if devise_mapping.rememberable? -%>
+                                                                    <%# <div class="checkbox"> %>
+                                                                    <%#   <label> %>
+                                                                    <%#   <%= f.check_box :remember_me %1> %>
+                                                                    <%#   <%= f.label :remember_me %1> %>
+                                                                    <%#   </label> %>
+                                                                    <%# </div> %>
+                                                                  <% end -%>
+
+                                                                  </div>
                                                                   </div>
                                                                 <% end %>
-                                                                  <div class="text-center">
-                                                                  <span>No account yet?</span>
-                                                                  <%= link_to "Sign Up", new_registration_path(resource_name, interview_token: params[:interview_token]) %>
-
-                                                                  </div>
-                                                        </div>
+                                                      <hr>
                                                   </div>
-                                              </div>
+                                                  </div>
                                         </div>
                                     </div>
-                                </div>
-                              </div>
-                </div>
             </div>
+
+                </div>
+            </section>
+
+
+           <!-- footer -->
+
+           <footer role="footer" class="footer text-center">
+
+           		<div class="container">
+
+                	<!-- socil-icons -->
+
+                	<section role="socil-icons" class="socil-icons">
+
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+
+                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+
+                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+
+
+
+                    </section>
+
+                    <!-- socil-icons -->
+
+                    <!-- nav -->
+
+                    <nav role="footer-nav">
+
+                        <a href="#">Terms of Use </a> 
+
+                        <a href="#">Privacy Policy</a>
+
+                    </nav>
+
+                    <!-- nav -->
+
+                    <p class="copy">&copy; 2018 UBA Recruit. All rights reserved.</p>
+
+                </div>
+
+           </footer>
+
+           <!-- footer -->
+
+            
+
+        </main>
+
+    <!-- main -->
+
+    
+
+
+
+
+
+
+
              
