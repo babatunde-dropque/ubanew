@@ -280,7 +280,9 @@ class CompaniesController < ApplicationController
     # set_up company details and check if the user has permission to access the company
     # so user's can't access it from the url
     def set_up_company
-        @company = Company.friendly.find(params[:company_id] || params[:id])
+        # @company = Company.friendly.find(params[:company_id] || params[:id])
+        # It will only redirect to the first company in this case
+        @company = Company.first
         result = JointUserCompany.find_by(user_id: @user.id, company_id: @company.id)
         if result.nil?
            self.dashboard_function()

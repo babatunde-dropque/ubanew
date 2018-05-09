@@ -19,35 +19,35 @@
 
           <% if !@company.nil? %>
             <li class="dropdown">
-              <% if @user.companies.length == 1 %>
-                <a href="<%= new_company_path %>" style="border: 1px solid; border-radius: 24px;">
-                     <p>New Organisation</p>
-                     <i class="ti-plus"></i>
-                </a>
-                <% else %>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                         <p>Organisations</p>
-                         <i class="ti-menu-alt"></i>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                       <li>
-                          <a href="<%= new_company_path %>" class="text-center" style="    background-color: #ccc;">
-                                  Add New <i class="ti-plus"></i>
-                          </a>
+              <%# <% if @user.companies.length == 1 %1> %>
+              <%#   <a href="<%= new_company_path %1>" style="border: 1px solid; border-radius: 24px;"> %>
+              <%#        <p>New Organisation</p> %>
+              <%#        <i class="ti-plus"></i> %>
+              <%#   </a> %>
+              <%#   <% else %1> %>
+              <%#   <li class="dropdown"> %>
+              <%#       <a href="#" class="dropdown-toggle" data-toggle="dropdown"> %>
+              <%#            <p>Organisations</p> %>
+              <%#            <i class="ti-menu-alt"></i> %>
+              <%#           <b class="caret"></b> %>
+              <%#       </a> %>
+              <%#       <ul class="dropdown-menu"> %>
+              <%#          <li> %>
+              <%#             <a href="<%= new_company_path %1>" class="text-center" style="    background-color: #ccc;"> %>
+              <%#                     Add New <i class="ti-plus"></i> %>
+              <%#             </a> %>
 
-                       </li>
-                      <% @user.companies.each do | company | %>
-                       <li>
-                                <a href="<%= company_path(company, from_notification:1) %>">
-                                   <%= company.name %>
-                                </a>
-                      </li>
-                      <% end %>
-                    </ul>
-                </li>
-              <% end %>
+              <%#          </li> %>
+              <%#         <% @user.companies.each do | company | %1> %>
+              <%#          <li> %>
+              <%#                   <a href="<%= company_path(company, from_notification:1) %1>"> %>
+              <%#                      <%= company.name %1> %>
+              <%#                   </a> %>
+              <%#         </li> %>
+              <%#         <% end %1> %>
+              <%#       </ul> %>
+              <%#   </li> %>
+              <%# <% end %1> %>
             </li>
           <% end %>
 

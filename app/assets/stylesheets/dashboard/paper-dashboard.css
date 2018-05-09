@@ -478,7 +478,7 @@ hr {
 }
 .sidebar[data-active-color="success"] .nav li.active > a,
 .off-canvas-sidebar[data-active-color="success"] .nav li.active > a {
-  color: #5e337d;
+  color: #da2417;
   opacity: 1;
 }
 .sidebar[data-active-color="warning"] .nav li.active > a,
@@ -488,7 +488,7 @@ hr {
 }
 .sidebar[data-active-color="danger"] .nav li.active > a,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a {
-  color: #5e337d;
+  color: #da2417;
   opacity: 1;
 }
 
@@ -3590,7 +3590,7 @@ textarea.form-control {
 }
 
 .button {
-    background-color: #5e337b; /* Green */
+    background-color: #da2417; /* Green */
     border: none;
     color: white;
     text-align: center;
@@ -3828,7 +3828,7 @@ div.file > span  {
 
 
 .notification-bubble {
-    background-color: #5e337b;
+    background-color: #da2417;
     border-radius: 20px;
     font-size: 11px;
     font-weight: bold;

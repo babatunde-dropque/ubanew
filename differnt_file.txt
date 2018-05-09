@@ -4,34 +4,34 @@ index 718238b..514c03e 100755
 +++ b/app/views/users/account.html.erb
 @@ -1,33 +1,6 @@
  <style>
--#tabs .ui-tabs-nav { 
--    padding: 0em; 
--    background: transparent; 
--    border-width: 0px; 
--} 
--#tabs .ui-tabs-nav li { 
--    position: static; 
--    margin: 0px; 
--    border-bottom: 1px solid #5e337b !important; 
--    -moz-border-radius: 0px; 
--    -webkit-border-radius: 0px; 
--    border-radius: 0px; 
--} 
--#tabs .ui-tabs-nav li:first-child { 
--    -moz-border-radius: 6px 0px 0px 6px; 
--    -webkit-border-radius: 6px 0px 0px 6px; 
--    border-radius: 6px 0px 0px 6px; 
--} 
--#tabs .ui-tabs-nav li:last-child { 
--    -moz-border-radius: 0px 6px 6px 0px; 
--    -webkit-border-radius: 0px 6px 6px 0px; 
--    border-radius: 0px 6px 6px 0px; 
--} 
--#tabs .ui-tabs-nav li.ui-tabs-selected { 
--    padding-bottom: 0px; 
--    border-bottom: 1px solid #d4ccb0 !important; 
+-#tabs .ui-tabs-nav {
+-    padding: 0em;
+-    background: transparent;
+-    border-width: 0px;
 -}
- 
+-#tabs .ui-tabs-nav li {
+-    position: static;
+-    margin: 0px;
+-    border-bottom: 1px solid #da2417 !important;
+-    -moz-border-radius: 0px;
+-    -webkit-border-radius: 0px;
+-    border-radius: 0px;
+-}
+-#tabs .ui-tabs-nav li:first-child {
+-    -moz-border-radius: 6px 0px 0px 6px;
+-    -webkit-border-radius: 6px 0px 0px 6px;
+-    border-radius: 6px 0px 0px 6px;
+-}
+-#tabs .ui-tabs-nav li:last-child {
+-    -moz-border-radius: 0px 6px 6px 0px;
+-    -webkit-border-radius: 0px 6px 6px 0px;
+-    border-radius: 0px 6px 6px 0px;
+-}
+-#tabs .ui-tabs-nav li.ui-tabs-selected {
+-    padding-bottom: 0px;
+-    border-bottom: 1px solid #d4ccb0 !important;
+-}
+
 - .btn {
 +.btn {
      display: inline-block;
@@ -48,7 +48,7 @@ index 718238b..514c03e 100755
                                  <div class="author">
 @@ -77,11 +50,12 @@ h4 {
                                    <% else %>
-                                     <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />                     
+                                     <img src="<%=@user.a_dp.url %>"  class="avatar border-white" alt="..." />
                                    <% end %>
 +                                <div class="">
                                    <h3 class="title"><%= @user.name %></h3>
@@ -64,14 +64,14 @@ index 718238b..514c03e 100755
                                  <p class="description text-center">
                                      <%= @user.about_me %>
                                  </p>
--                                
+-
                              </div>
                              <hr>
                              <div class="text-center">
 @@ -113,53 +86,7 @@ h4 {
                              </div>
                          </div>
- 
+
 -            <div class="card">
 -                         <!-- Beginning of card details -->
 -
@@ -93,22 +93,22 @@ index 718238b..514c03e 100755
 -                                <div class="col-md-6 col-xs-6">
 -                                   <%= link_to user_timeline_path(current_user) do %>
 -                                      <h5><%= @user.submissions.length %><br><small>Application(s)</small></h5>
--                                   <% end %> 
+-                                   <% end %>
 -                                </div>
 -                             <% end %>
 -                             <% if @user.companies.length > 0 %>
 -                                <div class="col-md-6 col-xs-6">
 -
--                             
+-
 -                                <% if @user.last_company.nil? %>
 -                                      <%= link_to company_path(@user.companies.first) do %>
 -                                      <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
--                                   <% end %> 
+-                                   <% end %>
 -                                <% else %>
 -                                     <% company = Company.friendly.find(@user.last_company) %>
 -                                      <%= link_to company_path(company) do %>
 -                                        <h5><%= @user.companies.length %><br><small> Organization(s)</small></h5>
--                                   <% end %> 
+-                                   <% end %>
 -                                <% end %>
 -
 -                                </div>
@@ -116,10 +116,10 @@ index 718238b..514c03e 100755
 -
 -                            </div>
 -                        </div>
--                   
+-
 -                         <!-- end of card details here -->
 -            </div>
-+            
++
              <div class="card">
                           <!-- Beginning of card details -->
                          <div class="content">
@@ -144,7 +144,7 @@ index 718238b..514c03e 100755
 -                                  <div class="col-md-10 col-xs-10">
 -                                      <%= education["years"] %>
 -                                  </div>
-+                                      <div> 
++                                      <div>
 +                                      <h5> <%= education["school"] %>  </h5>
 +                                      </div>
 +                                       <div>
@@ -158,7 +158,7 @@ index 718238b..514c03e 100755
                                        <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
                                          <i id="profile-btn" class="ti-pencil update-education"  edu-id="<%= index  %>"></i>
                                        </a>
-+                                  
++
 +                                      <a href="#" class="btn btn-success btn-simple" style="float: right; font-size: 1.5em;">
 +                                        <i id="profile-btn" class="ti-close delete-education"  edu-id="<%= index  %>"></i>
 +                                      </a>
@@ -167,10 +167,10 @@ index 718238b..514c03e 100755
                            <% end %>
 @@ -233,9 +166,6 @@ h4 {
              </div>
- 
+
                      </div>
 -
--                     
+-
 -
                  </div>
              </div>
@@ -183,13 +183,13 @@ index 718238b..514c03e 100755
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
-         </button>  
-+      Profile 
+         </button>
++      Profile
        </div>
 -      <input type="text" id="remove-id" hidden >
 -      <div class="modal-body" id="remove-body">
 -         <div  class="content">
--                               
+-
 -                                  <input type="hidden" name="update" value="update">
 +      <div class="modal-body">
 +         <div class="content">
@@ -208,7 +208,7 @@ index 718238b..514c03e 100755
                                      </div>
 @@ -288,13 +218,19 @@ h4 {
                                      </div>
- 
+
                                      <div class="row">
 -                                        <div class="col-md-6">
 +                                        <div class="col-md-4">
@@ -237,10 +237,10 @@ index 718238b..514c03e 100755
                                              </div>
                                          </div>
                                      </div>
- 
+
 -
                                     <!-- add csrf token -->
--                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
+-                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
 -
 -                                   <!--  <div class="row">
 -                                        <div class="col-md-12">
@@ -251,7 +251,7 @@ index 718238b..514c03e 100755
 -                                        </div>
 -                                    </div> -->
 -                                   <!-- <a href="#demo" data-toggle="collapse" style="color: #68B3C8">Click here to change password</a> -->
--<!-- 
+-<!--
 -                                <div id="demo" class="collapse">
 -
 -                                     <hr>
@@ -273,10 +273,10 @@ index 718238b..514c03e 100755
 -                                    <div class="clearfix"></div>
 -                                </div> -->
 -                        </div>
-+  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                             
++  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
 +                                </div>
- 
- 
+
+
        </div>
        <div class="modal-footer">
 -        <button type="button" class="btn box-shape" data-dismiss="modal"> No </button>
@@ -288,7 +288,7 @@ index 718238b..514c03e 100755
 +
    </div>
  </div>
- 
+
 @@ -375,7 +280,7 @@ h4 {
        </div>
        <div class="modal-footer">
@@ -308,7 +308,7 @@ index 718238b..514c03e 100755
      </div>
    </div>
  </div>
- 
+
 -<!-- Here is the modal for applicant skills-->
 -<div class="modal fade" id="modal-skills" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 -  <div class="modal-dialog" role="document">
@@ -317,17 +317,17 @@ index 718238b..514c03e 100755
 -        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 -          <span aria-hidden="true">&times;</span>
 -        </button>
--        Head Title will be here 
+-        Head Title will be here
 -      </div>
 -      <input type="text" id="remove-id" hidden >
 -      <div class="modal-body" id="remove-body">
--         <div  class="content"> 
--           <div id="tabs-4" class="content"> 
+-         <div  class="content">
+-           <div id="tabs-4" class="content">
 -             <div class="col-sm-10 col-sm-offset-1">
 -
 -                 <div class="form-group has-error">
 -                     <label id="tag-label" class="control-label" for="tags"></label>
--                     <input name="skill" type="text" value="<%= @user.skill %>" id="tags" class="form-control" >          
+-                     <input name="skill" type="text" value="<%= @user.skill %>" id="tags" class="form-control" >
 -                 </div>
 -             </div>
 -            </div>
@@ -351,13 +351,13 @@ index 718238b..514c03e 100755
 +<%#       </div> %>
 +<%#       <input type="text" id="remove-id" hidden > %>
 +<%#       <div class="modal-body" id="remove-body"> %>
-+<%#          <div  class="content"> %> 
-+           
++<%#          <div  class="content"> %>
++
 +<%#                  <div class="form-group has-error"> %>
 +<%#                      <label id="tag-label" class="control-label" for="tags"></label> %>
-+<%#                      <input name="skill" type="text" value="<%= @user.skill %1>" id="tags" class="form-control" > %>          
++<%#                      <input name="skill" type="text" value="<%= @user.skill %1>" id="tags" class="form-control" > %>
 +<%#                  </div> %>
-+            
++
 +<%#          </div> %>
 +<%#       <div class="modal-footer"> %>
 +<%#         <button type="button"  class="btn box-shape"> Save </button> %>
@@ -365,22 +365,22 @@ index 718238b..514c03e 100755
 +<%#     </div> %>
 +<%#   </div> %>
 +<%# </div> %>
- 
+
  <!-- object of modal element -->
- 
+
 -
 -
 -
  <!-- end of modal object -->
  <script>
- 
+
 +var generalPos = 0 ;
 +
  $("#experience-btn").click(function(){
 -    $("#modal-experience").modal();
 +  $("#modal-experience").modal();
- }); 
- 
+ });
+
  $(".education-btn").click(function(e){
      var target = $(this).attr("data-target");
 -    if (target == "update"){
@@ -388,40 +388,40 @@ index 718238b..514c03e 100755
 +    $('#save-education').html("Save");
 +    $('#save-education').attr("which", "new");
 +    <%# if (target == "update"){ %>
-     
--    } 
-+    <%# } %> 
+
+-    }
++    <%# } %>
      $("#modal-education").modal();
--    
- }); 
- 
- 
- 
+-
+ });
+
+
+
  $("#skills-btn").click(function(){
 -    $("#modal-skills").modal();
 +  $("#modal-skills").modal();
  });
- 
+
  $("#profile-btn").click(function(){
 @@ -560,7 +462,7 @@ $('#tags').tagit({
- 
+
    $( function() {
      $("#tabs").tabs();
 -  } );
 +  });
- 
+
    <% flash.each do |key, value| %>
      showMessage('top','center', "<%= value %>", <%= (key == "success") ? 2: 4 %>);
 @@ -571,13 +473,20 @@ $("#update").click(function(event){
  });
- 
+
  $("#save-education").click(function(){
 +    var type = $(this).attr("which");
      var data = $("#form-education").serializeJSON();
 +    var pos = 0 ;
 +    if (type == "update"){
 +        pos =  $('#save-education').attr("pos");
-+    } 
++    }
 +    console.log(pos);
 +    console.log(type);
      $.ajax({
@@ -434,7 +434,7 @@ index 718238b..514c03e 100755
 +            location.reload();
          },
          error : function(jqXHR, textStatus, errorThrown) {
-              
+
 @@ -597,6 +506,9 @@ $(".update-education").click(function(){
             $('input[name=discipline]').val(data.data["discipline"]);
             $('input[name=grade]').val(data.data["grade"]);
@@ -466,8 +466,8 @@ index 718238b..514c03e 100755
 +
 +         }
 +     });
-+ }); 
++ });
 +
  </script>
- 
- 
+
+
