@@ -7,7 +7,7 @@
                 <div >
                     <div class="row sharing-area text-center">
                         <br> <br> <br> <br>                         
-                        <h3>Welcome to your Dropque dashboard!</h3>
+                        <h3>Welcome to your <%= @company.name %>  dashboard!</h3>
                         <h5> Start by creating an interview </h5>
 
                      <%= link_to new_company_interview_path(params[:company_id] || params[:id]) do %>
