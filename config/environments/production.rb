@@ -60,7 +60,8 @@ Rails.application.configure do
   
   # config.force_ssl = true
   # this is the old settings 
-  config.force_ssl = true unless ENV['SKIP_FORCE_SSL']
+  # config.force_ssl = true unless ENV['SKIP_FORCE_SSL']
+  config.force_ssl = false 
  
 
   # Use the lowest log level to ensure availability of diagnostic information
