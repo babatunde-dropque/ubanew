@@ -24,7 +24,7 @@
                   <ul class="nav navbar-nav navbar-right">
                     <li>
 
-                      <input  onchange="update()" type="hidden" id="color_value" value="<%= (@company.properties.nil?) ? "#da2417": @company.properties["primaryColor"] %>">     
+                      <input  onchange="update()" type="hidden" id="color_value" value="<%= (@company.properties.nil?) ? "#DA291C": @company.properties["primaryColor"] %>">     
 
                        <button  id="color-button"  contenteditable="false" class="btn  jscolor {valueElement: 'color_value'}" > Pick a colour </button> 
               
@@ -187,7 +187,7 @@
      $("#reset-button").click(function(event){
 
         var properties = {
-            primaryColor: '#da2417',
+            primaryColor: '#DA291C',
             heroText: "<%= @company.name %> E-Interview Portal",
             subHeroText: "Sell yourself and get the offer",
             preCtaText: "Let's do this",

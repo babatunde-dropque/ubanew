@@ -1,4 +1,18 @@
+@font-face{
+    font-family: "ubamyriadbold";
+    src: url('/assets/myriadpro-bold.otf'); /* IE */
+}
 
+@font-face{
+    font-family: "ubamyriad";
+    src: url('/assets/MyriadPro-Regular.otf') ; /* IE */
+}
+
+
+@font-face{
+    font-family: "ubatrebuchet";
+    src: url('/assets/trebuchet.ttf') ; /* IE */
+}
 .materialize-red.lighten-5 {
   background-color: #fdeaeb !important;
 }
@@ -2484,7 +2498,7 @@
  *    user zoom.
  */
 html {
-  font-family: sans-serif;
+  font-family:'ubamyriadbold', sans-serif;
   /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
@@ -2687,7 +2701,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
+  font-family:'ubamyriadbold', monospace, monospace;
   font-size: 1em;
 }
 
@@ -2880,7 +2894,7 @@ th {
   General classes
 **********************/
 body {
-  font-family: Roboto, sans-serif;
+  font-family:'ubatrebuchet', Roboto, sans-serif;
   overflow: auto !important;
 }
 
@@ -4235,7 +4249,7 @@ Dropdowns
 **********************/
 .tooltip {
   line-height: 1.5;
-  font-family: "Roboto", sans-serif;
+  font-family: "ubatrebuchet","Roboto", sans-serif;
   font-weight: 300;
 }
 
@@ -4267,7 +4281,7 @@ Dropdowns
   display: inline-block;
   font-size: 1.6rem;
   line-height: 1.5;
-  font-family: "Roboto", sans-serif;
+  font-family: "ubatrebuchet","Roboto", sans-serif;
   font-weight: 300;
   max-width: 170px;
   padding: 8px;
