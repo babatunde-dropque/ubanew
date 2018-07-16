@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
+
 #needed for persing csv and xls
 gem 'roo', '~> 2.5.0'
 gem 'roo-xls', '~> 1.0'
@@ -77,12 +78,17 @@ gem 'devise'
 gem 'devise_invitable'
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.20'
+gem 'pg'
 
 # for creating environmental viarible
 gem 'figaro'
+
 # creating fog file to help with aws configuration 
 gem 'fog'
+
+#needed for nice editor
+gem 'ckeditor', github: 'galetahub/ckeditor'
+
 # for resizing images, rails version of image magic
 gem 'mini_magick', '~> 4.3'
 
@@ -93,12 +99,14 @@ gem 'friendly_id'
 
 # to upload files from local 
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
 #  will run backgound processes, 
 gem 'delayed_job_active_record'
 
 
 # gem for rating 
 gem 'ratyrate'
+
 # rails admin gem for admin dashboard
 gem 'rails_admin'
 
@@ -107,8 +115,10 @@ gem 'rails_12factor'
 
 # for crash reporting and errors
 gem 'rollbar'
+
 # suggestion from rollbar
 gem 'oj', '~> 2.12.14'
+
 # for slack notification when there is a signup
 gem 'slack-notifier'
 
@@ -119,7 +129,17 @@ gem 'will_paginate', '~> 3.1.0'
 #gem 'sinatra', '~> 2.0'
 gem 'twilio-ruby', '~> 4.13'
 
+#server 
 gem 'puma'
 
 #add whenever gem for cron job schedulers
 gem 'whenever', require: false
+
+# gem 'aws-sdk', '~> 3'
+gem 'aws-sdk-rekognition'
+
+# gem for aws sentiment analysis
+gem 'aws-sdk-comprehend'
+
+# gem to communicate with ffmpeg for screenshot
+gem 'streamio-ffmpeg'

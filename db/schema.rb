@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180425093851) do
+ActiveRecord::Schema.define(version: 20180706025825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ai_pictures", force: :cascade do |t|
+    t.string   "image"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.json     "image_array"
+  end
 
   create_table "aivideos", force: :cascade do |t|
     t.string   "token"
@@ -191,6 +198,8 @@ ActiveRecord::Schema.define(version: 20180425093851) do
     t.integer  "interview_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "email"
+    t.string   "role"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -222,6 +231,36 @@ ActiveRecord::Schema.define(version: 20180425093851) do
     t.float    "overall_avg",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "quedepos", force: :cascade do |t|
+    t.integer  "question_type"
+    t.string   "skill"
+    t.string   "question"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "question_text"
+    t.string   "question_video"
+    t.string   "file_text"
+    t.string   "time_allowed"
+    t.string   "max_char"
+    t.string   "file_size"
+    t.integer  "company_id"
+  end
+
+  add_index "quedepos", ["question"], name: "index_quedepos_on_question", unique: true, using: :btree
+
+  create_table "questions", force: :cascade do |t|
+    t.jsonb    "options",    default: []
+    t.string   "difficulty"
+    t.integer  "point"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "image"
+    t.string   "question"
+    t.integer  "company_id"
+    t.integer  "skill_id"
+    t.integer  "type"
   end
 
   create_table "rates", force: :cascade do |t|
@@ -261,16 +300,35 @@ ActiveRecord::Schema.define(version: 20180425093851) do
     t.string   "telephone"
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "company_id"
+  end
+
   create_table "submissions", force: :cascade do |t|
     t.integer  "status"
     t.integer  "user_id"
     t.integer  "interview_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "current_no"
     t.json     "answers"
     t.integer  "first_video"
     t.integer  "device"
+    t.integer  "ai_available"
+    t.json     "ai_emotions"
+    t.integer  "ai_picture_id"
+    t.json     "ai_average_total"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "company_id"
+    t.string   "skills",     default: [],              array: true
   end
 
   create_table "text_uploads", force: :cascade do |t|
@@ -304,6 +362,7 @@ ActiveRecord::Schema.define(version: 20180425093851) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
+    t.string   "package"
     t.string   "telephone"
     t.string   "a_qualification"
     t.integer  "a_experience"
@@ -324,8 +383,9 @@ ActiveRecord::Schema.define(version: 20180425093851) do
     t.integer  "marital_status"
     t.string   "state"
     t.string   "nationality"
-    t.json     "educations",             default: []
+    t.jsonb    "educations"
     t.json     "social"
+    t.integer  "preview",                default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
