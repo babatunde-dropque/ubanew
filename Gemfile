@@ -82,7 +82,7 @@ gem 'pg'
 # for creating environmental viarible
 gem 'figaro'
 # creating fog file to help with aws configuration 
-gem 'fog'
+#gem 'fog'
 # for resizing images, rails version of image magic
 gem 'mini_magick', '~> 4.3'
 
@@ -108,7 +108,7 @@ gem 'rails_12factor'
 # for crash reporting and errors
 gem 'rollbar'
 # suggestion from rollbar
-gem 'oj', '~> 2.12.14'
+#gem 'oj', '~> 2.12.14'
 
 # for slack notification when there is a signup
 gem 'slack-notifier'
