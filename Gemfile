@@ -117,7 +117,7 @@ gem 'rails_12factor'
 gem 'rollbar'
 
 # suggestion from rollbar
-gem 'oj', '~> 2.12.14'
+#gem 'oj', '~> 2.12.14'
 
 # for slack notification when there is a signup
 gem 'slack-notifier'
